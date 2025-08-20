@@ -85,3 +85,79 @@ Este documento presenta un modelo de clases que describe la estructura de datos,
   - `generar_informe()`: Crea reportes administrativos sobre pacientes o internaciones.
 
 ***
+### Relaciones (Asociaciones)
+
+Las siguientes asociaciones describen las conexiones entre las clases, indicando cómo los objetos se relacionan entre sí.
+
+- *PACIENTE* e *INTERNACION*:
+  - Un PACIENTE está asociado con cero o muchas INTERNACION.
+  - Una INTERNACION está asociada con exactamente un PACIENTE.
+
+- *INTERNACION* y *HABITACION*:
+  - Una INTERNACION está asociada con exactamente una HABITACION.
+  - Una HABITACION está asociada con cero o muchas INTERNACION.
+
+- *MEDICO* e *INTERNACION*:
+  - Un MEDICO está asociado con cero o muchas INTERNACION.
+  - Una INTERNACION está asociada con uno o muchos MEDICO.
+
+- *ADMINISTRATIVO* y *PACIENTE*:
+  - Un ADMINISTRATIVO está asociado con cero o muchos PACIENTE.
+  - Un PACIENTE está asociado con exactamente un ADMINISTRATIVO.
+
+
+```mermaid
+classDiagram
+    class PACIENTE {
+        +string dni
+        +string nombre
+        +string apellido
+        +string sexo
+        +Date fechaNac
+        +string telefono
+        +string mail
+        +string direccion
+        +string obraSocial
+        +registrar_paciente()
+        +actualizar_datos()
+        +consultar_historial()
+    }
+    class INTERNACION {
+        +int numeroIngreso
+        +Date fechaIngreso
+        +Date fechaEgreso
+        +string Informe
+        +string Dx
+        +iniciar_internacion()
+        +dar_alta()
+        +actualizar_informe()
+    }
+    class HABITACION {
+        +int Numero
+        +int Piso
+        +int Capacidad
+        +asignar_habitacion()
+        +verificar_disponibilidad()
+        +limpiar_habitacion()
+    }
+    class MEDICO {
+        +string nombre
+        +string apellido
+        +string matricula
+        +string especialidad
+        +asignar_a_paciente()
+        +registrar_evolucion()
+    }
+    class ADMINISTRATIVO {
+        +string nombre
+        +string apellido
+        +string legajo
+        +registrar_paciente()
+        +generar_informe()
+    }
+
+    PACIENTE "1" -- "0..*" INTERNACION : tiene
+    INTERNACION "1..*" -- "1" HABITACION : ocupa
+    MEDICO "1..*" -- "1..*" INTERNACION : atiende
+    ADMINISTRATIVO "1" -- "0..*" PACIENTE : registra
+```
