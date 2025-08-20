@@ -66,3 +66,9 @@ Tecnologías y Habilidades en Práctica: No cuento con conocimientos previos.
 Intereses y Áreas de Aprendizaje: Me interesa aprender cómo se crean sitios web desde cero y entender cómo funciona todo, tanto el diseño como la parte que no se ve. Quiero mejorar en el uso de herramientas de desarrollo web.
 
 Tecnologías y Habilidades en Práctica: Manejo HTML, CSS, JavaScript, Python y Java. También utilizo Git y GitHub para organizar el código y trabajar en grupo. Me gusta colaborar con mis compañeros y aprender juntos.
+
+### Tomas Nicolas Nieto
+
+Intereses y Áreas de Aprendizaje: Me gustaria profundizar en el desarrollo web y continuar ampliando mis conocimientos.
+
+Tecnologías y Habilidades en Práctica: Tengo conocimientos en HTML,Css, Js, Angular, Typescript y .NET.
