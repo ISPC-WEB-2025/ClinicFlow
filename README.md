@@ -72,3 +72,12 @@ Tecnologías y Habilidades en Práctica: Manejo HTML, CSS, JavaScript, Python y 
 Intereses y Áreas de Aprendizaje: Me gustaria profundizar en el desarrollo web y continuar ampliando mis conocimientos.
 
 Tecnologías y Habilidades en Práctica: Tengo conocimientos en HTML,Css, Js, Angular, Typescript y .NET.
+
+### Virginia García
+
+
+Intereses y Áreas de Aprendizaje: Me interesa aprender sobre desarrollo web en general y lograr la creación de un proyecto en equipo.
+
+Tecnologías y Habilidades en Práctica: Conocimientos en : Html,Css,JavasCript,React.
+
+
