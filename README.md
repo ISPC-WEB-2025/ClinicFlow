@@ -9,24 +9,28 @@ El sistema está pensado para ser utilizado por el personal administrativo, méd
 En muchas clínicas pequeñas y medianas, el registro de pacientes todavía se realiza en papel o con sistemas no integrados, lo que genera pérdida de información, duplicidad de datos y dificultad para realizar seguimientos o auditorías. Este proyecto busca ofrecer una solución simple y digital para llevar un control claro y efectivo del flujo de pacientes.
 
 
-## 🔍 Posibles Funcionalidades / Áreas de Enfoque Inicial
+## 🚀 Funcionalidades
+### Funcionalidades Iniciales
+✅ Registro de ingreso de pacientes con información básica (nombre, motivo de ingreso, fecha y hora)
 
-Registro de ingreso de pacientes con información básica (nombre, motivo de ingreso, fecha y hora).
+✅ Registro de egreso con detalles como diagnóstico, tratamiento, y fecha de salida
 
-Registro de egreso con detalles como diagnóstico, tratamiento, y fecha de salida.
+✅ Visualización de pacientes actualmente internados
 
-Visualización de pacientes actualmente internados.
+✅ Historial de ingresos y egresos por paciente
 
-Historial de ingresos y egresos por paciente.
+✅ Filtros de búsqueda por fecha, nombre o estado (internado / egresado)
 
-Filtros de búsqueda por fecha, nombre o estado (internado / egresado).
+✅ Generación de reportes básicos (por fecha, por médico, etc.)
 
-Generación de reportes básicos (por fecha, por médico, etc.).
+### Funcionalidades Futuras
+🔲 Control de disponibilidad de camas o habitaciones
 
-Control de disponibilidad de camas o habitaciones (futuro).
+🔲 Roles de usuario: administrativo, médico, enfermería
 
-Roles de usuario: administrativo, médico, enfermería (futuro).
+🔲 Notificaciones automáticas
 
+🔲 Integración con sistemas de historia clínica electrónica
 
 ## 👥 Posibles Usuarios
 
@@ -38,6 +42,40 @@ Enfermeros/as.
 
 Directores o encargados de gestión clínica.
 
+## 🛠️ Stack Tecnológico
+### Frontend
+- HTML5: Estructura semántica de la aplicación
+- CSS3: Estilos y diseño responsive
+- JavaScript: Interactividad y dinamismo en el cliente
+
+### Backend
+- Python: Lógica de negocio y API del servidor
+
+### Base de Datos
+- SQL: Base de datos relacional para almacenamiento persistente
+
+### Control de Versiones
+- Git: Sistema de control de versiones
+- GitHub: Plataforma de alojamiento y colaboración
+
+## 📊 Estado del Proyecto
+Versión Actual
+Versión: 0.1.0 (Alpha)
+
+Estado: En desarrollo inicial
+
+### Próximos Hitos
+✅ Definición de requisitos y planificación
+
+⏳ Diseño de interfaz de usuario
+
+◻️ Implementación de backend básico
+
+◻️ Integración frontend-backend
+
+◻️ Pruebas de funcionalidad
+
+◻️ Despliegue inicial
 
 ## 👥 Integrantes del Equipo
 
@@ -74,7 +112,6 @@ Intereses y Áreas de Aprendizaje: Me gustaria profundizar en el desarrollo web 
 Tecnologías y Habilidades en Práctica: Tengo conocimientos en HTML,Css, Js, Angular, Typescript y .NET.
 
 ### Virginia García
-
 
 Intereses y Áreas de Aprendizaje: Me interesa aprender sobre desarrollo web en general y lograr la creación de un proyecto en equipo.
 
