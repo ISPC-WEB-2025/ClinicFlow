@@ -7,7 +7,7 @@ ClinicFlow es un sistema web diseñado para optimizar la gestión de ingresos y 
 ## **Tablas y Descripción**
 
 ### 1. `Usuario`
-Contiene todos los usuarios del sistema, independientemente de su rol.
+Contiene todos los usuarios del sistema, independientemente de su rol. Los campos `matricula` y `especialidad` son opcionales y se usan solo si el usuario tiene rol médico.
 
 **Columnas:**
 - `id_usuario` (PK): Identificador único del usuario.
@@ -16,10 +16,13 @@ Contiene todos los usuarios del sistema, independientemente de su rol.
 - `email`: Correo electrónico para login.
 - `contrasena`: Contraseña del usuario.
 - `fecha_creacion`: Fecha de creación del registro.
+- `matricula` (opcional): Solo para usuarios con rol médico.
+- `especialidad` (opcional): Solo para usuarios con rol médico.
 
 **Relaciones:**
 - Se relaciona con `Rol` mediante `Usuario_Rol`.
-- Se relaciona con `Paciente`, `Medico` e `Internacion` para registrar quién realizó acciones.
+- Se relaciona con `Paciente` e `Internacion` para registrar quién realizó acciones.
+- Se relaciona con `Internacion_Medico` si el usuario tiene rol médico.
 
 ---
 
@@ -75,21 +78,7 @@ Almacena las habitaciones disponibles en la institución de salud.
 
 ---
 
-### 6. `Medico`
-Información específica de los médicos del sistema.
-
-**Columnas:**
-- `id_medico` (PK)
-- `id_usuario` (FK → `Usuario.id_usuario`)
-- `matricula`
-- `especialidad`
-
-**Relaciones:**
-- Muchos a muchos con `Internacion` mediante `Internacion_Medico`.
-
----
-
-### 7. `Internacion`
+### 6. `Internacion`
 Registra los ingresos y egresos de pacientes.
 
 **Columnas:**
@@ -106,32 +95,25 @@ Registra los ingresos y egresos de pacientes.
 
 ---
 
-### 8. `Internacion_Medico`
-Relaciona médicos con internaciones (muchos a muchos).
+### 7. `Internacion_Medico`
+Relaciona usuarios con rol médico con internaciones (muchos a muchos).
 
 **Columnas:**
 - `id_internacion` (FK → `Internacion.id_internacion`)
-- `id_medico` (FK → `Medico.id_medico`)
+- `id_usuario` (FK → `Usuario.id_usuario`): Usuario con rol médico.
 
-**Clave primaria compuesta:** `(id_internacion, id_medico)`
+**Clave primaria compuesta:** `(id_internacion, id_usuario)`
 
 **Relaciones:**
-- Muchos a muchos entre `Internacion` y `Medico`.
+- Muchos a muchos entre `Internacion` y usuarios con rol médico.
 
 ---
 
 ## **Resumen de relaciones**
 
 - **Usuario – Rol:** Muchos a muchos mediante `Usuario_Rol`.
-- **Usuario – Paciente / Internacion / Medico:** Uno a muchos.
+- **Usuario – Paciente / Internacion:** Uno a muchos.
 - **Paciente – Internacion:** Uno a muchos.
 - **Habitacion – Internacion:** Uno a muchos.
-- **Medico – Internacion:** Muchos a muchos mediante `Internacion_Medico`.
+- **Usuario (médico) – Internacion:** Muchos a muchos mediante `Internacion_Medico`.
 
----
-
-## **Notas**
-
-- Este diseño permite escalar fácilmente: se pueden agregar nuevos roles sin modificar las tablas principales.
-- Se centraliza la información de usuarios, evitando duplicar datos de nombres y apellidos en varias tablas.
-- Facilita la trazabilidad: se sabe quién registró cada paciente, internación o información médica.
