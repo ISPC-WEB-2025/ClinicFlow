@@ -3,6 +3,7 @@ ClinicFlow es un sistema básico de gestión de ingresos y egresos de pacientes 
 
 El sistema está pensado para ser utilizado por el personal administrativo, médicos y personal de enfermería, facilitando la organización interna y mejorando la calidad del servicio brindado.
 
+El sistema cuenta con un e-commerce digital que permite a los clientes adquirir el producto y contratar los servicios de la compañía.
 
 ## 🎯 Problema que Busca Resolver
 
@@ -11,6 +12,8 @@ En muchas clínicas pequeñas y medianas, el registro de pacientes todavía se r
 
 ## 🚀 Funcionalidades
 ### Funcionalidades Iniciales
+✅ E-commerce para la comercialización del Servicio.
+
 ✅ Registro de ingreso de pacientes con información básica (nombre, motivo de ingreso, fecha y hora)
 
 ✅ Registro de egreso con detalles como diagnóstico, tratamiento, y fecha de salida
@@ -64,18 +67,6 @@ Versión: 0.1.0 (Alpha)
 
 Estado: En desarrollo inicial
 
-### Próximos Hitos
-✅ Definición de requisitos y planificación
-
-⏳ Diseño de interfaz de usuario
-
-◻️ Implementación de backend básico
-
-◻️ Integración frontend-backend
-
-◻️ Pruebas de funcionalidad
-
-◻️ Despliegue inicial
 
 ## 👥 Integrantes del Equipo
 
@@ -117,4 +108,12 @@ Intereses y Áreas de Aprendizaje: Me interesa aprender sobre desarrollo web en 
 
 Tecnologías y Habilidades en Práctica: Conocimientos en : Html,Css,JavasCript,React.
 
-
+## Distribución de Roles
+### Equipo FrontEnd
+- Aylen Bartolino Luna
+- María Elena Haydeé Ponce
+- Brenda Pogliano
+### Equipo Backend
+- Virginia García
+- Tomas Nicolas Nieto
+- Miguel Flores
