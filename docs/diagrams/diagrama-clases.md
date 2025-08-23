@@ -118,55 +118,65 @@ Las siguientes asociaciones describen las conexiones entre las clases, indicando
 ```mermaid
 classDiagram
     class PACIENTE {
-        +string dni
-        +string nombre
-        +string apellido
-        +string sexo
-        +Date fechaNac
-        +string telefono
-        +string mail
-        +string direccion
-        +string obraSocial
+        -string dni
+        -string nombre
+        -string apellido
+        -string sexo
+        -Date fechaNac
+        -string telefono
+        -string mail
+        -string direccion
+        -string obraSocial
         +registrar_paciente()
         +actualizar_datos()
         +consultar_historial()
     }
+
     class INTERNACION {
-        +int numeroIngreso
-        +Date fechaIngreso
-        +Date fechaEgreso
-        +string Informe
-        +string Dx
+        -int numeroIngreso
+        -Date fechaIngreso
+        -Date fechaEgreso
+        -string Informe
+        -string Dx
         +iniciar_internacion()
         +dar_alta()
         +actualizar_informe()
     }
+
     class HABITACION {
-        +int Numero
-        +int Piso
-        +int Capacidad
+        -int numero
+        -int piso
+        -int capacidad
         +asignar_habitacion()
         +verificar_disponibilidad()
         +limpiar_habitacion()
     }
-    class MEDICO {
-        +string nombre
-        +string apellido
-        +string matricula
-        +string especialidad
-        +asignar_a_paciente()
-        +registrar_evolucion()
-    }
-    class ADMINISTRATIVO {
-        +string nombre
-        +string apellido
-        +string legajo
+
+    class USUARIO {
+        -string nombre
+        -string apellido
+        -string email
+        -string contrasena
+        -string matricula
+        -string especialidad
+        +login()
+        +asignar_Rol()
         +registrar_paciente()
-        +generar_informe()
+        +internar_paciente()
+        +registrar_internacion()
+        +asignar_medico()
+        +registrar_evolucion()
+        +generar_informe_administrativo()
+    }
+
+    class ROL {
+        -string nombre
+        -string descripcion
     }
 
     PACIENTE "1" -- "0..*" INTERNACION : tiene
-    INTERNACION "1..*" -- "1" HABITACION : ocupa
-    MEDICO "1..*" -- "1..*" INTERNACION : atiende
-    ADMINISTRATIVO "1" -- "0..*" PACIENTE : registra
+    INTERNACION "1" -- "1" HABITACION : ocupa
+    USUARIO "1" -- "0..*" PACIENTE : registra
+    USUARIO "1" -- "0..*" INTERNACION : gestiona
+    USUARIO "1..*" -- "1..*" ROL : tiene
 ```
