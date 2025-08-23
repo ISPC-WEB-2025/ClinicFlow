@@ -14,19 +14,20 @@ En muchas clínicas pequeñas y medianas, el registro de pacientes todavía se r
 ### Funcionalidades Iniciales
 ✅ E-commerce para la comercialización del Servicio.
 
-✅ Registro de ingreso de pacientes con información básica (nombre, motivo de ingreso, fecha y hora)
-
-✅ Registro de egreso con detalles como diagnóstico, tratamiento, y fecha de salida
-
-✅ Visualización de pacientes actualmente internados
-
-✅ Historial de ingresos y egresos por paciente
-
-✅ Filtros de búsqueda por fecha, nombre o estado (internado / egresado)
-
-✅ Generación de reportes básicos (por fecha, por médico, etc.)
-
 ### Funcionalidades Futuras
+
+🔲 Registro de ingreso de pacientes con información básica (nombre, motivo de ingreso, fecha y hora)
+
+🔲 Registro de egreso con detalles como diagnóstico, tratamiento, y fecha de salida
+
+🔲 Visualización de pacientes actualmente internados
+
+🔲 Historial de ingresos y egresos por paciente
+
+🔲 Filtros de búsqueda por fecha, nombre o estado (internado / egresado)
+
+🔲 Generación de reportes básicos (por fecha, por médico, etc.)
+
 🔲 Control de disponibilidad de camas o habitaciones
 
 🔲 Roles de usuario: administrativo, médico, enfermería
@@ -60,13 +61,6 @@ Directores o encargados de gestión clínica.
 ### Control de Versiones
 - Git: Sistema de control de versiones
 - GitHub: Plataforma de alojamiento y colaboración
-
-## 📊 Estado del Proyecto
-Versión Actual
-Versión: 0.1.0 (Alpha)
-
-Estado: En desarrollo inicial
-
 
 ## 👥 Integrantes del Equipo
 
