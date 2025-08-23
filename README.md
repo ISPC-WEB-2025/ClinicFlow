@@ -3,30 +3,37 @@ ClinicFlow es un sistema básico de gestión de ingresos y egresos de pacientes 
 
 El sistema está pensado para ser utilizado por el personal administrativo, médicos y personal de enfermería, facilitando la organización interna y mejorando la calidad del servicio brindado.
 
+El sistema cuenta con un e-commerce digital que permite a los clientes adquirir el producto y contratar los servicios de la compañía.
 
 ## 🎯 Problema que Busca Resolver
 
 En muchas clínicas pequeñas y medianas, el registro de pacientes todavía se realiza en papel o con sistemas no integrados, lo que genera pérdida de información, duplicidad de datos y dificultad para realizar seguimientos o auditorías. Este proyecto busca ofrecer una solución simple y digital para llevar un control claro y efectivo del flujo de pacientes.
 
 
-## 🔍 Posibles Funcionalidades / Áreas de Enfoque Inicial
+## 🚀 Funcionalidades
+### Funcionalidades Iniciales
+✅ E-commerce para la comercialización del Servicio.
 
-Registro de ingreso de pacientes con información básica (nombre, motivo de ingreso, fecha y hora).
+✅ Registro de ingreso de pacientes con información básica (nombre, motivo de ingreso, fecha y hora)
 
-Registro de egreso con detalles como diagnóstico, tratamiento, y fecha de salida.
+✅ Registro de egreso con detalles como diagnóstico, tratamiento, y fecha de salida
 
-Visualización de pacientes actualmente internados.
+✅ Visualización de pacientes actualmente internados
 
-Historial de ingresos y egresos por paciente.
+✅ Historial de ingresos y egresos por paciente
 
-Filtros de búsqueda por fecha, nombre o estado (internado / egresado).
+✅ Filtros de búsqueda por fecha, nombre o estado (internado / egresado)
 
-Generación de reportes básicos (por fecha, por médico, etc.).
+✅ Generación de reportes básicos (por fecha, por médico, etc.)
 
-Control de disponibilidad de camas o habitaciones (futuro).
+### Funcionalidades Futuras
+🔲 Control de disponibilidad de camas o habitaciones
 
-Roles de usuario: administrativo, médico, enfermería (futuro).
+🔲 Roles de usuario: administrativo, médico, enfermería
 
+🔲 Notificaciones automáticas
+
+🔲 Integración con sistemas de historia clínica electrónica
 
 ## 👥 Posibles Usuarios
 
@@ -37,6 +44,28 @@ Médicos.
 Enfermeros/as.
 
 Directores o encargados de gestión clínica.
+
+## 🛠️ Stack Tecnológico
+### Frontend
+- HTML5: Estructura semántica de la aplicación
+- CSS3: Estilos y diseño responsive
+- JavaScript: Interactividad y dinamismo en el cliente
+
+### Backend
+- Python: Lógica de negocio y API del servidor
+
+### Base de Datos
+- SQL: Base de datos relacional para almacenamiento persistente
+
+### Control de Versiones
+- Git: Sistema de control de versiones
+- GitHub: Plataforma de alojamiento y colaboración
+
+## 📊 Estado del Proyecto
+Versión Actual
+Versión: 0.1.0 (Alpha)
+
+Estado: En desarrollo inicial
 
 
 ## 👥 Integrantes del Equipo
@@ -75,9 +104,16 @@ Tecnologías y Habilidades en Práctica: Tengo conocimientos en HTML,Css, Js, An
 
 ### Virginia García
 
-
 Intereses y Áreas de Aprendizaje: Me interesa aprender sobre desarrollo web en general y lograr la creación de un proyecto en equipo.
 
 Tecnologías y Habilidades en Práctica: Conocimientos en : Html,Css,JavasCript,React.
 
-
+## Distribución de Roles
+### Equipo FrontEnd
+- Aylen Bartolino Luna
+- María Elena Haydeé Ponce
+- Brenda Pogliano
+### Equipo Backend
+- Virginia García
+- Tomas Nicolas Nieto
+- Miguel Flores
