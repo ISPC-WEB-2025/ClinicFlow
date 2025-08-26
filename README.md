@@ -1,19 +1,26 @@
 # ClinicFlow E-commerce
-Sitio web de comercialización de planes del sistema ClinicFlow.
+ClinicFlow E-commerce es una plataforma web moderna y segura desarrollada para la comercialización de planes de suscripción del sistema de gestión de pacientes ClinicFlow. Su objetivo principal es facilitar la adquisición del software mediante una experiencia de compra en línea intuitiva, eficiente y confiable para clientes potenciales (clínicas, hospitales, consultorios), así como proporcionar un panel de administración para la gestión de productos y ventas.
 
-ClinicFlow es un sistema básico de gestión de ingresos y egresos de pacientes en una clínica. Su objetivo principal es optimizar el registro, control y seguimiento de los pacientes que ingresan y egresan de la institución, asegurando que la información esté centralizada, sea accesible y fácil de gestionar. 
 
-El sistema está pensado para ser utilizado por el personal administrativo, médicos y personal de enfermería, facilitando la organización interna y mejorando la calidad del servicio brindado.
-
-El sistema cuenta con un e-commerce digital que permite a los clientes adquirir el producto y contratar los servicios de la compañía.
+ClinicFlow es un sistema básico de gestión de ingresos y egresos de pacientes en una clínica. Su objetivo principal es optimizar el registro, control y seguimiento de los pacientes que ingresan y egresan de la institución, asegurando que la información esté centralizada, sea accesible y fácil de gestionar. Este sistema está pensado para ser utilizado por el personal administrativo, médicos y personal de enfermería, facilitando la organización interna y mejorando la calidad del servicio brindado.
 
 ## 🎯 Problema que Busca Resolver
 
-En muchas clínicas pequeñas y medianas, el registro de pacientes todavía se realiza en papel o con sistemas no integrados, lo que genera pérdida de información, duplicidad de datos y dificultad para realizar seguimientos o auditorías. Este proyecto busca ofrecer una solución simple y digital para llevar un control claro y efectivo del flujo de pacientes.
+Este proyecto surge como respuesta a la necesidad de contar con un canal de ventas digital automatizado y profesional para ClinicFlow. La plataforma permite:
+
+- Presentar de manera clara y atractiva los diferentes planes de suscripción (Básico, Estándar, Premium, Personalizado) con sus características y beneficios.
+
+- Automatizar el proceso de venta desde la selección del plan hasta el pago y la generación de comprobantes.
+
+- Reducir la carga administrativa al eliminar la necesidad de procesos manuales para ventas de planes estandarizados.
+
+- Proyectar una imagen de marca sólida y confiable, crucial para vender un producto que manejará datos sensibles de salud.
 
 
 ## 🚀 Funcionalidades
 ### Funcionalidades Iniciales
+✅ Landing con Información del Producto
+
 ✅ Catálogo de planes
 
 ✅ Carrito de compras
@@ -26,15 +33,7 @@ En muchas clínicas pequeñas y medianas, el registro de pacientes todavía se r
 
 
 ## 👥 Posibles Usuarios
-Directorios de clínicas.
-
-Recepcionistas y personal administrativo.
-
-Médicos.
-
-Enfermeros/as.
-
-Directores o encargados de gestión clínica.
+- Dueños de consultorios, administradores de clínicas y personal de toma de decisiones en instituciones de salud medianas y pequeñas.
 
 ## 🛠️ Stack Tecnológico
 ### Frontend
