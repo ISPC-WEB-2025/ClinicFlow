@@ -1,4 +1,6 @@
-# ClinicFlow
+# ClinicFlow E-commerce
+Sitio web de comercialización de planes del sistema ClinicFlow.
+
 ClinicFlow es un sistema básico de gestión de ingresos y egresos de pacientes en una clínica. Su objetivo principal es optimizar el registro, control y seguimiento de los pacientes que ingresan y egresan de la institución, asegurando que la información esté centralizada, sea accesible y fácil de gestionar. 
 
 El sistema está pensado para ser utilizado por el personal administrativo, médicos y personal de enfermería, facilitando la organización interna y mejorando la calidad del servicio brindado.
@@ -12,31 +14,19 @@ En muchas clínicas pequeñas y medianas, el registro de pacientes todavía se r
 
 ## 🚀 Funcionalidades
 ### Funcionalidades Iniciales
-✅ E-commerce para la comercialización del Servicio.
+✅ Catálogo de planes
 
-### Funcionalidades Futuras
+✅ Carrito de compras
 
-🔲 Registro de ingreso de pacientes con información básica (nombre, motivo de ingreso, fecha y hora)
+✅ Checkout con pasarela de pago
 
-🔲 Registro de egreso con detalles como diagnóstico, tratamiento, y fecha de salida
+✅ Gestión de usuarios
 
-🔲 Visualización de pacientes actualmente internados
+✅ Panel de administración
 
-🔲 Historial de ingresos y egresos por paciente
-
-🔲 Filtros de búsqueda por fecha, nombre o estado (internado / egresado)
-
-🔲 Generación de reportes básicos (por fecha, por médico, etc.)
-
-🔲 Control de disponibilidad de camas o habitaciones
-
-🔲 Roles de usuario: administrativo, médico, enfermería
-
-🔲 Notificaciones automáticas
-
-🔲 Integración con sistemas de historia clínica electrónica
 
 ## 👥 Posibles Usuarios
+Directorios de clínicas.
 
 Recepcionistas y personal administrativo.
 
@@ -54,8 +44,6 @@ Directores o encargados de gestión clínica.
 
 ### Backend
 - Python: Lógica de negocio y API del servidor
-
-### Base de Datos
 - SQL: Base de datos relacional para almacenamiento persistente
 
 ### Control de Versiones
@@ -111,3 +99,4 @@ Tecnologías y Habilidades en Práctica: Conocimientos en : Html,Css,JavasCript,
 - Virginia García
 - Tomas Nicolas Nieto
 - Miguel Flores
+
