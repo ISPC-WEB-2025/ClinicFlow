@@ -1,11 +1,116 @@
-h1 {
-    color: red;
+@import url(./normalize.css);
+@import url(./variables.css);
+@import url(https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap);
+
+body {
+	font-family: var(--font-family-base);
+	background-color: #f8f9fa;
+	padding-top: 76px; /* Para compensar el header fijo */
 }
 
-h2 {
-    color: cyan;
+/* HEADER ESTILOS */
+header {
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.mike {
-    color: peru;
+.logo {
+	display: flex;
+	align-items: center;
+}
+
+header h1 {
+	font-weight: 700;
+	font-size: 26px;
+	margin: 0;
+}
+
+.icono-header {
+	font-size: 30px;
+	color: var(--color-primary);
+	position: relative;
+	left: -16px;
+}
+
+.icono-header + .right {
+	left: -24px;
+}
+
+/* NAVBAR */
+
+.navbar-nav .nav-link {
+	font-size: 16px;
+	font-weight: 500;
+	color: var(--color-text-dark);
+	padding: 1rem 1.3rem !important;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+.navbar-nav .nav-link.active {
+	background-color: var(--color-secondary);
+	color: var(--color-text-light);
+}
+
+.navbar-nav .nav-link i {
+	display: none;
+	margin-bottom: 4px;
+}
+
+.navbar-nav .nav-link.active i {
+	display: block;
+}
+
+/* HOVER animaciones menu */
+.navbar-nav .nav-link.active:hover i {
+	animation: shake 0.9s ease-in-out ;
+}
+.navbar-nav .nav-link:not(.active):hover {
+	color: var(--color-secondary) !important;
+	transform: scale(1.05);
+	transition: all 0.3s ease;
+}
+@keyframes shake {
+	 0% { transform: rotate(0deg); }
+    15% { transform: rotate(10deg); }
+    30% { transform: rotate(-10deg); }
+    45% { transform: rotate(7deg); }
+    60% { transform: rotate(-7deg); }
+    75% { transform: rotate(3deg); }
+    85% { transform: rotate(-3deg); }
+    92% { transform: rotate(1deg); }
+    100% { transform: rotate(0deg); }
+}
+
+
+/* Botón hamburguesa */
+.navbar-toggler {
+	border: none;
+	font-size: 1.5rem;
+	color: var(--color-primary);
+	padding: 0.25rem 0.5rem;
+}
+
+.navbar-toggler:focus {
+	box-shadow: none;
+}
+
+/* MEDIA QUERY RESPONSIVE*/
+@media (max-width: 991.98px) {
+	.navbar-collapse {
+		background-color: white;
+		padding: 1rem;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	}
+
+	.navbar-nav .nav-link {
+		padding: 0.75rem 1rem;
+	}
+}
+@media (min-width: 992px) {
+	.navbar {
+		padding: 0;
+	}
 }
