@@ -507,10 +507,7 @@
 				<article id="info-plans">
 					<h4 class="divider-title">Planes</h4>
 					<!-- Accordion Inicio -->
-					<div
-						class="accordion accordion-flush"
-						id="accordionPlanes"
-					>
+					<div class="accordion accordion-flush" id="accordionPlanes">
 						<!-- item 1 -->
 						<article class="accordion-item">
 							<h2 class="accordion-header" id="flush-heading1">
@@ -572,7 +569,7 @@
 									aria-expanded="false"
 									aria-controls="flush-collapse2"
 								>
-									<i class="fa-solid fa-bookmark"></i></i>
+									<i class="fa-solid fa-bookmark"></i>
 									Plan Estándar
 								</button>
 							</h2>
@@ -610,10 +607,7 @@
 
 						<!-- item 3 -->
 						<article class="accordion-item">
-							<h2
-								class="accordion-header"
-								id="flush-heading3"
-							>
+							<h2 class="accordion-header" id="flush-heading3">
 								<button
 									class="accordion-button collapsed"
 									type="button"
@@ -717,9 +711,67 @@
 				<!-- PLANES fin -->
 				<!-- CONTACTO inicio -->
 				<article id="info-contact">
-					<h4 class="divider-title">Contacto</h4>
-					<form action=""></form>
-					<button></button>
+					<h4 class="divider-title">Consultanos</h4>
+
+					<form id="contact-form">
+						<!-- Name input -->
+						<div data-mdb-input-init class="form-outline">
+							<i class="fa-solid fa-user-tie"></i>
+							<input
+								type="text"
+								id="form-nombre"
+								class="form-control"
+								placeholder="Nombre"
+
+							/>
+							
+						</div>
+						<div data-mdb-input-init class="form-outline ">
+							<i class="fa-solid fa-phone"></i>
+							<input
+								type="text"
+								id="form-telefono"
+								class="form-control"
+								placeholder="Telefono"
+
+							/>
+							
+						</div>
+
+						<!-- Email input -->
+						<div data-mdb-input-init class="form-outline ">
+							<i class="fa-solid fa-envelope"></i>
+							<input
+								type="email"
+								id="form-email"
+								class="form-control"
+								placeholder="Email"
+							/>
+							
+						</div>
+
+						<!-- Message input -->
+						<div data-mdb-input-init class="form-outline ">
+							<i class="fa-solid fa-pen-to-square"></i>
+							<textarea
+								class="form-control"
+								id="form-mensaje"
+								rows="4"
+								placeholder="Mensaje"
+							></textarea>
+							
+						</div>
+
+						
+						<!-- Submit button -->
+						<button
+							data-mdb-ripple-init
+							type="button"
+							class="btn btn-primary btn-block mb-4"
+						>
+							ENVIAR CONSULTA
+						</button>
+					</form>
 				</article>
 				<!-- CONTACTO fin -->
 			</section>

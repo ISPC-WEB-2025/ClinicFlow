@@ -166,6 +166,9 @@ header h1 {
 	line-height: 1.4;
 }
 
+.btn{
+	border-radius: 0;
+}
 /* HOME: SECCION HERO */
 .btn-primary {
 	background-color: var(--color-primary);
@@ -256,8 +259,8 @@ p.subtitulo {
 	flex-direction: column;
 	width: 30%;
 }
-.accordion{
-	margin-top: 1.5rem;}
+#info > article > h4 {
+	margin-bottom: 1.5rem;}
 	
 .accordion-item h2 {
 	height: 3.5rem;
@@ -266,9 +269,10 @@ p.subtitulo {
 	height: 100%;
 	margin: 0;
 	padding: 0;
+	position: relative;
 }
 
-#info-services .accordion-item h2 button i {
+#info-services .accordion-item h2 button i, #info-contact .form-outline i {
 	margin-right: 1rem;
 	background-color: var(--color-secondary);
 	height: 100%;
@@ -280,7 +284,7 @@ p.subtitulo {
 	width: 3rem;
 	z-index: 2;
 }
-#info-services .accordion-button i::after {
+#info-services .accordion-button i::after, #info-contact .form-outline i::after {
 	content: "";
 	position: absolute;
 	right: 87%;
@@ -308,19 +312,19 @@ p.subtitulo {
 	}
 
 /* Alternar colores para los elementos del acordeón */
-#info-services .accordion-item:nth-child(odd) .accordion-button i {
+#info-services .accordion-item:nth-child(odd) .accordion-button i, #info-contact .form-outline:nth-child(odd) i {
 	background-color: var(--color-primary);
 }
 
-#info-services .accordion-item:nth-child(odd) .accordion-button i::after {
+#info-services .accordion-item:nth-child(odd) .accordion-button i::after, #info-contact .form-outline:nth-child(odd) i::after {
 	border-left: 15px solid var(--color-primary);
 }
 
-#info-services .accordion-item:nth-child(even) .accordion-button i {
+#info-services .accordion-item:nth-child(even) .accordion-button i, #info-contact .form-outline:nth-child(even) i {
 	background-color: var(--color-secondary);
 }
 
-#info-services .accordion-item:nth-child(even) .accordion-button i::after {
+#info-services .accordion-item:nth-child(even) .accordion-button i::after, #info-contact .form-outline:nth-child(even) i::after {
 	border-left: 15px solid var(--color-secondary);
 }
 
@@ -341,6 +345,84 @@ ul.accordion-body {
 	font-size: 1.2rem;
 	padding-right: 1rem;
 }
+
+/* info contacto */
+#contact-form{
+	display: flex;
+	flex-direction: column;
+	
+}
+
+#contact-form input, #contact-form textarea{
+	border-radius: 0;
+	padding:0.8rem;
+	font-size: 0.9rem;
+	position: relative;
+}
+
+#contact-form input{
+	height: 3rem;
+}
+#contact-form input::placeholder, #contact-form textarea::placeholder{
+	color: #7C7C7C;
+	font-weight: 300;
+}
+#info-contact .form-outline {
+  position: relative;
+}
+
+#info-contact .form-control {
+  padding-left: 5rem !important;
+}
+  
+  #info-contact textarea.form-control {
+  padding-left: 5rem !important;
+  padding-top: 0.8rem;
+  resize: none; 
+    overflow: hidden; 
+    height: 10rem; 
+}
+
+#contact-form .form-outline i {
+  position: absolute;
+  top: 50%;
+  
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 3rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#contact-form .form-outline i::after {
+  right: auto;
+  left: 80%;
+  border-left: none;
+  border-right: 15px solid;
+}
+
+#info-contact .form-outline:last-child i, 
+#info-contact .form-outline:has(textarea) i {
+    height: 3rem !important; 
+    top: 1.5rem !important; 
+    align-items: flex-start !important; 
+    padding-top: 0.8rem;
+}
+
+#info-contact .form-outline:last-child i::after, 
+#info-contact .form-outline:has(textarea) i::after {
+    top: 1.5rem !important;
+    transform: translateY(-50%);
+}
+
+#contact-form button{
+	align-self: end;
+	padding: 0.8rem 1rem;
+	font-size: 0.8rem;
+	margin-top: 1rem;
+}
+
 
 
 
