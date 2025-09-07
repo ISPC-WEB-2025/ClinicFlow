@@ -5,7 +5,6 @@
 body {
 	font-family: var(--font-family-base);
 	background-color: #f8f9fa;
-	padding-top: 76px; /* Para compensar el header fijo */
 }
 
 /* HEADER ESTILOS */

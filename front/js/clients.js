@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function getItemsPerSlide() {
         const width = window.innerWidth;
-        if (width <= 450) return 1;
+        if (width <= 550) return 1;
         if (width <= 768) return 2;
         return 4; // Desktop
     }
