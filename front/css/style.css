@@ -248,24 +248,21 @@ p.subtitulo {
 	border: violet 2px solid;
 	padding: 0 6rem;
 	display: flex;
+	justify-content: space-between;
 }
 
 #info > article {
 	display: flex;
 	flex-direction: column;
-	width: 33.33%;
+	width: 30%;
 }
-
-.accordion-item {
-	border: orange 2px solid;
-}
-
+.accordion{
+	margin-top: 1.5rem;}
+	
 .accordion-item h2 {
-	border: red 2px solid;
 	height: 3.5rem;
 }
 .accordion-item h2 button {
-	border: green 2px solid;
 	height: 100%;
 	margin: 0;
 	padding: 0;
