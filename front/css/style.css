@@ -268,7 +268,7 @@ p.subtitulo {
 	padding: 0;
 }
 
-.accordion-item h2 button i {
+#info-services .accordion-item h2 button i {
 	margin-right: 1rem;
 	background-color: var(--color-secondary);
 	height: 100%;
@@ -280,7 +280,7 @@ p.subtitulo {
 	width: 3rem;
 	z-index: 2;
 }
-.accordion-button i::after {
+#info-services .accordion-button i::after {
 	content: "";
 	position: absolute;
 	right: 87%;
@@ -292,28 +292,57 @@ p.subtitulo {
 	border-bottom: 15px solid transparent;
 	
 }
+
+.accordion-body{
+	padding-left: 3.5rem;
+}
 .accordion-item p{
 	font-size: 1rem;
 	color: #7C7C7C;
-	padding-left: 3.5rem;
 }
+.accordion-body li{
+	list-style: disc;
+	font-size: 1rem;
+	color: #7C7C7C;
+	margin-bottom: 1rem;
+	}
 
 /* Alternar colores para los elementos del acordeón */
-.accordion-item:nth-child(odd) .accordion-button i {
+#info-services .accordion-item:nth-child(odd) .accordion-button i {
 	background-color: var(--color-primary);
 }
 
-.accordion-item:nth-child(odd) .accordion-button i::after {
+#info-services .accordion-item:nth-child(odd) .accordion-button i::after {
 	border-left: 15px solid var(--color-primary);
 }
 
-.accordion-item:nth-child(even) .accordion-button i {
+#info-services .accordion-item:nth-child(even) .accordion-button i {
 	background-color: var(--color-secondary);
 }
 
-.accordion-item:nth-child(even) .accordion-button i::after {
+#info-services .accordion-item:nth-child(even) .accordion-button i::after {
 	border-left: 15px solid var(--color-secondary);
 }
+
+ul.accordion-body {
+	display: flex;
+	flex-direction: column;
+	text-align: justify;
+}
+#info-plans .btn-primary {
+	margin-top: 1rem;
+	list-style: none;
+	color: white;
+	align-self: end;
+}
+
+#info-plans i{
+	color: var(--color-primary);
+	font-size: 1.2rem;
+	padding-right: 1rem;
+}
+
+
 
 section {
 	margin-bottom: 4rem;
