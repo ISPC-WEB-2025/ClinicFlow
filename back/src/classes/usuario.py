@@ -12,8 +12,19 @@ from database import (
 class Usuario:
     """Clase para representar un usuario con sus atributos y métodos."""
 
-    def __init__(self, id_usuario, nombre, apellido, email, contrasena, direccion, rol):
+    def __init__(
+        self,
+        id_usuario,
+        nombre_usuario,
+        nombre,
+        apellido,
+        email,
+        contrasena,
+        direccion,
+        rol,
+    ):
         self.id_usuario = id_usuario
+        self.nombre_usuario = nombre_usuario
         self.nombre = nombre
         self.apellido = apellido
         self.email = email
@@ -28,6 +39,7 @@ class Usuario:
         """Retorna un diccionario con los datos del usuario."""
         return {
             "ID": self.id_usuario,
+            "Nombre de Usuario": self.nombre_usuario,
             "Nombre": self.nombre,
             "Apellido": self.apellido,
             "Email": self.email,
@@ -61,7 +73,9 @@ class Usuario:
         return True, ""
 
     @staticmethod
-    def registrar_nuevo_usuario(nombre, apellido, email, contrasena, direccion):
+    def registrar_nuevo_usuario(
+        nombre_usuario, nombre, apellido, email, contrasena, direccion
+    ):
         """
         Registra un nuevo usuario con rol 'estandar' en la base de datos.
         No se le pasa el rol por seguridad.
@@ -77,12 +91,19 @@ class Usuario:
         rol_por_defecto = "estandar"
 
         id_nuevo_usuario = crear_usuario(
-            nombre, apellido, email, contrasena_hasheada, direccion, rol_por_defecto
+            nombre_usuario,
+            nombre,
+            apellido,
+            email,
+            contrasena_hasheada,
+            direccion,
+            rol_por_defecto,
         )
         if id_nuevo_usuario:
             print("Usuario registrado exitosamente.")
             return Usuario(
                 id_nuevo_usuario,
+                nombre_usuario,
                 nombre,
                 apellido,
                 email,
@@ -95,21 +116,35 @@ class Usuario:
             return None
 
     @staticmethod
-    def iniciar_sesion(email, contrasena):
+    def iniciar_sesion(nombre_usuario, contrasena):
         """
         Intenta iniciar sesión. Retorna la instancia del usuario logueado
         (Administrador o UsuarioEstandar), o None si las credenciales son
         incorrectas.
         """
-        usuario_data = obtener_usuario_por_nombre(email)
+        usuario_data = obtener_usuario_por_nombre(nombre_usuario)
         if usuario_data:
-            id_u, nombre_u, apellido_u, email_u, hash_u, direccion_u, rol_u = (
-                usuario_data  # desempaquetado de tupla
-            )
+            (
+                id_u,
+                nombre_usuario_u,
+                nombre_u,
+                apellido_u,
+                email_u,
+                hash_u,
+                direccion_u,
+                rol_u,
+            ) = usuario_data  # desempaquetado de tupla
             if hashlib.sha256(contrasena.encode()).hexdigest() == hash_u:
                 print("Inicio de sesión exitoso.")
                 return Usuario(
-                    id_u, nombre_u, apellido_u, email_u, hash_u, direccion_u, rol_u
+                    id_u,
+                    nombre_usuario_u,
+                    nombre_u,
+                    apellido_u,
+                    email_u,
+                    hash_u,
+                    direccion_u,
+                    rol_u,
                 )
             else:
                 print("Contraseña incorrecta.")

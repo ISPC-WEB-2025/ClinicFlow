@@ -223,6 +223,55 @@ def obtener_todos_los_usuarios():
             conn.close()
 
 
+def actualizar_usuario(
+    id_usuario, nombre=None, apellido=None, email=None, direccion=None
+):
+    """Actualiza los datos de un usuario en la tabla 'usuario'."""
+    conn = None
+    try:
+        conn = get_db_connection()
+        if conn is None:
+            return False
+        cursor = conn.cursor()
+
+        # Construimos la consulta UPDATE dinámicamente para solo actualizar los campos que no son None
+        updates = []
+        params = []
+        if nombre is not None:
+            updates.append("nombre = %s")
+            params.append(nombre)
+        if apellido is not None:
+            updates.append("apellido = %s")
+            params.append(apellido)
+        if email is not None:
+            updates.append("email = %s")
+            params.append(email)
+        if direccion is not None:
+            updates.append("direccion = %s")
+            params.append(direccion)
+
+        if not updates:  # No hay nada que actualizar
+            print("No se proporcionaron datos para actualizar el usuario.")
+            return False
+
+        # El nombre de la tabla ahora es 'usuario'
+        query = f"UPDATE usuario SET {', '.join(updates)} WHERE idUsuario = %s"
+        params.append(id_usuario)
+
+        cursor.execute(query, tuple(params))
+        conn.commit()
+        return cursor.rowcount > 0
+    except Error as e:
+        print(f"Error al actualizar el usuario ID {id_usuario}: {e}")
+        if conn:
+            conn.rollback()
+        return False
+    finally:
+        if conn and conn.is_connected():
+            cursor.close()
+            conn.close()
+
+
 def actualizar_rol_usuario(id_usuario, nuevo_rol):
     """Actualiza el rol de un usuario específico."""
     if nuevo_rol not in ["administrador", "estandar"]:
@@ -268,116 +317,6 @@ def eliminar_usuario(id_usuario):
         return cursor.rowcount > 0
     except Error as e:
         print(f"Error al eliminar usuario: {e}")
-        if conn:
-            conn.rollback()
-        return False
-    finally:
-        if conn and conn.is_connected():
-            cursor.close()
-            conn.close()
-
-
-# --- NUEVAS Funciones CRUD para la tabla 'perfiles' ---
-
-
-def crear_perfil(
-    id_usuario,
-    nombre_usuario=None,
-    nombre=None,
-    apellido=None,
-    email=None,
-    direccion=None,
-    telefono=None,
-):
-    """Inserta un nuevo perfil en la tabla 'perfiles' asociado a un id_usuario."""
-    conn = None
-    try:
-        conn = get_db_connection()
-        if conn is None:
-            return False
-        cursor = conn.cursor()
-        cursor.execute(
-            """
-            INSERT INTO perfiles (id_usuario, nombre_completo, apellido, email, fecha_nacimiento, direccion, telefono)
-            VALUES (%s, %s, %s, %s, %s, %s, %s)
-        """,
-            (
-                id_usuario,
-                nombre_completo,
-                apellido,
-                email,
-                fecha_nacimiento,
-                direccion,
-                telefono,
-            ),
-        )
-        conn.commit()
-        return True
-    except Error as e:
-        if e.errno == 1062:  # Duplicate entry for id_usuario in perfiles
-            print(f"Error: Ya existe un perfil para el usuario ID {id_usuario}.")
-        else:
-            print(f"Error al crear perfil para usuario ID {id_usuario}: {e}")
-        if conn:
-            conn.rollback()
-        return False
-    finally:
-        if conn and conn.is_connected():
-            cursor.close()
-            conn.close()
-
-
-def actualizar_perfil(
-    id_usuario,
-    nombre_completo=None,
-    apellido=None,
-    email=None,
-    fecha_nacimiento=None,
-    direccion=None,
-    telefono=None,
-):
-    """Actualiza los datos de perfil para un usuario dado su id_usuario."""
-    conn = None
-    try:
-        conn = get_db_connection()
-        if conn is None:
-            return False
-        cursor = conn.cursor()
-
-        # Construimos la consulta UPDATE dinámicamente para solo actualizar los campos que no son None
-        updates = []
-        params = []
-        if nombre_completo is not None:
-            updates.append("nombre_completo = %s")
-            params.append(nombre_completo)
-        if apellido is not None:
-            updates.append("apellido = %s")
-            params.append(apellido)
-        if email is not None:
-            updates.append("email = %s")
-            params.append(email)
-        if fecha_nacimiento is not None:
-            updates.append("fecha_nacimiento = %s")
-            params.append(fecha_nacimiento)
-        if direccion is not None:
-            updates.append("direccion = %s")
-            params.append(direccion)
-        if telefono is not None:
-            updates.append("telefono = %s")
-            params.append(telefono)
-
-        if not updates:  # No hay nada que actualizar
-            print("No se proporcionaron datos para actualizar el perfil.")
-            return False
-
-        query = f"UPDATE perfiles SET {', '.join(updates)} WHERE id_usuario = %s"
-        params.append(id_usuario)
-
-        cursor.execute(query, tuple(params))
-        conn.commit()
-        return cursor.rowcount > 0
-    except Error as e:
-        print(f"Error al actualizar perfil para usuario ID {id_usuario}: {e}")
         if conn:
             conn.rollback()
         return False
