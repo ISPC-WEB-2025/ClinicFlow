@@ -42,39 +42,24 @@ def initialize_db():
 
         cursor = conn.cursor()
 
-        # Script SQL para crear la tabla de usuarios
+        # Script SQL para crear la tabla 'usuario' (una sola tabla)
         cursor.execute(
             """
-            CREATE TABLE IF NOT EXISTS usuarios (
-                id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+            CREATE TABLE IF NOT EXISTS usuario (
+                idUsuario INT AUTO_INCREMENT PRIMARY KEY,
                 nombre_usuario VARCHAR(255) NOT NULL UNIQUE,
-                contrasena_hash VARCHAR(255) NOT NULL,
+                nombre VARCHAR(255) NULL,
+                apellido VARCHAR(255) NULL,
+                email VARCHAR(255) UNIQUE NULL,
+                password VARCHAR(255) NOT NULL,
+                direccion VARCHAR(255) NULL,
                 rol VARCHAR(50) NOT NULL,
                 CHECK (rol IN ('administrador', 'estandar'))
             );
         """
         )
 
-        # Script SQL para crear la tabla de perfiles
-        cursor.execute(
-            """
-            CREATE TABLE IF NOT EXISTS perfiles (
-                id_perfil INT AUTO_INCREMENT PRIMARY KEY,
-                id_usuario INT NOT NULL UNIQUE,          -- Clave foránea a usuarios.id_usuario
-                nombre_completo VARCHAR(255) NULL,
-                apellido VARCHAR(255) NULL,
-                email VARCHAR(255) UNIQUE NULL,
-                fecha_nacimiento DATE NULL,
-                direccion VARCHAR(255) NULL,
-                telefono VARCHAR(50) NULL,
-                
-                FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
-                    ON DELETE CASCADE -- Si se elimina un usuario, su perfil también se elimina
-            );
-        """
-        )
-
-        # Verificar si ya existe un administrador para no duplicarlo
+        # Verificar si ya existe un administrador para no duplicarlo (al inicializar)
         cursor.execute("SELECT COUNT(*) FROM usuarios WHERE rol = 'administrador'")
         if cursor.fetchone()[0] == 0:
             default_admin_pass_hash = hashlib.sha256("admin123".encode()).hexdigest()
