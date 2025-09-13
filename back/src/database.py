@@ -123,7 +123,9 @@ def initialize_db():
 # database.py
 
 
-def crear_usuario(nombre, apellido, email, contrasena_hash, direccion, rol):
+def crear_usuario(
+    nombre_usuario, nombre, apellido, email, contrasena_hash, direccion, rol
+):
     """Inserta un nuevo usuario en la tabla 'usuario' con todos sus datos."""
     conn = None
     try:
@@ -134,10 +136,10 @@ def crear_usuario(nombre, apellido, email, contrasena_hash, direccion, rol):
 
         cursor.execute(
             """
-            INSERT INTO usuario (nombre, apellido, email, password, direccion, rol)
+            INSERT INTO usuario (nombre_usuario, nombre, apellido, email, password, direccion, rol)
             VALUES (%s, %s, %s, %s, %s, %s)
         """,
-            (nombre, apellido, email, contrasena_hash, direccion, rol),
+            (nombre_usuario, nombre, apellido, email, contrasena_hash, direccion, rol),
         )
 
         conn.commit()
@@ -159,7 +161,7 @@ def crear_usuario(nombre, apellido, email, contrasena_hash, direccion, rol):
 
 
 def obtener_usuario_por_nombre(nombre_usuario):
-    """Busca un usuario por su nombre de usuario. Retorna una tupla (id, nombre, hash, rol) o None."""
+    """Busca un usuario por su nombre de usuario"""
     conn = None
     try:
         conn = get_db_connection()
@@ -224,7 +226,12 @@ def obtener_todos_los_usuarios():
 
 
 def actualizar_usuario(
-    id_usuario, nombre=None, apellido=None, email=None, direccion=None
+    id_usuario,
+    nombre_usuario=None,
+    nombre=None,
+    apellido=None,
+    email=None,
+    direccion=None,
 ):
     """Actualiza los datos de un usuario en la tabla 'usuario'."""
     conn = None
@@ -237,6 +244,9 @@ def actualizar_usuario(
         # Construimos la consulta UPDATE dinámicamente para solo actualizar los campos que no son None
         updates = []
         params = []
+        if nombre_usuario is not None:
+            updates.append("nombre_usuario = %s")
+            params.append(nombre_usuario)
         if nombre is not None:
             updates.append("nombre = %s")
             params.append(nombre)
@@ -262,7 +272,8 @@ def actualizar_usuario(
         conn.commit()
         return cursor.rowcount > 0
     except Error as e:
-        print(f"Error al actualizar el usuario ID {id_usuario}: {e}")
+        if e.errno == 1062:  # Duplicate entry (si el nombre_usuario ya existe)
+            print("Error: El nombre de usuario ya está en uso.")
         if conn:
             conn.rollback()
         return False
