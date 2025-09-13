@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+			crossorigin="anonymous"
+		/>
+
+		<link rel="stylesheet" href="./css/styles.css" />
+				<link rel="stylesheet" href="./css/contacto.css" />
+
+		<title>ClinicFlow</title>
+	</head>
+	<body class="bg-light">
+		<!-- HEADER COMIENZO -->
+		<header class="navbar navbar-expand-lg navbar-light fixed-top">
+			<div class="container">
+				<div class="logo">
+					<h1 class="navbar-brand mb-0">ClinicFlow</h1>
+					<i class="fa-solid fa-chevron-right icono-header left"></i>
+					<i class="fa-solid fa-chevron-right icono-header right"></i>
+				</div>
+
+				<!-- Botón hamburguesa para mobile -->
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarContent"
+					aria-controls="navbarContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<i class="fas fa-bars"></i>
+				</button>
+
+				<!-- Contenido colapsable del navbar -->
+				<div class="collapse navbar-collapse" id="navbarContent">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link " href="./index.html"
+								><i class="fa-solid fa-plus"></i>Inicio</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="./nosotros.html"
+								><i class="fa-solid fa-plus"></i>Nosotros</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="./servicios.html"
+								><i class="fa-solid fa-plus"></i>Servicios</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="./planes.html"
+								><i class="fa-solid fa-plus"></i>Planes</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" href="./contacto.html"
+								><i class="fa-solid fa-plus"></i>Contacto</a
+							>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+
+		<!-- HEADER FIN -->
+		<main>
+			<div class="contenedor-general">
+				<img class="imagen-fondo" src="img/fondo-form.jpg" alt="Fondo abstracto" width="1200px" height="1000px"
+				title="Imagen de fondo abstracto">
+				<form class="contacto" action="#" method="post">
+					<h2>¡CONSULTANOS!</h2> <br>
+					<label for="nombre">Nombre:</label> <br>
+					<input type="text" name="Nombre" id="nombre" minlength="2"> <br>
+					<label for="apellido">Apellido:</label> <br>
+					<input type="text" name="Apellido" id="apellido" minlength="2"> <br>
+					<label for="telefono">Teléfono:</label> <br>
+					<input type="tel" name="Telefono" id="telefono" minlength="10"> <br>
+					<label for="email">Correo electrónico:</label> <br>
+					<input type="email" name="Correo" id="email"> <br>
+					<label for="mensaje">Mensaje:</label> <br>
+					<textarea name="Mensaje" id="mensaje" minlength="10"></textarea> <br>
+					<br>
+					<button type="submit">Enviar consulta</button>
+				</form>
+			</div>
+		</main>
+		<footer>
+
+			
+		</footer>
+			<!--SCRIPTS INICIO-->
+		<script
+			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+			integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+			integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://kit.fontawesome.com/d8c2b7ce4c.js"
+			crossorigin="anonymous"
+		></script>
+		<!--SCRIPTS FIN-->
+	</body>
+</html>
+
+
+
+<!-- <div
+					id="carouselExampleControls"
+					class="carousel slide"
+					data-ride="carousel"
+				>
+					<div class="carousel-inner">
+						
+						<div class="carousel-item active">
+							<div class="card-wrapper">
+								<div class="card" style="width: 18rem">
+									<img
+										class="card-img-top"
+										src="./img/clinica1.jpg"
+										alt="Imagen clinica internacional"
+									/>
+									<div class="card-body">
+										<h5 class="card-title">
+											Clínica Internacional
+										</h5>
+										<p class="card-text">
+											Terapia y Cirugía General
+										</p>
+									</div>
+								</div>
+
+								<div class="card" style="width: 18rem">
+									<img
+										class="card-img-top"
+										src="./img/hospital1.jpg"
+										alt="Imagen de hospital"
+									/>
+									<div class="card-body">
+										<h5 class="card-title">
+											Hospital Principal
+										</h5>
+										<p class="card-text">
+											Gestión Integral de Pacientes
+										</p>
+									</div>
+								</div>
+								<div class="card" style="width: 18rem">
+									<img
+										class="card-img-top"
+										src="./img/clinica2.jpg"
+										alt="Imagen de clinica sanisalud"
+									/>
+									<div class="card-body">
+										<h5 class="card-title">
+											Clínica Sanisalud
+										</h5>
+										<p class="card-text">
+											Cirugía Ortopédica
+										</p>
+									</div>
+								</div>
+								<div class="card" style="width: 18rem">
+									<img
+										class="card-img-top"
+										src="./img/medico1.jpg"
+										alt="Imagen del Dr. Almirón Luis"
+									/>
+									<div class="card-body">
+										<h5 class="card-title">
+											Dr. Almirón Luis
+										</h5>
+										<p class="card-text">
+											Cirugía de cabeza y cuello
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="carousel-item">
+							<div class="card-wrapper">
+								<div class="card" style="width: 18rem">
+									<img
+										class="card-img-top"
+										src="./img/medica2.png"
+										alt="Imagen de Dra. Gómez María"
+									/>
+									<div class="card-body">
+										<h5 class="card-title">
+											Dra. Gómez María
+										</h5>
+										<p class="card-text">
+											Cirugía Plástica y Reconstructiva
+										</p>
+									</div>
+								</div>
+								<div class="card" style="width: 18rem">
+									<img
+										class="card-img-top"
+										src="./img/medica3.webp"
+										alt="Imagen de Dra. Fernández Ana"
+									/>
+									<div class="card-body">
+										<h5 class="card-title">
+											Dra. Fernández Ana
+										</h5>
+										<p class="card-text">
+											Cirugía Pediátrica
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<a
+						class="carousel-control-prev"
+						href="#carouselExampleControls"
+						role="button"
+						data-slide="prev"
+					>
+						<span
+							class="carousel-control-prev-icon"
+							aria-hidden="true"
+						></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a
+						class="carousel-control-next"
+						href="#carouselExampleControls"
+						role="button"
+						data-slide="next"
+					>
+						<span
+							class="carousel-control-next-icon"
+							aria-hidden="true"
+						></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div> -->

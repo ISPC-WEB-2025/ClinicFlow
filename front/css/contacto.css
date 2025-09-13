@@ -1,0 +1,88 @@
+/* Contenedor para la imagen de fondo y el form */
+
+.contenedor-general {
+  position: relative;
+  width: 100;
+  height: auto;
+  border-radius: 8px;
+  min-height: 100vh;
+  background-image: url("img/fondo-form.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; 
+  background-repeat: no-repeat; 
+  display: block;
+  overflow: hidden; /* Asegura que nada se desborde del contenedor */
+}
+    
+
+/*Estilos de la imagen de fondo*/
+
+.imagen-fondo {
+  display: block;
+  width: 150%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+/* Estilos del formulario */
+
+.contacto {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Mueve el formulario para un centrado perfecto */
+  z-index: 10; /* Asegura que el formulario esté por encima de la imagen */
+  box-sizing: border-box;
+  width: 50%; /* Ajusta el ancho del formulario */
+  max-width: 500px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.6); /* Fondo semitransparente para que se vea la imagen */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(97, 117, 155, 0.1); /* Añade una sombra sutil */
+  backdrop-filter: blur(10px); /* Efecto de desenfoque para mejorar la legibilidad */
+}
+
+/* Estilos generales del main y el formulario */
+
+main {
+  font-family: 'Lato', sans-serif;
+  background-color: #f0f4f8;
+  margin: 0;
+  padding: 0;
+
+}
+
+h2 {
+  color: #136a92;
+  font-size: 30px;
+  font-family: 'Lato', sans-serif;
+  margin-bottom: 1em;
+}
+
+label {
+  font-size: 20px;
+  font-weight: 500;
+  color: #1a1344;
+}
+
+button {
+  background-color: #7ec8eb;
+  color: rgb(56, 55, 56);
+  border: none;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+input,
+textarea {
+  width: 60%;
+  padding: 10px;
+  margin-bottom: 30px;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #1a1344;
+}   
