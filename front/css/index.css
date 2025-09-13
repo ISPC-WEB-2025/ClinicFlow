@@ -1,7 +1,4 @@
-/* SECCIONES */
-section {
-	margin-bottom: 4rem 0;
-}
+
 /* ==== HOME: SECCION BANNER ==== */
 #banner img {
 	width: 100%;
@@ -321,6 +318,11 @@ right: 87%;
 	padding: 0.8rem 1rem;
 	font-size: 0.8rem;
 	margin-top: 1rem;
+}
+
+/* SECCIONES */
+section {
+	margin-bottom: 4rem 0;
 }
 
 /* ==== MEDIA QUERIES ==== */
