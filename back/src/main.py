@@ -1,50 +1,87 @@
 # main.py
 
 import sys
-from database import initialize_db  # Importa la función para inicializar la DB
-
-# Importamos las clases directamente desde el paquete 'classes'
-from classes.usuario import Usuario, Administrador, UsuarioEstandar
-
-# Variable global para almacenar el usuario actualmente logueado
-usuario_logueado = None
+from database import initialize_db
+from classes.usuario import Usuario
 
 
-def mostrar_menu_principal():
-    """Muestra el menú principal de la aplicación."""
-    print("\n--- Menú Principal ---")
-    print("1. Registrar nuevo usuario")
-    print("2. Iniciar sesión")
-    print("3. Salir")
-    print("----------------------")
-    return input("Seleccione una opción: ")
+# -----------------------------
+# Menús
+# -----------------------------
+def mostrar_menu_administrador(usuario):
+    while True:
+        print(f"\n--- Menú de Administrador ({usuario.nombre_usuario}) ---")
+        print("1. Ver mis datos personales")
+        print("2. Visualizar listado de usuarios")
+        print("3. Cambiar rol de usuario")
+        print("4. Eliminar usuario")
+        print("5. Editar mi perfil")
+        print("6. Cerrar sesión")
+        print("-----------------------------")
+
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == "1":
+            datos = usuario.obtener_datos_personales()
+            print("\n--- Mis Datos ---")
+            for k, v in datos.items():
+                print(f"{k}: {v}")
+        elif opcion == "2":
+            usuario.visualizar_todos_los_usuarios()
+        elif opcion == "3":
+            try:
+                id_usuario = int(input("Ingrese el ID del usuario a modificar: "))
+                nuevo_rol = input("Ingrese el nuevo rol (administrador/estandar): ").lower()
+                from database import actualizar_rol_usuario
+                if actualizar_rol_usuario(id_usuario, nuevo_rol):
+                    print("Rol actualizado con éxito.")
+                else:
+                    print("No se pudo actualizar el rol.")
+            except ValueError:
+                print("Entrada inválida.")
+        elif opcion == "4":
+            try:
+                id_usuario = int(input("Ingrese el ID del usuario a eliminar: "))
+                usuario.eliminar_usuario_por_id(id_usuario)
+            except ValueError:
+                print("Entrada inválida.")
+        elif opcion == "5":
+            ejecutar_edicion_perfil(usuario)
+        elif opcion == "6":
+            print("Cerrando sesión de administrador...")
+            break
+        else:
+            print("Opción no válida. Intente de nuevo.")
 
 
-def mostrar_menu_admin():
-    """Muestra el menú para usuarios administradores."""
-    print("\n--- Menú de Administrador ---")
-    print("1. Ver mis datos personales")
-    print("2. Visualizar listado de usuarios")
-    print("3. Cambiar rol de usuario")
-    print("4. Eliminar usuario")
-    print("5. Editar mi perfil")
-    print("6. Cerrar sesión")
-    print("-----------------------------")
-    return input("Seleccione una opción: ")
+def mostrar_menu_estandar(usuario):
+    while True:
+        print(f"\n--- Menú de Usuario Estándar ({usuario.nombre_usuario}) ---")
+        print("1. Ver mis datos personales")
+        print("2. Editar mi perfil")
+        print("3. Cerrar sesión")
+        print("--------------------------------")
+
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == "1":
+            datos = usuario.obtener_datos_personales()
+            print("\n--- Mis Datos ---")
+            for k, v in datos.items():
+                print(f"{k}: {v}")
+        elif opcion == "2":
+            ejecutar_edicion_perfil(usuario)
+        elif opcion == "3":
+            print("Cerrando sesión de usuario estándar...")
+            break
+        else:
+            print("Opción no válida. Intente de nuevo.")
 
 
-def mostrar_menu_estandar():
-    """Muestra el menú para usuarios estándar."""
-    print("\n--- Menú de Usuario Estándar ---")
-    print("1. Ver mis datos personales")
-    print("2. Editar mi perfil")
-    print("3. Cerrar sesión")
-    print("--------------------------------")
-    return input("Seleccione una opción: ")
-
-
+# -----------------------------
+# Funciones auxiliares
+# -----------------------------
 def ejecutar_registro_usuario():
-    """Solicita datos para registrar un nuevo usuario."""
     print("\n--- Registro de Nuevo Usuario ---")
     nombre_usuario = input("Ingrese nombre de usuario: ")
     contrasena = input("Ingrese contraseña (mín. 6 caracteres, letras y números): ")
@@ -64,122 +101,62 @@ def ejecutar_registro_usuario():
         print("Fallo el registro del usuario.")
 
 
-def ejecutar_inicio_sesion():
-    """Solicita credenciales e intenta iniciar sesión."""
-    global usuario_logueado
-    print("\n--- Inicio de Sesión ---")
-    nombre = input("Ingrese nombre de usuario: ")
-    contrasena = input("Ingrese contraseña: ")
-    usuario_logueado = Usuario.iniciar_sesion(nombre, contrasena)
-
-
-def ejecutar_edicion_perfil():
-    """Permite al usuario logueado editar su perfil."""
-    global usuario_logueado
-    if usuario_logueado is None:
-        print("Debe iniciar sesión para editar su perfil.")
-        return
-
+def ejecutar_edicion_perfil(usuario):
     print("\n--- Editar Mi Perfil ---")
     print("Deje en blanco los campos que no desee modificar.")
-    nombre = input(f"Nombre ({usuario_logueado.nombre or 'actualmente vacío'}): ")
-    apellido = input(f"Apellido ({usuario_logueado.apellido or 'actualmente vacío'}): ")
-    email = input(f"Email ({usuario_logueado.email or 'actualmente vacío'}): ")
-    direccion = input(f"Dirección ({usuario_logueado.direccion or 'actualmente vacío'}): ")
+    nombre = input(f"Nombre ({usuario.nombre or 'actualmente vacío'}): ")
+    apellido = input(f"Apellido ({usuario.apellido or 'actualmente vacío'}): ")
+    email = input(f"Email ({usuario.email or 'actualmente vacío'}): ")
+    direccion = input(f"Dirección ({usuario.direccion or 'actualmente vacío'}): ")
 
-    if usuario_logueado.actualizar_datos(nombre, apellido, email, direccion):
+    if usuario.actualizar_datos(
+        nombre if nombre else None,
+        apellido if apellido else None,
+        email if email else None,
+        direccion if direccion else None,
+    ):
         print("Perfil actualizado con éxito.")
     else:
         print("No se pudo actualizar el perfil.")
 
 
-def ejecutar_accion_admin(opcion):
-    """Ejecuta la acción de administrador según la opción seleccionada."""
-    global usuario_logueado
-    if not isinstance(usuario_logueado, Administrador):
-        print("Error: Permisos insuficientes para esta acción.")
-        return
-
-    if opcion == "1":
-        datos = usuario_logueado.obtener_datos_personales()
-        print("\n--- Mis Datos ---")
-        for key, value in datos.items():
-            print(f"{key}: {value}")
-        print("-----------------")
-    elif opcion == "2":
-        usuario_logueado.visualizar_todos_los_usuarios()
-    elif opcion == "3":
-        try:
-            id_usuario = int(input("Ingrese el ID del usuario a modificar: "))
-            nuevo_rol = input("Ingrese el nuevo rol (administrador/estandar): ").lower()
-            usuario_logueado.modificar_rol_de_usuario(id_usuario, nuevo_rol)
-        except ValueError:
-            print("Entrada inválida. Por favor, ingrese un número para el ID.")
-    elif opcion == "4":
-        try:
-            id_usuario = int(input("Ingrese el ID del usuario a eliminar: "))
-            usuario_logueado.eliminar_usuario_por_id(id_usuario)
-        except ValueError:
-            print("Entrada inválida. Por favor, ingrese un número para el ID.")
-    elif opcion == "5":
-        ejecutar_edicion_perfil()
-    elif opcion == "6":
-        print("Cerrando sesión de administrador...")
-        usuario_logueado = None
-    else:
-        print("Opción no válida. Intente de nuevo.")
-
-
-def ejecutar_accion_estandar(opcion):
-    """Ejecuta la acción de usuario estándar según la opción seleccionada."""
-    global usuario_logueado
-    if not isinstance(usuario_logueado, UsuarioEstandar):
-        print("Error: Permisos insuficientes para esta acción.")
-        return
-
-    if opcion == "1":
-        datos = usuario_logueado.obtener_datos_personales()
-        print("\n--- Mis Datos ---")
-        for key, value in datos.items():
-            print(f"{key}: {value}")
-        print("-----------------")
-    elif opcion == "2":
-        ejecutar_edicion_perfil()
-    elif opcion == "3":
-        print("Cerrando sesión de usuario estándar...")
-        usuario_logueado = None
-    else:
-        print("Opción no válida. Intente de nuevo.")
-
-
+# -----------------------------
+# Función principal
+# -----------------------------
 def main():
-    """Función principal que ejecuta el programa."""
-    global usuario_logueado
     print("Iniciando Sistema de Gestión de Usuarios...")
     initialize_db()
 
     while True:
-        if usuario_logueado is None:
-            opcion = mostrar_menu_principal()
-            if opcion == "1":
-                ejecutar_registro_usuario()
-            elif opcion == "2":
-                ejecutar_inicio_sesion()
-            elif opcion == "3":
-                print("Gracias por usar el programa. ¡Adiós!")
-                sys.exit()
+        print("\n--- Menú Principal ---")
+        print("1. Registrar nuevo usuario")
+        print("2. Iniciar sesión")
+        print("3. Salir")
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == "1":
+            ejecutar_registro_usuario()
+
+        elif opcion == "2":
+            print("\n--- Inicio de Sesión ---")
+            nombre = input("Ingrese nombre de usuario: ")
+            contrasena = input("Ingrese contraseña: ")
+            usuario_logueado = Usuario.iniciar_sesion(nombre, contrasena)
+
+            if usuario_logueado:
+                if usuario_logueado.rol == 'administrador':
+                    mostrar_menu_administrador(usuario_logueado)
+                else:
+                    mostrar_menu_estandar(usuario_logueado)
             else:
-                print("Opción no válida. Por favor, ingrese 1, 2 o 3.")
+                print("Credenciales incorrectas o usuario no encontrado.")
+
+        elif opcion == "3":
+            print("Gracias por usar el programa. ¡Adiós!")
+            sys.exit()
+
         else:
-            if isinstance(usuario_logueado, Administrador):
-                opcion = mostrar_menu_admin()
-                ejecutar_accion_admin(opcion)
-            elif isinstance(usuario_logueado, UsuarioEstandar):
-                opcion = mostrar_menu_estandar()
-                ejecutar_accion_estandar(opcion)
-            else:
-                print("Error interno: Tipo de usuario desconocido.")
-                usuario_logueado = None
+            print("Opción no válida. Intente de nuevo.")
 
 
 if __name__ == "__main__":
