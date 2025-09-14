@@ -3,8 +3,8 @@
 import sys
 from database import initialize_db  # Importa la función para inicializar la DB
 
-# Importamos las clases directamente desde el paquete 'clases'
-from classes.usuario import Usuario
+# Importamos las clases directamente desde el paquete 'classes'
+from classes.usuario import Usuario, Administrador, UsuarioEstandar
 
 # Variable global para almacenar el usuario actualmente logueado
 usuario_logueado = None
@@ -27,7 +27,7 @@ def mostrar_menu_admin():
     print("2. Visualizar listado de usuarios")
     print("3. Cambiar rol de usuario")
     print("4. Eliminar usuario")
-    print("5. Editar mi perfil")  # NUEVA OPCIÓN
+    print("5. Editar mi perfil")
     print("6. Cerrar sesión")
     print("-----------------------------")
     return input("Seleccione una opción: ")
@@ -37,28 +37,26 @@ def mostrar_menu_estandar():
     """Muestra el menú para usuarios estándar."""
     print("\n--- Menú de Usuario Estándar ---")
     print("1. Ver mis datos personales")
-    print("2. Editar mi perfil")  # NUEVA OPCIÓN
+    print("2. Editar mi perfil")
     print("3. Cerrar sesión")
     print("--------------------------------")
     return input("Seleccione una opción: ")
 
 
 def ejecutar_registro_usuario():
-    """Solicita datos para registrar un nuevo usuario y su perfil."""
+    """Solicita datos para registrar un nuevo usuario."""
     print("\n--- Registro de Nuevo Usuario ---")
     nombre_usuario = input("Ingrese nombre de usuario: ")
     contrasena = input("Ingrese contraseña (mín. 6 caracteres, letras y números): ")
-    rol = input("Ingrese rol (administrador/estandar): ").lower()
 
-    # Opcional: Preguntar por datos de perfil en el registro
     print("\n--- Datos de Perfil (Opcional) ---")
-    nombre_completo = input("Nombre completo (opcional): ")
+    nombre = input("Nombre (opcional): ")
     apellido = input("Apellido (opcional): ")
     email = input("Email (opcional): ")
-    # Podrías pedir más campos si lo deseas
+    direccion = input("Dirección (opcional): ")
 
     nuevo_usuario_obj = Usuario.registrar_nuevo_usuario(
-        nombre_usuario, contrasena, rol, datos_perfil_iniciales
+        nombre_usuario, nombre, apellido, email, contrasena, direccion
     )
     if nuevo_usuario_obj:
         print(f"Usuario '{nuevo_usuario_obj.nombre_usuario}' registrado exitosamente.")
@@ -84,29 +82,12 @@ def ejecutar_edicion_perfil():
 
     print("\n--- Editar Mi Perfil ---")
     print("Deje en blanco los campos que no desee modificar.")
-    nombre_completo = input(
-        f"Nombre completo ({usuario_logueado.datos_perfil[2] if usuario_logueado.datos_perfil and usuario_logueado.datos_perfil[2] else 'actualmente vacío'}): "
-    )
-    apellido = input(
-        f"Apellido ({usuario_logueado.datos_perfil[3] if usuario_logueado.datos_perfil and usuario_logueado.datos_perfil[3] else 'actualmente vacío'}): "
-    )
-    email = input(
-        f"Email ({usuario_logueado.datos_perfil[4] if usuario_logueado.datos_perfil and usuario_logueado.datos_perfil[4] else 'actualmente vacío'}): "
-    )
-    # ... otros campos que quieras permitir editar
+    nombre = input(f"Nombre ({usuario_logueado.nombre or 'actualmente vacío'}): ")
+    apellido = input(f"Apellido ({usuario_logueado.apellido or 'actualmente vacío'}): ")
+    email = input(f"Email ({usuario_logueado.email or 'actualmente vacío'}): ")
+    direccion = input(f"Dirección ({usuario_logueado.direccion or 'actualmente vacío'}): ")
 
-    # Solo pasamos los valores que el usuario realmente ingresó (no vacíos)
-    actualizaciones = {
-        "nombre_completo": nombre_completo if nombre_completo else None,
-        "apellido": apellido if apellido else None,
-        "email": email if email else None,
-        # ... otros campos
-    }
-
-    # Filtrar valores None y pasarlos a la función
-    datos_a_actualizar = {k: v for k, v in actualizaciones.items() if v is not None}
-
-    if usuario_logueado.actualizar_perfil(**datos_a_actualizar):
+    if usuario_logueado.actualizar_datos(nombre, apellido, email, direccion):
         print("Perfil actualizado con éxito.")
     else:
         print("No se pudo actualizar el perfil.")
@@ -123,12 +104,7 @@ def ejecutar_accion_admin(opcion):
         datos = usuario_logueado.obtener_datos_personales()
         print("\n--- Mis Datos ---")
         for key, value in datos.items():
-            if isinstance(value, dict):  # Para mostrar el diccionario de perfil anidado
-                print(f"{key}:")
-                for sub_key, sub_value in value.items():
-                    print(f"  - {sub_key}: {sub_value}")
-            else:
-                print(f"{key}: {value}")
+            print(f"{key}: {value}")
         print("-----------------")
     elif opcion == "2":
         usuario_logueado.visualizar_todos_los_usuarios()
@@ -145,11 +121,11 @@ def ejecutar_accion_admin(opcion):
             usuario_logueado.eliminar_usuario_por_id(id_usuario)
         except ValueError:
             print("Entrada inválida. Por favor, ingrese un número para el ID.")
-    elif opcion == "5":  # NUEVA OPCIÓN
+    elif opcion == "5":
         ejecutar_edicion_perfil()
     elif opcion == "6":
         print("Cerrando sesión de administrador...")
-        usuario_logueado = None  # Cerrar sesión
+        usuario_logueado = None
     else:
         print("Opción no válida. Intente de nuevo.")
 
@@ -165,18 +141,13 @@ def ejecutar_accion_estandar(opcion):
         datos = usuario_logueado.obtener_datos_personales()
         print("\n--- Mis Datos ---")
         for key, value in datos.items():
-            if isinstance(value, dict):
-                print(f"{key}:")
-                for sub_key, sub_value in value.items():
-                    print(f"  - {sub_key}: {sub_value}")
-            else:
-                print(f"{key}: {value}")
+            print(f"{key}: {value}")
         print("-----------------")
-    elif opcion == "2":  # NUEVA OPCIÓN
+    elif opcion == "2":
         ejecutar_edicion_perfil()
     elif opcion == "3":
         print("Cerrando sesión de usuario estándar...")
-        usuario_logueado = None  # Cerrar sesión
+        usuario_logueado = None
     else:
         print("Opción no válida. Intente de nuevo.")
 
@@ -185,7 +156,7 @@ def main():
     """Función principal que ejecuta el programa."""
     global usuario_logueado
     print("Iniciando Sistema de Gestión de Usuarios...")
-    initialize_db()  # Asegura que la DB y el admin por defecto existan
+    initialize_db()
 
     while True:
         if usuario_logueado is None:
