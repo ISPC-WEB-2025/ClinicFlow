@@ -28,21 +28,19 @@ def get_db_connection():
 
 def initialize_db():
     """
-    Inicializa la base de datos MySQL creando las tablas 'usuarios' y 'perfiles' si no existen.
-    También inserta un usuario administrador por defecto si la tabla 'usuarios' está vacía.
+    Inicializa la base de datos MySQL creando la tabla 'usuario' si no existe.
+    También inserta un usuario administrador por defecto si la tabla está vacía.
     """
     conn = None
     try:
         conn = get_db_connection()
         if conn is None:
-            print(
-                "No se pudo establecer conexión con la base de datos para inicializarla."
-            )
+            print("No se pudo establecer conexión con la base de datos para inicializarla.")
             return
 
         cursor = conn.cursor()
 
-        # Script SQL para crear la tabla 'usuario' (una sola tabla)
+        # Script SQL para crear la tabla 'usuario'
         cursor.execute(
             """
             CREATE TABLE IF NOT EXISTS usuario (
@@ -56,42 +54,25 @@ def initialize_db():
                 rol VARCHAR(50) NOT NULL,
                 CHECK (rol IN ('administrador', 'estandar'))
             );
-        """
+            """
         )
 
-        # Verificar si ya existe un administrador para no duplicarlo (al inicializar)
-        cursor.execute("SELECT COUNT(*) FROM usuarios WHERE rol = 'administrador'")
+        # Verificar si ya existe un administrador
+        cursor.execute("SELECT COUNT(*) FROM usuario WHERE rol = 'administrador'")
         if cursor.fetchone()[0] == 0:
             default_admin_pass_hash = hashlib.sha256("admin123".encode()).hexdigest()
-            # Primero insertamos en usuarios
             cursor.execute(
                 """
-                INSERT INTO usuarios (nombre_usuario, contrasena_hash, rol)
-                VALUES (%s, %s, %s)
-            """,
-                ("admin", default_admin_pass_hash, "administrador"),
+                INSERT INTO usuario (nombre_usuario, nombre, apellido, email, password, direccion, rol)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+                """,
+                ("admin", "Administrador", "Principal", "admin@ejemplo.com",
+                 default_admin_pass_hash, "Sistema", "administrador"),
             )
-
-            # Obtener el ID del usuario recién insertado para el perfil
-            admin_id = cursor.lastrowid
-
-            # Luego insertamos en perfiles
-            cursor.execute(
-                """
-                INSERT INTO perfiles (id_usuario, nombre_completo, apellido, email)
-                VALUES (%s, %s, %s, %s)
-            """,
-                (admin_id, "Administrador Principal", "Sistema", "admin@ejemplo.com"),
-            )
-
-            print(
-                "Administrador por defecto 'admin' creado con contraseña 'admin123' y perfil básico."
-            )
+            print("Administrador por defecto 'admin' creado con contraseña 'admin123'.")
 
         conn.commit()
-        print(
-            f"Base de datos MySQL '{DB_CONFIG['database']}' inicializada correctamente con tablas de usuarios y perfiles."
-        )
+        print(f"Base de datos MySQL '{DB_CONFIG['database']}' inicializada correctamente.")
 
     except Error as e:
         print(f"Error durante la inicialización de MySQL: {e}")
@@ -103,14 +84,9 @@ def initialize_db():
             conn.close()
 
 
-# --- Funciones CRUD para la tabla 'usuarios' (estas casi no cambian, solo se agregan las de perfil) ---
+# --- Funciones CRUD para la tabla 'usuario' ---
 
-# database.py
-
-
-def crear_usuario(
-    nombre_usuario, nombre, apellido, email, contrasena_hash, direccion, rol
-):
+def crear_usuario(nombre_usuario, nombre, apellido, email, contrasena_hash, direccion, rol):
     """Inserta un nuevo usuario en la tabla 'usuario' con todos sus datos."""
     conn = None
     try:
@@ -122,23 +98,22 @@ def crear_usuario(
         cursor.execute(
             """
             INSERT INTO usuario (nombre_usuario, nombre, apellido, email, password, direccion, rol)
-            VALUES (%s, %s, %s, %s, %s, %s)
-        """,
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """,
             (nombre_usuario, nombre, apellido, email, contrasena_hash, direccion, rol),
         )
 
         conn.commit()
-        return cursor.lastrowid  # Retorna el ID del nuevo usuario
+        return cursor.lastrowid
 
     except Error as e:
-        if e.errno == 1062:  # Duplicate entry (si el email ya existe)
-            print("Error: Ya existe un usuario con este email.")
+        if e.errno == 1062:
+            print("Error: Ya existe un usuario con este email o nombre de usuario.")
         else:
             print(f"Error al crear el usuario: {e}")
         if conn:
             conn.rollback()
         return None
-
     finally:
         if conn and conn.is_connected():
             cursor.close()
@@ -146,7 +121,7 @@ def crear_usuario(
 
 
 def obtener_usuario_por_nombre(nombre_usuario):
-    """Busca un usuario por su nombre de usuario"""
+    """Busca un usuario por su nombre de usuario y retorna todos sus datos."""
     conn = None
     try:
         conn = get_db_connection()
@@ -154,7 +129,11 @@ def obtener_usuario_por_nombre(nombre_usuario):
             return None
         cursor = conn.cursor()
         cursor.execute(
-            "SELECT id_usuario, nombre_usuario, contrasena_hash, rol FROM usuarios WHERE nombre_usuario = %s",
+            """
+            SELECT idUsuario, nombre_usuario, nombre, apellido, email, password, direccion, rol
+            FROM usuario
+            WHERE nombre_usuario = %s
+            """,
             (nombre_usuario,),
         )
         return cursor.fetchone()
@@ -167,8 +146,9 @@ def obtener_usuario_por_nombre(nombre_usuario):
             conn.close()
 
 
+
 def obtener_usuario_por_id(id_usuario):
-    """Busca un usuario por su ID. Retorna una tupla (id, nombre, hash, rol) o None."""
+    """Busca un usuario por su ID"""
     conn = None
     try:
         conn = get_db_connection()
@@ -176,7 +156,7 @@ def obtener_usuario_por_id(id_usuario):
             return None
         cursor = conn.cursor()
         cursor.execute(
-            "SELECT id_usuario, nombre_usuario, contrasena_hash, rol FROM usuarios WHERE id_usuario = %s",
+            "SELECT idUsuario, nombre_usuario, password, rol FROM usuario WHERE idUsuario = %s",
             (id_usuario,),
         )
         return cursor.fetchone()
@@ -190,7 +170,7 @@ def obtener_usuario_por_id(id_usuario):
 
 
 def obtener_todos_los_usuarios():
-    """Retorna una lista de tuplas con todos los usuarios registrados (solo datos de autenticación)."""
+    """Retorna una lista de tuplas con todos los usuarios registrados"""
     conn = None
     try:
         conn = get_db_connection()
@@ -198,7 +178,7 @@ def obtener_todos_los_usuarios():
             return []
         cursor = conn.cursor()
         cursor.execute(
-            "SELECT id_usuario, nombre_usuario, contrasena_hash, rol FROM usuarios"
+            "SELECT idUsuario, nombre_usuario, nombre, apellido, email, rol FROM usuario"
         )
         return cursor.fetchall()
     except Error as e:
@@ -210,14 +190,7 @@ def obtener_todos_los_usuarios():
             conn.close()
 
 
-def actualizar_usuario(
-    id_usuario,
-    nombre_usuario=None,
-    nombre=None,
-    apellido=None,
-    email=None,
-    direccion=None,
-):
+def actualizar_usuario(id_usuario, nombre_usuario=None, nombre=None, apellido=None, email=None, direccion=None):
     """Actualiza los datos de un usuario en la tabla 'usuario'."""
     conn = None
     try:
@@ -226,7 +199,6 @@ def actualizar_usuario(
             return False
         cursor = conn.cursor()
 
-        # Construimos la consulta UPDATE dinámicamente para solo actualizar los campos que no son None
         updates = []
         params = []
         if nombre_usuario is not None:
@@ -245,11 +217,10 @@ def actualizar_usuario(
             updates.append("direccion = %s")
             params.append(direccion)
 
-        if not updates:  # No hay nada que actualizar
+        if not updates:
             print("No se proporcionaron datos para actualizar el usuario.")
             return False
 
-        # El nombre de la tabla ahora es 'usuario'
         query = f"UPDATE usuario SET {', '.join(updates)} WHERE idUsuario = %s"
         params.append(id_usuario)
 
@@ -257,8 +228,8 @@ def actualizar_usuario(
         conn.commit()
         return cursor.rowcount > 0
     except Error as e:
-        if e.errno == 1062:  # Duplicate entry (si el nombre_usuario ya existe)
-            print("Error: El nombre de usuario ya está en uso.")
+        if e.errno == 1062:
+            print("Error: El nombre de usuario o email ya está en uso.")
         if conn:
             conn.rollback()
         return False
@@ -281,7 +252,7 @@ def actualizar_rol_usuario(id_usuario, nuevo_rol):
             return False
         cursor = conn.cursor()
         cursor.execute(
-            "UPDATE usuarios SET rol = %s WHERE id_usuario = %s",
+            "UPDATE usuario SET rol = %s WHERE idUsuario = %s",
             (nuevo_rol, id_usuario),
         )
         conn.commit()
@@ -298,17 +269,14 @@ def actualizar_rol_usuario(id_usuario, nuevo_rol):
 
 
 def eliminar_usuario(id_usuario):
-    """
-    Elimina un usuario de la base de datos por su ID.
-    Debido a ON DELETE CASCADE, su perfil asociado también será eliminado.
-    """
+    """Elimina un usuario de la base de datos por su ID"""
     conn = None
     try:
         conn = get_db_connection()
         if conn is None:
             return False
         cursor = conn.cursor()
-        cursor.execute("DELETE FROM usuarios WHERE id_usuario = %s", (id_usuario,))
+        cursor.execute("DELETE FROM usuario WHERE idUsuario = %s", (id_usuario,))
         conn.commit()
         return cursor.rowcount > 0
     except Error as e:
