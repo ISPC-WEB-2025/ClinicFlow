@@ -1,0 +1,24 @@
+section:not(#banner) {
+	margin: 0 8rem;
+	text-align: justify;
+}
+
+p.lead {
+	text-align: justify;
+}
+
+em {
+	color: var(--color-primary);
+	font-weight: 600;
+}
+
+h4.divider-title{
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+}
+
+h4.divider-title +p{
+    margin: 0 2rem ;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
