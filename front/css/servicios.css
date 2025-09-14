@@ -64,3 +64,48 @@ text-align: left;
 #CTA-btn{
     margin-bottom: 4rem !important;
 }
+
+/* MEDIA QUERIES */
+
+@media (max-width: 1024px) {
+    section:not(#banner) {
+	margin: 0 4rem;
+}
+	
+}
+
+@media (max-width: 768px) {
+section:not(#banner) {
+	margin: 0 2rem;
+}
+.funcionalidades .benefit .card-container{
+    width: 100%;
+
+}
+.benefit{
+    flex-direction: column;
+
+}
+#CTA-btn{
+    display: flex;
+    justify-content: center;
+}
+}
+
+@media (max-width: 450px) {
+	section:not(#banner) {
+	margin: 0 1rem;
+
+}
+.funcionalidades{
+    padding: 0;
+}
+
+
+}
+
+@media (min-width:1500px){
+    .funcionalidades .benefit .card-container{
+    max-width: 20rem;
+}
+}
