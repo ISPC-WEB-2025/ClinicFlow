@@ -36,7 +36,7 @@ def mostrar_menu_administrador(usuario):
                 ).lower()
                 from database import actualizar_rol_usuario
 
-                if actualizar_rol_usuario(id_usuario, nuevo_rol):
+                if usuario.cambiar_rol_usuario(id_usuario, nuevo_rol):
                     print("Rol actualizado con éxito.")
                 else:
                     print("No se pudo actualizar el rol.")
@@ -69,7 +69,7 @@ def mostrar_menu_estandar(usuario):
 
         if opcion == "1":
             datos = usuario.obtener_datos_personales()
-            print(datos)
+            # print(datos)
             print("\n--- Mis Datos ---")
             for k, v in datos.items():
                 print(f"{k}: {v}")

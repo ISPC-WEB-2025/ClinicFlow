@@ -6,6 +6,7 @@ from database import (
     obtener_usuario_por_nombre,
     obtener_todos_los_usuarios,
     actualizar_usuario,
+    actualizar_rol_usuario,
 )
 
 # Importamos las clases secundarias al final para evitar errores de referencia circular
@@ -200,10 +201,29 @@ class Administrador(Usuario):
         """Elimina un usuario de la base de datos dado su ID."""
         from database import eliminar_usuario
 
+        # Validar que el admin no se elimine a sí mismo
+        if id_usuario == self.id_usuario:
+            print("Error: No puedes eliminarte a ti mismo.")
+            input("Ingrese enter para continuar: ")
+            return
+
         if eliminar_usuario(id_usuario):
             print(f"Usuario con ID {id_usuario} eliminado correctamente.")
         else:
             print(f"No se encontró un usuario con ID {id_usuario}.")
+
+    def cambiar_rol_usuario(self, id_usuario, nuevo_rol):
+        """Cambia el rol de un usuario."""
+
+        if id_usuario == self.id_usuario:
+            print("Error: No puedes cambiar tu propio rol.")
+            input("Ingrese enter para continuar: ")
+            return
+
+        if actualizar_rol_usuario(id_usuario, nuevo_rol):
+            print(f"Rol actualizado correctamente.")
+        else:
+            print("No se pudo actualizar el rol.")
 
 
 class UsuarioEstandar(Usuario):

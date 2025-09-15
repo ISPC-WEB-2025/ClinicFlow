@@ -255,6 +255,8 @@ def actualizar_usuario(
 
 def actualizar_rol_usuario(id_usuario, nuevo_rol):
     """Actualiza el rol de un usuario específico."""
+    # Validar que el admin no se elimine a sí mismo
+
     if nuevo_rol not in ["administrador", "estandar"]:
         print("Rol no válido. Debe ser 'administrador' o 'estandar'.")
         return False
