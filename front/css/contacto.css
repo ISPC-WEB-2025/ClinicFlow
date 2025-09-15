@@ -1,77 +1,41 @@
-body {
-    border: blue solid 2px;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100vh;
-    overflow-x: hidden; 
-   /* La altura de main ahora será 100vh + 56px debido al padding,
-       pero el contenido se desplazará hacia abajo correctamente. */
-    padding-top: 56px;
-    min-height: calc(100vh - 56px); /* Para que el área de contenido sin el padding sea 100vh */
-    box-sizing: border-box; /* Crucial para que padding-top no empuje el contenido fuera del 100vh si también lo tenía */
-}
-
-main {
-  border: purple solid 2px;
-  font-family: 'Lato', sans-serif;
-  background-color: #f0f4f8;
-  margin: 0;
-  width: 100%;
-  height: 100vh;
-  padding: 0;
-}
-
 .contenedor-general {
-  border: red solid 1px;
-  position: relative;
-  width: 100%;
+  width: 100vw;
   height: 100%;
-  border-radius: 8px;
-  display: block;
-  overflow: hidden; /* Asegura que nada se desborde del contenedor */
-}
-
-.contenedor-imagen {
-  border: orange solid 1px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  min-height: 100vh;
-  z-index: 1; /* Asegura que la imagen esté detrás del formulario */
-}
-
-.contenedor-imagen img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.contacto {
-  border: green solid 2px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Mueve el formulario para un centrado perfecto */
-  z-index: 10; /* Asegura que el formulario esté por encima de la imagen */
-  box-sizing: border-box;
-  width: 90%; /* Ajusta el ancho del formulario */
-  max-width: 500px;
-  padding: 30px;
-  background-color: rgba(255, 255, 255, 0.6); /* Fondo semitransparente para que se vea la imagen */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(97, 117, 155, 0.1); /* Añade una sombra sutil */
-  backdrop-filter: blur(10px); /* Efecto de desenfoque para mejorar la legibilidad */
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 15rem;
+  justify-content: center;
+
+}
+
+.contenedor-imagen {
+  position: absolute;
+  top: 0;
+  height: 75rem;
+  overflow: hidden;
+}
+
+.contenedor-imagen img {
+  object-fit: cover;
+
+}
+
+.contacto {
+  box-sizing: border-box;
+  width: 90%;
+  max-width: 500px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(97, 117, 155, 0.1);
+  backdrop-filter: blur(10px); 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 12rem;
 }
 
 h2 {
-  border: rgb(218, 23, 218) solid 3px;
   color: #136a92;
   font-size: 30px;
   font-family: 'Lato', sans-serif;
@@ -81,18 +45,16 @@ h2 {
 }
 
 label {
-  border: 2px solid #3ee92e;
   font-size: 20px;
   font-weight: 500;
   color: #1a1344;
-  align-self: flex-start;
+  align-self: flex-start ;
   width: 100%;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 input,
 textarea {
-  border: #136a92 solid 2px;
   padding: 5px;
   margin-bottom: 4px;
   border: 1px solid #ffffff;
@@ -102,20 +64,39 @@ textarea {
   width: 100%;
   max-width: 400px;
   box-sizing: border-box;
-  margin-bottom: 4px;
 }   
 
 button {
-  border: orange solid 3px;
   background-color: #7ec8eb;
   color: rgb(56, 55, 56);
   border: none;
-  padding: 10px 20px;
+  padding: 10px 20px;                                                                                                                                                                         
   font-size: 30px;
   font-weight: 500;
   cursor: pointer;
   border-radius: 8px;
   align-self: center;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
+.footer-content {
+  width: 100%;
+  height: 60px;
+  color: white;
+  background-color: #152032;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  font-size: 15px;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-content p {
+    margin: 0; 
+    line-height: 60px;
+}
