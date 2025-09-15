@@ -6,13 +6,13 @@ ClinicFlow E-commerce es una plataforma web moderna y segura desarrollada para l
 
 Este proyecto surge como respuesta a la necesidad de contar con un canal de ventas digital automatizado y profesional para ClinicFlow. La plataforma permite:
 
--   Presentar de manera clara y atractiva los diferentes planes de suscripción (Básico, Estándar, Premium, Personalizado) con sus características y beneficios.
+- Presentar de manera clara y atractiva los diferentes planes de suscripción (Básico, Estándar, Premium, Personalizado) con sus características y beneficios.
 
--   Automatizar el proceso de venta desde la selección del plan hasta el pago y la generación de comprobantes.
+- Automatizar el proceso de venta desde la selección del plan hasta el pago y la generación de comprobantes.
 
--   Reducir la carga administrativa al eliminar la necesidad de procesos manuales para ventas de planes estandarizados.
+- Reducir la carga administrativa al eliminar la necesidad de procesos manuales para ventas de planes estandarizados.
 
--   Proyectar una imagen de marca sólida y confiable, crucial para vender un producto que manejará datos sensibles de salud.
+- Proyectar una imagen de marca sólida y confiable, crucial para vender un producto que manejará datos sensibles de salud.
 
 ## 🚀 Funcionalidades
 
@@ -32,26 +32,26 @@ Este proyecto surge como respuesta a la necesidad de contar con un canal de vent
 
 ## 👥 Posibles Usuarios
 
--   Dueños de consultorios, administradores de clínicas y personal de toma de decisiones en instituciones de salud medianas y pequeñas.
+- Dueños de consultorios, administradores de clínicas y personal de toma de decisiones en instituciones de salud medianas y pequeñas.
 
 ## 🛠️ Stack Tecnológico
 
 ### Frontend
 
--   **HTML5:** Estructura semántica de la aplicación
--   **CSS3:** Estilos y diseño responsive
--   **JavaScript:** Interactividad y dinamismo en el cliente
--   **Bootstrap 5:** Framework CSS para diseño responsivo y componentes predefinidos
+- **HTML5:** Estructura semántica de la aplicación
+- **CSS3:** Estilos y diseño responsive
+- **JavaScript:** Interactividad y dinamismo en el cliente
+- **Bootstrap 5:** Framework CSS para diseño responsivo y componentes predefinidos
 
 ### Backend
 
--   **Python:** Lógica de negocio y API del servidor
--   **SQL:** Base de datos relacional para almacenamiento persistente
+- **Python:** Lógica de negocio y API del servidor
+- **SQL:** Base de datos relacional para almacenamiento persistente
 
 ### Control de Versiones
 
--   **Git:** Sistema de control de versiones
--   **GitHub:** Plataforma de alojamiento y colaboración
+- **Git:** Sistema de control de versiones
+- **GitHub:** Plataforma de alojamiento y colaboración
 
 ## 📁 Cómo probarlo
 
@@ -63,9 +63,11 @@ Este proyecto surge como respuesta a la necesidad de contar con un canal de vent
     ```
 
 2. Navega al directorio del proyecto:
+
     ```bash
     cd ClinicFlow
     ```
+
 3. Dentro del mismo encontrarás tres carpetas principales:
     - `front`: Contiene el código del frontend desarrollado con HTML, CSS y JavaScript.
     - `back`: Contiene el código del backend desarrollado con Python y SQL.
@@ -75,9 +77,40 @@ Este proyecto surge como respuesta a la necesidad de contar con un canal de vent
     1. **Local:** Abrir el archivo `index.html` directamente en tu navegador web.
     2. **Online:** ingresar a la versión en línea a través de [GitHub Pages](https://ispc-web-2025.github.io/ClinicFlow/front/).
 
-5. Para el **backend**, asegúrate de tener Python 3.13.2 instalado en su versión y mysql actualizado. Luego, sigue estos pasos:
+5. Guía de Instalación y Configuración para el **backend**
 
+    Para una instalación rápida y sencilla, sigue estos pasos:
+
+    1. Requisitos Previos
+    Asegúrate de tener instalado Python 3.13.2 o superior y MySQL.
+
+    2. Instalación
+    Clona el repositorio y navega a la carpeta del proyecto.
+
+    3. Crea y activa un entorno virtual e instala las dependencias:
+
+        ```bash
+        # Crear y activar entorno virtual
+        python -m venv venv
+        # Windows:
+        venv\Scripts\activate
+        # Linux/macOS:
+        source venv/bin/activate
         ```
+
+    4. Instalar dependencias
+    Una vez que el entorno virtual esté activo, instala todas las librerías necesarias para el proyecto. El archivo requirements.txt contiene una lista de todas las dependencias. El siguiente comando leerá el archivo requirements.txt e instalará automáticamente todas las bibliotecas de Python que el proyecto necesita para ejecutarse:
+
+        ```bash
+        pip install -r requirements.txt
+        ```
+
+    5. Configuración de la Base de Datos
+    La configuración recomendada es automática: simplemente ejecuta el script principal. El sistema te guiará para configurar la conexión y creará la base de datos necesaria, incluyendo un usuario administrador por defecto (usuario: admin, contraseña: admin123).
+
+🛠️ Solución de Problemas y Configuración Avanzada
+
+Si encuentras problemas de conexión a MySQL, necesitas una configuración manual o deseas ver la estructura completa del proyecto, visita la [wiki del proyecto](https://github.com/ISPC-WEB-2025/ClinicFlow/wiki/Pasos-de-Instalaci%C3%B3n-y-Prueba) para una guía detallada.
 
 ## 👥 Integrantes del Equipo
 
@@ -123,12 +156,12 @@ Tecnologías y Habilidades en Práctica: Conocimientos en : Html,Css,JavasCript,
 
 ### Equipo FrontEnd
 
--   Aylen Bartolino Luna
--   María Elena Haydeé Ponce
--   Brenda Pogliano
+- Aylen Bartolino Luna
+- María Elena Haydeé Ponce
+- Brenda Pogliano
 
 ### Equipo Backend
 
--   Virginia García
--   Tomas Nicolas Nieto
--   Miguel Flores
+- Virginia García
+- Tomas Nicolas Nieto
+- Miguel Flores
