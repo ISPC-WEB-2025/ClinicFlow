@@ -35,7 +35,9 @@ def initialize_db():
     try:
         conn = get_db_connection()
         if conn is None:
-            print("No se pudo establecer conexión con la base de datos para inicializarla.")
+            print(
+                "No se pudo establecer conexión con la base de datos para inicializarla."
+            )
             return
 
         cursor = conn.cursor()
@@ -66,13 +68,22 @@ def initialize_db():
                 INSERT INTO usuario (nombre_usuario, nombre, apellido, email, password, direccion, rol)
                 VALUES (%s, %s, %s, %s, %s, %s, %s)
                 """,
-                ("admin", "Administrador", "Principal", "admin@ejemplo.com",
-                 default_admin_pass_hash, "Sistema", "administrador"),
+                (
+                    "admin",
+                    "Administrador",
+                    "Principal",
+                    "admin@ejemplo.com",
+                    default_admin_pass_hash,
+                    "Sistema",
+                    "administrador",
+                ),
             )
             print("Administrador por defecto 'admin' creado con contraseña 'admin123'.")
 
         conn.commit()
-        print(f"Base de datos MySQL '{DB_CONFIG['database']}' inicializada correctamente.")
+        print(
+            f"Base de datos MySQL '{DB_CONFIG['database']}' inicializada correctamente."
+        )
 
     except Error as e:
         print(f"Error durante la inicialización de MySQL: {e}")
@@ -86,7 +97,10 @@ def initialize_db():
 
 # --- Funciones CRUD para la tabla 'usuario' ---
 
-def crear_usuario(nombre_usuario, nombre, apellido, email, contrasena_hash, direccion, rol):
+
+def crear_usuario(
+    nombre_usuario, nombre, apellido, email, contrasena_hash, direccion, rol
+):
     """Inserta un nuevo usuario en la tabla 'usuario' con todos sus datos."""
     conn = None
     try:
@@ -146,27 +160,26 @@ def obtener_usuario_por_nombre(nombre_usuario):
             conn.close()
 
 
-
-def obtener_usuario_por_id(id_usuario):
-    """Busca un usuario por su ID"""
-    conn = None
-    try:
-        conn = get_db_connection()
-        if conn is None:
-            return None
-        cursor = conn.cursor()
-        cursor.execute(
-            "SELECT idUsuario, nombre_usuario, password, rol FROM usuario WHERE idUsuario = %s",
-            (id_usuario,),
-        )
-        return cursor.fetchone()
-    except Error as e:
-        print(f"Error al obtener usuario por ID: {e}")
-        return None
-    finally:
-        if conn and conn.is_connected():
-            cursor.close()
-            conn.close()
+# def obtener_usuario_por_id(id_usuario):
+#     """Busca un usuario por su ID"""
+#     conn = None
+#     try:
+#         conn = get_db_connection()
+#         if conn is None:
+#             return None
+#         cursor = conn.cursor()
+#         cursor.execute(
+#             "SELECT idUsuario, nombre_usuario, password, rol FROM usuario WHERE idUsuario = %s",
+#             (id_usuario,),
+#         )
+#         return cursor.fetchone()
+#     except Error as e:
+#         print(f"Error al obtener usuario por ID: {e}")
+#         return None
+#     finally:
+#         if conn and conn.is_connected():
+#             cursor.close()
+#             conn.close()
 
 
 def obtener_todos_los_usuarios():
@@ -190,8 +203,14 @@ def obtener_todos_los_usuarios():
             conn.close()
 
 
-def actualizar_usuario(id_usuario, nombre_usuario=None, nombre=None, apellido=None, email=None, direccion=None):
+def actualizar_usuario(
+    id_usuario, nombre=None, apellido=None, email=None, direccion=None
+):
     """Actualiza los datos de un usuario en la tabla 'usuario'."""
+    print(f"=== DEBUG actualizar_usuario ===")
+    print(
+        f"Parámetros recibidos: id_usuario={id_usuario}, nombre={nombre}, apellido={apellido}, email={email}, direccion={direccion}"
+    )
     conn = None
     try:
         conn = get_db_connection()
@@ -201,9 +220,7 @@ def actualizar_usuario(id_usuario, nombre_usuario=None, nombre=None, apellido=No
 
         updates = []
         params = []
-        if nombre_usuario is not None:
-            updates.append("nombre_usuario = %s")
-            params.append(nombre_usuario)
+
         if nombre is not None:
             updates.append("nombre = %s")
             params.append(nombre)
