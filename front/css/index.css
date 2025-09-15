@@ -1,7 +1,4 @@
-/* SECCIONES */
-section {
-	margin-bottom: 4rem 0;
-}
+
 /* ==== HOME: SECCION BANNER ==== */
 #banner img {
 	width: 100%;
@@ -10,7 +7,7 @@ section {
 	object-position: center 50%;
 }
 
-#banner .funcionalidades {
+ .funcionalidades {
 	display: flex;
 	padding: 0 6rem;
 	text-align: center;
@@ -18,7 +15,7 @@ section {
 	height: 26rem;
 }
 
-#banner .funcionalidades article {
+ .funcionalidades article {
 	display: flex;
 	flex-direction: column;
 	width: 25%;
@@ -27,25 +24,25 @@ section {
 	justify-content: center;
 }
 
-#banner .funcionalidades article:nth-child(odd) {
+ .funcionalidades article:nth-child(odd) {
 	background-color: var(--color-primary);
 }
-#banner .funcionalidades article:nth-child(even) {
+ .funcionalidades article:nth-child(even) {
 	background-color: var(--color-secondary);
 }
 
-#banner .funcionalidades article i {
+ .funcionalidades article i {
 	font-size: 6rem;
 	margin-bottom: 2rem;
 }
 
-#banner .funcionalidades article h3 {
+ .funcionalidades article h3 {
 	font-size: 1.2rem;
 	font-weight: 600;
 	margin-bottom: 0.5rem;
 }
 
-#banner .funcionalidades article p {
+ .funcionalidades article p {
 	font-size: 1rem;
 	font-weight: 300;
 	line-height: 1.4;
@@ -321,6 +318,11 @@ right: 87%;
 	padding: 0.8rem 1rem;
 	font-size: 0.8rem;
 	margin-top: 1rem;
+}
+
+/* SECCIONES */
+section {
+	margin-bottom: 4rem 0;
 }
 
 /* ==== MEDIA QUERIES ==== */

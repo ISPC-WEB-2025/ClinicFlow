@@ -1,0 +1,47 @@
+{
+	"team": [
+		{
+
+			"name": "Maria Elena Haydee Ponce",
+			"role": "Desarrolladora Fullstack & Scrum Master",
+			"linkedin": "https://linkedin.com",
+			"github": "https://github.com"
+		},
+		{
+
+			"name": "Miguel Angel Flores",
+			"role": "Desarrollador Fullstack",
+			"linkedin": "https://linkedin.com",
+			"github": "https://github.com"
+		},
+		{
+
+			"name": "Brenda Soledad Pogliano",
+			"role": "Desarrolladora Fullstack",
+			"linkedin": "https://linkedin.com",
+			"github": "https://github.com"
+		},
+		{
+
+			"name": "Aylén Carolina Bartolino Luna",
+			"role": "Desarrolladora Fullstack",
+			"linkedin": "https://linkedin.com",
+			"github": "https://github.com"
+		},
+		{
+
+			"name": "Tomás Nicolás Nieto",
+			"role": "Desarrollador Fullstack",
+			"linkedin": "https://linkedin.com",
+			"github": "https://github.com"
+		},
+		
+		{
+
+			"name": "Virginia García",
+			"role": "Desarrolladora Full Stack",
+			"linkedin": "https://linkedin.com",
+			"github": "https://github.com"
+		}
+	]
+}
