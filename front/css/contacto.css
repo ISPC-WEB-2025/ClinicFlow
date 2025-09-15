@@ -38,8 +38,8 @@ main {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  overflow : hidden;
+  height: auto;
+  min-height: 100vh;
   z-index: 1; /* Asegura que la imagen esté detrás del formulario */
 }
 
@@ -67,6 +67,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 15rem;
 }
 
 h2 {
