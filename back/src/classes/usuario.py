@@ -146,10 +146,6 @@ class Usuario:
 
         print("Inicio de sesión exitoso.")
 
-        print(f"=== DATOS DESDE LA BD ===")
-        print(f"Datos completos: {usuario_data}")
-        print("========================")
-
         if rol_u == "administrador":
             from classes.usuario import Administrador
 

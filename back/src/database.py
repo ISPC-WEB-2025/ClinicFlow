@@ -207,10 +207,7 @@ def actualizar_usuario(
     id_usuario, nombre=None, apellido=None, email=None, direccion=None
 ):
     """Actualiza los datos de un usuario en la tabla 'usuario'."""
-    print(f"=== DEBUG actualizar_usuario ===")
-    print(
-        f"Parámetros recibidos: id_usuario={id_usuario}, nombre={nombre}, apellido={apellido}, email={email}, direccion={direccion}"
-    )
+
     conn = None
     try:
         conn = get_db_connection()
