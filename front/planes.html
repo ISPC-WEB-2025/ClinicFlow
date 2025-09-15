@@ -17,20 +17,9 @@
 		/>
 
 		<link rel="stylesheet" href="./css/styles.css" />
-				<link rel="stylesheet" href="./css/planes.css" />
+		<link rel="stylesheet" href="./css/planes.css" />
 
 		<title>ClinicFlow</title>
-		<style>
-			.icon-square {
-    width: 3rem; /* Tamaño del cuadrado del icono */
-    height: 3rem; /* Tamaño del cuadrado del icono */
-    border-radius: .5rem; /* Bordes ligeramente redondeados */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem; /* Tamaño del icono dentro del cuadrado */
-}
-		</style>
 	</head>
 	<body class="bg-light">
 		<!-- HEADER COMIENZO -->
@@ -90,474 +79,938 @@
 
 		<!-- HEADER FIN -->
 		<main>
-    <div class="container py-5">
-        <h2 class="text-center mb-5">Nuestros Planes</h2>
-        
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+			<div class="container py-5 ">
+				<h2 class="text-center mb-5">Nuestros Planes</h2>
 
-            <div class="col">
-    			<div class="card h-100 text-center">
-        			<img src="img/plan basico.jpg" class="card-img-top mb-3" alt="Imagen representativa del Plan Básico">
+				<div class="row row-cols-1 row-cols-md-2 custom-cols row-cols-xl-4 g-4">
 
-        			<div class="card-body d-flex flex-column">
-            			<h5 class="card-title fw-bold">Plan Básico</h5>
-            
-            			<div class="d-flex justify-content-center align-items-center mb-2">
-            				<h2 class="fw-bold me-2">$250.000<span class="fs-6 text-muted">/año</span></h2>
-            				<span class="badge bg-success">Ahorrás 25%</span>
-        				</div>
-        
-        				<p class="card-text text-muted mb-4">
-           					 Facturación anual
-        				</p>
+					<div class="col">
+						<div class="card h-100 text-center">
+							<img
+								src="img/plan basico.jpg"
+								class="card-img-top mb-3"
+								alt="Imagen representativa del Plan Básico"
+							/>
 
-            			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-plan-basico">
-                			Elegir plan
-            			</button>
+							<div class="card-body d-flex flex-column">
+								<h5 class="card-title fw-bold">Plan Básico</h5>
 
-            			<p class="card-text text-start mt-2">> Hasta 5 usuarios y 1GB de almacenamiento</p>
-                		<p class="card-text text-start mt-2">> Registros de ingresos y egresos</p>
-						<p class="card-text text-start mt-2">> Lista de pacientes e Historial Clínico</p>	
-						<p class="card-text text-start mt-2">> Búsqueda básica</p>
-						<p class="card-text text-start mt-2">> Soporte por email</p>
-        			</div>
-    			</div>
+								<div
+									class="d-flex justify-content-center align-items-center mb-2"
+								>
+									<h2 class="fw-bold me-2">
+										$250.000<span class="fs-6 text-muted"
+											>/año</span
+										>
+									</h2>
+									<span class="badge bg-success"
+										>Ahorrás 25%</span
+									>
+								</div>
+
+								<p class="card-text text-muted mb-4">
+									Facturación anual
+								</p>
+
+								<button
+									type="button"
+									class="btn btn-primary"
+									data-bs-toggle="modal"
+									data-bs-target="#modal-plan-basico"
+								>
+									Elegir plan
+								</button>
+
+								<p class="card-text text-start mt-2">
+									> Hasta 5 usuarios y 1GB de almacenamiento
+								</p>
+								<p class="card-text text-start mt-2">
+									> Registros de ingresos y egresos
+								</p>
+								<p class="card-text text-start mt-2">
+									> Lista de pacientes e Historial Clínico
+								</p>
+								<p class="card-text text-start mt-2">
+									> Búsqueda básica
+								</p>
+								<p class="card-text text-start mt-2">
+									> Soporte por email
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col">
+						<div class="card h-100 text-center">
+							<img
+								src="img/plan estandar.jpg"
+								class="card-img-top mb-3"
+								alt="Imagen representativa del Plan Estándar"
+							/>
+
+							<div class="card-body d-flex flex-column">
+								<h5 class="card-title fw-bold">
+									Plan Estándar
+								</h5>
+
+								<div
+									class="d-flex justify-content-center align-items-center mb-2"
+								>
+									<h2 class="fw-bold me-2">
+										$500.000<span class="fs-6 text-muted"
+											>/año</span
+										>
+									</h2>
+									<span class="badge bg-success"
+										>Ahorrás 25%</span
+									>
+								</div>
+
+								<p class="card-text text-muted mb-4">
+									Facturación anual
+								</p>
+
+								<button
+									type="button"
+									class="btn btn-primary"
+									data-bs-toggle="modal"
+									data-bs-target="#modal-plan-estandar"
+								>
+									Elegir plan
+								</button>
+
+								<p class="card-text text-start mt-2">
+									> Hasta 20 usuarios y 5GB de almacenamiento
+								</p>
+								<p class="card-text text-start mt-2">
+									Plan Básico +
+								</p>
+								<p class="card-text text-start mt-2">
+									> Repotes en PDF y búsqueda de filtros
+									avanzados
+								</p>
+								<p class="card-text text-start mt-2">
+									> Roles de usuarios
+								</p>
+								<p class="card-text text-start mt-2">
+									> Soporte prioritario (chat, email)
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col">
+						<div class="card h-100 text-center">
+							<img
+								src="img/plan premium.jpg"
+								class="card-img-top mb-3"
+								alt="Imagen representativa del Plan Premium"
+							/>
+
+							<div class="card-body d-flex flex-column">
+								<h5 class="card-title fw-bold">Plan Premium</h5>
+
+								<div
+									class="d-flex justify-content-center align-items-center mb-2"
+								>
+									<h2 class="fw-bold me-2">
+										$750.000<span class="fs-6 text-muted"
+											>/año</span
+										>
+									</h2>
+									<span class="badge bg-success"
+										>Ahorrás 25%</span
+									>
+								</div>
+
+								<p class="card-text text-muted mb-4">
+									Facturación anual
+								</p>
+
+								<button
+									type="button"
+									class="btn btn-primary"
+									data-bs-toggle="modal"
+									data-bs-target="#modal-plan-premium"
+								>
+									Elegir plan
+								</button>
+
+								<p class="card-text text-start mt-2">
+									> Usuarios ilimitados
+								</p>
+								<p class="card-text text-start mt-2">
+									> Funcionalidades completas
+								</p>
+								<p class="card-text text-start mt-2">
+									> Integración con APIs de Terceros
+								</p>
+								<p class="card-text text-start mt-2">
+									> Dashboard avanzado y exportación de datos
+								</p>
+								<p class="card-text text-start mt-2">
+									> Soporte 24/7, almacenamiento escalable,
+									capacitación inicial incluída
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col">
+						<div class="card h-100 text-center">
+							<img
+								src="img/plan personalizado.jpg"
+								class="card-img-top mb-3"
+								alt="Imagen representativa del Plan Personalizado"
+							/>
+
+							<div class="card-body d-flex flex-column">
+								<h5 class="card-title fw-bold">
+									Plan Personalizado
+								</h5>
+
+								<div class="price-section">
+									<p class="card-text text-muted">
+										<del>A medida</del>
+									</p>
+								</div>
+
+								<button
+									type="button"
+									class="btn btn-primary"
+									data-bs-toggle="modal"
+									data-bs-target="#modal-plan-personalizado"
+								>
+									Elegir plan
+								</button>
+
+								<p class="card-text text-start mt-2">
+									> Instalación en servidores propios
+								</p>
+								<p class="card-text text-start mt-2">
+									> Personalización de marca y flujo de
+									trabajo
+								</p>
+								<p class="card-text text-start mt-2">
+									> Funcionalidades a medida
+								</p>
+								<p class="card-text text-start mt-2">
+									> Soporte y actualizaciones dedicadas
+								</p>
+								<p class="card-text text-start mt-2">
+									> Capacitación avanzada
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div
+				class="modal fade"
+				id="modal-plan-basico"
+				tabindex="-1"
+				aria-labelledby="modal-plan-basico-label"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5
+								class="modal-title"
+								id="modal-plan-basico-label"
+							>
+								Plan Básico
+							</h5>
+							<button
+								type="button"
+								class="btn-close"
+								data-bs-dismiss="modal"
+								aria-label="Close"
+							></button>
+						</div>
+						<div class="modal-body">
+							<h5 class="fw-bold">
+								Funcionalidades y Beneficios destacados
+							</h5>
+							<p class="mb-4">
+								Perfecto para consultorios pequeños o
+								independientes que buscan una solución eficiente
+								y económica. ClinicFlow Básico te ayuda a
+								organizar la información de tus pacientes de
+								forma digital, segura y accesible, sin
+								complicaciones.
+							</p>
+
+							<div class="row row-cols-1 row-cols-md-2 g-4">
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-users fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Hasta 5 usuarios
+											</h6>
+											<p class="text-muted small">
+												Ideal para equipos pequeños con
+												acceso controlado.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-money-bill-transfer fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Registro de ingresos y egresos
+											</h6>
+											<p class="text-muted small">
+												Gestión simplificada de altas y
+												bajas de pacientes.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-user-injured fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Lista de pacientes internados
+											</h6>
+											<p class="text-muted small">
+												Visualización clara y
+												actualizada en tiempo real.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-magnifying-glass fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Búsqueda básica por nombre y
+												fecha
+											</h6>
+											<p class="text-muted small">
+												Encuentra información
+												rápidamente.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-file-medical fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Historial clínico por paciente
+											</h6>
+											<p class="text-muted small">
+												Accede al registro completo de
+												cada caso.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-envelope fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Soporte por correo electrónico
+											</h6>
+											<p class="text-muted small">
+												Asistencia directa para resolver
+												tus dudas.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button
+								type="button"
+								class="btn btn-secondary"
+								data-bs-dismiss="modal"
+							>
+								Cerrar
+							</button>
+							<a href="#" class="btn btn-primary">Contratar</a>
+						</div>
+					</div>
+				</div>
 			</div>
 
-            <div class="col">
-    			<div class="card h-100 text-center">
-        			<img src="img/plan estandar.jpg" class="card-img-top mb-3" alt="Imagen representativa del Plan Estándar">
+			<div
+				class="modal fade"
+				id="modal-plan-estandar"
+				tabindex="-1"
+				aria-labelledby="modal-plan-estandar-label"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5
+								class="modal-title"
+								id="modal-plan-estandar-label"
+							>
+								Plan Estándar
+							</h5>
+							<button
+								type="button"
+								class="btn-close"
+								data-bs-dismiss="modal"
+								aria-label="Close"
+							></button>
+						</div>
+						<div class="modal-body">
+							<h5 class="fw-bold">
+								Funcionalidades y Beneficios destacados
+							</h5>
+							<p class="mb-4">
+								Diseñado para clínicas y centros médicos
+								medianos que requieren más capacidad y
+								funcionalidades avanzadas. Optimiza procesos,
+								mejora la coordinación entre áreas y toma
+								decisiones basadas en datos con herramientas
+								profesionales.
+							</p>
 
-        			<div class="card-body d-flex flex-column">
-            			<h5 class="card-title fw-bold">Plan Estándar</h5>
-            
-            			<div class="d-flex justify-content-center align-items-center mb-2">
-            				<h2 class="fw-bold me-2">$500.000<span class="fs-6 text-muted">/año</span></h2>
-            				<span class="badge bg-success">Ahorrás 25%</span>
-        				</div>
-        
-        				<p class="card-text text-muted mb-4">
-           					 Facturación anual
-        				</p>
-					
-            		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-plan-estandar">
-                		Elegir plan
-            		</button>
-
-            		<p class="card-text text-start mt-2">> Hasta 20 usuarios y 5GB de almacenamiento</p>
-                		<p class="card-text text-start mt-2"> Plan Básico +</p>
-						<p class="card-text text-start mt-2">> Repotes en PDF y búsqueda de filtros avanzados</p>	
-						<p class="card-text text-start mt-2">> Roles de usuarios</p>
-						<p class="card-text text-start mt-2">> Soporte prioritario (chat, email)</p>
-        			</div>
-    			</div>
+							<div class="row row-cols-1 row-cols-md-2 g-4">
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-hospital-user fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Hasta 20 usuarios y 5GB
+											</h6>
+											<p class="text-muted small">
+												Amplía tu equipo con múltiples
+												accesos seguros.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-file-medical fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Generación de reportes en PDF
+											</h6>
+											<p class="text-muted small">
+												Exporta información clave para
+												análisis y auditorías.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-magnifying-glass fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Filtros avanzados
+											</h6>
+											<p class="text-muted small">
+												Búsquedas por médico, estado,
+												fecha y más.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-user-gear fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Roles de usuario
+											</h6>
+											<p class="text-muted small">
+												Asigna permisos diferenciados
+												(médico, administrativo,
+												enfermería).
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-headset fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Soporte prioritario (chat +
+												email)
+											</h6>
+											<p class="text-muted small">
+												Respuestas rápidas cuando más
+												las necesitas.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-bell fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Notificaciones de egresos
+												pendientes
+											</h6>
+											<p class="text-muted small">
+												Alertas automáticas para evitar
+												olvidos.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button
+								type="button"
+								class="btn btn-secondary"
+								data-bs-dismiss="modal"
+							>
+								Cerrar
+							</button>
+							<a href="#" class="btn btn-primary">Contratar</a>
+						</div>
+					</div>
+				</div>
 			</div>
 
-            <div class="col">
-    			<div class="card h-100 text-center">
-        			<img src="img/plan premium.jpg" class="card-img-top mb-3" alt="Imagen representativa del Plan Premium">
+			<div
+				class="modal fade"
+				id="modal-plan-premium"
+				tabindex="-1"
+				aria-labelledby="modal-plan-premium-label"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5
+								class="modal-title"
+								id="modal-plan-premium-label"
+							>
+								Plan Premium
+							</h5>
+							<button
+								type="button"
+								class="btn-close"
+								data-bs-dismiss="modal"
+								aria-label="Close"
+							></button>
+						</div>
+						<div class="modal-body">
+							<h5 class="fw-bold">
+								Funcionalidades y Beneficios destacados
+							</h5>
+							<p class="mb-4">
+								La solución integral para hospitales y redes de
+								salud que exigen máximo rendimiento,
+								escalabilidad y personalización. ClinicFlow
+								Premium ofrece herramientas avanzadas,
+								integraciones y soporte especializado para
+								instituciones de alto volumen.
+							</p>
 
-        			<div class="card-body d-flex flex-column">
-            			<h5 class="card-title fw-bold">Plan Premium</h5>
-            
-            			<div class="d-flex justify-content-center align-items-center mb-2">
-            				<h2 class="fw-bold me-2">$750.000<span class="fs-6 text-muted">/año</span></h2>
-            				<span class="badge bg-success">Ahorrás 25%</span>
-        				</div>
-        
-        				<p class="card-text text-muted mb-4">
-           					 Facturación anual
-        				</p>
-					
-            		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-plan-premium">
-                		Elegir plan
-            		</button>
-
-            		<p class="card-text text-start mt-2">> Usuarios ilimitados</p>
-                		<p class="card-text text-start mt-2">> Funcionalidades completas</p>
-						<p class="card-text text-start mt-2">> Integración con APIs de Terceros</p>	
-						<p class="card-text text-start mt-2">> Dashboard avanzado y exportación de datos</p>
-						<p class="card-text text-start mt-2">> Soporte 24/7, almacenamiento escalable, capacitación inicial incluída</p>
-        			</div>
-    			</div>
+							<div class="row row-cols-1 row-cols-md-2 g-4">
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-hospital fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Usuarios ilimitados
+											</h6>
+											<p class="text-muted small">
+												Capacidad total para equipos
+												grandes y en crecimiento.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-chart-line fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Dashboard avanzado con métricas
+												en tiempo real
+											</h6>
+											<p class="text-muted small">
+												Monitorea el rendimiento de tu
+												institución al instante.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-microchip fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Integración con APIs de terceros
+											</h6>
+											<p class="text-muted small">
+												Conecta con sistemas de
+												facturación, laboratorios, etc.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-clock-rotate-left fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Soporte 24/7 con asistencia
+												remota
+											</h6>
+											<p class="text-muted small">
+												Ayuda inmediata en cualquier
+												momento.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-graduation-cap fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Capacitación inicial incluida
+											</h6>
+											<p class="text-muted small">
+												Onboarding completo para tu
+												equipo.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-file-medical fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Exportación de datos en
+												múltiples formatos
+											</h6>
+											<p class="text-muted small">
+												CSV, Excel, PDF para análisis
+												flexibles.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button
+								type="button"
+								class="btn btn-secondary"
+								data-bs-dismiss="modal"
+							>
+								Cerrar
+							</button>
+							<a href="#" class="btn btn-primary">Contratar</a>
+						</div>
+					</div>
+				</div>
 			</div>
 
-           <div class="col">
-    			<div class="card h-100 text-center">
-        			<img src="img/plan personalizado.jpg" class="card-img-top mb-3" alt="Imagen representativa del Plan Personalizado">
+			<div
+				class="modal fade"
+				id="modal-plan-personalizado"
+				tabindex="-1"
+				aria-labelledby="modal-plan-personalizado-label"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5
+								class="modal-title"
+								id="modal-plan-personalizado-label"
+							>
+								Plan Personalizado
+							</h5>
+							<button
+								type="button"
+								class="btn-close"
+								data-bs-dismiss="modal"
+								aria-label="Close"
+							></button>
+						</div>
+						<div class="modal-body">
+							<h5 class="fw-bold">
+								Funcionalidades y Beneficios destacados
+							</h5>
+							<p class="mb-4">
+								Para instituciones con necesidades únicas que
+								requieren una solución a medida. Desarrollamos
+								funcionalidades específicas, integraciones
+								exclusivas y adaptamos ClinicFlow a tus flujos
+								de trabajo particulares con soporte dedicado.
+							</p>
 
-        			<div class="card-body d-flex flex-column">
-            			<h5 class="card-title fw-bold">Plan Personalizado</h5>
-            
-            			<div class="price-section">
-                			<p class="card-text text-muted"><del>A medida</del></p>
-            			</div>
-					
-            		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-plan-personalizado">
-                		Elegir plan
-            		</button>
-
-            		<p class="card-text text-start mt-2">> Instalación en servidores propios</p>
-                		<p class="card-text text-start mt-2">> Personalización de marca y flujo de trabajo</p>
-						<p class="card-text text-start mt-2">> Funcionalidades a medida</p>	
-						<p class="card-text text-start mt-2">> Soporte y actualizaciones dedicadas</p>
-						<p class="card-text text-start mt-2">> Capacitación avanzada</p>
-        			</div>
-    			</div>
+							<div class="row row-cols-1 row-cols-md-2 g-4">
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-hospital-user fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Personalización de marca y
+												flujos de trabajo
+											</h6>
+											<p class="text-muted small">
+												Adaptamos la plataforma a tu
+												identidad y procesos.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-hdd fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Instalación en servidores del
+												cliente
+											</h6>
+											<p class="text-muted small">
+												Máximo control y seguridad sobre
+												tus datos.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-code fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Desarrollo de funcionalidades a
+												medida
+											</h6>
+											<p class="text-muted small">
+												Creamos herramientas específicas
+												para tu institución.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-headset fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Soporte y actualizaciones
+												dedicadas
+											</h6>
+											<p class="text-muted small">
+												Atención exclusiva y
+												mantenimiento prioritario.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-chalkboard-user fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Capacitación avanzada
+											</h6>
+											<p class="text-muted small">
+												Formación especializada para
+												usuarios claves.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="d-flex align-items-start">
+										<div
+											class="icon-square bg-primary text-white flex-shrink-0 me-3"
+										>
+											<i
+												class="fa-solid fa-chart-line fa-lg"
+											></i>
+										</div>
+										<div>
+											<h6 class="fw-bold mb-0">
+												Escalabilidad garantizada
+											</h6>
+											<p class="text-muted small">
+												Crece junto a tu institución sin
+												límites.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button
+								type="button"
+								class="btn btn-secondary"
+								data-bs-dismiss="modal"
+							>
+								Cerrar
+							</button>
+							<a href="#" class="btn btn-primary"
+								>Solicitar cotización</a
+							>
+						</div>
+					</div>
+				</div>
 			</div>
-
-			</div></div><div class="modal fade" id="modal-plan-basico" tabindex="-1" aria-labelledby="modal-plan-basico-label" aria-hidden="true">
-        <div class="modal-dialog modal-lg"> <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modal-plan-basico-label">Plan Básico</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h5 class="fw-bold">Funcionalidades y Beneficios destacados</h5>
-                    <p class="mb-4">Perfecto para consultorios pequeños o independientes que buscan una solución eficiente y económica. ClinicFlow Básico te ayuda a organizar la información de tus pacientes de forma digital, segura y accesible, sin complicaciones.</p>
-
-                    <div class="row row-cols-1 row-cols-md-2 g-4">
-                        <div class="col">
-                            <div class="d-flex align-items-start">
-                                <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                                    <i class="fa-solid fa-users fa-lg"></i>
-                                </div>
-                                <div>
-                                    <h6 class="fw-bold mb-0">Hasta 5 usuarios</h6>
-                                    <p class="text-muted small">Ideal para equipos pequeños con acceso controlado.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="d-flex align-items-start">
-                                <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                                    <i class="fa-solid fa-money-bill-transfer fa-lg"></i>
-                                </div>
-                                <div>
-                                    <h6 class="fw-bold mb-0">Registro de ingresos y egresos</h6>
-                                    <p class="text-muted small">Gestión simplificada de altas y bajas de pacientes.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="d-flex align-items-start">
-                                <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                                    <i class="fa-solid fa-user-injured fa-lg"></i>
-                                </div>
-                                <div>
-                                    <h6 class="fw-bold mb-0">Lista de pacientes internados</h6>
-                                    <p class="text-muted small">Visualización clara y actualizada en tiempo real.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="d-flex align-items-start">
-                                <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                                    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-                                </div>
-                                <div>
-                                    <h6 class="fw-bold mb-0">Búsqueda básica por nombre y fecha</h6>
-                                    <p class="text-muted small">Encuentra información rápidamente.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="d-flex align-items-start">
-                                <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                                    <i class="fa-solid fa-file-medical fa-lg"></i>
-                                </div>
-                                <div>
-                                    <h6 class="fw-bold mb-0">Historial clínico por paciente</h6>
-                                    <p class="text-muted small">Accede al registro completo de cada caso.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="d-flex align-items-start">
-                                <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                                    <i class="fa-solid fa-envelope fa-lg"></i>
-                                </div>
-                                <div>
-                                    <h6 class="fw-bold mb-0">Soporte por correo electrónico</h6>
-                                    <p class="text-muted small">Asistencia directa para resolver tus dudas.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <a href="#" class="btn btn-primary">Contratar</a> 
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="modal-plan-estandar" tabindex="-1" aria-labelledby="modal-plan-estandar-label" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modal-plan-estandar-label">Plan Estándar</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-    <h5 class="fw-bold">Funcionalidades y Beneficios destacados</h5>
-    <p class="mb-4">Diseñado para clínicas y centros médicos medianos que requieren más capacidad y funcionalidades avanzadas. Optimiza procesos, mejora la coordinación entre áreas y toma decisiones basadas en datos con herramientas profesionales.</p>
-
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col">
-            <div class="d-flex align-items-start">
-                <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                    <i class="fa-solid fa-hospital-user fa-lg"></i>
-                </div>
-                <div>
-                    <h6 class="fw-bold mb-0">Hasta 20 usuarios y 5GB</h6>
-                    <p class="text-muted small">Amplía tu equipo con múltiples accesos seguros.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="d-flex align-items-start">
-                <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                    <i class="fa-solid fa-file-medical fa-lg"></i>
-                </div>
-                <div>
-                    <h6 class="fw-bold mb-0">Generación de reportes en PDF</h6>
-                    <p class="text-muted small">Exporta información clave para análisis y auditorías.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="d-flex align-items-start">
-                <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-                </div>
-                <div>
-                    <h6 class="fw-bold mb-0">Filtros avanzados</h6>
-                    <p class="text-muted small">Búsquedas por médico, estado, fecha y más.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="d-flex align-items-start">
-                <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                    <i class="fa-solid fa-user-gear fa-lg"></i>
-                </div>
-                <div>
-                    <h6 class="fw-bold mb-0">Roles de usuario</h6>
-                    <p class="text-muted small">Asigna permisos diferenciados (médico, administrativo, enfermería).</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="d-flex align-items-start">
-                <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                    <i class="fa-solid fa-headset fa-lg"></i>
-                </div>
-                <div>
-                    <h6 class="fw-bold mb-0">Soporte prioritario (chat + email)</h6>
-                    <p class="text-muted small">Respuestas rápidas cuando más las necesitas.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="d-flex align-items-start">
-                <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                    <i class="fa-solid fa-bell fa-lg"></i> </div>
-                <div>
-                    <h6 class="fw-bold mb-0">Notificaciones de egresos pendientes</h6>
-                    <p class="text-muted small">Alertas automáticas para evitar olvidos.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <a href="#" class="btn btn-primary">Contratar</a> 
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="modal-plan-premium" tabindex="-1" aria-labelledby="modal-plan-premium-label" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modal-plan-premium-label">Plan Premium</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <h5 class="fw-bold">Funcionalidades y Beneficios destacados</h5>
-                <p class="mb-4">La solución integral para hospitales y redes de salud que exigen máximo rendimiento, escalabilidad y personalización. ClinicFlow Premium ofrece herramientas avanzadas, integraciones y soporte especializado para instituciones de alto volumen.</p>
-
-                <div class="row row-cols-1 row-cols-md-2 g-4">
-                    <div class="col">
-                        <div class="d-flex align-items-start">
-                            <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                                <i class="fa-solid fa-hospital fa-lg"></i>
-                            </div>
-                            <div>
-                                <h6 class="fw-bold mb-0">Usuarios ilimitados</h6>
-                                <p class="text-muted small">Capacidad total para equipos grandes y en crecimiento.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="d-flex align-items-start">
-                            <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                                <i class="fa-solid fa-chart-line fa-lg"></i>
-                            </div>
-                            <div>
-                                <h6 class="fw-bold mb-0">Dashboard avanzado con métricas en tiempo real</h6>
-                                <p class="text-muted small">Monitorea el rendimiento de tu institución al instante.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="d-flex align-items-start">
-                            <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                                <i class="fa-solid fa-microchip fa-lg"></i>
-                            </div>
-                            <div>
-                                <h6 class="fw-bold mb-0">Integración con APIs de terceros</h6>
-                                <p class="text-muted small">Conecta con sistemas de facturación, laboratorios, etc.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="d-flex align-items-start">
-                            <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                                <i class="fa-solid fa-clock-rotate-left fa-lg"></i>
-                            </div>
-                            <div>
-                                <h6 class="fw-bold mb-0">Soporte 24/7 con asistencia remota</h6>
-                                <p class="text-muted small">Ayuda inmediata en cualquier momento.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="d-flex align-items-start">
-                            <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                                <i class="fa-solid fa-graduation-cap fa-lg"></i>
-                            </div>
-                            <div>
-                                <h6 class="fw-bold mb-0">Capacitación inicial incluida</h6>
-                                <p class="text-muted small">Onboarding completo para tu equipo.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="d-flex align-items-start">
-                            <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                                <i class="fa-solid fa-file-medical fa-lg"></i>
-                            </div>
-                            <div>
-                                <h6 class="fw-bold mb-0">Exportación de datos en múltiples formatos</h6>
-                                <p class="text-muted small">CSV, Excel, PDF para análisis flexibles.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <a href="#" class="btn btn-primary">Contratar</a> 
-            </div>
-        </div>
-    </div>
-</div>
-
-    <div class="modal fade" id="modal-plan-personalizado" tabindex="-1" aria-labelledby="modal-plan-personalizado-label" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modal-plan-personalizado-label">Plan Personalizado</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h5 class="fw-bold">Funcionalidades y Beneficios destacados</h5>
-                    <p class="mb-4">Para instituciones con necesidades únicas que requieren una solución a medida. Desarrollamos funcionalidades específicas, integraciones exclusivas y adaptamos ClinicFlow a tus flujos de trabajo particulares con soporte dedicado.</p>
-
-                    <div class="row row-cols-1 row-cols-md-2 g-4">
-                        <div class="col">
-                            <div class="d-flex align-items-start">
-                                <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                                    <i class="fa-solid fa-hospital-user fa-lg"></i>
-                                </div>
-                                <div>
-                                    <h6 class="fw-bold mb-0">Personalización de marca y flujos de trabajo</h6>
-                                    <p class="text-muted small">Adaptamos la plataforma a tu identidad y procesos.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="d-flex align-items-start">
-                                <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                                    <i class="fa-solid fa-hdd fa-lg"></i>
-                                </div>
-                                <div>
-                                    <h6 class="fw-bold mb-0">Instalación en servidores del cliente</h6>
-                                    <p class="text-muted small">Máximo control y seguridad sobre tus datos.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="d-flex align-items-start">
-                                <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                                    <i class="fa-solid fa-code fa-lg"></i>
-                                </div>
-                                <div>
-                                    <h6 class="fw-bold mb-0">Desarrollo de funcionalidades a medida</h6>
-                                    <p class="text-muted small">Creamos herramientas específicas para tu institución.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="d-flex align-items-start">
-                                <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                                    <i class="fa-solid fa-headset fa-lg"></i>
-                                </div>
-                                <div>
-                                    <h6 class="fw-bold mb-0">Soporte y actualizaciones dedicadas</h6>
-                                    <p class="text-muted small">Atención exclusiva y mantenimiento prioritario.</p>
-                                </div>
-                            </div>
-                        </div>
-                         <div class="col">
-                            <div class="d-flex align-items-start">
-                                <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                                    <i class="fa-solid fa-chalkboard-user fa-lg"></i>
-                                </div>
-                                <div>
-                                    <h6 class="fw-bold mb-0">Capacitación avanzada</h6>
-                                    <p class="text-muted small">Formación especializada para usuarios claves.</p>
-                                </div>
-                            </div>
-                        </div>
-						<div class="col">
-                            <div class="d-flex align-items-start">
-                                <div class="icon-square bg-primary text-white flex-shrink-0 me-3">
-                                    <i class="fa-solid fa-chart-line fa-lg"></i>
-                                </div>
-                                <div>
-                                    <h6 class="fw-bold mb-0">Escalabilidad garantizada</h6>
-                                    <p class="text-muted small">Crece junto a tu institución sin límites.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <a href="#" class="btn btn-primary">Solicitar cotización</a> 
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
+		</main>
 		<footer></footer>
-			<!--SCRIPTS INICIO-->
+		<!--SCRIPTS INICIO-->
 		<script
 			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 			integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
