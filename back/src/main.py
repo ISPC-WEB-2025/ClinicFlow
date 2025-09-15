@@ -31,9 +31,12 @@ def mostrar_menu_administrador(usuario):
         elif opcion == "3":
             try:
                 id_usuario = int(input("Ingrese el ID del usuario a modificar: "))
-                nuevo_rol = input("Ingrese el nuevo rol (administrador/estandar): ").lower()
+                nuevo_rol = input(
+                    "Ingrese el nuevo rol (administrador/estandar): "
+                ).lower()
                 from database import actualizar_rol_usuario
-                if actualizar_rol_usuario(id_usuario, nuevo_rol):
+
+                if usuario.cambiar_rol_usuario(id_usuario, nuevo_rol):
                     print("Rol actualizado con éxito.")
                 else:
                     print("No se pudo actualizar el rol.")
@@ -66,9 +69,11 @@ def mostrar_menu_estandar(usuario):
 
         if opcion == "1":
             datos = usuario.obtener_datos_personales()
+            # print(datos)
             print("\n--- Mis Datos ---")
             for k, v in datos.items():
                 print(f"{k}: {v}")
+            input("Presiona ENTER para volver al menú...")
         elif opcion == "2":
             ejecutar_edicion_perfil(usuario)
         elif opcion == "3":
@@ -144,7 +149,7 @@ def main():
             usuario_logueado = Usuario.iniciar_sesion(nombre, contrasena)
 
             if usuario_logueado:
-                if usuario_logueado.rol == 'administrador':
+                if usuario_logueado.rol == "administrador":
                     mostrar_menu_administrador(usuario_logueado)
                 else:
                     mostrar_menu_estandar(usuario_logueado)

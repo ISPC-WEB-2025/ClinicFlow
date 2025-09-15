@@ -5,10 +5,13 @@ from database import (
     crear_usuario,
     obtener_usuario_por_nombre,
     obtener_todos_los_usuarios,
-    actualizar_usuario as db_actualizar_usuario,
+    actualizar_usuario,
+    actualizar_rol_usuario,
 )
+
 # Importamos las clases secundarias al final para evitar errores de referencia circular
 # Se puede usar import dentro de funciones para retrasar la importación
+
 
 class Usuario:
     """Clase para representar un usuario con sus atributos y métodos."""
@@ -50,7 +53,12 @@ class Usuario:
 
     def actualizar_datos(self, nombre=None, apellido=None, email=None, direccion=None):
         """Permite al usuario actualizar sus propios datos."""
-        if db_actualizar_usuario(self.id_usuario, nombre, apellido, email, direccion):
+        print(f"=== DEBUG actualizar_datos ===")
+        print(
+            f"Parámetros: nombre={nombre}, apellido={apellido}, email={email}, direccion={direccion}"
+        )
+        print(f"Llamando a db_actualizar_usuario...")
+        if actualizar_usuario(self.id_usuario, nombre, apellido, email, direccion):
             self.nombre = nombre if nombre is not None else self.nombre
             self.apellido = apellido if apellido is not None else self.apellido
             self.email = email if email is not None else self.email
@@ -73,7 +81,12 @@ class Usuario:
 
     @staticmethod
     def registrar_nuevo_usuario(
-        nombre_usuario, nombre=None, apellido=None, email=None, contrasena=None, direccion=None
+        nombre_usuario,
+        nombre=None,
+        apellido=None,
+        email=None,
+        contrasena=None,
+        direccion=None,
     ):
         """Registra un nuevo usuario con rol 'estandar'."""
         es_valida, mensaje = Usuario._validar_contrasena(contrasena)
@@ -136,17 +149,34 @@ class Usuario:
 
         if rol_u == "administrador":
             from classes.usuario import Administrador
+
             return Administrador(
-                id_u, nombre_usuario_u, nombre_u, apellido_u, email_u, hash_u, direccion_u, rol_u
+                id_u,
+                nombre_usuario_u,
+                nombre_u,
+                apellido_u,
+                email_u,
+                hash_u,
+                direccion_u,
+                rol_u,
             )
         else:
             from classes.usuario import UsuarioEstandar
+
             return UsuarioEstandar(
-                id_u, nombre_usuario_u, nombre_u, apellido_u, email_u, hash_u, direccion_u, rol_u
+                id_u,
+                nombre_usuario_u,
+                nombre_u,
+                apellido_u,
+                email_u,
+                hash_u,
+                direccion_u,
+                rol_u,
             )
-        
+
 
 # --- Subclases ---
+
 
 class Administrador(Usuario):
     """Clase para representar a un administrador."""
@@ -156,7 +186,7 @@ class Administrador(Usuario):
         if not usuarios:
             print("No hay usuarios registrados.")
             return
-
+        # "SELECT idUsuario, nombre_usuario, nombre, apellido, email, rol FROM usuario"
         print("\n--- Listado de Usuarios ---")
         for u in usuarios:
             id_u, nombre_usuario, nombre, apellido, email, rol = u
@@ -170,11 +200,33 @@ class Administrador(Usuario):
     def eliminar_usuario_por_id(self, id_usuario):
         """Elimina un usuario de la base de datos dado su ID."""
         from database import eliminar_usuario
+
+        # Validar que el admin no se elimine a sí mismo
+        if id_usuario == self.id_usuario:
+            print("Error: No puedes eliminarte a ti mismo.")
+            input("Ingrese enter para continuar: ")
+            return
+
         if eliminar_usuario(id_usuario):
             print(f"Usuario con ID {id_usuario} eliminado correctamente.")
         else:
             print(f"No se encontró un usuario con ID {id_usuario}.")
 
+    def cambiar_rol_usuario(self, id_usuario, nuevo_rol):
+        """Cambia el rol de un usuario."""
+
+        if id_usuario == self.id_usuario:
+            print("Error: No puedes cambiar tu propio rol.")
+            input("Ingrese enter para continuar: ")
+            return
+
+        if actualizar_rol_usuario(id_usuario, nuevo_rol):
+            print(f"Rol actualizado correctamente.")
+        else:
+            print("No se pudo actualizar el rol.")
+
+
 class UsuarioEstandar(Usuario):
     """Clase para representar a un usuario estándar."""
+
     pass
