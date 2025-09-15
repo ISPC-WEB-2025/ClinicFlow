@@ -1,56 +1,38 @@
-/* Contenedor para la imagen de fondo y el form */
-
 .contenedor-general {
-  position: relative;
-  width: 100;
-  height: auto;
-  border-radius: 8px;
-  min-height: 100vh;
-  background-image: url("img/fondo-form.jpg");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed; 
-  background-repeat: no-repeat; 
-  display: block;
-  overflow: hidden; /* Asegura que nada se desborde del contenedor */
-}
-    
-
-/*Estilos de la imagen de fondo*/
-
-.imagen-fondo {
-  display: block;
-  width: 150%;
+  width: 100vw;
   height: 100%;
-  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
 }
 
-/* Estilos del formulario */
+.contenedor-imagen {
+  position: absolute;
+  top: 0;
+  height: 75rem;
+  overflow: hidden;
+}
+
+.contenedor-imagen img {
+  object-fit: cover;
+
+}
 
 .contacto {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Mueve el formulario para un centrado perfecto */
-  z-index: 10; /* Asegura que el formulario esté por encima de la imagen */
   box-sizing: border-box;
-  width: 50%; /* Ajusta el ancho del formulario */
+  width: 90%;
   max-width: 500px;
   padding: 30px;
-  background-color: rgba(255, 255, 255, 0.6); /* Fondo semitransparente para que se vea la imagen */
+  background-color: rgba(255, 255, 255, 0.6);
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(97, 117, 155, 0.1); /* Añade una sombra sutil */
-  backdrop-filter: blur(10px); /* Efecto de desenfoque para mejorar la legibilidad */
-}
-
-/* Estilos generales del main y el formulario */
-
-main {
-  font-family: 'Lato', sans-serif;
-  background-color: #f0f4f8;
-  margin: 0;
-  padding: 0;
-
+  box-shadow: 0 4px 8px rgba(97, 117, 155, 0.1);
+  backdrop-filter: blur(10px); 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 12rem;
 }
 
 h2 {
@@ -58,31 +40,63 @@ h2 {
   font-size: 30px;
   font-family: 'Lato', sans-serif;
   margin-bottom: 1em;
+  text-align: center;
+  width: 100%;
 }
 
 label {
   font-size: 20px;
   font-weight: 500;
   color: #1a1344;
+  align-self: flex-start ;
+  width: 100%;
+  margin-bottom: 4px;
 }
+
+input,
+textarea {
+  padding: 5px;
+  margin-bottom: 4px;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #1a1344;
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+}   
 
 button {
   background-color: #7ec8eb;
   color: rgb(56, 55, 56);
   border: none;
-  padding: 10px 20px;
-  font-size: 20px;
+  padding: 10px 20px;                                                                                                                                                                         
+  font-size: 30px;
+  font-weight: 500;
   cursor: pointer;
   border-radius: 8px;
+  align-self: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-input,
-textarea {
-  width: 60%;
-  padding: 10px;
-  margin-bottom: 30px;
-  border: 1px solid #ffffff;
-  border-radius: 8px;
-  font-size: 16px;
-  color: #1a1344;
-}   
+.footer-content {
+  width: 100%;
+  height: 60px;
+  color: white;
+  background-color: #152032;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  font-size: 15px;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-content p {
+    margin: 0; 
+    line-height: 60px;
+}
