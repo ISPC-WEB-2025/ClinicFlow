@@ -1,6 +1,5 @@
-// clients-carousel.js
 document.addEventListener('DOMContentLoaded', function() {
-    // Cargar datos del JSON
+
     fetch('./data/clients.json')
         .then(response => response.json())
         .then(data => {
@@ -12,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function generateCarousel(clients) {
         const carouselContainer = document.getElementById('clients');
         
-        // Estructura HTML del carrusel
+
         const carouselHTML = `
             
                 <span class="section-header mt-4 mb-4">
@@ -44,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let itemsHTML = '';
         const itemsPerSlide = getItemsPerSlide();
         
-        // Dividir clients en grupos según itemsPerSlide
+   
         for (let i = 0; i < clients.length; i += itemsPerSlide) {
             const slideClients = clients.slice(i, i + itemsPerSlide);
             const isActive = i === 0 ? 'active' : '';
@@ -77,11 +76,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const width = window.innerWidth;
         if (width <= 550) return 1;
         if (width <= 768) return 2;
-        return 4; // Desktop
+        return 4; 
     }
 
     function initCarousel() {
-        // Reiniciar carrusel cuando cambie el tamaño de la ventana
+       
         window.addEventListener('resize', function() {
             const carouselInner = document.getElementById('carousel-inner');
             if (carouselInner) {

@@ -1,0 +1,111 @@
+section:not(#banner) {
+	margin: 0 8rem;
+}
+#banner h2{
+    text-align: center;
+    margin-top: 4rem;
+}
+h4.divider-title {
+	margin-top: 4rem;
+	margin-bottom: 2rem;
+}
+
+.funcionalidades{
+    flex-direction: column;
+    height: auto;
+    margin-bottom: 4rem;
+
+}
+
+.funcionalidades .benefit .card-container{
+    min-width: 16rem;
+    height: auto;
+}
+
+.funcionalidades .benefit:nth-child(even) .card-container{
+    background-color: var(--color-secondary);
+}
+
+.benefit{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.benefit:not(:last-child){
+    border-bottom: var(--color-primary) 1px solid;
+}
+.benefits-container{
+
+    flex-grow: 1;
+    padding: 1rem 2rem;
+}
+
+.benefit-header, .benefit-p{
+color: black;
+text-align: left;
+}
+
+.benefits-container i {
+    margin-right: 1rem;
+    background-color: var(--color-secondary);
+    padding: 1rem;
+    color: white;
+}
+
+.benefit-p {
+    font-weight: 300;
+    margin-bottom: 1rem;
+}
+
+
+
+
+#CTA-btn{
+    margin-bottom: 4rem !important;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 1024px) {
+    section:not(#banner) {
+	margin: 0 4rem;
+}
+	
+}
+
+@media (max-width: 768px) {
+section:not(#banner) {
+	margin: 0 2rem;
+}
+.funcionalidades .benefit .card-container{
+    width: 100%;
+
+}
+.benefit{
+    flex-direction: column;
+
+}
+#CTA-btn{
+    display: flex;
+    justify-content: center;
+}
+}
+
+@media (max-width: 450px) {
+	section:not(#banner) {
+	margin: 0 1rem;
+
+}
+.funcionalidades{
+    padding: 0;
+}
+
+
+}
+
+@media (min-width:1500px){
+    .funcionalidades .benefit .card-container{
+    max-width: 20rem;
+}
+}
