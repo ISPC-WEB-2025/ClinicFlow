@@ -1,7 +1,7 @@
 # classes/usuario.py
 
 import hashlib
-from database import (
+from crud_usuarios import (
     crear_usuario,
     obtener_usuario_por_nombre,
     obtener_todos_los_usuarios,
@@ -199,7 +199,7 @@ class Administrador(Usuario):
 
     def eliminar_usuario_por_id(self, id_usuario):
         """Elimina un usuario de la base de datos dado su ID."""
-        from database import eliminar_usuario
+        from crud_usuarios import eliminar_usuario
 
         # Validar que el admin no se elimine a sí mismo
         if id_usuario == self.id_usuario:
