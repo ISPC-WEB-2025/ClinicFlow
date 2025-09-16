@@ -1,8 +1,6 @@
 # ClinicFlow E-commerce
+
 ClinicFlow E-commerce es una plataforma web moderna y segura desarrollada para la comercialización de planes de suscripción del sistema de gestión de pacientes ClinicFlow. Su objetivo principal es facilitar la adquisición del software mediante una experiencia de compra en línea intuitiva, eficiente y confiable para clientes potenciales (clínicas, hospitales, consultorios), así como proporcionar un panel de administración para la gestión de productos y ventas.
-
-
-ClinicFlow es un sistema básico de gestión de ingresos y egresos de pacientes en una clínica. Su objetivo principal es optimizar el registro, control y seguimiento de los pacientes que ingresan y egresan de la institución, asegurando que la información esté centralizada, sea accesible y fácil de gestionar. Este sistema está pensado para ser utilizado por el personal administrativo, médicos y personal de enfermería, facilitando la organización interna y mejorando la calidad del servicio brindado.
 
 ## 🎯 Problema que Busca Resolver
 
@@ -17,7 +15,9 @@ Este proyecto surge como respuesta a la necesidad de contar con un canal de vent
 - Proyectar una imagen de marca sólida y confiable, crucial para vender un producto que manejará datos sensibles de salud.
 
 ## 🚀 Funcionalidades
+
 ### Funcionalidades Iniciales
+
 ✅ Landing con Información del Producto
 
 ✅ Catálogo de planes
@@ -30,12 +30,12 @@ Este proyecto surge como respuesta a la necesidad de contar con un canal de vent
 
 ✅ Panel de administración
 
-
 ## 👥 Posibles Usuarios
 
 - Dueños de consultorios, administradores de clínicas y personal de toma de decisiones en instituciones de salud medianas y pequeñas.
 
 ## 🛠️ Stack Tecnológico
+
 ### Frontend
 
 - **HTML5:** Estructura semántica de la aplicación
@@ -153,6 +153,7 @@ Intereses y Áreas de Aprendizaje: Me interesa aprender sobre desarrollo web en 
 Tecnologías y Habilidades en Práctica: Conocimientos en : Html,Css,JavasCript,React.
 
 ## Distribución de Roles
+
 ### Equipo FrontEnd
 
 - Aylen Bartolino Luna
@@ -160,9 +161,6 @@ Tecnologías y Habilidades en Práctica: Conocimientos en : Html,Css,JavasCript,
 - Brenda Pogliano
 
 ### Equipo Backend
-- Virginia García
-- Tomas Nicolas Nieto
-- Miguel Flores
 
 - Virginia García
 - Tomas Nicolas Nieto
