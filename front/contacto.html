@@ -93,15 +93,15 @@
 				<form class="contacto" action="#" method="post">
 					<h2>¡CONSULTANOS!</h2> <br>
 					<label for="nombre">Nombre:</label> <br>
-					<input type="text" name="Nombre" id="nombre" minlength="2"> <br>
+					<input type="text" name="Nombre" id="nombre" minlength="2" placeholder= "¿Cómo preferís que te llamemos?" autofocus required> <br>
 					<label for="apellido">Apellido:</label> <br>
-					<input type="text" name="Apellido" id="apellido" minlength="2"> <br>
+					<input type="text" name="Apellido" id="apellido" minlength="2" required> <br>
 					<label for="telefono">Teléfono:</label> <br>
-					<input type="tel" name="Telefono" id="telefono" minlength="10"> <br>
+					<input type="tel" name="Telefono" id="telefono" minlength="10" placeholder="¡No te olvides del código de área!"> <br>
 					<label for="email">Correo electrónico:</label> <br>
-					<input type="email" name="Correo" id="email"> <br>
+					<input type="email" name="Correo" id="email" placeholder="nombre@correo.com" required> <br>
 					<label for="mensaje">Mensaje:</label> <br>
-					<textarea name="Mensaje" id="mensaje" minlength="10"></textarea> <br>
+					<textarea class="form-control form-control-lg" name="Mensaje" id="mensaje" minlength="10"></textarea> <br>
 					<br>
 					<button type="submit">Enviar consulta</button>
 				</form>
@@ -109,9 +109,10 @@
 
 		</main>
 
-		<footer>
-
-			
+		<footer class="footer fixed-bottom">
+			<div class="footer-content">
+				<p>Copyright © 2025: ClinicFlow - Servicios Web Profesionales.</p>
+			</div>
 		</footer>
 			<!--SCRIPTS INICIO-->
 		<script
@@ -129,7 +130,5 @@
 			crossorigin="anonymous"
 		></script>
 		<!--SCRIPTS FIN-->
-	</body>
+  </body>
 </html>
-
-
