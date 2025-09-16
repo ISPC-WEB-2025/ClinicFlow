@@ -34,12 +34,9 @@ def mostrar_menu_administrador(usuario):
                 nuevo_rol = input(
                     "Ingrese el nuevo rol (administrador/estandar): "
                 ).lower()
-                from database import actualizar_rol_usuario
 
-                if usuario.cambiar_rol_usuario(id_usuario, nuevo_rol):
-                    print("Rol actualizado con éxito.")
-                else:
-                    print("No se pudo actualizar el rol.")
+                usuario.cambiar_rol_usuario(id_usuario, nuevo_rol)
+
             except ValueError:
                 print("Entrada inválida.")
         elif opcion == "4":
