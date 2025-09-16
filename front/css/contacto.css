@@ -1,18 +1,24 @@
+
+
 .contenedor-general {
-  width: 100vw;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin:0;
+ padding: 0;
 
 }
 
 .contenedor-imagen {
-  position: absolute;
-  top: 0;
-  height: 75rem;
-  overflow: hidden;
+ position: absolute;
+ top: 0;
+ width: 100%;
+ height: 75rem;
+ overflow: hidden;
+ 
 }
 
 .contenedor-imagen img {
@@ -22,12 +28,12 @@
 
 .contacto {
   box-sizing: border-box;
-  width: 90%;
+  width: 90%; 
   max-width: 500px;
   padding: 30px;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.6); 
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(97, 117, 155, 0.1);
+  box-shadow: 0 4px 8px rgba(97, 117, 155, 0.1); 
   backdrop-filter: blur(10px); 
   display: flex;
   flex-direction: column;
@@ -36,6 +42,7 @@
 }
 
 h2 {
+  
   color: #136a92;
   font-size: 30px;
   font-family: 'Lato', sans-serif;
@@ -45,31 +52,34 @@ h2 {
 }
 
 label {
+  
   font-size: 20px;
   font-weight: 500;
   color: #1a1344;
-  align-self: flex-start ;
+  align-self: flex-start;
   width: 100%;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 
 input,
 textarea {
+  border: #136a92 solid 2px;
   padding: 5px;
   margin-bottom: 4px;
-  border: 1px solid #ffffff;
   border-radius: 8px;
   font-size: 16px;
   color: #1a1344;
   width: 100%;
   max-width: 400px;
   box-sizing: border-box;
+  margin-bottom: 4px;
 }   
 
 button {
+  
   background-color: #7ec8eb;
   color: rgb(56, 55, 56);
-  border: none;
+  
   padding: 10px 20px;                                                                                                                                                                         
   font-size: 30px;
   font-weight: 500;
@@ -77,6 +87,5 @@ button {
   border-radius: 8px;
   align-self: center;
   margin-top: 10px;
-  margin-bottom: 10px;
 }
 
