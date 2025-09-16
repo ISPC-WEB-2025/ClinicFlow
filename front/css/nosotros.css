@@ -14,12 +14,12 @@ em {
 	font-weight: 600;
 }
 
-h4.divider-title {
+h2.divider-title {
 	margin-top: 4rem;
 	margin-bottom: 2rem;
 }
 
-h4.divider-title + p {
+h2.divider-title + p {
 	margin: 0 2rem;
 	font-size: 1.2rem;
 	font-weight: 300;

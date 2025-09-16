@@ -21,44 +21,61 @@
 
 <body class="bg-light">
 	<!-- HEADER COMIENZO -->
-	<header class="navbar navbar-expand-lg navbar-light fixed-top">
-		<div class="container">
-			<div class="logo">
-				<h1 class="navbar-brand mb-0">ClinicFlow</h1>
-				<i class="fa-solid fa-chevron-right icono-header left"></i>
-				<i class="fa-solid fa-chevron-right icono-header right"></i>
+		<header class="navbar navbar-expand-lg navbar-light fixed-top">
+			<div class="container">
+				<a href="index.html" class="logo">
+					<span class="navbar-brand mb-0">ClinicFlow</span>
+					<i class="fa-solid fa-chevron-right icono-header left"></i>
+					<i class="fa-solid fa-chevron-right icono-header right"></i>
+				</a>
+
+				<!-- Botón hamburguesa para mobile -->
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarContent"
+					aria-controls="navbarContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<i class="fas fa-bars"></i>
+				</button>
+
+				<!-- Contenido colapsable del navbar -->
+				<nav class="collapse navbar-collapse" id="navbarContent">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link " href="./index.html"
+								><i class="fa-solid fa-plus"></i>Inicio</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="./nosotros.html"
+								><i class="fa-solid fa-plus"></i>Nosotros</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" href="./servicios.html"
+								><i class="fa-solid fa-plus"></i>Servicios</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="./planes.html"
+								><i class="fa-solid fa-plus"></i>Planes</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="./contacto.html"
+								><i class="fa-solid fa-plus"></i>Contacto</a
+							>
+						</li>
+					</ul>
+				</nav>
 			</div>
+		</header>
 
-			<!-- Botón hamburguesa para mobile -->
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
-				aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-				<i class="fas fa-bars"></i>
-			</button>
-
-			<!-- Contenido colapsable del navbar -->
-			<div class="collapse navbar-collapse" id="navbarContent">
-				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					<li class="nav-item">
-						<a class="nav-link" href="./index.html"><i class="fa-solid fa-plus"></i>Inicio</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="./nosotros.html"><i class="fa-solid fa-plus"></i>Nosotros</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" href="./servicios.html"><i class="fa-solid fa-plus"></i>Servicios</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="./planes.html"><i class="fa-solid fa-plus"></i>Planes</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="./contacto.html"><i class="fa-solid fa-plus"></i>Contacto</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</header>
-
-	<!-- HEADER FIN -->
+		<!-- HEADER FIN -->
 	<main class="">
 		<section id="banner">
 			<img src="img/banner.png" alt="Banner con iconos médicos y tecnológicos" />
@@ -66,7 +83,7 @@
 		</section>
 
 		<section id="beneficios">
-			<h4 class="divider-title">Beneficios Generales</h4>
+			<h2 class="divider-title">Beneficios Generales</h2>
 			<div class="funcionalidades">
 				<span class="benefit">
 					<article class="card-container">
@@ -250,11 +267,11 @@
 		</section>
 	</main>
 	
-	<footer class="footer fixed-bottom">
-		<div class="footer-content">
-			<p>Copyright © 2025: ClinicFlow - Servicios Web Profesionales.</p>
-		</div>
-	</footer>
+	<footer class="footer">
+			
+				<p>Copyright © 2025: ClinicFlow - Servicios Web Profesionales.</p>
+			
+		</footer>
 
 	<!--SCRIPTS INICIO-->
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

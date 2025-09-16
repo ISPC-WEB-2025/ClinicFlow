@@ -143,13 +143,13 @@ p.subtitulo {
 	justify-content: space-between;
 }
 
-#info > article {
+#info > section {
 	display: flex;
 	flex-direction: column;
 	width: 30%;
 }
 
-#info > article > h4 {
+#info > section > h4, #info > section > h2 {
 	margin-bottom: 1.5rem;
 }
 
@@ -371,7 +371,7 @@ section {
 		align-items: center;
 	}
 
-	#info > article {
+	#info > section {
 		width: 80%;
 		margin-bottom: 2rem;
 	}

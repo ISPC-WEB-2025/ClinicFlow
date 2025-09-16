@@ -2,38 +2,37 @@ function generarTarjetas(team) {
 	const teamGrid = document.getElementById("team-grid");
 	teamGrid.innerHTML = "";
 
-    
-
 	if (!team || team.length === 0) {
 		teamGrid.innerHTML = `
-                    <div class="error">
-                        <i class="fas fa-exclamation-triangle fa-3x mb-3"></i>
-                        <p>No se encontraron datos del equipo.</p>
-                    </div>
-                `;
+			<div class="error" role="alert">
+				<i class="fas fa-exclamation-triangle fa-3x mb-3" aria-hidden="true"></i>
+				<p>No se encontraron datos del equipo.</p>
+			</div>
+		`;
 		return;
 	}
 
 	team.forEach((member) => {
-		const card = document.createElement("div");
-		card.className = "team-card";
+		const article = document.createElement("article");
+		article.className = "team-card";
 
-		card.innerHTML = `
-        	
-                    
-                    <div class="team-info">
-                        <h3 class="team-name">${member.name}</h3>
-                        <p class="team-role">${member.role}</p>
-                            <div class="social-links">
-                            <a href="${member.linkedin}" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="${member.github}" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                `;
+		article.innerHTML = `
+			<header class="team-info">
+				<h3 class="team-name">${member.name}</h3>
+				<p class="team-role">${member.role}</p>
+			</header>
+			<footer class="social-links">
+				<a href="${member.github}" target="_blank" rel="noopener" title="GitHub de ${member.name}">
+					<i class="fab fa-github" aria-hidden="true"></i>
+					<span class="sr-only">GitHub</span>
+				</a>
+			</footer>
+		`;
 
-		teamGrid.appendChild(card);
+		teamGrid.appendChild(article);
 	});
 }
+
 
 document.addEventListener("DOMContentLoaded", function () {
 	fetch("./data/team.json")

@@ -5,7 +5,7 @@ section:not(#banner) {
     text-align: center;
     margin-top: 4rem;
 }
-h4.divider-title {
+h2.divider-title {
 	margin-top: 4rem;
 	margin-bottom: 2rem;
 }
