@@ -1,19 +1,618 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClinicFlow</title>
-    <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
-    <!-- esto es un comentario -->
-    
-    <h1>HOLA AYLENNN</h1>
-    <h2>BRENDA</h2>
-    <h2 class="mike">MIKE</h2>
-    <h2>VIR</h2>
-    
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+			crossorigin="anonymous"
+		/>
 
-</body>
+		<link rel="stylesheet" href="./css/styles.css" />
+		<link rel="stylesheet" href="./css/index.css" />
+
+		<title>ClinicFlow</title>
+	</head>
+	<body class="bg-light">
+		<!-- HEADER COMIENZO -->
+		<header class="navbar navbar-expand-lg navbar-light fixed-top">
+			<div class="container">
+				<a href="index.html" class="logo">
+					<span class="navbar-brand mb-0">ClinicFlow</span>
+					<i class="fa-solid fa-chevron-right icono-header left"></i>
+					<i class="fa-solid fa-chevron-right icono-header right"></i>
+				</a>
+
+				<!-- Botón hamburguesa para mobile -->
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarContent"
+					aria-controls="navbarContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<i class="fas fa-bars"></i>
+				</button>
+
+				<!-- Contenido colapsable del navbar -->
+				<nav class="collapse navbar-collapse" id="navbarContent">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link active" href="./index.html"
+								><i class="fa-solid fa-plus"></i>Inicio</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="./nosotros.html"
+								><i class="fa-solid fa-plus"></i>Nosotros</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="./servicios.html"
+								><i class="fa-solid fa-plus"></i>Servicios</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="./planes.html"
+								><i class="fa-solid fa-plus"></i>Planes</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="./contacto.html"
+								><i class="fa-solid fa-plus"></i>Contacto</a
+							>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<!-- HEADER FIN -->
+
+		<!-- MAIN INICIO -->
+		<main>
+			<!-- SECCION BANNER INICIO-->
+			<section id="banner">
+				<img
+					src="img/banner.png"
+					alt="Banner con iconos médicos y tecnológicos"
+				/>
+				<div class="funcionalidades">
+					<article>
+						<i class="fa-solid fa-file-invoice"></i>
+						<div>
+							<h3>Gestión Centralizada de Pacientes</h3>
+							<p> Todo sobre tus pacientes, en un solo lugar</p>
+						</div>
+					</article>
+					<article>
+						<i class="fa-solid fa-flask"></i>
+						<div>
+							<h3>Optimización de Procesos Clínicos</h3>
+							<p>Flujos de trabajo médicos más eficientes</p>
+						</div>
+					</article>
+					<article>
+						<i class="fa-solid fa-clock-rotate-left"></i>
+						<div>
+							<h3>Reportes e Indicadores en Tiempo Real</h3>
+							<p>Toma de decisiones basadas en datos</p>
+						</div>
+					</article>
+					<article>
+						<i class="fa-solid fa-shield"></i>
+						<div>
+							<h3>Seguridad y Confidencialidad</h3>
+							<p>
+								Protección de datos sensibles con estándares
+								médicos
+							</p>
+						</div>
+					</article>
+				</div>
+			</section>
+			<!-- SECCION BANNER FIN-->
+			<!-- SECCION HERO INICIO-->
+			<section id="hero" class="text-center jumbotron">
+				<h1 class="display-5 fw-bold">ClinicFlow</h1>
+				<p class="subtitulo">
+					Tu Sistema Integral de Gestión de Internaciones
+				</p>
+
+				<div class="col-lg-6 mx-auto">
+					<p class="lead mb-4">
+						Nuestro sistema permite optimizar la administración
+						clínica, centralizar la información de pacientes y
+						mejorar la calidad de atención con una plataforma
+						diseñada por y para profesionales de la salud.
+					</p>
+					<div
+						id="CTA-btn"
+						class="d-flex align-items-center gap-4 d-sm-flex justify-content-sm-center"
+					>
+						<a
+							href="nosotros.html"
+							class="btn btn-primary btn-lg px-4 gap-3"
+						>
+							Conocenos
+						</a>
+						<span>
+							<i
+								class="fa-solid fa-chevron-right icono-header left"
+							></i>
+							<i
+								class="fa-solid fa-chevron-right icono-header right"
+							></i
+						></span>
+					</div>
+				</div>
+			</section>
+			<!-- SECCION HERO FIN-->
+			<!-- SECCION CLIENTES INICIO -->
+			<section id="clients" class="mb-4"></section>
+			<!-- SECCION CLIENTES FIN-->
+			<!-- SECCION INFORMACION INICIO-->
+			<section id="info" class="mt-4">
+				<!-- SERVICIOS inicio -->
+				<section id="info-services">
+					<h2 class="divider-title">Servicios</h2>
+					<!-- Accordion Inicio -->
+					<div
+						class="accordion accordion-flush"
+						id="accordionFlushExample"
+					>
+						<!-- item 1 -->
+						<article class="accordion-item">
+							<h2 class="accordion-header" id="flush-headingOne">
+								<button
+									class="accordion-button collapsed"
+									type="button"
+									data-bs-toggle="collapse"
+									data-bs-target="#flush-collapseOne"
+									aria-expanded="false"
+									aria-controls="flush-collapseOne"
+								>
+									<i class="fa-solid fa-file-invoice"></i>
+									<p>Gestión de Historiales</p>
+								</button>
+							</h2>
+
+							<div
+								id="flush-collapseOne"
+								class="accordion-collapse collapse"
+								aria-labelledby="flush-headingOne"
+								data-bs-parent="#accordionFlushExample"
+							>
+								<p class="accordion-body">
+									Acceso rápido y seguro a diagnósticos,
+									tratamientos, evolución y datos demográficos
+									de cada paciente.
+								</p>
+							</div>
+						</article>
+
+						<!-- item 2 -->
+						<article class="accordion-item">
+							<h2 class="accordion-header" id="flush-headingTwo">
+								<button
+									class="accordion-button collapsed"
+									type="button"
+									data-bs-toggle="collapse"
+									data-bs-target="#flush-collapseTwo"
+									aria-expanded="false"
+									aria-controls="flush-collapseTwo"
+								>
+									<i class="fa-solid fa-flask-vial"></i>
+									<p>Registro de Procedimientos</p>
+								</button>
+							</h2>
+							<div
+								id="flush-collapseTwo"
+								class="accordion-collapse collapse"
+								aria-labelledby="flush-headingTwo"
+								data-bs-parent="#accordionFlushExample"
+							>
+								<p class="accordion-body">
+									Visualización del estado de ocupación,
+									altas, bajas y traslados, con
+									actualizaciones inmediatas.
+								</p>
+							</div>
+						</article>
+
+						<!-- item 3 -->
+						<article class="accordion-item">
+							<h2
+								class="accordion-header"
+								id="flush-headingThree"
+							>
+								<button
+									class="accordion-button collapsed"
+									type="button"
+									data-bs-toggle="collapse"
+									data-bs-target="#flush-collapseThree"
+									aria-expanded="false"
+									aria-controls="flush-collapseThree"
+								>
+									<i class="fa-solid fa-bed-pulse"></i>
+									<p>Control de Internaciones</p>
+								</button>
+							</h2>
+							<div
+								id="flush-collapseThree"
+								class="accordion-collapse collapse"
+								aria-labelledby="flush-headingThree"
+								data-bs-parent="#accordionFlushExample"
+							>
+								<p class="accordion-body">
+									Desde cirugías hasta terapias, todo queda
+									registrado y asociado al paciente y al
+									profesional a cargo.
+								</p>
+							</div>
+						</article>
+
+						<!-- item 4 -->
+						<article class="accordion-item">
+							<h2 class="accordion-header" id="flush-headingFour">
+								<button
+									class="accordion-button collapsed"
+									type="button"
+									data-bs-toggle="collapse"
+									data-bs-target="#flush-collapseFour"
+									aria-expanded="false"
+									aria-controls="flush-collapseFour"
+								>
+									<i class="fa-solid fa-bell"></i>
+									<p>Alertas y Notificaciones</p>
+								</button>
+							</h2>
+							<div
+								id="flush-collapseFour"
+								class="accordion-collapse collapse"
+								aria-labelledby="flush-headingFour"
+								data-bs-parent="#accordionFlushExample"
+							>
+								<p class="accordion-body">
+									Recordatorios de turnos, cambios de estado,
+									medicaciones pendientes y egresos
+									programados.
+								</p>
+							</div>
+						</article>
+
+						<!-- item 5 -->
+						<article class="accordion-item">
+							<h2 class="accordion-header" id="flush-headingFive">
+								<button
+									class="accordion-button collapsed"
+									type="button"
+									data-bs-toggle="collapse"
+									data-bs-target="#flush-collapseFive"
+									aria-expanded="false"
+									aria-controls="flush-collapseFive"
+								>
+									<i class="fa-solid fa-people-arrows"></i>
+									<p>Roles y Permisos</p>
+								</button>
+							</h2>
+							<div
+								id="flush-collapseFive"
+								class="accordion-collapse collapse"
+								aria-labelledby="flush-headingFive"
+								data-bs-parent="#accordionFlushExample"
+							>
+								<p class="accordion-body">
+									Accesos seguros por perfil (médico,
+									enfermero, administrativo), garantizando
+									confidencialidad y cumplimiento normativo.
+								</p>
+							</div>
+						</article>
+					</div>
+					<!-- Accordion Fin -->
+				</section>
+				<!-- SERVICIOS fin -->
+
+				<!-- PLANES inicio -->
+				<section id="info-plans">
+					<h2 class="divider-title">Planes</h2>
+					<!-- Accordion Inicio -->
+					<div class="accordion accordion-flush" id="accordionPlanes">
+						<!-- item 1 -->
+						<article class="accordion-item">
+							<h2 class="accordion-header" id="flush-heading1">
+								<button
+									class="accordion-button collapsed"
+									type="button"
+									data-bs-toggle="collapse"
+									data-bs-target="#flush-collapse1"
+									aria-expanded="false"
+									aria-controls="flush-collapse1"
+								>
+									<i class="fa-solid fa-bookmark"></i>Plan
+									Básico
+								</button>
+							</h2>
+
+							<div
+								id="flush-collapse1"
+								class="accordion-collapse collapse"
+								aria-labelledby="flush-heading1"
+								data-bs-parent="#accordionPlanes"
+							>
+								<ul class="accordion-body">
+									<li>
+										Pensado para Consultorios pequeños o
+										independientes.
+									</li>
+									
+									<li>
+										Contás con hasta 5 usuarios,
+										registro de ingresos/egresos, lista de
+										pacientes, historial clínico, búsqueda
+										básica, soporte por email, 1 GB de
+										almacenamiento.
+									</li>
+									<li class="btn btn-primary">
+										<a
+											href="planes.html"
+											target="_blank"
+											rel="noopener noreferrer"
+											>Ver más</a
+										>
+									</li>
+								</ul>
+							</div>
+						</article>
+
+						<!-- item 2 -->
+						<article class="accordion-item">
+							<h2 class="accordion-header" id="flush-heading2">
+								<button
+									class="accordion-button collapsed"
+									type="button"
+									data-bs-toggle="collapse"
+									data-bs-target="#flush-collapse2"
+									aria-expanded="false"
+									aria-controls="flush-collapse2"
+								>
+									<i class="fa-solid fa-bookmark"></i>
+									Plan Estándar
+								</button>
+							</h2>
+							<div
+								id="flush-collapse2"
+								class="accordion-collapse collapse"
+								aria-labelledby="flush-heading2"
+								data-bs-parent="#accordionPlanes"
+							>
+								<ul class="accordion-body">
+									<li>
+										Pensado para Clínicas o centros médicos
+										medianos.
+									</li>
+									
+									<li>
+										Contás con hasta 20
+										usuarios, incluye todo lo del plan
+										Básico, generación de reportes PDF,
+										filtros avanzados, roles de usuario,
+										notificaciones, soporte prioritario
+										(chat + email), 5 GB de almacenamiento.
+									</li>
+									<li class="btn btn-primary">
+										<a
+											href="planes.html"
+											target="_blank"
+											rel="noopener noreferrer"
+											>Ver más</a
+										>
+									</li>
+								</ul>
+							</div>
+						</article>
+
+						<!-- item 3 -->
+						<article class="accordion-item">
+							<h2 class="accordion-header" id="flush-heading3">
+								<button
+									class="accordion-button collapsed"
+									type="button"
+									data-bs-toggle="collapse"
+									data-bs-target="#flush-collapse3"
+									aria-expanded="false"
+									aria-controls="flush-collapse3"
+								>
+									<i class="fa-solid fa-bookmark"></i>
+									Plan Premium
+								</button>
+							</h2>
+							<div
+								id="flush-collapse3"
+								class="accordion-collapse collapse"
+								aria-labelledby="flush-heading3"
+								data-bs-parent="#accordionPlanes"
+							>
+								<ul class="accordion-body">
+									<li>
+										Pensado para Hospitales o redes de salud.
+									</li>
+									
+									<li>
+										Contás con Usuarios
+										ilimitados, todas las funcionalidades
+										del sistema, integración con APIs de
+										terceros (facturación, laboratorios),
+										dashboard avanzado, exportación de datos
+										(CSV, Excel, PDF), soporte 24/7,
+										almacenamiento escalable, capacitación
+										inicial incluida.
+									</li>
+									<li class="btn btn-primary">
+										<a
+											href="planes.html"
+											target="_blank"
+											rel="noopener noreferrer"
+											>Ver más</a
+										>
+									</li>
+								</ul>
+							</div>
+						</article>
+
+						<!-- item 4 -->
+						<article class="accordion-item">
+							<h2 class="accordion-header" id="flush-heading4">
+								<button
+									class="accordion-button collapsed"
+									type="button"
+									data-bs-toggle="collapse"
+									data-bs-target="#flush-collapse4"
+									aria-expanded="false"
+									aria-controls="flush-collapse4"
+								>
+									<i class="fa-solid fa-bookmark"></i>
+									Plan Personalizado
+								</button>
+							</h2>
+							<div
+								id="flush-collapse4"
+								class="accordion-collapse collapse"
+								aria-labelledby="flush-heading4"
+								data-bs-parent="#accordionPlanes"
+							>
+								<ul class="accordion-body">
+									<li>
+										Pensado para Instituciones con necesidades
+										específicas.
+									</li>
+									
+									<li>
+										Capacidad de instalación en
+										servidores del cliente, personalización
+										de marca y flujos de trabajo, desarrollo
+										de funcionalidades a medida, soporte y
+										actualizaciones dedicadas, capacitación
+										avanzada.
+									</li>
+									<li class="btn btn-primary">
+										<a
+											href="planes.html"
+											target="_blank"
+											rel="noopener noreferrer"
+											>Ver más</a
+										>
+									</li>
+								</ul>
+							</div>
+						</article>
+					</div>
+					<!-- fin acordeon -->
+				</section>
+
+				<!-- PLANES fin -->
+				<!-- CONTACTO inicio -->
+				<section id="info-contact">
+					<h2 class="divider-title">Consultanos</h2>
+
+					<form id="contact-form">
+						
+						<div data-mdb-input-init class="form-outline">
+							<i class="fa-solid fa-user-tie"></i>
+							<label for="form-nombre" hidden >Nombre</label>
+							<input
+								type="text"
+								id="form-nombre"
+								class="form-control"
+								placeholder="Nombre"
+							/>
+						</div>
+						<div data-mdb-input-init class="form-outline">
+							<i class="fa-solid fa-phone"></i>
+							<label for="form-telefono" hidden >Telefono</label>
+							<input
+								type="text"
+								id="form-telefono"
+								class="form-control"
+								placeholder="Telefono"
+							/>
+						</div>
+
+						
+						<div data-mdb-input-init class="form-outline">
+							<i class="fa-solid fa-envelope"></i>
+							<label for="form-email" hidden >Email</label>
+							<input
+								type="email"
+								id="form-email"
+								class="form-control"
+								placeholder="Email"
+							/>
+						</div>
+
+						
+						<div data-mdb-input-init class="form-outline">
+							<i class="fa-solid fa-pen-to-square"></i>
+							<label for="form-mensaje" hidden >Mensaje</label>
+							<textarea
+								class="form-control"
+								id="form-mensaje"
+								rows="4"
+								placeholder="Mensaje"
+							></textarea>
+						</div>
+
+						<!-- Submit button -->
+						<button
+							data-mdb-ripple-init
+							type="button"
+							class="btn btn-primary btn-block mb-4"
+						>
+							ENVIAR CONSULTA
+						</button>
+					</form>
+				</section>
+				<!-- CONTACTO fin -->
+			</section>
+			<!-- SECCION INFORMACION FIN-->
+		</main>
+		<!-- MAIN FIN -->
+		<!-- FOOTER INICIO -->
+
+		<footer class="footer">
+			
+				<p>Copyright © 2025: ClinicFlow - Servicios Web Profesionales.</p>
+			
+		</footer>
+		
+		<!-- FOOTER FIN -->
+		<!--SCRIPTS INICIO-->
+		<script
+			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+			integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+			integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://kit.fontawesome.com/d8c2b7ce4c.js"
+			crossorigin="anonymous"
+		></script>
+		<script src="./js/clients.js"></script>
+		<!--SCRIPTS FIN-->
+	</body>
 </html>
