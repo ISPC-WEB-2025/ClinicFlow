@@ -21,7 +21,7 @@ header {
 	align-items: center;
 }
 
-header h1 {
+header span.navbar-brand {
 	font-weight: 700;
 	font-size: 26px;
 	margin: 0;
@@ -31,11 +31,11 @@ header h1 {
 	font-size: 30px;
 	color: var(--color-primary);
 	position: relative;
-	left: -16px;
+	left: -2px ;
 }
 
 .icono-header + .right {
-	left: -24px;
+	left: -10px;
 }
 
 /* NAVBAR */

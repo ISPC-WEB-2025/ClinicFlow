@@ -25,11 +25,11 @@
 		<!-- HEADER COMIENZO -->
 		<header class="navbar navbar-expand-lg navbar-light fixed-top">
 			<div class="container">
-				<div class="logo">
-					<h1 class="navbar-brand mb-0">ClinicFlow</h1>
+				<a href="index.html" class="logo">
+					<span class="navbar-brand mb-0">ClinicFlow</span>
 					<i class="fa-solid fa-chevron-right icono-header left"></i>
 					<i class="fa-solid fa-chevron-right icono-header right"></i>
-				</div>
+				</a>
 
 				<!-- Botón hamburguesa para mobile -->
 				<button
@@ -45,7 +45,7 @@
 				</button>
 
 				<!-- Contenido colapsable del navbar -->
-				<div class="collapse navbar-collapse" id="navbarContent">
+				<nav class="collapse navbar-collapse" id="navbarContent">
 					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 						<li class="nav-item">
 							<a class="nav-link active" href="./index.html"
@@ -73,7 +73,7 @@
 							>
 						</li>
 					</ul>
-				</div>
+				</nav>
 			</div>
 		</header>
 
@@ -124,7 +124,7 @@
 			<!-- SECCION BANNER FIN-->
 			<!-- SECCION HERO INICIO-->
 			<section id="hero" class="text-center jumbotron">
-				<h2 class="display-5 fw-bold">ClinicFlow</h2>
+				<h1 class="display-5 fw-bold">ClinicFlow</h1>
 				<p class="subtitulo">
 					Tu Sistema Integral de Gestión de Internaciones
 				</p>
@@ -164,8 +164,8 @@
 			<!-- SECCION INFORMACION INICIO-->
 			<section id="info" class="mt-4">
 				<!-- SERVICIOS inicio -->
-				<article id="info-services">
-					<h4 class="divider-title">Servicios</h4>
+				<section id="info-services">
+					<h2 class="divider-title">Servicios</h2>
 					<!-- Accordion Inicio -->
 					<div
 						class="accordion accordion-flush"
@@ -321,12 +321,12 @@
 						</article>
 					</div>
 					<!-- Accordion Fin -->
-				</article>
+				</section>
 				<!-- SERVICIOS fin -->
 
 				<!-- PLANES inicio -->
-				<article id="info-plans">
-					<h4 class="divider-title">Planes</h4>
+				<section id="info-plans">
+					<h2 class="divider-title">Planes</h2>
 					<!-- Accordion Inicio -->
 					<div class="accordion accordion-flush" id="accordionPlanes">
 						<!-- item 1 -->
@@ -519,17 +519,18 @@
 						</article>
 					</div>
 					<!-- fin acordeon -->
-				</article>
+				</section>
 
 				<!-- PLANES fin -->
 				<!-- CONTACTO inicio -->
-				<article id="info-contact">
-					<h4 class="divider-title">Consultanos</h4>
+				<section id="info-contact">
+					<h2 class="divider-title">Consultanos</h2>
 
 					<form id="contact-form">
-						<!-- Name input -->
+						
 						<div data-mdb-input-init class="form-outline">
 							<i class="fa-solid fa-user-tie"></i>
+							<label for="form-nombre" hidden >Nombre</label>
 							<input
 								type="text"
 								id="form-nombre"
@@ -539,6 +540,7 @@
 						</div>
 						<div data-mdb-input-init class="form-outline">
 							<i class="fa-solid fa-phone"></i>
+							<label for="form-telefono" hidden >Telefono</label>
 							<input
 								type="text"
 								id="form-telefono"
@@ -547,9 +549,10 @@
 							/>
 						</div>
 
-						<!-- Email input -->
+						
 						<div data-mdb-input-init class="form-outline">
 							<i class="fa-solid fa-envelope"></i>
+							<label for="form-email" hidden >Email</label>
 							<input
 								type="email"
 								id="form-email"
@@ -558,9 +561,10 @@
 							/>
 						</div>
 
-						<!-- Message input -->
+						
 						<div data-mdb-input-init class="form-outline">
 							<i class="fa-solid fa-pen-to-square"></i>
+							<label for="form-mensaje" hidden >Mensaje</label>
 							<textarea
 								class="form-control"
 								id="form-mensaje"
@@ -578,7 +582,7 @@
 							ENVIAR CONSULTA
 						</button>
 					</form>
-				</article>
+				</section>
 				<!-- CONTACTO fin -->
 			</section>
 			<!-- SECCION INFORMACION FIN-->
@@ -586,11 +590,10 @@
 		<!-- MAIN FIN -->
 		<!-- FOOTER INICIO -->
 
-		<footer>
-			<footer class="footer fixed-bottom">
-			<div class="footer-content">
+		<footer class="footer">
+			
 				<p>Copyright © 2025: ClinicFlow - Servicios Web Profesionales.</p>
-			</div>
+			
 		</footer>
 		
 		<!-- FOOTER FIN -->
