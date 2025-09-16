@@ -83,10 +83,11 @@ Este proyecto surge como respuesta a la necesidad de contar con un canal de vent
 
     1. **Requisitos Previos**: Asegúrate de tener instalado Python 3.13.2 o superior y MySQL.
 
-    2. **Instalación**: Clona el repositorio y navega a la carpeta del proyecto.
+    2. **Instalación**: Clona el repositorio y navega a la carpeta del proyecto (ClinicFlow/back).
 
     3. **Crea y activa un entorno virtual e instala las dependencias**
 
+        Posicionado en la carpeta ClinicFlow/back
         ```bash
         # Crear y activar entorno virtual
         python -m venv venv
@@ -96,11 +97,14 @@ Este proyecto surge como respuesta a la necesidad de contar con un canal de vent
         source venv/bin/activate
         ```
 
-    4. **Instalar dependencias**: Una vez que el entorno virtual esté activo, instala todas las librerías necesarias para el proyecto. El archivo requirements.txt contiene una lista de todas las dependencias. El siguiente comando leerá el archivo requirements.txt e instalará automáticamente todas las bibliotecas de Python que el proyecto necesita para ejecutarse:
+    4. **Instalar dependencias**: Una vez que el entorno virtual esté activo, instala todas las librerías necesarias para el proyecto. El archivo requirements.txt contiene una lista de todas las dependencias.
 
+        Primero navega a la carpeta ClinicFlow/back/src y luego ejecuta:
         ```bash
+        cd src
         pip install -r requirements.txt
         ```
+        El comando `pip install` leerá el archivo requirements.txt e instalará automáticamente todas las bibliotecas de Python que el proyecto necesita para ejecutarse
 
     5. **Configuración de la Base de Datos**: La configuración recomendada es automática: simplemente ejecuta el script principal. El sistema te guiará para configurar la conexión y creará la base de datos necesaria, incluyendo un usuario administrador por defecto (usuario: admin, contraseña: admin123).
 
