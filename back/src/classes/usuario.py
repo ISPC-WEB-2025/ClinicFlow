@@ -1,7 +1,7 @@
 # classes/usuario.py
 
 import hashlib
-from database import (
+from crud_usuarios import (
     crear_usuario,
     obtener_usuario_por_nombre,
     obtener_todos_los_usuarios,
