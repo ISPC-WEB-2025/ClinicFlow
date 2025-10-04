@@ -17,16 +17,18 @@ function generarTarjetas(team) {
 		article.className = "team-card";
 
 		article.innerHTML = `
+		<a href="${member.github}" target="_blank" rel="noopener" title="GitHub de ${member.name}">
 			<header class="team-info">
 				<h3 class="team-name">${member.name}</h3>
 				<p class="team-role">${member.role}</p>
 			</header>
 			<footer class="social-links">
-				<a href="${member.github}" target="_blank" rel="noopener" title="GitHub de ${member.name}">
+				
 					<i class="fab fa-github" aria-hidden="true"></i>
 					<span class="sr-only">GitHub</span>
-				</a>
+				
 			</footer>
+			</a>
 		`;
 
 		teamGrid.appendChild(article);

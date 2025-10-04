@@ -44,12 +44,17 @@ h2.divider-title + p {
 	justify-self: center;
 	width: 100%;
 	max-width: 16rem;
+	
 }
 
 
 
 .team-info {
 	padding: 0.8rem 1.3rem 1.5rem;
+	min-height: 8rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .team-name {
@@ -75,7 +80,7 @@ h2.divider-title + p {
 	margin-top: 1rem;
 }
 
-.social-links a {
+.social-links i {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -87,7 +92,7 @@ h2.divider-title + p {
 	transition: all 0.3s ease;
 }
 
-.social-links a:hover {
+.social-links i:hover {
 	background-color: var(--color-primary);
 	color: white;
 	transform: scale(1.1);
@@ -98,6 +103,7 @@ h2.divider-title + p {
 	#team-grid {
 		padding: 0 2rem;
 	}
+	
 }
 
 @media (max-width: 768px) {
