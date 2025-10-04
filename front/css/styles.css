@@ -132,6 +132,10 @@ header span.navbar-brand {
 	font-size: 1rem;
 	font-weight: 300;
 	position: relative;
+	
+}
+.footer p{
+	margin-bottom: 0;
 }
 
 /* MEDIA QUERY RESPONSIVE*/
