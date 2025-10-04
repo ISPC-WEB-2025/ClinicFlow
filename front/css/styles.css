@@ -8,7 +8,6 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	
 }
 
 /* HEADER ESTILOS */
@@ -31,7 +30,7 @@ header span.navbar-brand {
 	font-size: 30px;
 	color: var(--color-primary);
 	position: relative;
-	left: -2px ;
+	left: -2px;
 }
 
 .icono-header + .right {
@@ -68,6 +67,54 @@ header span.navbar-brand {
 
 .navbar-nav .nav-link.active i {
 	display: block;
+}
+
+/* ==== HEADER: BOTONES CTA ==== */
+.btn-header {
+	border-radius: 0;
+	padding: 0.5rem 1.2rem;
+	font-size: 0.9rem;
+	font-weight: 500;
+	transition: all 0.3s ease;
+	white-space: nowrap;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.btn-header i {
+	font-size: 0.9rem;
+}
+
+.btn-outline-primary.btn-header {
+	border: 2px solid var(--color-primary);
+	color: var(--color-primary);
+	background-color: transparent;
+}
+
+.btn-outline-primary.btn-header:hover {
+	background-color: var(--color-primary);
+	color: white;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary.btn-header {
+	background-color: var(--color-primary);
+	border: 2px solid var(--color-primary);
+	color: white;
+}
+
+.btn-primary.btn-header:hover {
+	background-color: var(--color-secondary);
+	border-color: var(--color-secondary);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Remover el ícono de "plus" de los botones CTA */
+.btn-header .fa-plus {
+	display: none;
 }
 
 /* HOVER animaciones menu */
@@ -132,16 +179,25 @@ header span.navbar-brand {
 	font-size: 1rem;
 	font-weight: 300;
 	position: relative;
-	
 }
-.footer p{
+.footer p {
 	margin-bottom: 0;
 }
 
 /* MEDIA QUERY RESPONSIVE*/
 
-@media (max-width: 1024px) {
+@media (max-width: 991px) {
 	/* HEADER */
+	.btn-header {
+		width: 100%;
+		justify-content: center;
+		margin-top: 0.5rem;
+	}
+
+	.nav-item.ms-lg-3,
+	.nav-item.ms-lg-2 {
+		margin-left: 0 !important;
+	}
 	.navbar-collapse {
 		background-color: white;
 		padding: 1rem;
@@ -151,7 +207,50 @@ header span.navbar-brand {
 	.navbar-nav .nav-link {
 		padding: 0.75rem 1rem;
 	}
-	.footer{
+	.footer {
 		font-size: 0.8rem;
+	}
+}
+
+@media (min-width: 992px) and (max-width: 1024px) {
+	.btn-header {
+		width: 2.8rem;
+		height: 2.8rem;
+		padding: 0;
+		justify-content: center;
+		overflow: hidden;
+		transition: width 0.4s ease, padding 0.4s ease, gap 0.4s ease;
+		gap: 0;
+		margin-top: 0 !important;
+	}
+
+	.btn-header i {
+		flex-shrink: 0;
+	}
+
+	/* Ocultar texto completamente por defecto */
+	.btn-header .btn-text {
+		display: none;
+	}
+
+	/* Mostrar texto en hover */
+	.btn-header:hover {
+		width: auto;
+		padding: 0.5rem 1.2rem;
+		gap: 0.5rem;
+	}
+
+	.btn-header:hover .btn-text {
+		display: inline;
+	}
+}
+
+@media (min-width: 1025px) {
+	.nav-item.ms-lg-3 {
+		margin-left: 1rem !important;
+	}
+
+	.nav-item.ms-lg-2 {
+		margin-left: 0.5rem !important;
 	}
 }
