@@ -1,0 +1,339 @@
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: calc(100vh - 5.5rem);
+	padding: 8rem 2rem 0rem 2rem;
+	
+}
+#formsType {
+	width: 100%;
+	min-width: 28rem; 
+}
+
+/* ==== ESTRUCTURA DEL FORMULARIO ==== */
+#formsType form {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	margin-top: 2rem;
+}
+
+/* ==== CAMPOS DEL FORMULARIO ==== */
+.form-outline {
+	position: relative;
+	margin-bottom: 0.5rem;
+}
+
+.form-outline input,
+.form-outline textarea {
+	width: 100%;
+	border: 2px solid #e0e0e0;
+	border-radius: 0;
+	padding: 0.9rem 1rem 0.9rem 5rem;
+	font-size: 0.95rem;
+	transition: all 0.3s ease;
+	background-color: white;
+}
+
+.form-outline input {
+	height: 3.5rem;
+}
+
+.form-outline textarea {
+	padding: 0.9rem 1rem 0.9rem 5rem;
+	resize: none;
+	height: 10rem;
+	font-family: "Lato", sans-serif;
+}
+
+.form-outline input:focus,
+.form-outline textarea:focus {
+	outline: none;
+	border-color: var(--color-primary);
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15);
+}
+
+.form-outline input::placeholder,
+.form-outline textarea::placeholder {
+	color: #999;
+	font-weight: 300;
+}
+
+/* ==== ICONOS EN CAMPOS ==== */
+.form-outline i {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 3.5rem;
+	height: 3.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	font-size: 1.3rem;
+	z-index: 2;
+}
+
+/* Icono para textarea */
+.form-outline:has(textarea) i {
+	height: 3.5rem;
+	align-items: center;
+}
+
+/* Triángulo decorativo en iconos */
+.form-outline i::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: -0.6rem;
+	transform: translateY(-50%);
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0.8rem 0 0.8rem 0.6rem;
+}
+
+/* Colores alternados para iconos */
+.form-outline[data-color="primary"] i {
+	background-color: var(--color-primary);
+}
+
+.form-outline[data-color="primary"] i::after {
+	border-color: transparent transparent transparent var(--color-primary);
+}
+
+.form-outline[data-color="secondary"] i {
+	background-color: var(--color-secondary);
+}
+
+.form-outline[data-color="secondary"] i::after {
+	border-color: transparent transparent transparent var(--color-secondary);
+}
+
+/* ==== VALIDACIÓN Y ERRORES ==== */
+.form-outline.has-error input,
+.form-outline.has-error textarea {
+	border-color: #dc3545;
+	background-color: #fff5f5;
+}
+
+.form-outline.has-error input:focus,
+.form-outline.has-error textarea:focus {
+	border-color: #dc3545;
+	box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.15);
+}
+
+.error-message {
+	color: #dc3545;
+	font-size: 0.85rem;
+	margin-top: 0.4rem;
+	margin-left: 5rem;
+	display: none;
+	font-weight: 400;
+}
+
+.form-outline.has-error .error-message {
+	display: block;
+	animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+	from {
+		opacity: 0;
+		transform: translateY(-5px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* ==== BOTÓN SUBMIT ==== */
+form button[type="submit"] {
+	
+	padding: 0.9rem 2.5rem;
+	font-size: 0.9rem;
+	font-weight: 600;
+	letter-spacing: 0.5px;
+	border-radius: 0;
+	border: none;
+	background-color: var(--color-primary);
+	color: white;
+	transition: all 0.3s ease;
+	margin-top: 0.5rem;
+}
+
+form button[type="submit"]:hover {
+	background-color: var(--color-secondary);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+form button[type="submit"]:active {
+	transform: translateY(0);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ==== LINKS ADICIONALES ==== */
+.form-links {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin-top: 0.5rem;
+	text-align: center;
+}
+
+.form-links a {
+	font-size: 0.9rem;
+	text-decoration: none;
+	transition: all 0.2s ease;
+}
+
+.form-links .link-secondary {
+	color: var(--color-secondary);
+	font-weight: 500;
+}
+
+.form-links .link-primary {
+	color: var(--color-primary);
+	font-weight: 400;
+}
+
+.form-links a:hover {
+	text-decoration: underline;
+	opacity: 0.8;
+}
+
+/* ==== ALERTAS DE ÉXITO ==== */
+.alert {
+	border-radius: 0;
+	border: none;
+	border-left: 4px solid #28a745;
+	margin-bottom: 1.5rem;
+	animation: slideInDown 0.4s ease;
+}
+
+.alert-success {
+	background-color: #d4edda;
+	color: #155724;
+}
+
+.alert i {
+	margin-right: 0.5rem;
+	font-size: 1.1rem;
+}
+
+@keyframes slideInDown {
+	from {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* ==== DIVIDER TITLE ==== */
+.divider-title {
+	border-left: var(--color-primary) 4px solid;
+	padding-left: 0.5rem;
+	margin-bottom: 1rem;
+	font-size: 1.8rem;
+	font-weight: 600;
+}
+
+/* ==== MEDIA QUERIES ==== */
+@media (max-width: 1023px) {
+	main {
+		padding: 8rem 2rem 2rem 2rem;
+	}
+
+	#formsType {
+		width: 75%;
+	}
+}
+
+@media (max-width: 768px) {
+	main {
+		padding: 7rem 1.5rem 2rem 1.5rem;
+	}
+
+	#formsType {
+		width: 90%;
+	}
+
+	.form-outline input,
+	.form-outline textarea {
+		font-size: 0.9rem;
+	}
+
+	.form-outline i {
+		width: 3rem;
+		height: 3rem;
+		font-size: 1.1rem;
+	}
+
+	.form-outline input {
+		height: 3rem;
+	}
+
+	.error-message {
+		margin-left: 4.5rem;
+		font-size: 0.8rem;
+	}
+
+	form button[type="submit"] {
+		width: 100%;
+		padding: 0.8rem 1.5rem;
+	}
+
+	.divider-title {
+		font-size: 1.5rem;
+	}
+}
+
+@media (max-width: 480px) {
+	section {
+		width: 100vw;
+		padding: 0rem 1rem 2rem 1rem;
+	}
+	#formsType {
+		min-width: 0rem;
+        width: 100%;
+	}
+	.form-outline input,
+	.form-outline textarea {
+		width: 100%;
+		font-size: 0.85rem;
+	}
+
+	form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.form-outline i {
+		width: 2.8rem;
+		height: 2.8rem;
+		font-size: 1rem;
+	}
+
+	.form-outline input {
+		height: 2.8rem;
+	}
+
+	.form-outline textarea {
+		height: 8rem;
+	}
+
+	.error-message {
+		margin-left: 4rem;
+	}
+
+	.form-links {
+		font-size: 0.85rem;
+	}
+}
