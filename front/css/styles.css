@@ -70,6 +70,54 @@ header span.navbar-brand {
 	display: block;
 }
 
+
+.btn-header {
+	border-radius: 0;
+	padding: 0.5rem 1.2rem;
+	font-size: 0.9rem;
+	font-weight: 500;
+	transition: all 0.3s ease;
+	white-space: nowrap;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.btn-header i {
+	font-size: 0.9rem;
+}
+
+.btn-outline-primary.btn-header {
+	border: 2px solid var(--color-primary);
+	color: var(--color-primary);
+	background-color: transparent;
+}
+
+.btn-outline-primary.btn-header:hover {
+	background-color: var(--color-primary);
+	color: white;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary.btn-header {
+	background-color: var(--color-primary);
+	border: 2px solid var(--color-primary);
+	color: white;
+}
+
+.btn-primary.btn-header:hover {
+	background-color: var(--color-secondary);
+	border-color: var(--color-secondary);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Remover el ícono de "plus" de los botones CTA */
+.btn-header .fa-plus {
+	display: none;
+}
+
 /* HOVER animaciones menu */
 .navbar-nav .nav-link.active:hover i {
 	animation: shake 0.9s ease-in-out;
@@ -142,6 +190,16 @@ header span.navbar-brand {
 
 @media (max-width: 1024px) {
 	/* HEADER */
+	.btn-header {
+		width: 100%;
+		justify-content: center;
+		margin-top: 0.5rem;
+	}
+	
+	.nav-item.ms-lg-3,
+	.nav-item.ms-lg-2 {
+		margin-left: 0 !important;
+	}
 	.navbar-collapse {
 		background-color: white;
 		padding: 1rem;
