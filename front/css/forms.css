@@ -259,6 +259,12 @@ form button[type="submit"]:active {
 	border-left: 4px solid #dc3545;
 }
 
+.alert-warning {
+	background-color: #fff3cd;
+	color: #856404;
+	border-left: 4px solid #ffc107;
+}
+
 .alert i {
 	margin-right: 0.5rem;
 	font-size: 1.1rem;
@@ -283,8 +289,8 @@ form button[type="submit"]:active {
 	font-size: 1.8rem;
 	font-weight: 600;
 }
-/* ===== ESTILOS PARA PASSWORD TOGGLE ===== */
 
+/* ===== ESTILOS PARA PASSWORD TOGGLE ===== */
 .password-wrapper {
 	position: relative;
 }
@@ -319,8 +325,69 @@ form button[type="submit"]:active {
 	outline: none;
 }
 
+/* ===== INDICADOR DE REQUISITOS DE CONTRASEÑA ===== */
+.password-requirements {
+	background-color: #f8f9fa;
+	border: 1px solid #e0e0e0;
+	border-left: 3px solid var(--color-primary);
+	padding: 1rem;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+	font-size: 0.85rem;
+	display: none;
+	animation: slideDown 0.3s ease;
+}
+
+.password-wrapper .password-requirements {
+	margin-left: 0;
+}
+
+.password-requirements.show {
+	display: block;
+}
+
+.password-requirements h6 {
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: var(--color-text-dark);
+	margin-bottom: 0.75rem;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.password-requirements h6 i {
+	color: var(--color-primary);
+	font-size: 1rem;
+}
+
+.password-requirements ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.password-requirements li {
+	padding: 0.4rem 0;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	color: #6c757d;
+	transition: all 0.3s ease;
+}
 
 
+
+.password-requirements li.invalid {
+	color: #dc3545;
+}
+
+
+
+.password-requirements li.valid {
+	color: #28a745;
+	font-weight: 500;
+}
 
 
 /* ==== MEDIA QUERIES ==== */
@@ -332,8 +399,9 @@ form button[type="submit"]:active {
 	#formsType {
 		width: 75%;
 	}
-	.password-toggle-btn{
-		right:0;
+
+	.password-toggle-btn {
+		right: 0;
 	}
 }
 
@@ -364,6 +432,11 @@ form button[type="submit"]:active {
 
 	.invalid-feedback {
 		margin-left: 4.5rem;
+		font-size: 0.8rem;
+	}
+
+	.password-requirements {
+		margin-left: 0;
 		font-size: 0.8rem;
 	}
 
@@ -420,6 +493,16 @@ form button[type="submit"]:active {
 		font-size: 0.75rem;
 	}
 
+	.password-requirements {
+		margin-left: 0;
+		padding: 0.75rem;
+		font-size: 0.75rem;
+	}
+
+	.password-requirements h6 {
+		font-size: 0.85rem;
+	}
+
 	.char-counter {
 		font-size: 0.7rem;
 		bottom: 0.3rem;
@@ -434,8 +517,8 @@ form button[type="submit"]:active {
 		font-size: 0.85rem;
 		padding: 0.8rem 1rem;
 	}
+
 	.password-toggle-btn {
-		
 		font-size: 1rem;
 	}
 }

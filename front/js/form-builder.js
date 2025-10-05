@@ -99,6 +99,7 @@ class FormBuilder {
     const buttonTexts = {
       login: 'INICIAR SESIÓN',
       register: 'REGISTRARSE',
+      forgotPassword: 'ENVIAR CORREO',
       contact: 'ENVIAR CONSULTA'
     };
 
@@ -115,7 +116,7 @@ class FormBuilder {
       return `
         <div class="form-links">
           <a href="./register.html" class="link-secondary">¿No tienes cuenta? Regístrate</a>
-          <a href="#" class="link-primary">¿Olvidaste tu contraseña?</a>
+          <a href="./password-reset.html" class="link-primary">¿Olvidaste tu contraseña?</a>
         </div>
       `;
     } else if (this.formType === 'register') {
@@ -212,6 +213,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       formType = 'register';
     } else if (path.includes('contacto')) {
       formType = 'contact';
+    } else if (path.includes('password-reset')){
+      formType = 'forgotPassword';
     }
     
     const formBuilder = new FormBuilder('formsType', formType);

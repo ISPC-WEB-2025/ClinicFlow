@@ -1,16 +1,31 @@
 {
   "usuarios": [
     {
+      "id": "user_admin_001",
+      "nombre": "Admin",
+      "apellido": "ClinicFlow",
       "email": "admin@clinicflow.com",
-      "password": "123456"
+      "password": "Admin123*",
+      "fechaRegistro": "2024-01-15T10:30:00.000Z",
+      "activo": true
     },
     {
+      "id": "user_test_002",
+      "nombre": "Usuario",
+      "apellido": "Prueba",
       "email": "usuario@test.com",
-      "password": "test123"
+      "password": "Test123*",
+      "fechaRegistro": "2024-02-20T14:45:00.000Z",
+      "activo": true
     },
     {
+      "id": "user_demo_003",
+      "nombre": "Demo",
+      "apellido": "Demostración",
       "email": "demo@clinicflow.com",
-      "password": "demo2024"
+      "password": "Demo2024*",
+      "fechaRegistro": "2024-03-10T09:15:00.000Z",
+      "activo": true
     }
   ]
 }

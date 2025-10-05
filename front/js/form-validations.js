@@ -1,10 +1,10 @@
 // form-validations.js - Sistema centralizado de validaciones
-// CORREGIDO: Mensaje duplicado + validación nombre completo
+// ACTUALIZADO: Validación de email mejorada + password segura + reset password
 
 (function() {
     let USUARIOS_VALIDOS = [];
     let validacionesInicializadas = false;
-    let eventosRegistrados = false; // ⭐ NUEVO: Prevenir duplicados
+    let eventosRegistrados = false;
 
     // ===== CARGAR USUARIOS DESDE JSON =====
     async function cargarUsuarios() {
@@ -15,16 +15,15 @@
             }
             const data = await response.json();
             USUARIOS_VALIDOS = data.usuarios || [];
-            console.log('✅ Usuarios del JSON cargados:', USUARIOS_VALIDOS.length);
+            console.log('Usuarios del JSON cargados:', USUARIOS_VALIDOS.length);
             
-            // Notificar a registerSimulation
             document.dispatchEvent(new CustomEvent('usuariosJSONCargados', {
                 detail: { usuarios: USUARIOS_VALIDOS }
             }));
             
             return true;
         } catch (error) {
-            console.error('❌ Error al cargar usuarios:', error);
+            console.error('Error al cargar usuarios:', error);
             USUARIOS_VALIDOS = [];
             return false;
         }
@@ -33,13 +32,13 @@
     // ===== REGISTRAR EVENTOS UNA SOLA VEZ =====
     function registrarEventosGlobales() {
         if (eventosRegistrados) {
-            console.log('⚠️ Eventos ya registrados, omitiendo...');
+            console.log('Eventos ya registrados, omitiendo...');
             return;
         }
         
         eventosRegistrados = true;
 
-        // Escuchar resultado del registro
+        // Resultado del registro
         document.addEventListener('resultadoRegistro', (event) => {
             const resultado = event.detail;
             
@@ -52,12 +51,11 @@
             }
         });
 
-        // Escuchar resultado del login
+        // Resultado del login
         document.addEventListener('resultadoLogin', (event) => {
             const resultado = event.detail;
             
             if (resultado.exito) {
-                // Guardar sesión
                 sessionStorage.setItem('userEmail', resultado.usuario.email);
                 sessionStorage.setItem('userName', resultado.usuario.nombre || 'Usuario');
                 sessionStorage.setItem('userOrigen', resultado.origen);
@@ -75,7 +73,20 @@
             }
         });
 
-        console.log('✅ Eventos globales registrados');
+        // Resultado del reset de password
+        document.addEventListener('resultadoResetPassword', (event) => {
+            const resultado = event.detail;
+            
+            if (resultado.exito) {
+                mostrarAlerta('success', resultado.mensaje);
+                const form = document.getElementById('forgotPassword-form');
+                if (form) resetearFormulario(form);
+            } else {
+                mostrarAlerta('danger', resultado.mensaje);
+            }
+        });
+
+        console.log('Eventos globales registrados');
     }
 
     // ===== INICIALIZAR VALIDACIONES =====
@@ -90,13 +101,13 @@
         configurarContadorCaracteres();
         configurarValidacionTelefono();
         configurarValidacionTexto();
-        configurarValidacionNombreCompleto(); // ⭐ NUEVO
+        configurarValidacionNombreCompleto();
         configurarValidacionEmail();
         configurarValidacionPassword();
         configurarValidacionTiempoReal(forms);
         configurarSubmitFormularios(forms);
 
-        console.log('✅ Validaciones cargadas correctamente');
+        console.log('Validaciones cargadas correctamente');
     }
 
     // ===== EVENTOS =====
@@ -106,7 +117,7 @@
 
     document.addEventListener('DOMContentLoaded', async () => {
         await cargarUsuarios();
-        registrarEventosGlobales(); // ⭐ Registrar una sola vez
+        registrarEventosGlobales();
         
         setTimeout(async () => {
             await inicializarValidaciones();
@@ -119,13 +130,9 @@
         if (!nombreCompletoInput) return;
 
         nombreCompletoInput.addEventListener('input', function() {
-            // Solo letras, espacios, acentos y ñ
             this.value = this.value.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑ\s]/g, '');
-            
-            // Evitar espacios múltiples
             this.value = this.value.replace(/\s{2,}/g, ' ');
             
-            // Validar al menos dos palabras
             const palabras = this.value.trim().split(/\s+/);
             const feedbackDiv = this.nextElementSibling;
             
@@ -146,7 +153,6 @@
             }
         });
 
-        // Validación adicional en blur
         nombreCompletoInput.addEventListener('blur', function() {
             this.value = this.value.trim();
             
@@ -226,33 +232,220 @@
         validarSoloTexto(apellidoInput);
     }
 
-    // ===== VALIDACIÓN DE EMAIL =====
+    // ===== VALIDACIÓN DE EMAIL MEJORADA =====
     function configurarValidacionEmail() {
         const emailInput = document.getElementById('form-email');
         if (!emailInput) return;
+
+        emailInput.addEventListener('input', function() {
+            // Patrón mejorado: mínimo 2 letras antes del @, @ obligatorio, 
+            // mínimo 2 letras después, punto obligatorio, mínimo 2 letras después del punto
+            const emailPattern = /^[a-zA-Z]{2,}[a-zA-Z0-9._-]*@[a-zA-Z]{2,}[a-zA-Z0-9.-]*\.[a-zA-Z]{2,}$/;
+            const feedbackDiv = this.nextElementSibling;
+            
+            if (this.value.length > 0) {
+                if (!emailPattern.test(this.value)) {
+                    this.setCustomValidity('Formato inválido (ej: usuario@dominio.com)');
+                    if (feedbackDiv?.classList.contains('invalid-feedback')) {
+                        feedbackDiv.textContent = 'Formato inválido (ej: usuario@dominio.com)';
+                    }
+                } else {
+                    this.setCustomValidity('');
+                    if (feedbackDiv?.classList.contains('invalid-feedback')) {
+                        feedbackDiv.textContent = '';
+                    }
+                }
+            }
+        });
 
         emailInput.addEventListener('blur', function() {
             this.value = this.value.trim().toLowerCase();
         });
     }
 
-    // ===== VALIDACIÓN DE PASSWORD =====
+    // ===== VALIDACIÓN DE PASSWORD SEGURA =====
     function configurarValidacionPassword() {
         const passwordInput = document.getElementById('form-password');
         const confirmInput = document.getElementById('form-confirm-password');
         
         if (!passwordInput) return;
 
+        // Crear indicador de requisitos
+        crearIndicadorRequisitos(passwordInput);
+
+        // Validación de seguridad de contraseña
+        passwordInput.addEventListener('input', function() {
+            const password = this.value;
+            const feedbackDiv = this.nextElementSibling;
+            
+            // Requisitos
+            const tieneMayuscula = /[A-Z]/.test(password);
+            const tieneMinuscula = /[a-z]/.test(password);
+            const tieneNumero = /[0-9]/.test(password);
+            const tieneEspecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+            const longitudMinima = password.length >= 8;
+            
+            // Actualizar indicador visual
+            actualizarIndicadorRequisitos(passwordInput, {
+                longitudMinima,
+                tieneMayuscula,
+                tieneMinuscula,
+                tieneNumero,
+                tieneEspecial
+            });
+            
+            if (password.length > 0) {
+                if (!longitudMinima) {
+                    this.setCustomValidity('La contraseña debe tener al menos 8 caracteres');
+                    if (feedbackDiv?.classList.contains('invalid-feedback')) {
+                        feedbackDiv.textContent = 'Mínimo 8 caracteres';
+                    }
+                } else if (!tieneMayuscula) {
+                    this.setCustomValidity('Debe incluir al menos una letra mayúscula');
+                    if (feedbackDiv?.classList.contains('invalid-feedback')) {
+                        feedbackDiv.textContent = 'Incluí al menos una mayúscula (A-Z)';
+                    }
+                } else if (!tieneMinuscula) {
+                    this.setCustomValidity('Debe incluir al menos una letra minúscula');
+                    if (feedbackDiv?.classList.contains('invalid-feedback')) {
+                        feedbackDiv.textContent = 'Incluí al menos una minúscula (a-z)';
+                    }
+                } else if (!tieneNumero) {
+                    this.setCustomValidity('Debe incluir al menos un número');
+                    if (feedbackDiv?.classList.contains('invalid-feedback')) {
+                        feedbackDiv.textContent = 'Incluí al menos un número (0-9)';
+                    }
+                } else if (!tieneEspecial) {
+                    this.setCustomValidity('Debe incluir al menos un carácter especial');
+                    if (feedbackDiv?.classList.contains('invalid-feedback')) {
+                        feedbackDiv.textContent = 'Incluí al menos un carácter especial (!@#$%...)';
+                    }
+                } else {
+                    this.setCustomValidity('');
+                    if (feedbackDiv?.classList.contains('invalid-feedback')) {
+                        feedbackDiv.textContent = '';
+                    }
+                }
+            }
+
+            if (confirmInput && confirmInput.value.length > 0) {
+                validarConfirmacionPassword(confirmInput);
+            }
+        });
+
+        // Mostrar/ocultar indicador en focus/blur
+        passwordInput.addEventListener('focus', function() {
+            const indicador = this.closest('.form-outline').querySelector('.password-requirements');
+            if (indicador) indicador.classList.add('show');
+        });
+
+        passwordInput.addEventListener('blur', function() {
+            const indicador = this.closest('.form-outline').querySelector('.password-requirements');
+            if (indicador) {
+                setTimeout(() => {
+                    indicador.classList.remove('show');
+                }, 200);
+            }
+        });
+
         if (confirmInput) {
             confirmInput.addEventListener('input', () => {
                 validarConfirmacionPassword(confirmInput);
             });
-            
-            passwordInput.addEventListener('input', () => {
-                if (confirmInput.value.length > 0) {
-                    validarConfirmacionPassword(confirmInput);
-                }
-            });
+        }
+    }
+
+    // ===== CREAR INDICADOR DE REQUISITOS =====
+    function crearIndicadorRequisitos(passwordInput) {
+        const formOutline = passwordInput.closest('.form-outline');
+        if (!formOutline) return;
+
+        // Verificar si ya existe
+        if (formOutline.querySelector('.password-requirements')) return;
+
+        const indicadorHTML = `
+            <div class="password-requirements">
+                <h6><i class="fa-solid fa-shield-halved"></i> Requisitos de contraseña:</h6>
+                <ul>
+                    <li data-req="length">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                        Mínimo 8 caracteres
+                    </li>
+                    <li data-req="uppercase">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                        Al menos una mayúscula (A-Z)
+                    </li>
+                    <li data-req="lowercase">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                        Al menos una minúscula (a-z)
+                    </li>
+                    <li data-req="number">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                        Al menos un número (0-9)
+                    </li>
+                    <li data-req="special">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                        Al menos un carácter especial (!@#$%...)
+                    </li>
+                </ul>
+            </div>
+        `;
+
+        // Buscar el invalid-feedback o el botón toggle de password
+        const invalidFeedback = passwordInput.nextElementSibling;
+        const toggleButton = formOutline.querySelector('.password-toggle-btn');
+        
+        if (toggleButton) {
+            // Si hay botón toggle, insertar después del toggle
+            toggleButton.insertAdjacentHTML('afterend', indicadorHTML);
+        } else if (invalidFeedback && invalidFeedback.classList.contains('invalid-feedback')) {
+            // Si hay invalid-feedback, insertar después de él
+            invalidFeedback.insertAdjacentHTML('afterend', indicadorHTML);
+        } else {
+            // Si no hay ninguno, insertar al final del form-outline
+            formOutline.insertAdjacentHTML('beforeend', indicadorHTML);
+        }
+    }
+
+    // ===== ACTUALIZAR INDICADOR DE REQUISITOS =====
+    function actualizarIndicadorRequisitos(passwordInput, requisitos) {
+        const formOutline = passwordInput.closest('.form-outline');
+        if (!formOutline) return;
+
+        const indicador = formOutline.querySelector('.password-requirements');
+        if (!indicador) return;
+
+        const items = {
+            length: indicador.querySelector('[data-req="length"]'),
+            uppercase: indicador.querySelector('[data-req="uppercase"]'),
+            lowercase: indicador.querySelector('[data-req="lowercase"]'),
+            number: indicador.querySelector('[data-req="number"]'),
+            special: indicador.querySelector('[data-req="special"]')
+        };
+
+        // Actualizar cada requisito
+        actualizarItemRequisito(items.length, requisitos.longitudMinima);
+        actualizarItemRequisito(items.uppercase, requisitos.tieneMayuscula);
+        actualizarItemRequisito(items.lowercase, requisitos.tieneMinuscula);
+        actualizarItemRequisito(items.number, requisitos.tieneNumero);
+        actualizarItemRequisito(items.special, requisitos.tieneEspecial);
+    }
+
+    function actualizarItemRequisito(item, cumple) {
+        if (!item) return;
+
+        const icon = item.querySelector('i');
+        
+        if (cumple) {
+            item.classList.remove('invalid');
+            item.classList.add('valid');
+            icon.classList.remove('fa-circle-xmark');
+            icon.classList.add('fa-circle-check');
+        } else {
+            item.classList.remove('valid');
+            item.classList.add('invalid');
+            icon.classList.remove('fa-circle-check');
+            icon.classList.add('fa-circle-xmark');
         }
     }
 
@@ -373,6 +566,8 @@
                         manejarRegistro(form);
                     } else if (formId === 'contact-form') {
                         manejarContacto(form);
+                    } else if (formId === 'forgotPassword-form') {
+                        manejarResetPassword(form);
                     }
                 } else {
                     form.classList.add('was-validated');
@@ -402,7 +597,6 @@
         const email = emailInput.value.trim();
         const password = passwordInput.value;
 
-        // Disparar evento para registerSimulation
         document.dispatchEvent(new CustomEvent('intentoLogin', {
             detail: { email, password }
         }));
@@ -417,7 +611,6 @@
         const nombreCompleto = nombreCompletoInput.value.trim();
         const palabras = nombreCompleto.split(/\s+/);
         
-        // Separar nombre y apellido
         const nombre = palabras[0];
         const apellido = palabras.slice(1).join(' ');
 
@@ -429,7 +622,6 @@
             password: passwordInput.value
         };
 
-        // Disparar evento para registerSimulation
         document.dispatchEvent(new CustomEvent('intentoRegistro', {
             detail: datosUsuario
         }));
@@ -447,6 +639,16 @@
         resetearFormulario(form);
     }
 
+    // ===== MANEJO DE RESET PASSWORD =====
+    function manejarResetPassword(form) {
+        const emailInput = document.getElementById('form-email');
+        const email = emailInput.value.trim().toLowerCase();
+
+        document.dispatchEvent(new CustomEvent('intentoResetPassword', {
+            detail: { email }
+        }));
+    }
+
     // ===== RESETEAR FORMULARIO =====
     function resetearFormulario(form) {
         form.reset();
@@ -461,12 +663,11 @@
         if (contador) contador.textContent = '0';
     }
 
-    // ===== MOSTRAR ALERTAS (con prevención de duplicados) =====
+    // ===== MOSTRAR ALERTAS =====
     function mostrarAlerta(tipo, mensaje, callback) {
         const container = document.getElementById('formsType');
         if (!container) return;
 
-        // ⭐ IMPORTANTE: Eliminar alertas existentes del mismo tipo
         const alertasExistentes = container.querySelectorAll(`.alert-${tipo}`);
         alertasExistentes.forEach(alerta => alerta.remove());
 
@@ -486,7 +687,6 @@
         
         container.insertAdjacentHTML('afterbegin', alertHtml);
         
-        // Auto-dismiss
         setTimeout(() => {
             const alert = container.querySelector(`.alert-${tipo}`);
             if (alert) alert.remove();

@@ -1,25 +1,22 @@
-// registerSimulation.js - Simulación de registro y persistencia con localStorage
-// Permite registrar usuarios y validar contra localStorage + users.json
+// registerSimulation.js - Simulación de registro y persistencia
+// ACTUALIZADO: Soporte para reset de contraseña
 
 (function() {
     'use strict';
 
     const STORAGE_KEY = 'clinicflow_usuarios_registrados';
     
-    // ===== CLASE PARA GESTIONAR USUARIOS =====
     class UserManager {
         constructor() {
             this.usuariosJSON = [];
             this.usuariosLocalStorage = this.cargarUsuariosLocalStorage();
         }
 
-        // Cargar usuarios del JSON (desde el módulo principal)
         setUsuariosJSON(usuarios) {
             this.usuariosJSON = usuarios;
             console.log('📚 Usuarios del JSON cargados:', this.usuariosJSON.length);
         }
 
-        // Cargar usuarios del localStorage
         cargarUsuariosLocalStorage() {
             try {
                 const data = localStorage.getItem(STORAGE_KEY);
@@ -32,7 +29,6 @@
             }
         }
 
-        // Guardar usuarios en localStorage
         guardarUsuariosLocalStorage() {
             try {
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(this.usuariosLocalStorage));
@@ -44,23 +40,19 @@
             }
         }
 
-        // Obtener todos los usuarios (JSON + localStorage)
         obtenerTodosLosUsuarios() {
             return [...this.usuariosJSON, ...this.usuariosLocalStorage];
         }
 
-        // Verificar si un email ya existe
         emailExiste(email) {
             const emailLower = email.toLowerCase().trim();
             const todosUsuarios = this.obtenerTodosLosUsuarios();
             return todosUsuarios.some(user => user.email.toLowerCase() === emailLower);
         }
 
-        // Registrar nuevo usuario
         registrarUsuario(datosUsuario) {
             const emailLower = datosUsuario.email.toLowerCase().trim();
 
-            // Verificar si ya existe
             if (this.emailExiste(emailLower)) {
                 return {
                     exito: false,
@@ -68,21 +60,18 @@
                 };
             }
 
-            // Crear objeto de usuario con timestamp
             const nuevoUsuario = {
                 id: this.generarId(),
                 nombre: datosUsuario.nombre.trim(),
                 apellido: datosUsuario.apellido.trim(),
                 email: emailLower,
-                password: datosUsuario.password, // En producción: NUNCA hacer esto, usar hash
+                password: datosUsuario.password,
                 fechaRegistro: new Date().toISOString(),
                 activo: true
             };
 
-            // Agregar a localStorage
             this.usuariosLocalStorage.push(nuevoUsuario);
             
-            // Guardar en localStorage
             if (this.guardarUsuariosLocalStorage()) {
                 console.log('✅ Usuario registrado:', nuevoUsuario.email);
                 return {
@@ -91,7 +80,6 @@
                     usuario: nuevoUsuario
                 };
             } else {
-                // Revertir si falla el guardado
                 this.usuariosLocalStorage.pop();
                 return {
                     exito: false,
@@ -100,7 +88,6 @@
             }
         }
 
-        // Validar login (JSON + localStorage)
         validarLogin(email, password) {
             const emailLower = email.toLowerCase().trim();
             const todosUsuarios = this.obtenerTodosLosUsuarios();
@@ -112,7 +99,6 @@
             );
 
             if (usuarioValido) {
-                // Determinar origen del usuario
                 const esDeJSON = this.usuariosJSON.some(u => u.email === usuarioValido.email);
                 
                 return {
@@ -129,12 +115,29 @@
             };
         }
 
-        // Generar ID único
+        // ===== NUEVA FUNCIONALIDAD: RESET PASSWORD =====
+        verificarEmailParaReset(email) {
+            const emailLower = email.toLowerCase().trim();
+            
+            if (this.emailExiste(emailLower)) {
+                console.log('✅ Email válido para reset:', emailLower);
+                return {
+                    exito: true,
+                    mensaje: 'Se ha enviado un correo a tu casilla con las instrucciones para restablecer tu contraseña.'
+                };
+            } else {
+                console.log('❌ Email no encontrado:', emailLower);
+                return {
+                    exito: false,
+                    mensaje: 'El mail indicado no forma parte de nuestra base de datos.'
+                };
+            }
+        }
+
         generarId() {
             return 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
         }
 
-        // Obtener estadísticas
         obtenerEstadisticas() {
             return {
                 totalUsuarios: this.obtenerTodosLosUsuarios().length,
@@ -143,7 +146,6 @@
             };
         }
 
-        // Limpiar usuarios de localStorage (útil para testing)
         limpiarLocalStorage() {
             try {
                 localStorage.removeItem(STORAGE_KEY);
@@ -156,7 +158,6 @@
             }
         }
 
-        // Exportar usuarios de localStorage (para backup)
         exportarUsuarios() {
             return {
                 fecha: new Date().toISOString(),
@@ -165,44 +166,45 @@
         }
     }
 
-    // ===== INSTANCIA GLOBAL DEL GESTOR =====
     const userManager = new UserManager();
-    
-    // Exponer al objeto window para acceso global
     window.UserManager = userManager;
 
     // ===== INTEGRACIÓN CON form-validations.js =====
     
-    // Escuchar cuando se carguen los usuarios del JSON
     document.addEventListener('usuariosJSONCargados', (event) => {
         userManager.setUsuariosJSON(event.detail.usuarios);
     });
 
-    // Escuchar evento de registro
     document.addEventListener('intentoRegistro', (event) => {
         const datosUsuario = event.detail;
         const resultado = userManager.registrarUsuario(datosUsuario);
         
-        // Disparar evento con el resultado
         document.dispatchEvent(new CustomEvent('resultadoRegistro', {
             detail: resultado
         }));
     });
 
-    // Escuchar evento de login
     document.addEventListener('intentoLogin', (event) => {
         const { email, password } = event.detail;
         const resultado = userManager.validarLogin(email, password);
         
-        // Disparar evento con el resultado
         document.dispatchEvent(new CustomEvent('resultadoLogin', {
+            detail: resultado
+        }));
+    });
+
+    // ===== NUEVO: EVENTO PARA RESET PASSWORD =====
+    document.addEventListener('intentoResetPassword', (event) => {
+        const { email } = event.detail;
+        const resultado = userManager.verificarEmailParaReset(email);
+        
+        document.dispatchEvent(new CustomEvent('resultadoResetPassword', {
             detail: resultado
         }));
     });
 
     // ===== FUNCIONES DE UTILIDAD =====
     
-    // Mostrar estadísticas en consola
     window.mostrarEstadisticasUsuarios = function() {
         const stats = userManager.obtenerEstadisticas();
         console.log('📊 ESTADÍSTICAS DE USUARIOS:');
@@ -220,7 +222,6 @@
         }
     };
 
-    // Limpiar localStorage
     window.limpiarUsuariosRegistrados = function() {
         if (confirm('⚠️ ¿Estás seguro de que querés eliminar todos los usuarios registrados?')) {
             userManager.limpiarLocalStorage();
@@ -229,12 +230,10 @@
         }
     };
 
-    // Exportar usuarios
     window.exportarUsuariosRegistrados = function() {
         const datos = userManager.exportarUsuarios();
         const json = JSON.stringify(datos, null, 2);
         
-        // Crear blob y descargar
         const blob = new Blob([json], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -246,7 +245,6 @@
         console.log('💾 Backup descargado correctamente');
     };
 
-    // ===== INICIALIZACIÓN =====
     document.addEventListener('DOMContentLoaded', () => {
         console.log('🔐 Sistema de registro simulado cargado');
         console.log('💡 Comandos disponibles en consola:');
@@ -254,13 +252,11 @@
         console.log('  - limpiarUsuariosRegistrados()');
         console.log('  - exportarUsuariosRegistrados()');
         
-        // Mostrar estadísticas iniciales
         setTimeout(() => {
             mostrarEstadisticasUsuarios();
         }, 1000);
     });
 
-    // ===== VALIDACIÓN DE DISPONIBILIDAD DE LOCALSTORAGE =====
     function testLocalStorage() {
         try {
             const test = '__localStorage_test__';
