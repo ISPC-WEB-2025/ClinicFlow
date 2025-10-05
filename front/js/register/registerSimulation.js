@@ -1,5 +1,4 @@
-// registerSimulation.js - Simulación de registro y persistencia
-// ACTUALIZADO: Soporte para reset de contraseña
+// registerSimulation.js - Sistema completo de usuarios con perfiles editables
 
 (function() {
     'use strict';
@@ -60,14 +59,28 @@
                 };
             }
 
+            // Usuario nuevo con estructura completa
             const nuevoUsuario = {
                 id: this.generarId(),
                 nombre: datosUsuario.nombre.trim(),
                 apellido: datosUsuario.apellido.trim(),
                 email: emailLower,
                 password: datosUsuario.password,
+                telefono: '',
+                dni: '',
                 fechaRegistro: new Date().toISOString(),
-                activo: true
+                activo: true,
+                rol: 'Usuario',
+                institucion: '',
+                especialidad: '',
+                matricula: '',
+                departamento: '',
+                estadisticas: {
+                    pacientes: 0,
+                    consultas: 0,
+                    horasServicio: 0,
+                    calificacion: 5.0
+                }
             };
 
             this.usuariosLocalStorage.push(nuevoUsuario);
@@ -115,7 +128,102 @@
             };
         }
 
-        // ===== NUEVA FUNCIONALIDAD: RESET PASSWORD =====
+        // ===== OBTENER USUARIO POR EMAIL =====
+        obtenerUsuarioPorEmail(email) {
+            const emailLower = email.toLowerCase().trim();
+            const todosUsuarios = this.obtenerTodosLosUsuarios();
+            
+            console.log('🔍 Buscando usuario:', emailLower);
+            console.log('📋 Total usuarios disponibles:', todosUsuarios.length);
+            
+            const usuario = todosUsuarios.find(
+                user => user.email.toLowerCase() === emailLower
+            );
+
+            if (usuario) {
+                const esDeJSON = this.usuariosJSON.some(u => u.email === usuario.email);
+                console.log('✅ Usuario encontrado:', usuario.email, '(Origen:', esDeJSON ? 'JSON' : 'localStorage', ')');
+                return {
+                    exito: true,
+                    usuario: usuario,
+                    origen: esDeJSON ? 'JSON' : 'localStorage'
+                };
+            }
+
+            console.log('❌ Usuario no encontrado:', emailLower);
+            return {
+                exito: false,
+                mensaje: 'Usuario no encontrado'
+            };
+        }
+
+        // ===== ACTUALIZAR PERFIL DE USUARIO =====
+        actualizarPerfil(email, datosActualizados) {
+            const emailLower = email.toLowerCase().trim();
+            
+            console.log('💾 Actualizando perfil de:', emailLower);
+            console.log('📝 Datos a actualizar:', datosActualizados);
+            
+            // Verificar si el usuario es del JSON
+            const esDelJSON = this.usuariosJSON.some(u => u.email.toLowerCase() === emailLower);
+            
+            if (esDelJSON) {
+                // Usuario del JSON: crear/actualizar copia en localStorage
+                let usuarioEnLS = this.usuariosLocalStorage.find(
+                    u => u.email.toLowerCase() === emailLower
+                );
+
+                const usuarioJSON = this.usuariosJSON.find(
+                    u => u.email.toLowerCase() === emailLower
+                );
+
+                if (!usuarioEnLS) {
+                    // Crear copia completa del JSON en localStorage
+                    usuarioEnLS = JSON.parse(JSON.stringify(usuarioJSON));
+                    this.usuariosLocalStorage.push(usuarioEnLS);
+                    console.log('📋 Copia del usuario JSON creada en localStorage');
+                }
+
+                // Actualizar datos
+                Object.assign(usuarioEnLS, datosActualizados);
+                usuarioEnLS.fechaActualizacion = new Date().toISOString();
+
+                if (this.guardarUsuariosLocalStorage()) {
+                    console.log('✅ Perfil actualizado (JSON → localStorage)');
+                    return {
+                        exito: true,
+                        mensaje: 'Perfil actualizado correctamente',
+                        usuario: usuarioEnLS
+                    };
+                }
+            } else {
+                // Usuario de localStorage: actualizar directamente
+                const index = this.usuariosLocalStorage.findIndex(
+                    u => u.email.toLowerCase() === emailLower
+                );
+
+                if (index !== -1) {
+                    Object.assign(this.usuariosLocalStorage[index], datosActualizados);
+                    this.usuariosLocalStorage[index].fechaActualizacion = new Date().toISOString();
+
+                    if (this.guardarUsuariosLocalStorage()) {
+                        console.log('✅ Perfil actualizado (localStorage)');
+                        return {
+                            exito: true,
+                            mensaje: 'Perfil actualizado correctamente',
+                            usuario: this.usuariosLocalStorage[index]
+                        };
+                    }
+                }
+            }
+
+            return {
+                exito: false,
+                mensaje: 'Error al actualizar el perfil'
+            };
+        }
+
+        // ===== RESET PASSWORD =====
         verificarEmailParaReset(email) {
             const emailLower = email.toLowerCase().trim();
             
@@ -169,7 +277,7 @@
     const userManager = new UserManager();
     window.UserManager = userManager;
 
-    // ===== INTEGRACIÓN CON form-validations.js =====
+    // ===== EVENTOS =====
     
     document.addEventListener('usuariosJSONCargados', (event) => {
         userManager.setUsuariosJSON(event.detail.usuarios);
@@ -193,12 +301,31 @@
         }));
     });
 
-    // ===== NUEVO: EVENTO PARA RESET PASSWORD =====
     document.addEventListener('intentoResetPassword', (event) => {
         const { email } = event.detail;
         const resultado = userManager.verificarEmailParaReset(email);
         
         document.dispatchEvent(new CustomEvent('resultadoResetPassword', {
+            detail: resultado
+        }));
+    });
+
+    // ===== EVENTOS PARA PERFIL =====
+    
+    document.addEventListener('cargarPerfilUsuario', (event) => {
+        const { email } = event.detail;
+        const resultado = userManager.obtenerUsuarioPorEmail(email);
+        
+        document.dispatchEvent(new CustomEvent('perfilUsuarioCargado', {
+            detail: resultado
+        }));
+    });
+
+    document.addEventListener('actualizarPerfilUsuario', (event) => {
+        const { email, datos } = event.detail;
+        const resultado = userManager.actualizarPerfil(email, datos);
+        
+        document.dispatchEvent(new CustomEvent('perfilUsuarioActualizado', {
             detail: resultado
         }));
     });
@@ -246,7 +373,7 @@
     };
 
     document.addEventListener('DOMContentLoaded', () => {
-        console.log('🔐 Sistema de registro simulado cargado');
+        console.log('🔐 Sistema de usuarios completo cargado');
         console.log('💡 Comandos disponibles en consola:');
         console.log('  - mostrarEstadisticasUsuarios()');
         console.log('  - limpiarUsuariosRegistrados()');

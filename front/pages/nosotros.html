@@ -16,21 +16,22 @@
 			crossorigin="anonymous"
 		/>
 
-		<link rel="stylesheet" href="./css/styles.css" />
-		<link rel="stylesheet" href="./css/index.css" />
-		<link rel="stylesheet" href="./css/nosotros.css" />
+		<link rel="stylesheet" href="../css/styles.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/nosotros.css" />
 
 		<title>ClinicFlow</title>
 	</head>
 	<body class="bg-light">
-		<!-- HEADER COMIENZO -->
-		<div id="header-placeholder"></div>
-		<!-- HEADER FIN -->
+		<!-- HEADER -->
+		<header class="navbar navbar-expand-lg navbar-light fixed-top" id="header-placeholder"></header>
+
+		<!-- MAIN INICIO -->
 		<main>
 			<!-- SECCION BANNER INICIO-->
 			<section id="banner">
 				<img
-					src="img/banner.png"
+					src="../img/banner.png"
 					alt="Banner con iconos médicos y tecnológicos"
 				/>
 			</section>
@@ -119,19 +120,19 @@
 			</section>
 		</main>
 
-	<div id="footer-placeholder"></div>
+		<!-- FOOTER -->
+		<footer id="footer-placeholder" class="footer "></footer>
 
 		<!--SCRIPTS INICIO-->
-		<!-- SCRIPTS INICIO -->
 		<!-- FontAwesome debe cargarse primero -->
 		<script
 			src="https://kit.fontawesome.com/d8c2b7ce4c.js"
 			crossorigin="anonymous"
 		></script>
-		
+
 		<!-- Layout Manager debe cargarse ANTES de Bootstrap para evitar flash -->
-		<script src="./js/layout.js"></script>
-		<script src="./js/team.js"></script>
+		<script src="../js/layout.js"></script>
+		<script src="../js/carousels/team.js"></script>
 		<script
 			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 			integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -142,10 +143,13 @@
 			integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
 			crossorigin="anonymous"
 		></script>
-		
-		<script src="./js/form-builder.js"></script>
-		<script src="./js/registerSimulation.js"></script>
-<script type="module" src="./js/validations/form-validations.js"></script>
+
+		<script src="../js/forms/form-builder.js"></script>
+		<script src="../js/register/registerSimulation.js"></script>
+		<script
+			type="module"
+			src="../js/forms/validations/form-validations.js"
+		></script>
 		<!--SCRIPTS FIN-->
 	</body>
 </html>

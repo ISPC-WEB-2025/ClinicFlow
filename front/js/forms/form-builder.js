@@ -12,7 +12,7 @@ class FormBuilder {
   // Cargar configuración de campos desde JSON
   async loadFieldsConfig() {
     try {
-      const response = await fetch('./data/formFields.json');
+      const response = await fetch('../data/formFields.json');
       if (!response.ok) {
         throw new Error('No se pudo cargar formFields.json');
       }

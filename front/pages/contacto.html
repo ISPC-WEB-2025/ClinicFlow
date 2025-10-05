@@ -15,22 +15,26 @@
 			integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
 			crossorigin="anonymous"
 		/>
-		<link rel="stylesheet" href="./css/styles.css" />
-		<link rel="stylesheet" href="./css/contacto.css" />
+		<link rel="stylesheet" href="../css/styles.css" />
+		<link rel="stylesheet" href="../css/contacto.css" />
 		<title>ClinicFlow - Contacto</title>
 	</head>
 
 	<body class="bg-light">
-		<!-- HEADER COMIENZO -->
-		<div id="header-placeholder"></div>
-		<!-- HEADER FIN -->
+		<!-- HEADER -->
+		<header
+			class="navbar navbar-expand-lg navbar-light fixed-top"
+			id="header-placeholder"
+		></header>
+
+		<!-- MAIN INICIO -->
 
 		<main id="contacto">
 			<div class="contenedor-general">
 				<div class="contenedor-imagen">
 					<img
 						class="imagen-fondo"
-						src="img/fondo-form.jpg"
+						src="../img/fondo-form.jpg"
 						alt="Fondo abstracto"
 						title="Imagen de fondo abstracto"
 					/>
@@ -179,17 +183,18 @@
 			</div>
 		</main>
 
-	<div id="footer-placeholder"></div>
-		<!--SCRIPTS INICIO-->
+		<!-- FOOTER -->
+		<footer id="footer-placeholder" class="footer"></footer>
 		<!-- SCRIPTS INICIO -->
 		<!-- FontAwesome debe cargarse primero -->
 		<script
 			src="https://kit.fontawesome.com/d8c2b7ce4c.js"
 			crossorigin="anonymous"
 		></script>
-		
+
 		<!-- Layout Manager debe cargarse ANTES de Bootstrap para evitar flash -->
-		<script src="./js/layout.js"></script>
+		<script src="../js/layout.js"></script>
+		<script src="../js/register/json-loader.js"></script>
 		<script
 			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 			integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -200,10 +205,13 @@
 			integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
 			crossorigin="anonymous"
 		></script>
-	
-		<script src="./js/form-builder.js"></script>
-		<script src="./js/registerSimulation.js"></script>
-<script type="module" src="./js/validations/form-validations.js"></script>
+		<script src="../js/register/registerSimulation.js"></script>
+		<script src="../js/forms/form-builder.js"></script>
+
+		<script
+			type="module"
+			src="../js/forms/validations/form-validations.js"
+		></script>
 		<!--SCRIPTS FIN-->
 	</body>
 </html>

@@ -2,9 +2,6 @@
 UX 
 
 
--nosotros: hover en cards
-
-
 MAILS:
 -enviar mail de registro exitoso a clinicflow
 - RESET PASSWORD
@@ -20,3 +17,5 @@ UI
 - Adaptar mayor cantidad de codigo a BT
 - mensaje de cerrar sesion no alert, sino una personalizada.
 REFACTOR CODE
+
+

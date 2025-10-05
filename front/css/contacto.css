@@ -10,7 +10,6 @@ main#contacto {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     margin: 0;
     padding: 0;
     position: relative;
@@ -44,7 +43,7 @@ main#contacto {
     backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
-    margin-top: 10rem;
+    margin-top: 4rem;
     position: relative;
     z-index: 2;
 }
@@ -187,6 +186,8 @@ button[type="submit"]:active {
 .mb-3 {
     margin-bottom: 1.5rem !important;
 }
+
+
 
 /* Responsive */
 @media (max-width: 768px) {

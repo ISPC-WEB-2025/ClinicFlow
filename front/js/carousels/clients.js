@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
     </header>
 
-    <div id="clientsCarousel" class="carousel slide" data-bs-ride="false">
+    <div id="clientsCarousel" class="carousel slide mb-4" data-bs-ride="false">
         <div class="carousel-inner" id="carousel-inner">
             ${generateCarouselItems(clients)}
         </div>

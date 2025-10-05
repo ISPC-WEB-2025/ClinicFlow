@@ -19,16 +19,14 @@
 		<link rel="stylesheet" href="./css/styles.css" />
 		<link rel="stylesheet" href="./css/index.css" />
 
-		
-
 		<title>ClinicFlow - Inicio</title>
 	</head>
 	<body class="bg-light">
-		<!-- HEADER: Se insertará automáticamente aquí -->
-		<div id="header-placeholder"></div>
+		<!-- HEADER -->
+		<header class="navbar navbar-expand-lg navbar-light fixed-top" id="header-placeholder"></header>
 
 		<!-- MAIN INICIO -->
-		<main>
+		<main class="mb-8">
 			<!-- SECCION BANNER INICIO-->
 			<section id="banner">
 				<img
@@ -40,7 +38,7 @@
 						<i class="fa-solid fa-file-invoice"></i>
 						<div>
 							<h3>Gestión Centralizada de Pacientes</h3>
-							<p> Todo sobre tus pacientes, en un solo lugar</p>
+							<p>Todo sobre tus pacientes, en un solo lugar</p>
 						</div>
 					</article>
 					<article>
@@ -70,7 +68,7 @@
 				</div>
 			</section>
 			<!-- SECCION BANNER FIN-->
-			
+
 			<!-- SECCION HERO INICIO-->
 			<section id="hero" class="text-center jumbotron">
 				<h1 class="display-5 fw-bold">ClinicFlow</h1>
@@ -90,7 +88,7 @@
 						class="d-flex align-items-center gap-4 d-sm-flex justify-content-sm-center"
 					>
 						<a
-							href="nosotros.html"
+							href="pages/nosotros.html"
 							class="btn btn-primary btn-lg px-4 gap-3"
 						>
 							Conocenos
@@ -107,15 +105,15 @@
 				</div>
 			</section>
 			<!-- SECCION HERO FIN-->
-			
+
 			<!-- SECCION CLIENTES INICIO -->
-			<section id="clients" class="mb-4"></section>
+			<section id="clients" class="mb-8"></section>
 			<!-- SECCION CLIENTES FIN-->
 		</main>
 		<!-- MAIN FIN -->
 
-		<!-- FOOTER: Se insertará automáticamente aquí -->
-		<div id="footer-placeholder"></div>
+		<!-- FOOTER -->
+		<footer id="footer-placeholder" class="footer "></footer>
 
 		<!-- SCRIPTS INICIO -->
 		<!-- FontAwesome debe cargarse primero -->
@@ -123,10 +121,10 @@
 			src="https://kit.fontawesome.com/d8c2b7ce4c.js"
 			crossorigin="anonymous"
 		></script>
-		
+
 		<!-- Layout Manager debe cargarse ANTES de Bootstrap para evitar flash -->
 		<script src="./js/layout.js"></script>
-		
+
 		<!-- Bootstrap -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -138,12 +136,15 @@
 			integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
 			crossorigin="anonymous"
 		></script>
-		
+
 		<!-- Scripts específicos de la página -->
-		<script src="./js/clients.js"></script>
-		<script src="./js/form-builder.js"></script>
-		<script src="./js/registerSimulation.js"></script>
-<script type="module" src="./js/validations/form-validations.js"></script>
+		<script src="./js/carousels/clients.js"></script>
+		<script src="./js/forms/form-builder.js"></script>
+		<script src="./js/register/registerSimulation.js"></script>
+		<script
+			type="module"
+			src="./js/forms/validations/form-validations.js"
+		></script>
 		<!-- SCRIPTS FIN -->
 	</body>
 </html>

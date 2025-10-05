@@ -8,6 +8,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	min-height: 100vh;
 }
 
 /* ========================================
@@ -122,14 +123,6 @@ header span.navbar-brand {
 	display: none;
 }
 
-/* ========================================
-   PLACEHOLDERS DE LAYOUT
-   ======================================== */
-#header-placeholder,
-#footer-placeholder {
-	/* Los placeholders no necesitan estilos especiales */
-	/* El contenido se insertará dinámicamente */
-}
 
 /* ========================================
    MENÚ DE USUARIO
@@ -526,11 +519,6 @@ main {
 	min-height: calc(100vh - 144px); /* 100vh - (header + footer) */
 }
 
-/* Ajustar si el header no es fixed */
-header:not(.fixed-top) + main,
-#header-placeholder:not(:has(.fixed-top)) + main {
-	padding-top: 0;
-}
 
 /* ========================================
    RESPONSIVE ADJUSTMENTS

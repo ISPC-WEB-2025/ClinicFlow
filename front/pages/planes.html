@@ -16,15 +16,16 @@
 			crossorigin="anonymous"
 		/>
 
-		<link rel="stylesheet" href="./css/styles.css" />
-		<link rel="stylesheet" href="./css/planes.css" />
+		<link rel="stylesheet" href="../css/styles.css" />
+		<link rel="stylesheet" href="../css/planes.css" />
 
 		<title>ClinicFlow</title>
 	</head>
 	<body class="bg-light">
-		<!-- HEADER COMIENZO -->
-		<div id="header-placeholder"></div>
-		<!-- HEADER FIN -->
+		<!-- HEADER -->
+		<header class="navbar navbar-expand-lg navbar-light fixed-top" id="header-placeholder"></header>
+
+		<!-- MAIN INICIO -->
 		<main>
 			<div class="container py-5">
 				<h2 class="text-center mb-5">Nuestros Planes</h2>
@@ -35,7 +36,7 @@
 					<div class="col">
 						<div class="card h-100 text-center">
 							<img
-								src="img/plan basico.jpg"
+								src="../img/plan basico.jpg"
 								class="card-img-top mb-3"
 								alt="Imagen representativa del Plan Básico"
 							/>
@@ -91,7 +92,7 @@
 					<div class="col">
 						<div class="card h-100 text-center">
 							<img
-								src="img/plan estandar.jpg"
+								src="../img/plan estandar.jpg"
 								class="card-img-top mb-3"
 								alt="Imagen representativa del Plan Estándar"
 							/>
@@ -150,7 +151,7 @@
 					<div class="col">
 						<div class="card h-100 text-center">
 							<img
-								src="img/plan premium.jpg"
+								src="../img/plan premium.jpg"
 								class="card-img-top mb-3"
 								alt="Imagen representativa del Plan Premium"
 							/>
@@ -207,7 +208,7 @@
 					<div class="col">
 						<div class="card h-100 text-center">
 							<img
-								src="img/plan personalizado.jpg"
+								src="../img/plan personalizado.jpg"
 								class="card-img-top mb-3"
 								alt="Imagen representativa del Plan Personalizado"
 							/>
@@ -421,7 +422,7 @@
 							>
 								Cerrar
 							</button>
-							<a href="#" class="btn btn-primary">Contratar</a>
+							<a href="contacto.html" class="btn btn-primary">Contratar</a>
 						</div>
 					</div>
 				</div>
@@ -597,7 +598,7 @@
 							>
 								Cerrar
 							</button>
-							<a href="#" class="btn btn-primary">Contratar</a>
+							<a href="contacto.html" class="btn btn-primary">Contratar</a>
 						</div>
 					</div>
 				</div>
@@ -773,7 +774,7 @@
 							>
 								Cerrar
 							</button>
-							<a href="#" class="btn btn-primary">Contratar</a>
+							<a href="contacto.html" class="btn btn-primary">Contratar</a>
 						</div>
 					</div>
 				</div>
@@ -949,7 +950,7 @@
 							>
 								Cerrar
 							</button>
-							<a href="#" class="btn btn-primary"
+							<a href="contacto.html" class="btn btn-primary"
 								>Solicitar cotización</a
 							>
 						</div>
@@ -958,7 +959,8 @@
 			</div>
 		</main>
 
-		<div id="footer-placeholder"></div>
+	<!-- FOOTER -->
+		<footer id="footer-placeholder" class="footer "></footer>
 
 		<!--SCRIPTS INICIO-->
 		<!-- SCRIPTS INICIO -->
@@ -967,9 +969,9 @@
 			src="https://kit.fontawesome.com/d8c2b7ce4c.js"
 			crossorigin="anonymous"
 		></script>
-		
+
 		<!-- Layout Manager debe cargarse ANTES de Bootstrap para evitar flash -->
-		<script src="./js/layout.js"></script>
+		<script src="../js/layout.js"></script>
 		<script
 			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 			integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -980,10 +982,13 @@
 			integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
 			crossorigin="anonymous"
 		></script>
-		
-		<script src="./js/form-builder.js"></script>
-		<script src="./js/registerSimulation.js"></script>
-<script type="module" src="./js/validations/form-validations.js"></script>
+
+		<script src="../js/forms/form-builder.js"></script>
+		<script src="../js/register/registerSimulation.js"></script>
+		<script
+			type="module"
+			src="../js/forms/validations/form-validations.js"
+		></script>
 		<!--SCRIPTS FIN-->
 	</body>
 </html>

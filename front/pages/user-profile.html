@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+			crossorigin="anonymous"
+		/>
+
+		<link rel="stylesheet" href="../css/styles.css" />
+		<link rel="stylesheet" href="../css/userProfile.css" />
+
+		<title>Mi Perfil | ClinicFlow</title>
+	</head>
+	<body class="bg-light">
+		<!-- HEADER -->
+		<header
+			class="navbar navbar-expand-lg navbar-light fixed-top"
+			id="header-placeholder"
+		></header>
+
+		<!-- MAIN -->
+		<main>
+			<!-- BANNER -->
+			<section id="profile-banner">
+				<img src="../img/banner.png" alt="Banner perfil de usuario" />
+				<div class="profile-banner-overlay">
+					<h1 class="profile-banner-title">Mi Perfil</h1>
+				</div>
+			</section>
+
+			<!-- CONTENIDO DEL PERFIL -->
+			<section id="profile-content">
+				<!-- Información del usuario -->
+				<article class="profile-info-card">
+					<header class="profile-header">
+						<div class="profile-avatar">
+							<i class="fa-solid fa-user-doctor"></i>
+						</div>
+						<div class="profile-header-text">
+							<h2 class="profile-name" id="userName">
+								Cargando...
+							</h2>
+							<p class="profile-role" id="userRole">Usuario</p>
+						</div>
+						<button
+							class="btn btn-outline-primary btn-edit"
+							id="editProfileBtn"
+						>
+							<i class="fa-solid fa-pen"></i>
+							<span>Editar perfil</span>
+						</button>
+					</header>
+
+					<div class="profile-details">
+						<div class="detail-group">
+							<h3 class="divider-title">Información Personal</h3>
+							<div class="detail-grid">
+								<div class="detail-item">
+									<i class="fa-solid fa-envelope"></i>
+									<div>
+										<span class="detail-label"
+											>Correo electrónico</span
+										>
+										<span
+											class="detail-value"
+											id="userEmail"
+											>correo@ejemplo.com</span
+										>
+									</div>
+								</div>
+								<div class="detail-item">
+									<i class="fa-solid fa-phone"></i>
+									<div>
+										<span class="detail-label"
+											>Teléfono</span
+										>
+										<span
+											class="detail-value"
+											id="userPhone"
+											>No especificado</span
+										>
+									</div>
+								</div>
+								<div class="detail-item">
+									<i class="fa-solid fa-id-card"></i>
+									<div>
+										<span class="detail-label">DNI</span>
+										<span class="detail-value" id="userDNI"
+											>No especificado</span
+										>
+									</div>
+								</div>
+								<div class="detail-item">
+									<i class="fa-solid fa-calendar"></i>
+									<div>
+										<span class="detail-label"
+											>Fecha de registro</span
+										>
+										<span
+											class="detail-value"
+											id="userRegDate"
+											>01/01/2024</span
+										>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="detail-group">
+							<h3 class="divider-title">
+								Información Profesional
+							</h3>
+							<div class="detail-grid">
+								<div class="detail-item">
+									<i class="fa-solid fa-hospital"></i>
+									<div>
+										<span class="detail-label"
+											>Institución</span
+										>
+										<span
+											class="detail-value"
+											id="userInstitution"
+											>No especificado</span
+										>
+									</div>
+								</div>
+								<div class="detail-item">
+									<i class="fa-solid fa-user-md"></i>
+									<div>
+										<span class="detail-label"
+											>Especialidad</span
+										>
+										<span
+											class="detail-value"
+											id="userSpecialty"
+											>No especificado</span
+										>
+									</div>
+								</div>
+								<div class="detail-item">
+									<i class="fa-solid fa-certificate"></i>
+									<div>
+										<span class="detail-label"
+											>Matrícula profesional</span
+										>
+										<span
+											class="detail-value"
+											id="userLicense"
+											>No especificado</span
+										>
+									</div>
+								</div>
+								<div class="detail-item">
+									<i class="fa-solid fa-building"></i>
+									<div>
+										<span class="detail-label"
+											>Departamento</span
+										>
+										<span
+											class="detail-value"
+											id="userDepartment"
+											>No especificado</span
+										>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</article>
+
+				<!-- Tarjetas de acciones rápidas -->
+				<aside class="quick-actions">
+					<h2 class="divider-title">Acciones Rápidas</h2>
+					<div class="action-cards">
+						<article class="action-card">
+							<i class="fa-solid fa-key"></i>
+							<h3>Cambiar contraseña</h3>
+							<p>
+								Actualiza tu contraseña para mantener tu cuenta
+								segura
+							</p>
+							<button
+								class="btn btn-primary"
+								id="changePasswordBtn"
+							>
+								<i class="fa-solid fa-lock"></i>
+								Cambiar contraseña
+							</button>
+						</article>
+
+						<article class="action-card">
+							<i class="fa-solid fa-bell"></i>
+							<h3>Notificaciones</h3>
+							<p>Configura tus preferencias de notificaciones</p>
+							<button
+								class="btn btn-primary"
+								id="notificationsBtn"
+							>
+								<i class="fa-solid fa-gear"></i>
+								Configurar
+							</button>
+						</article>
+
+						<article class="action-card">
+							<i class="fa-solid fa-clock-rotate-left"></i>
+							<h3>Actividad reciente</h3>
+							<p>Revisa tu historial de acciones en el sistema</p>
+							<button class="btn btn-primary" id="activityBtn">
+								<i class="fa-solid fa-list"></i>
+								Ver actividad
+							</button>
+						</article>
+
+						<article class="action-card">
+							<i class="fa-solid fa-file-export"></i>
+							<h3>Exportar datos</h3>
+							<p>Descarga una copia de tu información personal</p>
+							<button class="btn btn-primary" id="exportBtn">
+								<i class="fa-solid fa-download"></i>
+								Descargar
+							</button>
+						</article>
+					</div>
+				</aside>
+
+				<!-- Estadísticas del usuario -->
+				<article class="user-stats">
+					<h2 class="divider-title">Estadísticas</h2>
+					<div class="stats-grid">
+						<div class="stat-card">
+							<i class="fa-solid fa-calendar-check"></i>
+							<div class="stat-content">
+								<span class="stat-value" id="statAppointments"
+									>0</span
+								>
+								<span class="stat-label"
+									>Consultas realizadas</span
+								>
+							</div>
+						</div>
+						<div class="stat-card">
+							<i class="fa-solid fa-clock"></i>
+							<div class="stat-content">
+								<span class="stat-value" id="statHours">0</span>
+								<span class="stat-label"
+									>Horas de servicio</span
+								>
+							</div>
+						</div>
+						<div class="stat-card">
+							<i class="fa-solid fa-star"></i>
+							<div class="stat-content">
+								<span class="stat-value" id="statRating"
+									>5.0</span
+								>
+								<span class="stat-label"
+									>Calificación promedio</span
+								>
+							</div>
+						</div>
+					</div>
+				</article>
+			</section>
+		</main>
+
+		<!-- FOOTER -->
+		<footer id="footer-placeholder" class="footer"></footer>
+
+		<!-- SCRIPTS -->
+		<!-- 1. FontAwesome primero (para los iconos) -->
+		<script
+			src="https://kit.fontawesome.com/d8c2b7ce4c.js"
+			crossorigin="anonymous"
+		></script>
+		
+		<!-- 2. Bootstrap antes de layout.js -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+			integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+			integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKkuIAvNWLzeN8tE5YBujZqJLB"
+			crossorigin="anonymous"
+		></script>
+		
+		<!-- 3. Layout después de Bootstrap -->
+		<script src="../js/layout.js"></script>
+		
+		<!-- 4. Sistema de usuarios y perfil -->
+		<script src="../js/register/registerSimulation.js"></script>
+		<script src="../js/register/json-loader.js"></script>
+		<script src="../js/userProfile.js"></script>
+	</body>
+</html>

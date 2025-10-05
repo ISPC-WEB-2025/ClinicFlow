@@ -29,32 +29,8 @@ import {
 import { registrarEventosGlobales } from './event-handlers.js';
 
 (function() {
-    let USUARIOS_VALIDOS = [];
     let validacionesInicializadas = false;
     let eventosRegistrados = false;
-
-    // ===== CARGAR USUARIOS DESDE JSON =====
-    async function cargarUsuarios() {
-        try {
-            const response = await fetch('./data/users.json');
-            if (!response.ok) {
-                throw new Error('No se pudo cargar users.json');
-            }
-            const data = await response.json();
-            USUARIOS_VALIDOS = data.usuarios || [];
-            console.log('Usuarios del JSON cargados:', USUARIOS_VALIDOS.length);
-            
-            document.dispatchEvent(new CustomEvent('usuariosJSONCargados', {
-                detail: { usuarios: USUARIOS_VALIDOS }
-            }));
-            
-            return true;
-        } catch (error) {
-            console.error('Error al cargar usuarios:', error);
-            USUARIOS_VALIDOS = [];
-            return false;
-        }
-    }
 
     // ===== REGISTRAR EVENTOS UNA SOLA VEZ =====
     function inicializarEventosGlobales() {
@@ -156,7 +132,6 @@ import { registrarEventosGlobales } from './event-handlers.js';
     });
 
     document.addEventListener('DOMContentLoaded', async () => {
-        await cargarUsuarios();
         inicializarEventosGlobales();
         
         setTimeout(async () => {

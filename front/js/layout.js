@@ -1,9 +1,8 @@
 // layout.js - Gestión centralizada de Header y Footer
 // Inserta y maneja dinámicamente el layout completo de la aplicación
-
 (function() {
     'use strict';
-
+    
     // ===== CONFIGURACIÓN =====
     const CONFIG = {
         sessionKeys: {
@@ -16,25 +15,69 @@
             footerPlaceholder: '#footer-placeholder'
         },
         pages: [
-            { name: 'Inicio', href: './index.html', icon: 'fa-solid fa-plus' },
-            { name: 'Nosotros', href: './nosotros.html', icon: 'fa-solid fa-plus' },
-            { name: 'Servicios', href: './servicios.html', icon: 'fa-solid fa-plus' },
-            { name: 'Planes', href: './planes.html', icon: 'fa-solid fa-plus' },
-            { name: 'Contacto', href: './contacto.html', icon: 'fa-solid fa-plus' }
+            { name: 'Inicio', href: 'index.html', icon: 'fa-solid fa-plus' },
+            { name: 'Nosotros', href: 'nosotros.html', icon: 'fa-solid fa-plus' },
+            { name: 'Servicios', href: 'servicios.html', icon: 'fa-solid fa-plus' },
+            { name: 'Planes', href: 'planes.html', icon: 'fa-solid fa-plus' },
+            { name: 'Contacto', href: 'contacto.html', icon: 'fa-solid fa-plus' }
         ]
     };
 
+    // ===== UTILIDADES DE RUTAS =====
+    
+    /**
+     * Detecta si estamos en la raíz o en una subcarpeta
+     * @returns {boolean} true si estamos en pages/, false si estamos en raíz
+     */
+    function estaEnSubcarpeta() {
+        const path = window.location.pathname;
+        return path.includes('/pages/');
+    }
+
+    /**
+     * Obtiene el prefijo de ruta según la ubicación actual
+     * @returns {string} '../' si estamos en subcarpeta, './' si estamos en raíz
+     */
+    function obtenerPrefijo() {
+        return estaEnSubcarpeta() ? '../' : './';
+    }
+
+    /**
+     * Construye una ruta absoluta según la página
+     * @param {string} pageName - Nombre de la página (ej: 'index.html', 'nosotros.html')
+     * @returns {string} Ruta completa y correcta
+     */
+    function construirRuta(pageName) {
+        const prefijo = obtenerPrefijo();
+        
+        // Si es index.html, siempre va a la raíz
+        if (pageName === 'index.html') {
+            return estaEnSubcarpeta() ? '../index.html' : './index.html';
+        }
+        
+        // Si estamos en raíz, agregar 'pages/'
+        if (!estaEnSubcarpeta()) {
+            return `./pages/${pageName}`;
+        }
+        
+        // Si estamos en pages/, usar ruta relativa simple
+        return `./${pageName}`;
+    }
+
     // ===== TEMPLATES HTML =====
     const TEMPLATES = {
-        header: (menuItems, ctaButtons) => `
-            <header class="navbar navbar-expand-lg navbar-light fixed-top">
+        header: (menuItems, ctaButtons) => {
+            const prefijo = obtenerPrefijo();
+            const homeUrl = estaEnSubcarpeta() ? '../index.html' : './index.html';
+            
+            return `
+            
                 <div class="container">
-                    <a href="index.html" class="logo">
+                    <a href="${homeUrl}" class="logo">
                         <span class="navbar-brand mb-0">ClinicFlow</span>
                         <i class="fa-solid fa-chevron-right icono-header left"></i>
                         <i class="fa-solid fa-chevron-right icono-header right"></i>
                     </a>
-
                     <!-- Botón hamburguesa para mobile -->
                     <button
                         class="navbar-toggler"
@@ -47,7 +90,6 @@
                     >
                         <i class="fas fa-bars"></i>
                     </button>
-
                     <!-- Contenido colapsable del navbar -->
                     <nav class="collapse navbar-collapse" id="navbarContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
@@ -56,26 +98,30 @@
                         </ul>
                     </nav>
                 </div>
-            </header>
-        `,
-
-        menuItem: (page, isActive) => `
+            
+            `;
+        },
+        
+        menuItem: (page, isActive, rutaCompleta) => `
             <li class="nav-item">
-                <a class="nav-link ${isActive ? 'active' : ''}" href="${page.href}">
+                <a class="nav-link ${isActive ? 'active' : ''}" href="${rutaCompleta}">
                     <i class="${page.icon}"></i>${page.name}
                 </a>
             </li>
         `,
-
-        userMenu: (nombreUsuario) => `
+        
+        userMenu: (nombreUsuario) => {
+            const perfilUrl = construirRuta('user-profile.html');
+            
+            return `
             <li class="nav-item dropdown ms-lg-3" id="user-menu">
                 <a class="nav-link dropdown-toggle user-menu-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                   
+                 
                     <span class="user-name">${nombreUsuario}</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end user-dropdown">
                     <li>
-                        <a class="dropdown-item" href="./perfil.html">
+                        <a class="dropdown-item" href="${perfilUrl}">
                             <i class="fa-solid fa-user"></i> Perfil
                         </a>
                     </li>
@@ -87,27 +133,33 @@
                     </li>
                 </ul>
             </li>
-        `,
+            `;
+        },
         
-        botonesPublicos: () => `
+        botonesPublicos: () => {
+            const loginUrl = construirRuta('login.html');
+            const registerUrl = construirRuta('register.html');
+            
+            return `
             <li class="nav-item ms-lg-3">
-                <a class="btn btn-outline-primary btn-header" href="./login.html">
+                <a class="btn btn-outline-primary btn-header" href="${loginUrl}">
                     <i class="fa-solid fa-right-to-bracket"></i>
                     <span class="btn-text">Iniciar Sesión</span>
                 </a>
             </li>
             <li class="nav-item ms-lg-2">
-                <a class="btn btn-primary btn-header" href="./register.html">
+                <a class="btn btn-primary btn-header" href="${registerUrl}">
                     <i class="fa-solid fa-user-plus"></i>
                     <span class="btn-text">Registrarse</span>
                 </a>
             </li>
-        `,
-
+            `;
+        },
+        
         footer: () => `
-            <footer class="footer mt-4">
+            
                 <p>Copyright © 2025: ClinicFlow - Servicios Web Profesionales.</p>
-            </footer>
+            
         `
     };
 
@@ -145,8 +197,9 @@
          */
         generarMenuItems() {
             return CONFIG.pages.map(page => {
-                const isActive = this.currentPage === page.href.replace('./', '');
-                return TEMPLATES.menuItem(page, isActive);
+                const rutaCompleta = construirRuta(page.href);
+                const isActive = this.currentPage === page.href;
+                return TEMPLATES.menuItem(page, isActive, rutaCompleta);
             }).join('');
         }
 
@@ -168,14 +221,14 @@
             const placeholder = document.querySelector(CONFIG.selectors.headerPlaceholder);
             
             if (!placeholder) {
-                console.error('❌ Header placeholder no encontrado');
+                console.error('Header placeholder no encontrado');
                 return;
             }
 
             const menuItems = this.generarMenuItems();
             const ctaButtons = this.generarBotonesCTA();
             const headerHTML = TEMPLATES.header(menuItems, ctaButtons);
-
+            
             placeholder.innerHTML = headerHTML;
 
             // Configurar eventos si el usuario está logueado
@@ -247,7 +300,8 @@
          */
         mostrarMensajeCierreSesion() {
             alert('Sesión cerrada exitosamente');
-            window.location.href = 'index.html';
+            const homeUrl = estaEnSubcarpeta() ? '../index.html' : './index.html';
+            window.location.href = homeUrl;
         }
 
         /**
@@ -315,5 +369,4 @@
     } else {
         init();
     }
-
 })();

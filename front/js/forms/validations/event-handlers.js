@@ -26,7 +26,7 @@ export function registrarEventosGlobales() {
             sessionStorage.setItem('userOrigen', resultado.origen);
             
             mostrarAlerta('success', `${resultado.mensaje} Redirigiendo...`, () => {
-                window.location.href = 'index.html';
+                window.location.href = '../index.html';
             });
         } else {
             mostrarAlerta('danger', resultado.mensaje);

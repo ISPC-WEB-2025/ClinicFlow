@@ -96,7 +96,7 @@ function mostrarError(message) {
  */
 async function cargarDatosEquipo() {
 	try {
-		const response = await fetch("./data/team.json");
+		const response = await fetch("../data/team.json");
 		
 		if (!response.ok) {
 			throw new Error(`HTTP error! status: ${response.status}`);

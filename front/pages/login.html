@@ -16,47 +16,47 @@
 			crossorigin="anonymous"
 		/>
 
-		<link rel="stylesheet" href="./css/styles.css" />
-		<link rel="stylesheet" href="./css/index.css" />
-		<link rel="stylesheet" href="./css/forms.css" />
+		<link rel="stylesheet" href="../css/styles.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/forms.css" />
 
 		<title>ClinicFlow</title>
 	</head>
 	<body class="bg-light">
-		<!-- HEADER COMIENZO -->
-	<div id="header-placeholder"></div>
-		<!-- HEADER FIN -->
+		<!-- HEADER -->
+		<header class="navbar navbar-expand-lg navbar-light fixed-top" id="header-placeholder"></header>
+
+		<!-- MAIN INICIO -->
 
 		<!-- MAIN INICIO -->
 
 		<main>
 			<section>
-				<h2 class="divider-title">Registrarse</h2>
+				<h2 class="divider-title">Login</h2>
 				<article id="formsType"></article>
 			</section>
 		</main>
 
 		<!-- MAIN FIN -->
-		<!-- FOOTER INICIO -->
-
-		<div id="footer-placeholder"></div>
-
-		<!-- FOOTER FIN -->
+		<!-- FOOTER -->
+		<footer id="footer-placeholder" class="footer "></footer>
 
 		<!-- SCRIPTS -->
-		 <!-- SCRIPTS INICIO -->
 		<!-- FontAwesome debe cargarse primero -->
 		<script
 			src="https://kit.fontawesome.com/d8c2b7ce4c.js"
 			crossorigin="anonymous"
 		></script>
-		
-		<!-- Layout Manager debe cargarse ANTES de Bootstrap para evitar flash -->
-		<script src="./js/layout.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"></script>
 
-		<script src="./js/form-builder.js"></script>
-		<script src="./js/registerSimulation.js"></script>
-<script type="module" src="./js/validations/form-validations.js"></script>
+		<!-- Layout Manager debe cargarse ANTES de Bootstrap para evitar flash -->
+		<script src="../js/layout.js"></script>
+		<script src="../js/register/json-loader.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"></script>
+			<script src="../js/register/registerSimulation.js"></script>	<script src="../js/forms/form-builder.js"></script>
+
+		<script
+			type="module"
+			src="../js/forms/validations/form-validations.js"
+		></script>
 	</body>
 </html>
