@@ -2,12 +2,6 @@
 UX 
 
 
-
--validacion de pass solo en register no en login
--REVISAR TEMA validacion DE PASS PORQUE SE VE MUY FEA LA ANIMACION CUANDO SE ABRE Y CIERRA AL FOCUS QUIZAS UN MENSAJITO? VER.
-
--pagina reset password, se amplia el input no deberia hacerlo (cuando mensaje de exito). deberia redirigir a home
-
 -nosotros: hover en cards
 
 

@@ -1,14 +1,18 @@
+/* ==== LAYOUT GENERAL ==== */
 section:not(#banner) {
 	margin: 0 8rem;
 	text-align: justify;
 }
-section#hero{
-    margin-top: 4rem;
+
+section#hero {
+	margin-top: 4rem;
 }
 
-p.lead:not(last-child) {
-    margin-bottom: 0;
+/* ==== TIPOGRAFÍA ==== */
+.lead:not(:last-child) {
+	margin-bottom: 0;
 }
+
 em {
 	color: var(--color-primary);
 	font-weight: 600;
@@ -25,111 +29,182 @@ h2.divider-title + p {
 	font-weight: 300;
 }
 
-/* ==== SECCION EQUIPO ==== */
+/* ==== SECCIÓN EQUIPO ==== */
 #team-grid {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
 	gap: 2rem;
 	padding: 0 6rem;
-	justify-content: center;
-    margin-bottom: 4rem;
+	justify-items: center;
+	margin-bottom: 4rem;
+	max-width: 1400px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
+/* Team Card */
 .team-card {
-	background-color: transparent;
+	background-color: white;
 	border: none;
 	border-radius: 0;
 	text-align: center;
-	border-bottom: var(--color-primary) 6px solid;
-	justify-self: center;
+	border-bottom: 6px solid var(--color-primary);
 	width: 100%;
 	max-width: 16rem;
-	
+	transition: all 0.3s ease;
+	position: relative;
+	overflow: hidden;
 }
 
+.team-card::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg, transparent, rgba(66, 133, 244, 0.1), transparent);
+	transition: left 0.5s ease;
+}
 
+.team-card:hover::before {
+	left: 100%;
+}
 
+.team-card:hover {
+	transform: translateY(-8px);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+	border-bottom-color: var(--color-secondary);
+}
+
+.team-card-link {
+	display: block;
+	text-decoration: none;
+	color: inherit;
+	transition: all 0.3s ease;
+}
+
+.team-card:hover .team-card-link {
+	color: var(--color-primary);
+}
+
+/* Team Info */
 .team-info {
-	padding: 0.8rem 1.3rem 1.5rem;
+	padding: 1.5rem 1.3rem;
 	min-height: 8rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	gap: 0.5rem;
 }
 
 .team-name {
-	font-size: 1rem;
+	font-size: 1.1rem;
 	margin-bottom: 0;
 	font-weight: 600;
+	transition: color 0.3s ease;
+}
+
+.team-card:hover .team-name {
+	color: var(--color-primary);
 }
 
 .team-role {
-	font-size: 0.8rem;
+	font-size: 0.85rem;
 	font-weight: 400;
 	line-height: 1.4;
 	color: var(--color-secondary);
-	margin-bottom: 1rem;
+	margin-bottom: 0;
+	transition: color 0.3s ease;
 }
 
+.team-card:hover .team-role {
+	color: var(--color-text-dark);
+}
 
-
+/* Social Links */
 .social-links {
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	gap: 0.8rem;
-	margin-top: 1rem;
+	padding: 1rem 1.3rem 1.5rem;
+	background-color: #f8f9fa;
+	transition: background-color 0.3s ease;
 }
 
-.social-links i {
+.team-card:hover .social-links {
+	background-color: #e9ecef;
+}
+
+.social-icon {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	width: 2rem;
-	height: 2rem;
-	background-color: #f5f5f5;
+	width: 2.2rem;
+	height: 2.2rem;
+	background-color: white;
 	color: var(--color-secondary);
 	border-radius: 50%;
 	transition: all 0.3s ease;
+	font-size: 1rem;
 }
 
-.social-links i:hover {
+.team-card:hover .social-icon {
 	background-color: var(--color-primary);
 	color: white;
-	transform: scale(1.1);
+	transform: scale(1.15) rotate(5deg);
 }
 
-/* Responsive */
+.social-icon:active {
+	transform: scale(1.05);
+}
+
+/* ==== RESPONSIVE ==== */
 @media (max-width: 1024px) {
 	#team-grid {
 		padding: 0 2rem;
+		gap: 1.5rem;
 	}
-	
 }
 
 @media (max-width: 768px) {
-	#team-grid {
-		grid-template-columns: repeat(2, 1fr);
-
-	}
-	.team-card {
-		width: calc(50% - 1rem);
-		min-width: 200px;
-	}
 	section:not(#banner) {
 		margin: 0 4rem;
+	}
+
+	#team-grid {
+		grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+		gap: 1.5rem;
+	}
+
+	.team-card {
+		max-width: 100%;
+	}
+
+	h2.divider-title + p {
+		margin: 0 1rem;
+		font-size: 1.1rem;
 	}
 }
 
 @media (max-width: 450px) {
+	section:not(#banner) {
+		margin: 0 1rem;
+	}
+
 	#team-grid {
 		grid-template-columns: 1fr;
 		padding: 0 1rem;
+		gap: 1.5rem;
 	}
+
 	.team-card {
-		width: 100%;
-		margin: 0 auto;
+		max-width: 20rem;
 	}
-	section:not(#banner) {
-		margin: 0 1rem;
+
+	h2.divider-title + p {
+		margin: 0;
+		font-size: 1rem;
 	}
 }
