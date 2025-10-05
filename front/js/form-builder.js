@@ -1,187 +1,93 @@
-// form-builder.js - Sistema dinámico para crear formularios de login y registro
+// form-builder.js - Sistema dinámico para crear formularios
+// ACTUALIZADO: Soporte para toggle de password y nombre completo
 
 class FormBuilder {
   constructor(containerId, formType) {
     this.container = document.getElementById(containerId);
     this.formType = formType; 
     this.form = null;
-    this.errors = {};
+    this.fieldsConfig = null;
   }
 
-  // Configuración de campos según tipo de formulario
-  getFieldsConfig() {
-    const configs = {
-      login: [
-        {
-          id: 'email',
-          type: 'email',
-          placeholder: 'Email',
-          icon: 'fa-envelope',
-          required: true,
-          validation: 'email'
-        },
-        {
-          id: 'password',
-          type: 'password',
-          placeholder: 'Contraseña',
-          icon: 'fa-lock',
-          required: true,
-          validation: 'password'
-        }
-      ],
-      register: [
-        {
-          id: 'nombre',
-          type: 'text',
-          placeholder: 'Nombre completo',
-          icon: 'fa-user-tie',
-          required: true,
-          validation: 'name'
-        },
-        {
-          id: 'telefono',
-          type: 'tel',
-          placeholder: 'Teléfono',
-          icon: 'fa-phone',
-          required: true,
-          validation: 'phone'
-        },
-        {
-          id: 'email',
-          type: 'email',
-          placeholder: 'Email',
-          icon: 'fa-envelope',
-          required: true,
-          validation: 'email'
-        },
-        {
-          id: 'password',
-          type: 'password',
-          placeholder: 'Contraseña',
-          icon: 'fa-lock',
-          required: true,
-          validation: 'password'
-        },
-        {
-          id: 'confirm-password',
-          type: 'password',
-          placeholder: 'Confirmar contraseña',
-          icon: 'fa-lock',
-          required: true,
-          validation: 'confirmPassword'
-        }
-      ],
-      contact: [
-        {
-          id: 'nombre',
-          type: 'text',
-          placeholder: 'Nombre',
-          icon: 'fa-user-tie',
-          required: true,
-          validation: 'name'
-        },
-        {
-          id: 'telefono',
-          type: 'tel',
-          placeholder: 'Teléfono',
-          icon: 'fa-phone',
-          required: true,
-          validation: 'phone'
-        },
-        {
-          id: 'email',
-          type: 'email',
-          placeholder: 'Email',
-          icon: 'fa-envelope',
-          required: true,
-          validation: 'email'
-        },
-        {
-          id: 'mensaje',
-          type: 'textarea',
-          placeholder: 'Mensaje',
-          icon: 'fa-pen-to-square',
-          required: true,
-          validation: 'message',
-          rows: 4
-        }
-      ]
-    };
-
-    return configs[this.formType] || [];
-  }
-
-  // Reglas de validación
-  validateField(field, value) {
-    const rules = {
-      name: (val) => {
-        if (!val || val.trim().length < 3) {
-          return 'El nombre debe tener al menos 3 caracteres';
-        }
-        if (!/^[a-záéíóúñA-ZÁÉÍÓÚÑ\s]+$/.test(val)) {
-          return 'El nombre solo puede contener letras';
-        }
-        return null;
-      },
-      email: (val) => {
-        if (!val) return 'El email es requerido';
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(val) ? null : 'Email inválido';
-      },
-      phone: (val) => {
-        if (!val) return 'El teléfono es requerido';
-        const phoneRegex = /^[\d\s\-\+\(\)]{8,}$/;
-        return phoneRegex.test(val) ? null : 'Teléfono inválido (mínimo 8 dígitos)';
-      },
-      password: (val) => {
-        if (!val) return 'La contraseña es requerida';
-        if (val.length < 6) {
-          return 'La contraseña debe tener al menos 6 caracteres';
-        }
-        return null;
-      },
-      confirmPassword: (val) => {
-        const password = document.getElementById('form-password')?.value;
-        if (!val) return 'Debe confirmar la contraseña';
-        return val === password ? null : 'Las contraseñas no coinciden';
-      },
-      message: (val) => {
-        if (!val || val.trim().length < 10) {
-          return 'El mensaje debe tener al menos 10 caracteres';
-        }
-        return null;
+  // Cargar configuración de campos desde JSON
+  async loadFieldsConfig() {
+    try {
+      const response = await fetch('./data/formFields.json');
+      if (!response.ok) {
+        throw new Error('No se pudo cargar formFields.json');
       }
-    };
-
-    return rules[field.validation]?.(value) || null;
+      const data = await response.json();
+      this.fieldsConfig = data[this.formType] || [];
+      return this.fieldsConfig;
+    } catch (error) {
+      console.error('Error al cargar configuración de campos:', error);
+      this.showErrorMessage('Error al cargar el formulario. Por favor, recarga la página.');
+      return [];
+    }
   }
 
-  // Crear input field
+  // Crear input field con validaciones HTML
   createField(fieldConfig, index) {
     const isTextarea = fieldConfig.type === 'textarea';
+    const isPassword = fieldConfig.type === 'password';
     const colorClass = index % 2 === 0 ? 'primary' : 'secondary';
     
+    // Construir atributos de validación HTML
+    let validationAttrs = fieldConfig.required ? 'required' : '';
+    if (fieldConfig.minlength) validationAttrs += ` minlength="${fieldConfig.minlength}"`;
+    if (fieldConfig.maxlength) validationAttrs += ` maxlength="${fieldConfig.maxlength}"`;
+    if (fieldConfig.pattern) validationAttrs += ` pattern="${fieldConfig.pattern}"`;
+    if (fieldConfig.min) validationAttrs += ` min="${fieldConfig.min}"`;
+    if (fieldConfig.max) validationAttrs += ` max="${fieldConfig.max}"`;
+    
+    // Crear el campo de input/textarea
+    let inputHtml = '';
+    
+    if (isTextarea) {
+      inputHtml = `
+        <textarea 
+          class="form-control" 
+          id="form-${fieldConfig.id}" 
+          name="${fieldConfig.id}"
+          rows="${fieldConfig.rows || 4}" 
+          placeholder="${fieldConfig.placeholder}"
+          ${validationAttrs}
+        ></textarea>
+        ${fieldConfig.id === 'mensaje' ? '<div class="char-counter"><span id="contador-caracteres">0</span>/500</div>' : ''}
+      `;
+    } else {
+      inputHtml = `
+        <input 
+          type="${fieldConfig.type}" 
+          id="form-${fieldConfig.id}"
+          name="${fieldConfig.id}"
+          class="form-control" 
+          placeholder="${fieldConfig.placeholder}"
+          ${validationAttrs}
+        />
+      `;
+      
+      // Agregar botón toggle para contraseñas
+      if (isPassword && fieldConfig.showToggle) {
+        inputHtml += `
+          <button 
+            type="button" 
+            class="password-toggle-btn" 
+            data-target="form-${fieldConfig.id}"
+            aria-label="Mostrar contraseña"
+          >
+            <i class="fa-solid fa-eye-slash pass"></i>
+          </button>
+        `;
+      }
+    }
+    
     const fieldHtml = `
-      <div class="form-outline" data-color="${colorClass}">
+      <div class="form-outline ${isPassword && fieldConfig.showToggle ? 'password-wrapper' : ''}" data-color="${colorClass}">
         <i class="fa-solid ${fieldConfig.icon}"></i>
         <label for="form-${fieldConfig.id}" hidden>${fieldConfig.placeholder}</label>
-        ${isTextarea ? 
-          `<textarea 
-            class="form-control" 
-            id="form-${fieldConfig.id}" 
-            rows="${fieldConfig.rows || 4}" 
-            placeholder="${fieldConfig.placeholder}"
-            ${fieldConfig.required ? 'required' : ''}
-          ></textarea>` :
-          `<input 
-            type="${fieldConfig.type}" 
-            id="form-${fieldConfig.id}" 
-            class="form-control" 
-            placeholder="${fieldConfig.placeholder}"
-            ${fieldConfig.required ? 'required' : ''}
-          />`
-        }
-        <div class="error-message"></div>
+        ${inputHtml}
+        <div class="invalid-feedback"></div>
       </div>
     `;
     
@@ -197,7 +103,7 @@ class FormBuilder {
     };
 
     return `
-      <button type="submit" class="btn btn-primary btn-block ">
+      <button type="submit" class="btn btn-primary btn-block">
         ${buttonTexts[this.formType]}
       </button>
     `;
@@ -222,13 +128,29 @@ class FormBuilder {
     return '';
   }
 
+  // Mostrar mensaje de error si no se puede cargar
+  showErrorMessage(message) {
+    this.container.innerHTML = `
+      <div class="alert alert-danger" role="alert">
+        <i class="fa-solid fa-circle-xmark"></i> ${message}
+      </div>
+    `;
+  }
+
   // Renderizar formulario completo
-  render() {
-    const fields = this.getFieldsConfig();
-    const fieldsHtml = fields.map((field, index) => this.createField(field, index)).join('');
+  async render() {
+    await this.loadFieldsConfig();
+    
+    if (!this.fieldsConfig || this.fieldsConfig.length === 0) {
+      return;
+    }
+
+    const fieldsHtml = this.fieldsConfig.map((field, index) => 
+      this.createField(field, index)
+    ).join('');
     
     const formHtml = `
-      <form id="${this.formType}-form" novalidate>
+      <form id="${this.formType}-form" class="needs-validation" novalidate>
         ${fieldsHtml}
         ${this.createSubmitButton()}
         ${this.createAdditionalLinks()}
@@ -237,155 +159,50 @@ class FormBuilder {
 
     this.container.innerHTML = formHtml;
     this.form = document.getElementById(`${this.formType}-form`);
-    this.attachEventListeners();
-  }
-
-  // Mostrar error en campo
-  showError(fieldId, message) {
-    const field = document.getElementById(`form-${fieldId}`);
-    const formOutline = field?.closest('.form-outline');
-    const errorDiv = formOutline?.querySelector('.error-message');
     
-    if (formOutline && errorDiv) {
-      formOutline.classList.add('has-error');
-      errorDiv.textContent = message;
-      field.setAttribute('aria-invalid', 'true');
-    }
-  }
-
-  // Limpiar error de campo
-  clearError(fieldId) {
-    const field = document.getElementById(`form-${fieldId}`);
-    const formOutline = field?.closest('.form-outline');
-    const errorDiv = formOutline?.querySelector('.error-message');
+    // Inicializar toggle de contraseñas
+    this.initPasswordToggles();
     
-    if (formOutline && errorDiv) {
-      formOutline.classList.remove('has-error');
-      errorDiv.textContent = '';
-      field.removeAttribute('aria-invalid');
-    }
-  }
-
-  // Validar campo individual
-  validateSingleField(fieldConfig) {
-    const input = document.getElementById(`form-${fieldConfig.id}`);
-    const value = input?.value || '';
-    const error = this.validateField(fieldConfig, value);
+    console.log(`✅ Formulario ${this.formType} renderizado correctamente`);
     
-    if (error) {
-      this.showError(fieldConfig.id, error);
-      return false;
-    } else {
-      this.clearError(fieldConfig.id);
-      return true;
-    }
+    // Disparar evento personalizado
+    document.dispatchEvent(new CustomEvent('formRendered', { 
+      detail: { formType: this.formType } 
+    }));
   }
 
-  // Validar formulario completo
-  validateForm() {
-    const fields = this.getFieldsConfig();
-    let isValid = true;
-
-    fields.forEach(field => {
-      if (!this.validateSingleField(field)) {
-        isValid = false;
-      }
-    });
-
-    return isValid;
-  }
-
-  // Event listeners
-  attachEventListeners() {
-    const fields = this.getFieldsConfig();
-
-    // Validación en tiempo real
-    fields.forEach(field => {
-      const input = document.getElementById(`form-${field.id}`);
-      if (input) {
-        input.addEventListener('blur', () => {
-          this.validateSingleField(field);
-        });
-
-        input.addEventListener('input', () => {
-          if (this.errors[field.id]) {
-            this.clearError(field.id);
-          }
-        });
-      }
-    });
-
-    // Submit del formulario
-    this.form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      if (this.validateForm()) {
-        this.handleSubmit();
-      }
-    });
-  }
-
-  // Manejar envío del formulario
-  handleSubmit() {
-    const formData = new FormData(this.form);
-    const data = {};
+  // Inicializar botones de toggle de contraseña
+  initPasswordToggles() {
+    const toggleButtons = this.form.querySelectorAll('.password-toggle-btn');
     
-    formData.forEach((value, key) => {
-      data[key.replace('form-', '')] = value;
-    });
-
-    // Aquí iría la lógica de envío al servidor
-    console.log('Form submitted:', data);
-    
-    // Mostrar mensaje de éxito
-    this.showSuccessMessage();
-  }
-
-  // Mostrar mensaje de éxito
-  showSuccessMessage() {
-    const messages = {
-      login: '¡Bienvenido! Redirigiendo a página principal...',
-      register: '¡Registro exitoso! Redirigiendo al login...',
-      contact: '¡Mensaje enviado! Te contactaremos pronto.'
-    };
-
-    const alertHtml = `
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <i class="fa-solid fa-circle-check"></i> ${messages[this.formType]}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    `;
-
-    this.container.insertAdjacentHTML('afterbegin', alertHtml);
-    
-    setTimeout(() => {
-      if (this.formType === 'login') {       
+    toggleButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('data-target');
+        const input = document.getElementById(targetId);
+        const icon = this.querySelector('i');
         
-        console.log('Redirigiendo a home...');
-        window.location.href = 'home.html';
-
-        
-
-      } else if (this.formType === 'register') {
-        
-        
-        console.log('Redirigiendo a login...');
-        window.location.href = 'login.html';
-      }
-    }, 2000);
+        if (input.type === 'password') {
+          input.type = 'text';
+          icon.classList.remove('fa-eye-slash');
+          icon.classList.add('fa-eye');
+          this.setAttribute('aria-label', 'Ocultar contraseña');
+        } else {
+          input.type = 'password';
+          icon.classList.remove('fa-eye');
+          icon.classList.add('fa-eye-slash');
+          this.setAttribute('aria-label', 'Mostrar contraseña');
+        }
+      });
+    });
   }
 }
 
-
-
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  const registerContainer = document.getElementById('formsType');
+// Inicializar formulario según la página
+document.addEventListener('DOMContentLoaded', async () => {
+  const formsContainer = document.getElementById('formsType');
   
-  if (registerContainer) {
-    
+  if (formsContainer) {
     const path = window.location.pathname;
     let formType = 'contact';
     
@@ -398,6 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     const formBuilder = new FormBuilder('formsType', formType);
-    formBuilder.render();
+    await formBuilder.render();
   }
 });

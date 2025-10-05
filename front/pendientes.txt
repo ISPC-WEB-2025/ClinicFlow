@@ -1,0 +1,9 @@
+
+- cambiar header si user logged
+- añadir mas seguridad passwords ( al menos una mayuscula y una minuscula, al menos 1 numero y un caracter especial ())
+- pagina de olvidaste tu passwords
+-enviar mail de registro exitoso a clinicflow
+-  pagina 404
+
+
+
