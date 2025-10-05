@@ -19,84 +19,13 @@
 		<link rel="stylesheet" href="./css/styles.css" />
 		<link rel="stylesheet" href="./css/index.css" />
 
-		<title>ClinicFlow</title>
+		
+
+		<title>ClinicFlow - Inicio</title>
 	</head>
 	<body class="bg-light">
-		<!-- HEADER COMIENZO -->
-		<header class="navbar navbar-expand-lg navbar-light fixed-top">
-			<div class="container">
-				<a href="index.html" class="logo">
-					<span class="navbar-brand mb-0">ClinicFlow</span>
-					<i class="fa-solid fa-chevron-right icono-header left"></i>
-					<i class="fa-solid fa-chevron-right icono-header right"></i>
-				</a>
-
-				<!-- Botón hamburguesa para mobile -->
-				<button
-					class="navbar-toggler"
-					type="button"
-					data-bs-toggle="collapse"
-					data-bs-target="#navbarContent"
-					aria-controls="navbarContent"
-					aria-expanded="false"
-					aria-label="Toggle navigation"
-				>
-					<i class="fas fa-bars"></i>
-				</button>
-
-				<!-- Contenido colapsable del navbar -->
-				<nav class="collapse navbar-collapse" id="navbarContent">
-					<ul
-						class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center"
-					>
-						<li class="nav-item">
-							<a class="nav-link active" href="./index.html">
-								<i class="fa-solid fa-plus"></i>Inicio
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="./nosotros.html">
-								<i class="fa-solid fa-plus"></i>Nosotros
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="./servicios.html">
-								<i class="fa-solid fa-plus"></i>Servicios
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="./planes.html">
-								<i class="fa-solid fa-plus"></i>Planes
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="./contacto.html">
-								<i class="fa-solid fa-plus"></i>Contacto
-							</a>
-						</li>
-						<li class="nav-item ms-lg-3">
-							<a
-								class="btn btn-outline-primary btn-header"
-								href="./login.html"
-							>
-								<i class="fa-solid fa-right-to-bracket"></i>
-								<span class="btn-text">Iniciar Sesión</span>
-							</a>
-						</li>
-						<li class="nav-item ms-lg-2">
-							<a
-								class="btn btn-primary btn-header"
-								href="./register.html"
-							>
-								<i class="fa-solid fa-user-plus"></i>
-								<span class="btn-text">Registrarse</span>
-							</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</header>
-		<!-- HEADER FIN -->
+		<!-- HEADER: Se insertará automáticamente aquí -->
+		<div id="header-placeholder"></div>
 
 		<!-- MAIN INICIO -->
 		<main>
@@ -111,7 +40,7 @@
 						<i class="fa-solid fa-file-invoice"></i>
 						<div>
 							<h3>Gestión Centralizada de Pacientes</h3>
-							<p> Todo sobre tus pacientes, en un solo lugar</p>
+							<p> Todo sobre tus pacientes, en un solo lugar</p>
 						</div>
 					</article>
 					<article>
@@ -141,6 +70,7 @@
 				</div>
 			</section>
 			<!-- SECCION BANNER FIN-->
+			
 			<!-- SECCION HERO INICIO-->
 			<section id="hero" class="text-center jumbotron">
 				<h1 class="display-5 fw-bold">ClinicFlow</h1>
@@ -171,25 +101,33 @@
 							></i>
 							<i
 								class="fa-solid fa-chevron-right icono-header right"
-							></i
-						></span>
+							></i>
+						</span>
 					</div>
 				</div>
 			</section>
 			<!-- SECCION HERO FIN-->
+			
 			<!-- SECCION CLIENTES INICIO -->
 			<section id="clients" class="mb-4"></section>
 			<!-- SECCION CLIENTES FIN-->
 		</main>
 		<!-- MAIN FIN -->
-		<!-- FOOTER INICIO -->
 
-		<footer class="footer mt-4">
-			<p>Copyright © 2025: ClinicFlow - Servicios Web Profesionales.</p>
-		</footer>
+		<!-- FOOTER: Se insertará automáticamente aquí -->
+		<div id="footer-placeholder"></div>
 
-		<!-- FOOTER FIN -->
-		<!--SCRIPTS INICIO-->
+		<!-- SCRIPTS INICIO -->
+		<!-- FontAwesome debe cargarse primero -->
+		<script
+			src="https://kit.fontawesome.com/d8c2b7ce4c.js"
+			crossorigin="anonymous"
+		></script>
+		
+		<!-- Layout Manager debe cargarse ANTES de Bootstrap para evitar flash -->
+		<script src="./js/layout.js"></script>
+		
+		<!-- Bootstrap -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 			integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -200,15 +138,12 @@
 			integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
 			crossorigin="anonymous"
 		></script>
-		<script
-			src="https://kit.fontawesome.com/d8c2b7ce4c.js"
-			crossorigin="anonymous"
-		></script>
+		
+		<!-- Scripts específicos de la página -->
 		<script src="./js/clients.js"></script>
 		<script src="./js/form-builder.js"></script>
 		<script src="./js/registerSimulation.js"></script>
-		<script src="./js/form-validations.js"></script>
-		<script src="./js/header-manager.js"></script>
-		<!--SCRIPTS FIN-->
+<script type="module" src="./js/validations/form-validations.js"></script>
+		<!-- SCRIPTS FIN -->
 	</body>
 </html>

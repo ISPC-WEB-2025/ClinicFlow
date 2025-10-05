@@ -1,19 +1,22 @@
 
 UX 
-- cambiar header si user logged
--enviar mail de registro exitoso a clinicflow
+
+
+
 -validacion de pass solo en register no en login
--pagina reset password, se amplia el input no deberia hacerlo (cuando mensaje de exito). deberia redirigir a home
--icono username no aparece
 -REVISAR TEMA validacion DE PASS PORQUE SE VE MUY FEA LA ANIMACION CUANDO SE ABRE Y CIERRA AL FOCUS QUIZAS UN MENSAJITO? VER.
+
+-pagina reset password, se amplia el input no deberia hacerlo (cuando mensaje de exito). deberia redirigir a home
 
 -nosotros: hover en cards
 
 
+MAILS:
+-enviar mail de registro exitoso a clinicflow
+- RESET PASSWORD
 
 PAGINAS
 -  pagina 404
-- pagina de olvidaste tu passwords
 - user profile
 
 
@@ -22,3 +25,4 @@ UI
 - trabajar con alertas de BOOTSTRAP
 - Adaptar mayor cantidad de codigo a BT
 - mensaje de cerrar sesion no alert, sino una personalizada.
+REFACTOR CODE

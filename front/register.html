@@ -24,79 +24,7 @@
 	</head>
 	<body class="bg-light">
 		<!-- HEADER COMIENZO -->
-		<header class="navbar navbar-expand-lg navbar-light fixed-top">
-			<div class="container">
-				<a href="index.html" class="logo">
-					<span class="navbar-brand mb-0">ClinicFlow</span>
-					<i class="fa-solid fa-chevron-right icono-header left"></i>
-					<i class="fa-solid fa-chevron-right icono-header right"></i>
-				</a>
-
-				<!-- Botón hamburguesa para mobile -->
-				<button
-					class="navbar-toggler"
-					type="button"
-					data-bs-toggle="collapse"
-					data-bs-target="#navbarContent"
-					aria-controls="navbarContent"
-					aria-expanded="false"
-					aria-label="Toggle navigation"
-				>
-					<i class="fas fa-bars"></i>
-				</button>
-
-				<!-- Contenido colapsable del navbar -->
-				<nav class="collapse navbar-collapse" id="navbarContent">
-					<ul
-						class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center"
-					>
-						<li class="nav-item">
-							<a class="nav-link" href="./index.html">
-								<i class="fa-solid fa-plus"></i>Inicio
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="./nosotros.html">
-								<i class="fa-solid fa-plus"></i>Nosotros
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="./servicios.html">
-								<i class="fa-solid fa-plus"></i>Servicios
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="./planes.html">
-								<i class="fa-solid fa-plus"></i>Planes
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="./contacto.html">
-								<i class="fa-solid fa-plus"></i>Contacto
-							</a>
-						</li>
-						<li class="nav-item ms-lg-3">
-							<a
-								class="btn btn-outline-primary btn-header"
-								href="./login.html"
-							>
-								<i class="fa-solid fa-right-to-bracket"></i>
-								<span class="btn-text">Iniciar Sesión</span>
-							</a>
-						</li>
-						<li class="nav-item ms-lg-2">
-							<a
-								class="btn btn-primary btn-header"
-								href="./register.html"
-							>
-								<i class="fa-solid fa-user-plus"></i>
-								<span class="btn-text">Registrarse</span>
-							</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</header>
+	<div id="header-placeholder"></div>
 		<!-- HEADER FIN -->
 
 		<!-- MAIN INICIO -->
@@ -111,17 +39,24 @@
 		<!-- MAIN FIN -->
 		<!-- FOOTER INICIO -->
 
-		<footer class="footer mt-4">
-			<p>Copyright © 2025: ClinicFlow - Servicios Web Profesionales.</p>
-		</footer>
+		<div id="footer-placeholder"></div>
 
 		<!-- FOOTER FIN -->
 
 		<!-- SCRIPTS -->
+		 <!-- SCRIPTS INICIO -->
+		<!-- FontAwesome debe cargarse primero -->
+		<script
+			src="https://kit.fontawesome.com/d8c2b7ce4c.js"
+			crossorigin="anonymous"
+		></script>
+		
+		<!-- Layout Manager debe cargarse ANTES de Bootstrap para evitar flash -->
+		<script src="./js/layout.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"></script>
-		<script src="https://kit.fontawesome.com/d8c2b7ce4c.js"></script>
+
 		<script src="./js/form-builder.js"></script>
 		<script src="./js/registerSimulation.js"></script>
-		<script src="./js/form-validations.js"></script><script src="./js/header-manager.js"></script>
+<script type="module" src="./js/validations/form-validations.js"></script>
 	</body>
 </html>
