@@ -22,10 +22,10 @@ body {
 .link-secondary{
 	color: var(--color-secondary) !important;
 }
-.color-primary{
+.text-primary{
 	color: var(--color-primary) !important;
 }
-.color-secondary{
+.text-secondary{
 	color: var(--color-secondary) !important;
 }
 /* Utilidad para ocultar visualmente pero mantener accesibilidad */
