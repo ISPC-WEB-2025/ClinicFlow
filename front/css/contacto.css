@@ -193,10 +193,6 @@ button[type="submit"]:active {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .contacto {
-        padding: 30px 20px;
-        margin-top: 8rem;
-    }
 
     h2 {
         font-size: 26px;
@@ -214,12 +210,10 @@ button[type="submit"]:active {
     }
 
     .contenedor-general {
-        min-height: 65rem;
+        min-height: 50rem;
     }
 
-    .contacto {
-        padding: 25px 15px;
-    }
+ 
 
     h2 {
         font-size: 24px;
