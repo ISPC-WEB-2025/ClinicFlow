@@ -45,6 +45,24 @@
 			"required": true
 		},
 		{
+			"id": "dni",
+			"type": "number",
+			"placeholder": "DNI (sin puntos)",
+			"icon": "fa-id-card",
+			"required": true,
+			"min": 1000000,
+			"max": 99999999
+		},
+		{
+			"id": "telefono",
+			"type": "tel",
+			"placeholder": "Teléfono",
+			"icon": "fa-phone",
+			"required": true,
+			"minlength": 8,
+			"maxlength": 20
+		},
+		{
 			"id": "password",
 			"type": "password",
 			"placeholder": "Contraseña",
@@ -97,7 +115,8 @@
 			"placeholder": "Teléfono",
 			"icon": "fa-phone",
 			"required": true,
-			"pattern": "^[\\d\\s\\-\\+\\(\\)]{8,20}$"
+			"minlength": 8,
+			"maxlength": 20
 		},
 		{
 			"id": "mensaje",

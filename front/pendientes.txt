@@ -7,10 +7,6 @@ MAILS:
 - RESET PASSWORD
 
 PAGINAS
--  pagina 404
-- user profile
-
-
 
 UI
 - trabajar con alertas de BOOTSTRAP

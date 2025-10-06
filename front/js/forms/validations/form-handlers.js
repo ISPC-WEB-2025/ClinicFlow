@@ -1,59 +1,59 @@
-// form-handlers.js - Manejadores de envío de formularios
-
 import { mostrarAlerta, resetearFormulario } from './validation-utils.js';
 
-export function manejarLogin(form) {
-    const emailInput = document.getElementById('form-email');
-    const passwordInput = document.getElementById('form-password');
-    
-    const email = emailInput.value.trim();
-    const password = passwordInput.value;
+const dispatchEvent = (eventName, detail) => {
+    document.dispatchEvent(new CustomEvent(eventName, { detail }));
+};
 
-    document.dispatchEvent(new CustomEvent('intentoLogin', {
-        detail: { email, password }
-    }));
+const obtenerValorInput = (id) => {
+    return document.getElementById(id)?.value || '';
+};
+
+const separarNombreCompleto = (nombreCompleto) => {
+    const palabras = nombreCompleto.trim().split(/\s+/);
+    return {
+        nombre: palabras[0],
+        apellido: palabras.slice(1).join(' ')
+    };
+};
+
+export function manejarLogin(form) {
+    const datosLogin = {
+        email: obtenerValorInput('form-email').trim(),
+        password: obtenerValorInput('form-password')
+    };
+
+    dispatchEvent('intentoLogin', datosLogin);
 }
 
 export function manejarRegistro(form) {
-    const nombreCompletoInput = document.getElementById('form-nombre-completo');
-    const emailInput = document.getElementById('form-email');
-    const passwordInput = document.getElementById('form-password');
-
-    const nombreCompleto = nombreCompletoInput.value.trim();
-    const palabras = nombreCompleto.split(/\s+/);
-    
-    const nombre = palabras[0];
-    const apellido = palabras.slice(1).join(' ');
+    const nombreCompleto = obtenerValorInput('form-nombre-completo').trim();
+    const { nombre, apellido } = separarNombreCompleto(nombreCompleto);
 
     const datosUsuario = {
-        nombre: nombre,
-        apellido: apellido,
-        nombreCompleto: nombreCompleto,
-        email: emailInput.value.trim().toLowerCase(),
-        password: passwordInput.value
+        nombre,
+        apellido,
+        nombreCompleto,
+        email: obtenerValorInput('form-email').trim().toLowerCase(),
+        dni: obtenerValorInput('form-dni').trim(),
+        telefono: obtenerValorInput('form-telefono').trim(),
+        password: obtenerValorInput('form-password')
     };
 
-    document.dispatchEvent(new CustomEvent('intentoRegistro', {
-        detail: datosUsuario
-    }));
+    dispatchEvent('intentoRegistro', datosUsuario);
 }
 
 export function manejarContacto(form) {
-    const nombreInput = document.getElementById('form-nombre');
+    const nombre = obtenerValorInput('form-nombre');
     
     mostrarAlerta(
         'success',
-        `¡Gracias por tu consulta, ${nombreInput.value}! Te contactaremos pronto.`
+        `¡Gracias por tu consulta, ${nombre}! Te contactaremos pronto.`
     );
     
     resetearFormulario(form);
 }
 
 export function manejarResetPassword(form) {
-    const emailInput = document.getElementById('form-email');
-    const email = emailInput.value.trim().toLowerCase();
-
-    document.dispatchEvent(new CustomEvent('intentoResetPassword', {
-        detail: { email }
-    }));
+    const email = obtenerValorInput('form-email').trim().toLowerCase();
+    dispatchEvent('intentoResetPassword', { email });
 }

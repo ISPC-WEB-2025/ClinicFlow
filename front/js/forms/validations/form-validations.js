@@ -1,5 +1,3 @@
-// form-validations.js - Sistema centralizado de validaciones (MODULARIZADO)
-
 import { 
     validarCampo, 
     focusPrimerCampoInvalido, 
@@ -8,6 +6,7 @@ import {
 
 import { 
     configurarContadorCaracteres,
+    configurarValidacionDNI,
     configurarValidacionTelefono,
     configurarValidacionTexto,
     configurarValidacionNombreCompleto,
@@ -32,19 +31,91 @@ import { registrarEventosGlobales } from './event-handlers.js';
     let validacionesInicializadas = false;
     let eventosRegistrados = false;
 
-    // ===== REGISTRAR EVENTOS UNA SOLA VEZ =====
-    function inicializarEventosGlobales() {
-        if (eventosRegistrados) {
-            console.log('Eventos ya registrados, omitiendo...');
-            return;
-        }
+    const inicializarEventosGlobales = () => {
+        if (eventosRegistrados) return;
         
         eventosRegistrados = true;
         registrarEventosGlobales();
-    }
+    };
 
-    // ===== INICIALIZAR VALIDACIONES =====
-    async function inicializarValidaciones() {
+    const configurarValidadores = () => {
+        configurarContadorCaracteres();
+        configurarValidacionDNI();
+        configurarValidacionTelefono();
+        configurarValidacionTexto();
+        configurarValidacionNombreCompleto();
+        configurarValidacionEmail();
+        configurarValidacionPassword();
+    };
+
+    const debeValidarInput = (input, esFormularioLogin) => {
+        if (esFormularioLogin && input.id === 'form-password') {
+            return false;
+        }
+        return true;
+    };
+
+    const aplicarValidacionInput = (input) => {
+        if (input.id === 'form-confirm-password') {
+            validarConfirmacionPassword(input);
+            return;
+        }
+        
+        if (input.value.length > 0) {
+            validarCampo(input);
+        } else {
+            input.classList.remove('is-valid', 'is-invalid');
+        }
+    };
+
+    const configurarValidacionTiempoReal = (forms) => {
+        forms.forEach(form => {
+            const inputs = form.querySelectorAll('input, textarea, select');
+            const esFormularioLogin = form.id === 'login-form';
+            
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    if (debeValidarInput(this, esFormularioLogin)) {
+                        aplicarValidacionInput(this);
+                    }
+                });
+            });
+        });
+    };
+
+    const formHandlers = {
+        'login-form': manejarLogin,
+        'register-form': manejarRegistro,
+        'contact-form': manejarContacto,
+        'forgotPassword-form': manejarResetPassword
+    };
+
+    const procesarSubmit = (form) => {
+        const confirmPassword = document.getElementById('form-confirm-password');
+        if (confirmPassword) {
+            validarConfirmacionPassword(confirmPassword);
+        }
+
+        if (form.checkValidity()) {
+            const handler = formHandlers[form.id];
+            if (handler) handler(form);
+        } else {
+            form.classList.add('was-validated');
+            focusPrimerCampoInvalido(form);
+        }
+    };
+
+    const configurarSubmitFormularios = (forms) => {
+        forms.forEach(form => {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                procesarSubmit(this);
+            });
+        });
+    };
+
+    const inicializarValidaciones = async () => {
         if (validacionesInicializadas) return;
         
         const forms = document.querySelectorAll('.needs-validation');
@@ -52,91 +123,16 @@ import { registrarEventosGlobales } from './event-handlers.js';
 
         validacionesInicializadas = true;
 
-        configurarContadorCaracteres();
-        configurarValidacionTelefono();
-        configurarValidacionTexto();
-        configurarValidacionNombreCompleto();
-        configurarValidacionEmail();
-        configurarValidacionPassword();
+        configurarValidadores();
         configurarValidacionTiempoReal(forms);
         configurarSubmitFormularios(forms);
+    };
 
-        console.log('Validaciones cargadas correctamente');
-    }
+    document.addEventListener('formRendered', inicializarValidaciones);
 
-    // ===== VALIDACIÓN EN TIEMPO REAL =====
-    function configurarValidacionTiempoReal(forms) {
-        Array.from(forms).forEach(form => {
-            const inputs = form.querySelectorAll('input, textarea, select');
-            const esFormularioLogin = form.id === 'login-form';
-            
-            Array.from(inputs).forEach(input => {
-                // Solo validación en tiempo real con input
-                input.addEventListener('input', function() {
-                    // En login, no validar visualmente el campo password
-                    if (esFormularioLogin && this.id === 'form-password') {
-                        return;
-                    }
-                    
-                    // Validar siempre el confirm-password en tiempo real
-                    if (this.id === 'form-confirm-password') {
-                        validarConfirmacionPassword(this);
-                    }
-                    
-                    // Validar todos los campos en tiempo real
-                    if (this.value.length > 0) {
-                        validarCampo(this);
-                    } else {
-                        this.classList.remove('is-valid', 'is-invalid');
-                    }
-                });
-            });
-        });
-    }
-
-    // ===== SUBMIT DE FORMULARIOS =====
-    function configurarSubmitFormularios(forms) {
-        Array.from(forms).forEach(form => {
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
-                event.stopPropagation();
-
-                const confirmPassword = document.getElementById('form-confirm-password');
-                if (confirmPassword) {
-                    validarConfirmacionPassword(confirmPassword);
-                }
-
-                if (form.checkValidity()) {
-                    const formId = form.id;
-                    
-                    if (formId === 'login-form') {
-                        manejarLogin(form);
-                    } else if (formId === 'register-form') {
-                        manejarRegistro(form);
-                    } else if (formId === 'contact-form') {
-                        manejarContacto(form);
-                    } else if (formId === 'forgotPassword-form') {
-                        manejarResetPassword(form);
-                    }
-                } else {
-                    form.classList.add('was-validated');
-                    focusPrimerCampoInvalido(form);
-                }
-            });
-        });
-    }
-
-    // ===== EVENTOS =====
-    document.addEventListener('formRendered', async () => {
-        await inicializarValidaciones();
-    });
-
-    document.addEventListener('DOMContentLoaded', async () => {
+    document.addEventListener('DOMContentLoaded', () => {
         inicializarEventosGlobales();
-        
-        setTimeout(async () => {
-            await inicializarValidaciones();
-        }, 300);
+        setTimeout(inicializarValidaciones, 300);
     });
 
 })();

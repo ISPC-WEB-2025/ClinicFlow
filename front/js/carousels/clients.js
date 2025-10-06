@@ -1,15 +1,43 @@
-document.addEventListener("DOMContentLoaded", function () {
-	fetch("./data/clients.json")
-		.then((response) => response.json())
-		.then((data) => {
-			generateCarousel(data.clients);
-			initCarousel();
-		})
-		.catch((error) => console.error("Error loading JSON:", error));
+const getItemsPerSlide = () => {
+    const width = window.innerWidth;
+    if (width <= 550) return 1;
+    if (width <= 768) return 2;
+    return 4;
+};
 
-	function generateCarousel(clients) {
-		const carouselContainer = document.getElementById("clients");
-		const carouselHTML = `
+const generateCard = (client) => `
+    <article class="card">
+        <img class="card-img-top" src="${client.image}" alt="${client.alt}">
+        <div class="card-body">
+            <h5 class="card-title">${client.title}</h5>
+            <p class="card-text">${client.text}</p>
+        </div>
+    </article>
+`;
+
+const generateCards = (clients) => clients.map(generateCard).join('');
+
+const generateCarouselItem = (slideClients, isActive) => `
+    <div class="carousel-item ${isActive ? 'active' : ''}">
+        <div class="card-wrapper">
+            ${generateCards(slideClients)}
+        </div>
+    </div>
+`;
+
+const generateCarouselItems = (clients) => {
+    const itemsPerSlide = getItemsPerSlide();
+    let itemsHTML = '';
+
+    for (let i = 0; i < clients.length; i += itemsPerSlide) {
+        const slideClients = clients.slice(i, i + itemsPerSlide);
+        itemsHTML += generateCarouselItem(slideClients, i === 0);
+    }
+
+    return itemsHTML;
+};
+
+const createCarouselHTML = (clients) => `
     <header class="section-header mt-4 mb-4">
         <h2 class="divider-title">Nuestros Clientes</h2>
         <div class="control-wrapper">
@@ -29,64 +57,44 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
 `;
 
-		carouselContainer.innerHTML = carouselHTML;
-	}
+const renderCarousel = (clients) => {
+    const carouselContainer = document.getElementById('clients');
+    if (carouselContainer) {
+        carouselContainer.innerHTML = createCarouselHTML(clients);
+    }
+};
 
-	function generateCarouselItems(clients) {
-		let itemsHTML = "";
-		const itemsPerSlide = getItemsPerSlide();
+const updateCarouselOnResize = async () => {
+    const carouselInner = document.getElementById('carousel-inner');
+    if (!carouselInner) return;
 
-		for (let i = 0; i < clients.length; i += itemsPerSlide) {
-			const slideClients = clients.slice(i, i + itemsPerSlide);
-			const isActive = i === 0 ? "active" : "";
+    try {
+        const response = await fetch('./data/clients.json');
+        const data = await response.json();
+        carouselInner.innerHTML = generateCarouselItems(data.clients);
+    } catch (error) {
+        return;
+    }
+};
 
-			itemsHTML += `
-                <div class="carousel-item ${isActive}">
-                    <div class="card-wrapper">
-                        ${generateCards(slideClients)}
-                    </div>
-                </div>
-            `;
-		}
+const initCarousel = () => {
+    let resizeTimeout;
+    
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(updateCarouselOnResize, 250);
+    });
+};
 
-		return itemsHTML;
-	}
+const loadClients = async () => {
+    try {
+        const response = await fetch('./data/clients.json');
+        const data = await response.json();
+        renderCarousel(data.clients);
+        initCarousel();
+    } catch (error) {
+        return;
+    }
+};
 
-	function generateCards(clients) {
-		return clients
-			.map(
-				(client) => `
-            <article class="card">
-                <img class="card-img-top" src="${client.image}" alt="${client.alt}">
-                <div class="card-body">
-                    <h5 class="card-title">${client.title}</h5>
-                    <p class="card-text">${client.text}</p>
-                </div>
-            </article>
-        `
-			)
-			.join("");
-	}
-
-	function getItemsPerSlide() {
-		const width = window.innerWidth;
-		if (width <= 550) return 1;
-		if (width <= 768) return 2;
-		return 4;
-	}
-
-	function initCarousel() {
-		window.addEventListener("resize", function () {
-			const carouselInner = document.getElementById("carousel-inner");
-			if (carouselInner) {
-				fetch("./data/clients.json")
-					.then((response) => response.json())
-					.then((data) => {
-						carouselInner.innerHTML = generateCarouselItems(
-							data.clients
-						);
-					});
-			}
-		});
-	}
-});
+document.addEventListener('DOMContentLoaded', loadClients);

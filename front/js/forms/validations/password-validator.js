@@ -1,4 +1,3 @@
-// password-validator.js - Validador de contraseñas (SOLO para register)
 
 export function configurarValidacionPassword() {
     const passwordInput = document.getElementById('form-password');
@@ -6,7 +5,6 @@ export function configurarValidacionPassword() {
     
     if (!passwordInput) return;
 
-    // Solo aplicar validación de seguridad si hay campo de confirmación (register)
     const esFormularioRegistro = confirmInput !== null;
     
     if (esFormularioRegistro) {
@@ -14,29 +12,16 @@ export function configurarValidacionPassword() {
 
         passwordInput.addEventListener('input', function() {
             validarSeguridadPassword(this);
+            toggleIndicadorRequisitos(this);
 
-            // Revalidar confirmación cuando cambia la password
-            if (confirmInput && confirmInput.value.length > 0) {
+            if (confirmInput?.value.length > 0) {
                 validarConfirmacionPassword(confirmInput);
             }
         });
 
-        // Mostrar indicador solo al escribir
-        passwordInput.addEventListener('input', function() {
-            if (this.value.length > 0) {
-                const indicador = this.closest('.form-outline').querySelector('.password-requirements');
-                if (indicador) indicador.classList.add('show');
-            } else {
-                const indicador = this.closest('.form-outline').querySelector('.password-requirements');
-                if (indicador) indicador.classList.remove('show');
-            }
+        confirmInput?.addEventListener('input', () => {
+            validarConfirmacionPassword(confirmInput);
         });
-
-        if (confirmInput) {
-            confirmInput.addEventListener('input', () => {
-                validarConfirmacionPassword(confirmInput);
-            });
-        }
     }
 }
 
@@ -44,94 +29,79 @@ function validarSeguridadPassword(passwordInput) {
     const password = passwordInput.value;
     const feedbackDiv = passwordInput.nextElementSibling;
     
-    const tieneMayuscula = /[A-Z]/.test(password);
-    const tieneMinuscula = /[a-z]/.test(password);
-    const tieneNumero = /[0-9]/.test(password);
-    const tieneEspecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
-    const longitudMinima = password.length >= 8;
+    const requisitos = {
+        longitudMinima: password.length >= 8,
+        tieneMayuscula: /[A-Z]/.test(password),
+        tieneMinuscula: /[a-z]/.test(password),
+        tieneNumero: /[0-9]/.test(password),
+        tieneEspecial: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)
+    };
     
-    actualizarIndicadorRequisitos(passwordInput, {
-        longitudMinima,
-        tieneMayuscula,
-        tieneMinuscula,
-        tieneNumero,
-        tieneEspecial
-    });
+    actualizarIndicadorRequisitos(passwordInput, requisitos);
     
-    if (password.length > 0) {
-        if (!longitudMinima) {
-            passwordInput.setCustomValidity('La contraseña debe tener al menos 8 caracteres');
-            if (feedbackDiv?.classList.contains('invalid-feedback')) {
-                feedbackDiv.textContent = 'Mínimo 8 caracteres';
-            }
-        } else if (!tieneMayuscula) {
-            passwordInput.setCustomValidity('Debe incluir al menos una letra mayúscula');
-            if (feedbackDiv?.classList.contains('invalid-feedback')) {
-                feedbackDiv.textContent = 'Incluí al menos una mayúscula (A-Z)';
-            }
-        } else if (!tieneMinuscula) {
-            passwordInput.setCustomValidity('Debe incluir al menos una letra minúscula');
-            if (feedbackDiv?.classList.contains('invalid-feedback')) {
-                feedbackDiv.textContent = 'Incluí al menos una minúscula (a-z)';
-            }
-        } else if (!tieneNumero) {
-            passwordInput.setCustomValidity('Debe incluir al menos un número');
-            if (feedbackDiv?.classList.contains('invalid-feedback')) {
-                feedbackDiv.textContent = 'Incluí al menos un número (0-9)';
-            }
-        } else if (!tieneEspecial) {
-            passwordInput.setCustomValidity('Debe incluir al menos un carácter especial');
-            if (feedbackDiv?.classList.contains('invalid-feedback')) {
-                feedbackDiv.textContent = 'Incluí al menos un carácter especial (!@#$%...)';
-            }
-        } else {
-            passwordInput.setCustomValidity('');
-            if (feedbackDiv?.classList.contains('invalid-feedback')) {
-                feedbackDiv.textContent = '';
-            }
+    if (password.length === 0) return;
+
+    const validaciones = [
+        { condicion: !requisitos.longitudMinima, mensaje: 'Mínimo 8 caracteres', customError: 'La contraseña debe tener al menos 8 caracteres' },
+        { condicion: !requisitos.tieneMayuscula, mensaje: 'Incluí al menos una mayúscula (A-Z)', customError: 'Debe incluir al menos una letra mayúscula' },
+        { condicion: !requisitos.tieneMinuscula, mensaje: 'Incluí al menos una minúscula (a-z)', customError: 'Debe incluir al menos una letra minúscula' },
+        { condicion: !requisitos.tieneNumero, mensaje: 'Incluí al menos un número (0-9)', customError: 'Debe incluir al menos un número' },
+        { condicion: !requisitos.tieneEspecial, mensaje: 'Incluí al menos un carácter especial (!@#$%...)', customError: 'Debe incluir al menos un carácter especial' }
+    ];
+
+    const validacionFallida = validaciones.find(v => v.condicion);
+
+    if (validacionFallida) {
+        passwordInput.setCustomValidity(validacionFallida.customError);
+        if (feedbackDiv?.classList.contains('invalid-feedback')) {
+            feedbackDiv.textContent = validacionFallida.mensaje;
+        }
+    } else {
+        passwordInput.setCustomValidity('');
+        if (feedbackDiv?.classList.contains('invalid-feedback')) {
+            feedbackDiv.textContent = '';
         }
     }
 }
 
+function toggleIndicadorRequisitos(passwordInput) {
+    const indicador = passwordInput.closest('.form-outline')?.querySelector('.password-requirements');
+    if (!indicador) return;
+
+    indicador.classList.toggle('show', passwordInput.value.length > 0);
+}
+
 function crearIndicadorRequisitos(passwordInput) {
     const formOutline = passwordInput.closest('.form-outline');
-    if (!formOutline) return;
+    if (!formOutline || formOutline.querySelector('.password-requirements')) return;
 
-    if (formOutline.querySelector('.password-requirements')) return;
+    const requisitos = [
+        { key: 'length', text: '8+ caracteres' },
+        { key: 'uppercase', text: '1 mayúscula' },
+        { key: 'lowercase', text: '1 minúscula' },
+        { key: 'number', text: '1 número' },
+        { key: 'special', text: '1 especial' }
+    ];
+
+    const items = requisitos.map(req => `
+        <li data-req="${req.key}">
+            <i class="fa-solid fa-circle-xmark"></i>
+            ${req.text}
+        </li>
+    `).join('');
 
     const indicadorHTML = `
         <div class="password-requirements">
-            <ul>
-                <li data-req="length">
-                    <i class="fa-solid fa-circle-xmark"></i>
-                    8+ caracteres
-                </li>
-                <li data-req="uppercase">
-                    <i class="fa-solid fa-circle-xmark"></i>
-                    1 mayúscula
-                </li>
-                <li data-req="lowercase">
-                    <i class="fa-solid fa-circle-xmark"></i>
-                    1 minúscula
-                </li>
-                <li data-req="number">
-                    <i class="fa-solid fa-circle-xmark"></i>
-                    1 número
-                </li>
-                <li data-req="special">
-                    <i class="fa-solid fa-circle-xmark"></i>
-                    1 especial
-                </li>
-            </ul>
+            <ul>${items}</ul>
         </div>
     `;
 
-    const invalidFeedback = passwordInput.nextElementSibling;
     const toggleButton = formOutline.querySelector('.password-toggle-btn');
+    const invalidFeedback = passwordInput.nextElementSibling;
     
     if (toggleButton) {
         toggleButton.insertAdjacentHTML('afterend', indicadorHTML);
-    } else if (invalidFeedback && invalidFeedback.classList.contains('invalid-feedback')) {
+    } else if (invalidFeedback?.classList.contains('invalid-feedback')) {
         invalidFeedback.insertAdjacentHTML('afterend', indicadorHTML);
     } else {
         formOutline.insertAdjacentHTML('beforeend', indicadorHTML);
@@ -139,25 +109,21 @@ function crearIndicadorRequisitos(passwordInput) {
 }
 
 function actualizarIndicadorRequisitos(passwordInput, requisitos) {
-    const formOutline = passwordInput.closest('.form-outline');
-    if (!formOutline) return;
-
-    const indicador = formOutline.querySelector('.password-requirements');
+    const indicador = passwordInput.closest('.form-outline')?.querySelector('.password-requirements');
     if (!indicador) return;
 
-    const items = {
-        length: indicador.querySelector('[data-req="length"]'),
-        uppercase: indicador.querySelector('[data-req="uppercase"]'),
-        lowercase: indicador.querySelector('[data-req="lowercase"]'),
-        number: indicador.querySelector('[data-req="number"]'),
-        special: indicador.querySelector('[data-req="special"]')
+    const mapeo = {
+        length: requisitos.longitudMinima,
+        uppercase: requisitos.tieneMayuscula,
+        lowercase: requisitos.tieneMinuscula,
+        number: requisitos.tieneNumero,
+        special: requisitos.tieneEspecial
     };
 
-    actualizarItemRequisito(items.length, requisitos.longitudMinima);
-    actualizarItemRequisito(items.uppercase, requisitos.tieneMayuscula);
-    actualizarItemRequisito(items.lowercase, requisitos.tieneMinuscula);
-    actualizarItemRequisito(items.number, requisitos.tieneNumero);
-    actualizarItemRequisito(items.special, requisitos.tieneEspecial);
+    Object.entries(mapeo).forEach(([key, cumple]) => {
+        const item = indicador.querySelector(`[data-req="${key}"]`);
+        actualizarItemRequisito(item, cumple);
+    });
 }
 
 function actualizarItemRequisito(item, cumple) {
@@ -165,32 +131,23 @@ function actualizarItemRequisito(item, cumple) {
 
     const icon = item.querySelector('i');
     
-    if (cumple) {
-        item.classList.remove('invalid');
-        item.classList.add('valid');
-        icon.classList.remove('fa-circle-xmark');
-        icon.classList.add('fa-circle-check');
-    } else {
-        item.classList.remove('valid');
-        item.classList.add('invalid');
-        icon.classList.remove('fa-circle-check');
-        icon.classList.add('fa-circle-xmark');
-    }
+    item.classList.toggle('valid', cumple);
+    item.classList.toggle('invalid', !cumple);
+    
+    icon.classList.toggle('fa-circle-check', cumple);
+    icon.classList.toggle('fa-circle-xmark', !cumple);
 }
 
 export function validarConfirmacionPassword(confirmInput) {
     const passwordInput = document.getElementById('form-password');
     if (!passwordInput) return;
 
-    // Buscar el feedback div correctamente (puede estar después del toggle button)
     let feedbackDiv = confirmInput.nextElementSibling;
     
-    // Si el siguiente elemento es el botón toggle, buscar el siguiente
-    if (feedbackDiv && feedbackDiv.classList.contains('password-toggle-btn')) {
+    if (feedbackDiv?.classList.contains('password-toggle-btn')) {
         feedbackDiv = feedbackDiv.nextElementSibling;
     }
     
-    // Si el campo está vacío, limpiar validación
     if (confirmInput.value.length === 0) {
         confirmInput.setCustomValidity('');
         confirmInput.classList.remove('is-valid', 'is-invalid');
@@ -201,8 +158,9 @@ export function validarConfirmacionPassword(confirmInput) {
         return;
     }
 
-    // Validar si coinciden
-    if (confirmInput.value !== passwordInput.value) {
+    const passwordsCoinciden = confirmInput.value === passwordInput.value;
+
+    if (!passwordsCoinciden) {
         confirmInput.setCustomValidity('Las contraseñas no coinciden');
         confirmInput.classList.remove('is-valid');
         confirmInput.classList.add('is-invalid');
@@ -214,7 +172,6 @@ export function validarConfirmacionPassword(confirmInput) {
     } else {
         confirmInput.setCustomValidity('');
         
-        // Solo marcar como válido si la password también es válida
         if (passwordInput.checkValidity()) {
             confirmInput.classList.remove('is-invalid');
             confirmInput.classList.add('is-valid');
