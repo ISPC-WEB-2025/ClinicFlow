@@ -1,19 +1,18 @@
 
 main#contacto {
-    min-height: 75rem;
+
     position: relative;
 }
 
 .contenedor-general {
     width: 100%;
-    min-height: 75rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     margin: 0;
     padding: 0;
     position: relative;
+    padding: 2rem 0;
 }
 
 .contenedor-imagen {
@@ -32,6 +31,8 @@ main#contacto {
     object-fit: cover;
 }
 
+
+
 /* Formulario */
 .contacto {
     box-sizing: border-box;
@@ -44,7 +45,7 @@ main#contacto {
     backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
-    margin-top: 10rem;
+    
     position: relative;
     z-index: 2;
 }
@@ -63,7 +64,7 @@ h2 {
     font-size: 14px;
     color: #6c757d;
     text-align: center;
-    margin-bottom: 20px;
+   
     font-style: italic;
 }
 
@@ -188,12 +189,10 @@ button[type="submit"]:active {
     margin-bottom: 1.5rem !important;
 }
 
+
+
 /* Responsive */
 @media (max-width: 768px) {
-    .contacto {
-        padding: 30px 20px;
-        margin-top: 8rem;
-    }
 
     h2 {
         font-size: 26px;
@@ -211,12 +210,10 @@ button[type="submit"]:active {
     }
 
     .contenedor-general {
-        min-height: 65rem;
+        min-height: 50rem;
     }
 
-    .contacto {
-        padding: 25px 15px;
-    }
+ 
 
     h2 {
         font-size: 24px;

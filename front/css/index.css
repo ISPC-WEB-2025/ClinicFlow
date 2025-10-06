@@ -1,11 +1,6 @@
 
 /* ==== HOME: SECCION BANNER ==== */
-#banner img {
-	width: 100%;
-	height: 30rem;
-	object-fit: cover;
-	object-position: center 50%;
-}
+
 
  .funcionalidades {
 	display: flex;
@@ -136,189 +131,8 @@ p.subtitulo {
 	transition: transform 0.6s ease-in-out;
 }
 
-/* ==== HOME: SECCION INFO ==== */
-#info {
-	padding: 0 6rem;
-	display: flex;
-	justify-content: space-between;
-}
 
-#info > section {
-	display: flex;
-	flex-direction: column;
-	width: 30%;
-}
 
-#info > section > h4, #info > section > h2 {
-	margin-bottom: 1.5rem;
-}
-
-.accordion-item h2 {
-	height: 3.5rem;
-}
-.accordion-item h2 button {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	position: relative;
-}
-
-.accordion-item p {
-	padding-left: 4rem;
-	font-size: 1rem;
-	color: #7c7c7c;
-}
-
-.accordion-body {
-	padding-left: 3.5rem;
-}
-
-.accordion-body li {
-	list-style: disc;
-	font-size: 1rem;
-	color: #7c7c7c;
-	margin-bottom: 1rem;
-}
-
-ul.accordion-body {
-	display: flex;
-	flex-direction: column;
-	text-align: justify;
-}
-
-#info-plans .btn-primary {
-	margin-top: 1rem;
-	color: white;
-	align-self: end;
-}
-
-#info-plans i {
-	color: var(--color-primary);
-	font-size: 1.2rem;
-	padding-right: 1rem;
-}
-
-/* ==== INFO ICONOS (SERVICIOS & CONTACTO) ==== */
-#info-services .accordion-item h2 button i,
-#info-contact .form-outline i {
-	position: absolute;
-	top: 50%;
-	left: 0;
-	transform: translateY(-50%);
-	width: 3rem;
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-right: 0;
-	color: white;
-	font-size: 1.5rem;
-	z-index: 2;
-}
-
-#info-services .accordion-item h2 button i::after,
-#info-contact .form-outline i::after {
-	content: "";
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	border-top: 15px solid transparent;
-	border-bottom: 15px solid transparent;
-}
-#info-services .accordion-item h2 button i::after{
-	right: -12%;
-}
-#info-contact .form-outline i::after {
-right: 87%;
-}
-
-#info-services .accordion-item:nth-child(odd) .accordion-button i,
-#info-contact .form-outline:nth-child(odd) i {
-	background-color: var(--color-primary);
-}
-
-#info-services .accordion-item:nth-child(odd) .accordion-button i::after,
-#info-contact .form-outline:nth-child(odd) i::after {
-	border-left: 15px solid var(--color-primary);
-	
-}
-
-#info-services .accordion-item:nth-child(even) .accordion-button i,
-#info-contact .form-outline:nth-child(even) i {
-	background-color: var(--color-secondary);
-}
-
-#info-services .accordion-item:nth-child(even) .accordion-button i::after,
-#info-contact .form-outline:nth-child(even) i::after {
-	border-left: 15px solid var(--color-secondary);
-	
-}
-
-/* Ajustes especiales para contacto */
-#contact-form {
-	display: flex;
-	flex-direction: column;
-}
-
-#contact-form input,
-#contact-form textarea {
-	border-radius: 0;
-	padding: 0.8rem;
-	font-size: 0.9rem;
-	position: relative;
-}
-
-#contact-form input {
-	height: 3rem;
-}
-
-#contact-form input::placeholder,
-#contact-form textarea::placeholder {
-	color: #7c7c7c;
-	font-weight: 300;
-}
-
-#info-contact .form-outline {
-	position: relative;
-}
-#info-contact .form-control {
-	padding-left: 5rem !important;
-}
-
-#info-contact textarea.form-control {
-	padding-left: 5rem !important;
-	padding-top: 0.8rem;
-	resize: none;
-	overflow: hidden;
-	height: 10rem;
-}
-
-#contact-form .form-outline i::after {
-	left: 80%;
-	border-left: none;
-	border-right: 15px solid;
-}
-
-#info-contact .form-outline:last-child i,
-#info-contact .form-outline:has(textarea) i {
-	height: 3rem !important;
-	top: 1.5rem !important;
-	align-items: flex-start !important;
-	padding-top: 0.8rem;
-}
-
-#info-contact .form-outline:last-child i::after,
-#info-contact .form-outline:has(textarea) i::after {
-	top: 1.5rem !important;
-	transform: translateY(-50%);
-}
-
-#contact-form button {
-	align-self: end;
-	padding: 0.8rem 1rem;
-	font-size: 0.8rem;
-	margin-top: 1rem;
-}
 
 /* SECCIONES */
 section {
@@ -365,16 +179,7 @@ section {
 		padding: 0 2rem;
 	}
 
-	#info {
-		flex-direction: column;
-		padding: 0 2rem;
-		align-items: center;
-	}
-
-	#info > section {
-		width: 80%;
-		margin-bottom: 2rem;
-	}
+	
 }
 
 @media (max-width: 768px) {

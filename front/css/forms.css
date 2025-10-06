@@ -1,0 +1,551 @@
+/* forms.css - ACTUALIZADO: Mejor UX para indicador de password */
+
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: calc(100vh - 4rem);
+	padding: 8rem 2rem 0rem 2rem;
+}
+
+#formsType {
+	width: 100%;
+	min-width: 28rem;
+	margin-bottom: 2rem;
+}
+
+/* ==== ESTRUCTURA DEL FORMULARIO ==== */
+#formsType form {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+	margin-top: 2rem;
+}
+
+/* ==== CAMPOS DEL FORMULARIO ==== */
+.form-outline {
+	position: relative;
+	margin-bottom: 0.5rem;
+	width: 100%;
+}
+
+.form-outline input,
+.form-outline textarea {
+	width: 100%;
+	border: 2px solid #e0e0e0;
+	border-radius: 0;
+	padding: 0.9rem 1rem 0.9rem 5rem;
+	font-size: 0.95rem;
+	transition: all 0.3s ease;
+	background-color: white;
+}
+
+.form-outline input {
+	height: 3.5rem;
+}
+
+.form-outline textarea {
+	padding: 0.9rem 1rem 0.9rem 5rem;
+	resize: none;
+	height: 10rem;
+	font-family: "Lato", sans-serif;
+}
+
+.form-outline input:focus,
+.form-outline textarea:focus {
+	outline: none;
+	border-color: var(--color-primary);
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15);
+}
+
+.form-outline input::placeholder,
+.form-outline textarea::placeholder {
+	color: #999;
+	font-weight: 300;
+}
+
+/* ==== ICONOS EN CAMPOS ==== */
+.form-outline i {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 3.5rem;
+	height: 3.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	font-size: 1.3rem;
+	z-index: 2;
+}
+
+/* Icono para textarea */
+.form-outline:has(textarea) i {
+	height: 3.5rem;
+	align-items: center;
+}
+
+/* Triángulo decorativo en iconos */
+.form-outline i::after:not(.pass) {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: -0.6rem;
+	transform: translateY(-50%);
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0.8rem 0 0.8rem 0.6rem;
+}
+
+/* Colores alternados para iconos */
+.form-outline[data-color="primary"] i {
+	background-color: var(--color-primary);
+}
+
+.form-outline[data-color="primary"] i::after {
+	border-color: transparent transparent transparent var(--color-primary);
+}
+
+.form-outline[data-color="secondary"] i {
+	background-color: var(--color-secondary);
+}
+
+.form-outline[data-color="secondary"] i::after {
+	border-color: transparent transparent transparent var(--color-secondary);
+}
+
+/* ==== VALIDACIÓN: ESTADOS VÁLIDO E INVÁLIDO ==== */
+.form-outline input.is-valid,
+.form-outline textarea.is-valid {
+	border-color: #28a745;
+	background-color: #f0fff4;
+}
+
+.form-outline input.is-valid:focus,
+.form-outline textarea.is-valid:focus {
+	border-color: #28a745;
+	box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.15);
+}
+
+.form-outline input.is-invalid,
+.form-outline textarea.is-invalid {
+	border-color: #dc3545;
+	background-color: #fff5f5;
+}
+
+.form-outline input.is-invalid:focus,
+.form-outline textarea.is-invalid:focus {
+	border-color: #dc3545;
+	box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.15);
+}
+
+/* ==== MENSAJES DE ERROR (invalid-feedback) ==== */
+.invalid-feedback {
+	display: none;
+	color: #dc3545;
+	font-size: 0.85rem;
+	margin-top: 0.4rem;
+	margin-left: 5rem;
+	font-weight: 400;
+}
+
+.form-outline input.is-invalid ~ .invalid-feedback,
+.form-outline textarea.is-invalid ~ .invalid-feedback {
+	display: block !important;
+	animation: slideDown 0.3s ease;
+}
+
+/* Asegurar que el mensaje se muestre en password wrappers */
+.password-wrapper input.is-invalid ~ .password-toggle-btn ~ .invalid-feedback {
+	display: block !important;
+}
+
+.password-wrapper input.is-invalid ~ .invalid-feedback {
+	display: block !important;
+}
+
+@keyframes slideDown {
+	from {
+		opacity: 0;
+		transform: translateY(-5px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* ==== CONTADOR DE CARACTERES ==== */
+.char-counter {
+	position: absolute;
+	bottom: 0.5rem;
+	right: 1rem;
+	font-size: 0.8rem;
+	color: #666;
+	font-weight: 500;
+	z-index: 3;
+}
+
+.form-outline textarea.is-invalid ~ .char-counter {
+	color: #dc3545;
+}
+
+.form-outline textarea.is-valid ~ .char-counter {
+	color: #28a745;
+}
+
+/* ==== BOTÓN SUBMIT ==== */
+form button[type="submit"] {
+	padding: 0.9rem 2.5rem;
+	font-size: 0.9rem;
+	font-weight: 600;
+	letter-spacing: 0.5px;
+	border-radius: 0;
+	border: none;
+	background-color: var(--color-primary);
+	color: white;
+	transition: all 0.3s ease;
+	margin-top: 0.5rem;
+}
+
+form button[type="submit"]:hover {
+	background-color: var(--color-secondary);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+form button[type="submit"]:active {
+	transform: translateY(0);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ==== LINKS ADICIONALES ==== */
+.form-links {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin-top: 0.5rem;
+	text-align: center;
+}
+
+.form-links a {
+	font-size: 0.9rem;
+	text-decoration: none;
+	transition: all 0.2s ease;
+}
+
+.form-links .link-secondary {
+	color: var(--color-secondary);
+	font-weight: 500;
+}
+
+.form-links .link-primary {
+	color: var(--color-primary);
+	font-weight: 400;
+}
+
+.form-links a:hover {
+	text-decoration: underline;
+	opacity: 0.8;
+}
+
+/* ==== ALERTAS DE ÉXITO Y ERROR ==== */
+.alert {
+	border-radius: 0;
+	border: none;
+	margin-bottom: 1.5rem;
+	animation: slideInDown 0.4s ease;
+	padding: 1rem 1.5rem;
+}
+
+.alert-success {
+	background-color: #d4edda;
+	color: #155724;
+	border-left: 4px solid #28a745;
+}
+
+.alert-danger {
+	background-color: #f8d7da;
+	color: #721c24;
+	border-left: 4px solid #dc3545;
+}
+
+.alert-warning {
+	background-color: #fff3cd;
+	color: #856404;
+	border-left: 4px solid #ffc107;
+}
+
+.alert i {
+	margin-right: 0.5rem;
+	font-size: 1.1rem;
+}
+
+@keyframes slideInDown {
+	from {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* ==== DIVIDER TITLE ==== */
+.divider-title {
+	border-left: var(--color-primary) 4px solid;
+	padding-left: 0.5rem;
+	margin-bottom: 1rem;
+	font-size: 1.8rem;
+	font-weight: 600;
+}
+
+/* ===== ESTILOS PARA PASSWORD TOGGLE ===== */
+.password-wrapper {
+	position: relative;
+}
+
+.password-wrapper .form-control {
+	padding-right: 45px !important;
+}
+
+.password-toggle-btn {
+	position: absolute;
+	right: 2%;
+	top: 50%;
+	transform: translateY(-50%);
+	background: none;
+	border: none;
+	color: #6c757d;
+	cursor: pointer;
+	padding: 8px;
+	font-size: 1rem;
+	transition: color 0.2s ease;
+	z-index: 10000;
+	height: 100%;
+	width: 3rem;
+}
+
+.password-toggle-btn:hover {
+	color: #495057;
+	cursor: pointer;
+}
+
+.password-toggle-btn:focus {
+	outline: none;
+}
+
+/* ===== INDICADOR DE REQUISITOS DE CONTRASEÑA (MEJORADO) ===== */
+.password-requirements {
+	background-color: #f8f9fa;
+	border: 1px solid #dee2e6;
+	border-left: 3px solid var(--color-primary);
+	padding: 0.6rem 0.8rem;
+	margin-top: 0.4rem;
+	margin-left: 0;
+	font-size: 0.8rem;
+	display: none;
+	border-radius: 4px;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.password-requirements.show {
+	display: block;
+	animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.password-requirements ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem 0.8rem;
+}
+
+.password-requirements li {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3rem;
+	color: #6c757d;
+	font-size: 0.75rem;
+	transition: all 0.2s ease;
+	white-space: nowrap;
+}
+
+.password-requirements li i {
+	font-size: 0.7rem;
+	position: static;
+	width: auto;
+	height: auto;
+	background: none;
+}
+
+.password-requirements li.invalid {
+	color: #dc3545;
+}
+
+.password-requirements li.invalid i {
+	color: #dc3545;
+}
+
+.password-requirements li.valid {
+	color: #28a745;
+	font-weight: 500;
+}
+
+.password-requirements li.valid i {
+	color: #28a745;
+}
+
+/* ==== MEDIA QUERIES ==== */
+@media (max-width: 1023px) {
+	main {
+		padding: 8rem 2rem 2rem 2rem;
+	}
+
+	#formsType {
+		width: 75%;
+	}
+
+	.password-toggle-btn {
+		right: 0;
+	}
+}
+
+@media (max-width: 768px) {
+	main {
+		padding: 7rem 1.5rem 2rem 1.5rem;
+	}
+
+	#formsType {
+		width: 90%;
+		padding: 0 2rem;
+	}
+
+	.form-outline input,
+	.form-outline textarea {
+		font-size: 0.9rem;
+	}
+
+	.form-outline i {
+		width: 3rem;
+		height: 3rem;
+		font-size: 1.1rem;
+	}
+
+	.form-outline input {
+		height: 3rem;
+	}
+
+	.invalid-feedback {
+		margin-left: 4.5rem;
+		font-size: 0.8rem;
+	}
+
+	.password-requirements {
+		font-size: 0.75rem;
+		padding: 0.5rem 0.6rem;
+	}
+
+	.password-requirements li {
+		font-size: 0.7rem;
+	}
+
+	form button[type="submit"] {
+		width: 100%;
+		padding: 0.8rem 1.5rem;
+	}
+
+	.divider-title {
+		font-size: 1.5rem;
+	}
+}
+
+@media (max-width: 480px) {
+	section {
+		width: 100vw;
+		padding: 0rem 1rem 2rem 1rem;
+	}
+
+	#formsType {
+		min-width: 0rem;
+		width: 100%;
+	}
+
+	.form-outline input,
+	.form-outline textarea {
+		width: 100%;
+		font-size: 0.85rem;
+		padding-left: 4rem;
+	}
+
+	form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.form-outline i {
+		width: 2.8rem;
+		height: 2.8rem;
+		font-size: 1rem;
+	}
+
+	.form-outline input {
+		height: 2.8rem;
+	}
+
+	.form-outline textarea {
+		height: 8rem;
+	}
+
+	.invalid-feedback {
+		margin-left: 3.5rem;
+		font-size: 0.75rem;
+	}
+
+	.password-requirements {
+		padding: 0.4rem 0.5rem;
+		font-size: 0.7rem;
+	}
+
+	.password-requirements li {
+		font-size: 0.65rem;
+		gap: 0.2rem;
+	}
+
+	.password-requirements li i {
+		font-size: 0.65rem;
+	}
+
+	.char-counter {
+		font-size: 0.7rem;
+		bottom: 0.3rem;
+		right: 0.5rem;
+	}
+
+	.form-links {
+		font-size: 0.85rem;
+	}
+
+	.alert {
+		font-size: 0.85rem;
+		padding: 0.8rem 1rem;
+	}
+
+	.password-toggle-btn {
+		font-size: 1rem;
+	}
+}
