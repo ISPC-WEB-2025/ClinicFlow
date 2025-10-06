@@ -16,7 +16,18 @@ body {
 .bg-primary {
 	background-color: var(--color-primary) !important;
 }
-
+.link-primary{
+	color: var(--color-primary) !important;
+}
+.link-secondary{
+	color: var(--color-secondary) !important;
+}
+.color-primary{
+	color: var(--color-primary) !important;
+}
+.color-secondary{
+	color: var(--color-secondary) !important;
+}
 /* Utilidad para ocultar visualmente pero mantener accesibilidad */
 .visually-hidden {
 	position: absolute !important;

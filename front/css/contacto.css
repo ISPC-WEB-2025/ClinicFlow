@@ -1,19 +1,18 @@
 
 main#contacto {
-    min-height: 75rem;
+
     position: relative;
 }
 
 .contenedor-general {
     width: 100%;
-    min-height: 75rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0;
     padding: 0;
     position: relative;
-    margin-top: 4rem;
+    padding: 4rem 0;
 }
 
 .contenedor-imagen {
@@ -32,6 +31,8 @@ main#contacto {
     object-fit: cover;
 }
 
+
+
 /* Formulario */
 .contacto {
     box-sizing: border-box;
@@ -44,7 +45,7 @@ main#contacto {
     backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
-    margin-top: 4rem;
+    
     position: relative;
     z-index: 2;
 }
