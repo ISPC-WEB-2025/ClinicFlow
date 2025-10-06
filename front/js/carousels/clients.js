@@ -38,7 +38,7 @@ const generateCarouselItems = (clients) => {
 };
 
 const createCarouselHTML = (clients) => `
-    <header class="section-header mt-4 mb-4">
+    <header class="section-header mt-4 mb-4 hd-carousel">
         <h2 class="divider-title">Nuestros Clientes</h2>
         <div class="control-wrapper">
             <a class="carousel-control-prev" href="#clientsCarousel" role="button" data-bs-slide="prev" aria-label="Anterior">

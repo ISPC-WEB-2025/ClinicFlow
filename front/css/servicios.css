@@ -1,111 +1,166 @@
-section:not(#banner) {
-	margin: 0 8rem;
-}
-#banner h2{
-    text-align: center;
-    margin-top: 4rem;
-}
-h2.divider-title {
-	margin-top: 4rem;
-	margin-bottom: 2rem;
-}
+/* ========================================
+   SERVICIOS.CSS - ESTILOS ESPECÍFICOS
+   Solo estilos únicos de la página de servicios
+   ======================================== */
 
-.funcionalidades{
-    flex-direction: column;
-    height: auto;
-    margin-bottom: 4rem;
 
+/* ==== BENEFICIOS SECTION ==== */
+#beneficios {
+	max-width: 1400px;
+	margin: 0 auto;
 }
 
-.funcionalidades .benefit .card-container{
-    min-width: 16rem;
-    height: auto;
+/* Contenedor de padding responsivo */
+.px-lg-7 {
+	padding-left: 8rem !important;
+	padding-right: 8rem !important;
 }
 
-.funcionalidades .benefit:nth-child(even) .card-container{
-    background-color: var(--color-secondary);
+/* Cards de beneficios principales */
+.benefit-card {
+	border-radius: 0;
+	min-height: 280px;
+	transition: all 0.3s ease;
 }
 
-.benefit{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
+.benefit-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-.benefit:not(:last-child){
-    border-bottom: var(--color-primary) 1px solid;
-}
-.benefits-container{
-
-    flex-grow: 1;
-    padding: 1rem 2rem;
+.benefit-card i {
+	transition: transform 0.3s ease;
 }
 
-.benefit-header, .benefit-p{
-color: black;
-text-align: left;
+.benefit-card:hover i {
+	transform: scale(1.1) rotate(5deg);
 }
 
-.benefits-container i {
-    margin-right: 1rem;
-    background-color: var(--color-secondary);
-    padding: 1rem;
-    color: white;
+/* Detalles de beneficios */
+.benefit-details {
+	background-color: transparent;
 }
 
-.benefit-p {
-    font-weight: 300;
-    margin-bottom: 1rem;
+.benefit-subtitle {
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: var(--color-text-dark);
+	transition: color 0.3s ease;
 }
 
-
-
-
-#CTA-btn{
-    margin-bottom: 4rem !important;
+.benefit-subtitle i {
+	flex-shrink: 0;
+	border-radius: 0;
+	transition: all 0.3s ease;
 }
 
-/* MEDIA QUERIES */
+.benefit-item:hover .benefit-subtitle {
+	color: var(--color-primary);
+}
 
+.benefit-item:hover .benefit-subtitle i {
+	transform: scale(1.05);
+}
+
+.benefit-description {
+	font-weight: 300;
+	line-height: 1.6;
+	color: var(--color-text-dark);
+}
+
+/* Alternancia de colores en cards */
+.benefit-item:nth-child(odd) .benefit-card {
+	background-color: var(--color-primary) !important;
+}
+
+.benefit-item:nth-child(even) .benefit-card {
+	background-color: var(--color-secondary) !important;
+}
+
+/* ==== MEDIA QUERIES ==== */
+
+/* Large Desktop */
+@media (min-width: 1500px) {
+	.benefit-card {
+		max-width: 320px;
+	}
+}
+
+/* Desktop a Tablet grande */
 @media (max-width: 1024px) {
-    section:not(#banner) {
-	margin: 0 4rem;
-}
+	.px-lg-7 {
+		padding-left: 4rem !important;
+		padding-right: 4rem !important;
+	}
 	
+	.benefit-card {
+		min-height: 240px;
+	}
 }
 
+/* Tablet */
+@media (max-width: 991px) {
+	.benefit-card {
+		min-height: auto;
+		max-width: 100%;
+	}
+	
+	.benefit-subtitle {
+		font-size: 1rem;
+	}
+	
+	.benefit-subtitle i {
+		padding: 0.75rem !important;
+		font-size: 0.9rem;
+	}
+}
+
+/* Mobile grande */
 @media (max-width: 768px) {
-section:not(#banner) {
-	margin: 0 2rem;
+	.px-lg-7 {
+		padding-left: 2rem !important;
+		padding-right: 2rem !important;
+	}
+	
+	#banner img {
+		height: 15rem;
+	}
+	
+	#banner h1 {
+		margin-top: 3rem;
+		font-size: 2rem;
+	}
+	
+	.benefit-details {
+		padding: 1rem !important;
+	}
 }
-.funcionalidades .benefit .card-container{
-    width: 100%;
 
-}
-.benefit{
-    flex-direction: column;
-
-}
-#CTA-btn{
-    display: flex;
-    justify-content: center;
-}
-}
-
+/* Mobile pequeño */
 @media (max-width: 450px) {
-	section:not(#banner) {
-	margin: 0 1rem;
-
-}
-.funcionalidades{
-    padding: 0;
-}
-
-
-}
-
-@media (min-width:1500px){
-    .funcionalidades .benefit .card-container{
-    max-width: 20rem;
-}
+	.px-lg-7 {
+		padding-left: 1rem !important;
+		padding-right: 1rem !important;
+	}
+	
+	#banner h1 {
+		margin-top: 2rem;
+		font-size: 1.75rem;
+	}
+	
+	.benefit-subtitle {
+		font-size: 0.95rem;
+		flex-direction: column;
+		text-align: center;
+	}
+	
+	.benefit-subtitle i {
+		margin-bottom: 0.5rem;
+		margin-right: 0 !important;
+	}
+	
+	.benefit-description {
+		font-size: 0.9rem;
+		text-align: center;
+	}
 }

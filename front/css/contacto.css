@@ -13,6 +13,7 @@ main#contacto {
     margin: 0;
     padding: 0;
     position: relative;
+    margin-top: 4rem;
 }
 
 .contenedor-imagen {

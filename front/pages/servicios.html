@@ -1,14 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Descubre los servicios de ClinicFlow: gestión de pacientes, optimización clínica, reportes en tiempo real y máxima seguridad"
+		/>
+
+		<!-- Preconnect para mejorar rendimiento -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+		<link rel="dns-prefetch" href="https://kit.fontawesome.com" />
+
+		<!-- Fuentes -->
 		<link
-			href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700;900&display=swap"
 			rel="stylesheet"
 		/>
+
+		<!-- Bootstrap CSS -->
 		<link
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
 			rel="stylesheet"
@@ -16,246 +28,465 @@
 			crossorigin="anonymous"
 		/>
 
+		<!-- CSS Custom -->
 		<link rel="stylesheet" href="../css/styles.css" />
-		<link rel="stylesheet" href="../css/index.css" />
 		<link rel="stylesheet" href="../css/servicios.css" />
 
-		<title>ClinicFlow</title>
+		<title>ClinicFlow - Servicios</title>
 	</head>
 
-	<body class="bg-light">
+	<body class="d-flex flex-column min-vh-100 bg-light">
 		<!-- HEADER -->
 		<header
 			class="navbar navbar-expand-lg navbar-light fixed-top"
 			id="header-placeholder"
+			role="banner"
 		></header>
 
-		<!-- MAIN INICIO -->
-		<main class="">
-			<section id="banner">
-				<img
-					src="../img/banner.png"
-					alt="Banner con iconos médicos y tecnológicos"
-				/>
-				<h2 class="display-5 fw-bold">Servicios</h2>
-			</section>
+		<!-- MAIN CONTENT -->
+		<main class="flex-grow-1" role="main">
+			<!-- BANNER SECTION -->
+					<section id="banner" class="banner-overlay mb-5" aria-labelledby="page-title">
+			<img src="../img/banner.png" alt="Banner con iconos médicos y tecnológicos" class="w-100 object-fit-cover" loading="eager">
+			<div class="banner-overlay-content">
+				<h1 id="page-title" class="banner-overlay-title">Servicios</h1>
+			</div>
+		</section>
 
-			<section id="beneficios">
-				<h2 class="divider-title">Beneficios Generales</h2>
-				<div class="funcionalidades">
-					<span class="benefit">
-						<article class="card-container">
-							<i class="fa-solid fa-file-invoice"></i>
-							<div>
-								<h3>Gestión Centralizada de Pacientes</h3>
-								<p>
-									Todo sobre tus pacientes, en un solo lugar
-								</p>
+			<!-- BENEFICIOS SECTION -->
+			<section
+				id="beneficios"
+				class="container-fluid px-4 px-md-5 px-lg-7 mb-5"
+				aria-labelledby="beneficios-title"
+			>
+				<h2 id="beneficios-title" class="divider-title h3 mb-4">
+					Beneficios Generales
+				</h2>
+
+				<div class="benefits-grid">
+					<!-- BENEFICIO 1: Gestión Centralizada -->
+					<article
+						class="benefit-item row g-0 border-bottom border-primary pb-4 mb-4"
+					>
+						<div class="col-12 col-lg-3 mb-3 mb-lg-0">
+							<div
+								class="benefit-card bg-primary text-white p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center"
+							>
+								<i
+									class="fa-solid fa-file-invoice display-3 mb-3"
+									aria-hidden="true"
+								></i>
+								<div>
+									<h3 class="h5 fw-semibold mb-2">
+										Gestión Centralizada de Pacientes
+									</h3>
+									<p class="small mb-0">
+										Todo sobre tus pacientes, en un solo
+										lugar
+									</p>
+								</div>
 							</div>
-						</article>
-						<div class="benefits-container">
-							<header class="benefit-header">
-								<i class="fa-solid fa-file-invoice"></i>
-								Historial Clínico Unificado
-							</header>
-							<p class="benefit-p">
-								Accede al historial médico completo de cada
-								paciente de forma inmediata. Registra consultas,
-								diagnósticos, tratamientos y evolución en una
-								ficha integrada que se actualiza en tiempo real.
-							</p>
-							<header class="benefit-header">
-								<i class="fa-solid fa-file-invoice"></i>
-								Gestión de Turnos Inteligente
-							</header>
-							<p class="benefit-p">
-								Programa, reprograma y gestiona turnos de manera
-								eficiente. Reduce los tiempos de espera y evita
-								conflictos de agenda con un sistema que alerta
-								sobre solapamientos y disponibilidad.
-							</p>
-							<header class="benefit-header">
-								<i class="fa-solid fa-file-invoice"></i>
-								Carpeta Médica Digital
-							</header>
-							<p class="benefit-p">
-								Digitaliza todos los documentos médicos:
-								estudios, recetas, informes y consentimientos.
-								Organízalos por paciente y fecha para un acceso
-								rápido y seguro desde cualquier dispositivo.
-							</p>
 						</div>
-					</span>
-					<span class="benefit">
-						<article class="card-container">
-							<i class="fa-solid fa-flask"></i>
-							<div>
-								<h3>Optimización de Procesos Clínicos</h3>
-								<p>Flujos de trabajo médicos más eficientes</p>
+
+						<div class="col-12 col-lg-9">
+							<div class="benefit-details p-3 p-lg-4">
+								<div class="mb-4">
+									<h4
+										class="benefit-subtitle d-flex align-items-center mb-2"
+									>
+										<i
+											class="fa-solid fa-file-invoice bg-secondary text-white p-3 me-3"
+											aria-hidden="true"
+										></i>
+										<span>Historial Clínico Unificado</span>
+									</h4>
+									<p class="benefit-description mb-0">
+										Accede al historial médico completo de
+										cada paciente de forma inmediata.
+										Registra consultas, diagnósticos,
+										tratamientos y evolución en una ficha
+										integrada que se actualiza en tiempo
+										real.
+									</p>
+								</div>
+
+								<div class="mb-4">
+									<h4
+										class="benefit-subtitle d-flex align-items-center mb-2"
+									>
+										<i
+											class="fa-solid fa-file-invoice bg-secondary text-white p-3 me-3"
+											aria-hidden="true"
+										></i>
+										<span
+											>Gestión de Turnos Inteligente</span
+										>
+									</h4>
+									<p class="benefit-description mb-0">
+										Programa, reprograma y gestiona turnos
+										de manera eficiente. Reduce los tiempos
+										de espera y evita conflictos de agenda
+										con un sistema que alerta sobre
+										solapamientos y disponibilidad.
+									</p>
+								</div>
+
+								<div>
+									<h4
+										class="benefit-subtitle d-flex align-items-center mb-2"
+									>
+										<i
+											class="fa-solid fa-file-invoice bg-secondary text-white p-3 me-3"
+											aria-hidden="true"
+										></i>
+										<span>Carpeta Médica Digital</span>
+									</h4>
+									<p class="benefit-description mb-0">
+										Digitaliza todos los documentos médicos:
+										estudios, recetas, informes y
+										consentimientos. Organízalos por
+										paciente y fecha para un acceso rápido y
+										seguro desde cualquier dispositivo.
+									</p>
+								</div>
 							</div>
-						</article>
-						<div class="benefits-container">
-							<header class="benefit-header">
-								<i class="fa-solid fa-flask"></i>
-								Automatización de Tareas Repetitivas
-							</header>
-							<p class="benefit-p">
-								Automatiza procesos como recordatorios de
-								turnos, envío de resultados y facturación.
-								Ahorra tiempo valioso y reduce errores humanos
-								en la gestión diaria.
-							</p>
-							<header class="benefit-header">
-								<i class="fa-solid fa-flask"></i>
-								Prescripción Digital y Recetas Electrónicas
-							</header>
-							<p class="benefit-p">
-								Genera recetas y prescripciones digitales con
-								validez legal. Imprime o envía por
-								email/WhatsApp con un solo clic, mejorando la
-								experiencia del paciente y tu eficiencia.
-							</p>
-							<header class="benefit-header">
-								<i class="fa-solid fa-flask"></i>
-								Plantillas de Consultas Personalizables
-							</header>
-							<p class="benefit-p">
-								Crea y utiliza plantillas predefinidas para
-								diferentes especialidades. Estandariza la toma
-								de datos y agiliza la documentación clínica sin
-								sacrificar la personalización.
-							</p>
 						</div>
-					</span>
-					<span class="benefit">
-						<article class="card-container">
-							<i class="fa-solid fa-clock-rotate-left"></i>
-							<div>
-								<h3>Reportes e Indicadores en Tiempo Real</h3>
-								<p>Toma de decisiones basadas en datos</p>
+					</article>
+
+					<!-- BENEFICIO 2: Optimización de Procesos -->
+					<article
+						class="benefit-item row g-0 border-bottom border-primary pb-4 mb-4"
+					>
+						<div class="col-12 col-lg-3 mb-3 mb-lg-0">
+							<div
+								class="benefit-card bg-secondary text-white p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center"
+							>
+								<i
+									class="fa-solid fa-flask display-3 mb-3"
+									aria-hidden="true"
+								></i>
+								<div>
+									<h3 class="h5 fw-semibold mb-2">
+										Optimización de Procesos Clínicos
+									</h3>
+									<p class="small mb-0">
+										Flujos de trabajo médicos más eficientes
+									</p>
+								</div>
 							</div>
-						</article>
-						<div class="benefits-container">
-							<header class="benefit-header">
-								<i class="fa-solid fa-clock-rotate-left"></i>
-								Dashboard Ejecutivo Interactivo
-							</header>
-							<p class="benefit-p">
-								Visualiza el estado de tu institución con
-								paneles personalizables. Monitorea métricas
-								clave como ocupación, rentabilidad, tiempos de
-								espera y satisfacción del paciente.
-							</p>
-							<header class="benefit-header">
-								<i class="fa-solid fa-clock-rotate-left"></i>
-								Estadísticas por Especialidad y Profesional
-							</header>
-							<p class="benefit-p">
-								Compara el desempeño por especialidad, médico o
-								consultorio. Identifica oportunidades de mejora
-								y optimiza la asignación de recursos con datos
-								concretos.
-							</p>
-							<header class="benefit-header">
-								<i class="fa-solid fa-clock-rotate-left"></i>
-								Reportes Programables y Exportables
-							</header>
-							<p class="benefit-p">
-								Configura reportes automáticos que se generan y
-								envían por email periódicamente. Exporta datos
-								en formatos PDF, Excel o CSV para su análisis
-								externo o presentaciones.
-							</p>
 						</div>
-					</span>
-					<span class="benefit">
-						<article class="card-container">
-							<i class="fa-solid fa-shield"></i>
-							<div>
-								<h3>Seguridad y Confidencialidad</h3>
-								<p>
-									Protección de datos sensibles con estándares
-									médicos
-								</p>
+
+						<div class="col-12 col-lg-9">
+							<div class="benefit-details p-3 p-lg-4">
+								<div class="mb-4">
+									<h4
+										class="benefit-subtitle d-flex align-items-center mb-2"
+									>
+										<i
+											class="fa-solid fa-flask bg-secondary text-white p-3 me-3"
+											aria-hidden="true"
+										></i>
+										<span
+											>Automatización de Tareas
+											Repetitivas</span
+										>
+									</h4>
+									<p class="benefit-description mb-0">
+										Automatiza procesos como recordatorios
+										de turnos, envío de resultados y
+										facturación. Ahorra tiempo valioso y
+										reduce errores humanos en la gestión
+										diaria.
+									</p>
+								</div>
+
+								<div class="mb-4">
+									<h4
+										class="benefit-subtitle d-flex align-items-center mb-2"
+									>
+										<i
+											class="fa-solid fa-flask bg-secondary text-white p-3 me-3"
+											aria-hidden="true"
+										></i>
+										<span
+											>Prescripción Digital y Recetas
+											Electrónicas</span
+										>
+									</h4>
+									<p class="benefit-description mb-0">
+										Genera recetas y prescripciones
+										digitales con validez legal. Imprime o
+										envía por email/WhatsApp con un solo
+										clic, mejorando la experiencia del
+										paciente y tu eficiencia.
+									</p>
+								</div>
+
+								<div>
+									<h4
+										class="benefit-subtitle d-flex align-items-center mb-2"
+									>
+										<i
+											class="fa-solid fa-flask bg-secondary text-white p-3 me-3"
+											aria-hidden="true"
+										></i>
+										<span
+											>Plantillas de Consultas
+											Personalizables</span
+										>
+									</h4>
+									<p class="benefit-description mb-0">
+										Crea y utiliza plantillas predefinidas
+										para diferentes especialidades.
+										Estandariza la toma de datos y agiliza
+										la documentación clínica sin sacrificar
+										la personalización.
+									</p>
+								</div>
 							</div>
-						</article>
-						<div class="benefits-container">
-							<header class="benefit-header">
-								<i class="fa-solid fa-shield"></i> Cifrado de
-								Datos End-to-End
-							</header>
-							<p class="benefit-p">
-								Protege toda la información con cifrado avanzado
-								tanto en tránsito como en reposo. Garantiza que
-								los datos sensibles solo sean accesibles para
-								personal autorizado.
-							</p>
-							<header class="benefit-header">
-								<i class="fa-solid fa-shield"></i>
-								Accesos Jerárquicos y Roles Personalizables
-							</header>
-							<p class="benefit-p">
-								Define permisos granulares para cada usuario:
-								administradores, médicos, enfermeros y
-								recepcionistas. Controla quién ve, edita o
-								elimina información crítica.
-							</p>
-							<header class="benefit-header">
-								<i class="fa-solid fa-shield"></i>
-								Auditoría y Trazabilidad Completa
-							</header>
-							<p class="benefit-p">
-								Registra every acción realizada en el sistema:
-								quién, cuándo y qué modificó. Cumple con
-								normativas de trazabilidad y respalda tus
-								procesos con evidencia digital.
-							</p>
 						</div>
-					</span>
+					</article>
+
+					<!-- BENEFICIO 3: Reportes en Tiempo Real -->
+					<article
+						class="benefit-item row g-0 border-bottom border-primary pb-4 mb-4"
+					>
+						<div class="col-12 col-lg-3 mb-3 mb-lg-0">
+							<div
+								class="benefit-card bg-primary text-white p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center"
+							>
+								<i
+									class="fa-solid fa-clock-rotate-left display-3 mb-3"
+									aria-hidden="true"
+								></i>
+								<div>
+									<h3 class="h5 fw-semibold mb-2">
+										Reportes e Indicadores en Tiempo Real
+									</h3>
+									<p class="small mb-0">
+										Toma de decisiones basadas en datos
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-lg-9">
+							<div class="benefit-details p-3 p-lg-4">
+								<div class="mb-4">
+									<h4
+										class="benefit-subtitle d-flex align-items-center mb-2"
+									>
+										<i
+											class="fa-solid fa-clock-rotate-left bg-secondary text-white p-3 me-3"
+											aria-hidden="true"
+										></i>
+										<span
+											>Dashboard Ejecutivo
+											Interactivo</span
+										>
+									</h4>
+									<p class="benefit-description mb-0">
+										Visualiza el estado de tu institución
+										con paneles personalizables. Monitorea
+										métricas clave como ocupación,
+										rentabilidad, tiempos de espera y
+										satisfacción del paciente.
+									</p>
+								</div>
+
+								<div class="mb-4">
+									<h4
+										class="benefit-subtitle d-flex align-items-center mb-2"
+									>
+										<i
+											class="fa-solid fa-clock-rotate-left bg-secondary text-white p-3 me-3"
+											aria-hidden="true"
+										></i>
+										<span
+											>Estadísticas por Especialidad y
+											Profesional</span
+										>
+									</h4>
+									<p class="benefit-description mb-0">
+										Compara el desempeño por especialidad,
+										médico o consultorio. Identifica
+										oportunidades de mejora y optimiza la
+										asignación de recursos con datos
+										concretos.
+									</p>
+								</div>
+
+								<div>
+									<h4
+										class="benefit-subtitle d-flex align-items-center mb-2"
+									>
+										<i
+											class="fa-solid fa-clock-rotate-left bg-secondary text-white p-3 me-3"
+											aria-hidden="true"
+										></i>
+										<span
+											>Reportes Programables y
+											Exportables</span
+										>
+									</h4>
+									<p class="benefit-description mb-0">
+										Configura reportes automáticos que se
+										generan y envían por email
+										periódicamente. Exporta datos en
+										formatos PDF, Excel o CSV para su
+										análisis externo o presentaciones.
+									</p>
+								</div>
+							</div>
+						</div>
+					</article>
+
+					<!-- BENEFICIO 4: Seguridad -->
+					<article class="benefit-item row g-0 pb-4 mb-4">
+						<div class="col-12 col-lg-3 mb-3 mb-lg-0">
+							<div
+								class="benefit-card bg-secondary text-white p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center"
+							>
+								<i
+									class="fa-solid fa-shield display-3 mb-3"
+									aria-hidden="true"
+								></i>
+								<div>
+									<h3 class="h5 fw-semibold mb-2">
+										Seguridad y Confidencialidad
+									</h3>
+									<p class="small mb-0">
+										Protección de datos sensibles con
+										estándares médicos
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-lg-9">
+							<div class="benefit-details p-3 p-lg-4">
+								<div class="mb-4">
+									<h4
+										class="benefit-subtitle d-flex align-items-center mb-2"
+									>
+										<i
+											class="fa-solid fa-shield bg-secondary text-white p-3 me-3"
+											aria-hidden="true"
+										></i>
+										<span>Cifrado de Datos End-to-End</span>
+									</h4>
+									<p class="benefit-description mb-0">
+										Protege toda la información con cifrado
+										avanzado tanto en tránsito como en
+										reposo. Garantiza que los datos
+										sensibles solo sean accesibles para
+										personal autorizado.
+									</p>
+								</div>
+
+								<div class="mb-4">
+									<h4
+										class="benefit-subtitle d-flex align-items-center mb-2"
+									>
+										<i
+											class="fa-solid fa-shield bg-secondary text-white p-3 me-3"
+											aria-hidden="true"
+										></i>
+										<span
+											>Accesos Jerárquicos y Roles
+											Personalizables</span
+										>
+									</h4>
+									<p class="benefit-description mb-0">
+										Define permisos granulares para cada
+										usuario: administradores, médicos,
+										enfermeros y recepcionistas. Controla
+										quién ve, edita o elimina información
+										crítica.
+									</p>
+								</div>
+
+								<div>
+									<h4
+										class="benefit-subtitle d-flex align-items-center mb-2"
+									>
+										<i
+											class="fa-solid fa-shield bg-secondary text-white p-3 me-3"
+											aria-hidden="true"
+										></i>
+										<span
+											>Auditoría y Trazabilidad
+											Completa</span
+										>
+									</h4>
+									<p class="benefit-description mb-0">
+										Registra cada acción realizada en el
+										sistema: quién, cuándo y qué modificó.
+										Cumple con normativas de trazabilidad y
+										respalda tus procesos con evidencia
+										digital.
+									</p>
+								</div>
+							</div>
+						</div>
+					</article>
 				</div>
 			</section>
 
+			<!-- CTA SECTION -->
 			<section
-				id="CTA-btn"
-				class="d-flex align-items-center gap-4 d-sm-flex justify-content-sm-center"
+				class="text-center py-5 mb-5"
+				aria-label="Llamada a la acción"
 			>
-				<a href="planes.html" class="btn btn-primary btn-lg px-4 gap-3">
-					Conoce más
-				</a>
-				<span>
-					<i class="fa-solid fa-chevron-right icono-header left"></i>
-					<i class="fa-solid fa-chevron-right icono-header right"></i
-				></span>
+				<div
+					class="d-flex align-items-center justify-content-center gap-3 flex-wrap"
+				>
+					<a
+						href="planes.html"
+						class="btn btn-primary btn-lg px-4"
+						aria-label="Conocer más sobre nuestros planes"
+					>
+						Conoce más
+					</a>
+					<span class="d-flex" aria-hidden="true">
+						<i
+							class="fa-solid fa-chevron-right text-primary fs-4"
+						></i>
+						<i
+							class="fa-solid fa-chevron-right text-primary fs-4 ms-n2"
+						></i>
+					</span>
+				</div>
 			</section>
 		</main>
 
 		<!-- FOOTER -->
-		<footer id="footer-placeholder" class="footer"></footer>
+		<footer
+			id="footer-placeholder"
+			class="footer mt-auto"
+			role="contentinfo"
+		></footer>
 
-		<!--SCRIPTS INICIO-->
+		<!-- SCRIPTS -->
 		<script
 			src="https://kit.fontawesome.com/d8c2b7ce4c.js"
 			crossorigin="anonymous"
-		></script>
-
-		<script src="../js/layout.js"></script>
-		<script
-			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-			integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-			crossorigin="anonymous"
+			defer
 		></script>
 		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
-			integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 			crossorigin="anonymous"
+			defer
 		></script>
 
-		<script src="../js/forms/form-builder.js"></script>
-		<script src="../js/register/register-simulation.js"></script>
+		<!-- Scripts custom -->
+		<script src="../js/layout.js" defer></script>
+		<script src="../js/forms/form-builder.js" defer></script>
+		<script src="../js/register/register-simulation.js" defer></script>
 		<script
 			type="module"
 			src="../js/forms/validations/form-validations.js"
 		></script>
-		<!--SCRIPTS FIN-->
 	</body>
 </html>

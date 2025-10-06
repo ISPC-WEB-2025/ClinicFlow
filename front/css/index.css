@@ -1,11 +1,6 @@
 
 /* ==== HOME: SECCION BANNER ==== */
-#banner img {
-	width: 100%;
-	height: 30rem;
-	object-fit: cover;
-	object-position: center 50%;
-}
+
 
  .funcionalidades {
 	display: flex;
