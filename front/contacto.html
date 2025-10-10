@@ -84,7 +84,9 @@
             </div>
 
             <!--Formulario de contacto-->
-            <form class="contacto needs-validation" novalidate>
+            <form action="https://api.web3forms.com/submit" method="POST" class="contacto needs-validation" novalidate>
+                <input type="hidden" name="access_key" value="769bdd25-3a34-409f-a791-34ae6d13e0d3">
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
                 <h2>¡CONSULTANOS!</h2>
                 <p class="required-note">Todos los campos son obligatorios (*)</p>
 
