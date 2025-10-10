@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+		rel="stylesheet"
+	/>
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+		crossorigin="anonymous"
+	/>
+
+	<link rel="stylesheet" href="./css/styles.css" />
+	<link rel="stylesheet" href="./css/404.css" />
+
+	<title>404 - Página no encontrada | ClinicFlow</title>
+</head>
+<body class="bg-light">
+	<!-- HEADER -->
+	<header class="navbar navbar-expand-lg navbar-light fixed-top" id="header-placeholder"></header>
+
+	<!-- MAIN -->
+	<main>
+		<!-- SECCIÓN 404 -->
+		<section id="error-404">
+			<article class="error-container">
+				<div class="error-icon">
+					<i class="fa-solid fa-file-medical-alt"></i>
+					<span class="error-code">404</span>
+				</div>
+				
+				<header class="error-header">
+					<h1 class="error-title">Página no encontrada</h1>
+					<p class="error-subtitle">
+						Lo sentimos, no pudimos encontrar la página que buscas
+					</p>
+				</header>
+
+				<div class="error-description">
+					<p>
+						La página que intentas visitar no existe o ha sido movida. 
+						Esto puede suceder por varias razones:
+					</p>
+					<ul class="error-reasons">
+						<li>
+							<i class="fa-solid fa-link-slash"></i>
+							El enlace podría estar roto o desactualizado
+						</li>
+						<li>
+							<i class="fa-solid fa-keyboard"></i>
+							Puede haber un error tipográfico en la URL
+						</li>
+						<li>
+							<i class="fa-solid fa-folder-open"></i>
+							El contenido pudo haber sido eliminado o reubicado
+						</li>
+					</ul>
+				</div>
+
+				<footer class="error-actions">
+					<a href="./index.html" class="btn btn-primary btn-lg">
+						<i class="fa-solid fa-house"></i>
+						Volver al inicio
+					</a>
+					<button onclick="history.back()" class="btn btn-outline-primary btn-lg">
+						<i class="fa-solid fa-arrow-left"></i>
+						Página anterior
+					</button>
+				</footer>
+			</article>
+
+			
+		</section>
+	</main>
+
+	<!-- FOOTER -->
+	<footer id="footer-placeholder" class="footer"></footer>
+
+	<!-- SCRIPTS -->
+	<script
+		src="https://kit.fontawesome.com/d8c2b7ce4c.js"
+		crossorigin="anonymous"
+	></script>
+	<script src="./js/layout.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+		
+		crossorigin="anonymous"
+	></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
