@@ -34,7 +34,7 @@
  .funcionalidades article h3 {
 	font-size: 1.2rem;
 	font-weight: 600;
-	margin-bottom: 0.5rem;
+	margin-bottom: 1rem;
 }
 
  .funcionalidades article p {
@@ -136,7 +136,7 @@ p.subtitulo {
 
 /* SECCIONES */
 section {
-	margin-bottom: 4rem 0;
+	margin-bottom: 4rem;
 }
 
 /* ==== MEDIA QUERIES ==== */
