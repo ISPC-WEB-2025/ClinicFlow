@@ -125,7 +125,7 @@ const programarEliminacionAlerta = (container, tipo) => {
 };
 
 export function mostrarAlerta(tipo, mensaje, callback) {
-    const container = document.getElementById('formsType');
+    const container = document.getElementById('contact-form');
     if (!container) return;
 
     eliminarAlertasExistentes(container, tipo);
