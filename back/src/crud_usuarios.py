@@ -54,6 +54,11 @@ def crear_usuario(
             return None
         cursor = conn.cursor()
 
+        nombre = nombre if nombre else None
+        apellido = apellido if apellido else None
+        email = email if email else None  # resolver error insertar cadena ''
+        direccion = direccion if direccion else None
+
         cursor.execute(
             """
             INSERT INTO usuario (nombre_usuario, nombre, apellido, email, password, direccion, rol)
