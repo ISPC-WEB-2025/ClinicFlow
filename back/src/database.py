@@ -146,8 +146,10 @@ def get_db_connection():
 
 def initialize_db():
     """
-    Inicializa la base de datos MySQL creando la tabla 'usuario' si no existe.
-    También inserta un usuario administrador por defecto si la tabla está vacía.
+    Inicializa la base de datos MySQL creando las tablas necesarias:
+    - usuario
+    - producto
+    También inserta un administrador por defecto si la tabla usuario está vacía.
     """
     if not create_database_if_not_exists():
         print("No se pudo crear/verificar la base de datos.")
@@ -157,16 +159,13 @@ def initialize_db():
     try:
         conn = get_db_connection()
         if conn is None:
-            print(
-                "No se pudo establecer conexión con la base de datos para inicializarla."
-            )
+            print("No se pudo establecer conexión con la base de datos para inicializarla.")
             return
 
         cursor = conn.cursor()
 
-        # Script SQL para crear la tabla 'usuario'
-        cursor.execute(
-            """
+        # --- Crear tabla usuario ---
+        cursor.execute("""
             CREATE TABLE IF NOT EXISTS usuario (
                 idUsuario INT AUTO_INCREMENT PRIMARY KEY,
                 nombre_usuario VARCHAR(255) NOT NULL UNIQUE,
@@ -178,34 +177,42 @@ def initialize_db():
                 rol VARCHAR(50) NOT NULL,
                 CHECK (rol IN ('administrador', 'estandar'))
             );
-            """
-        )
+        """)
 
-        # Verificar si ya existe un administrador
+        # --- Crear tabla producto ---
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS producto (
+                idProducto INT AUTO_INCREMENT PRIMARY KEY,
+                nombre VARCHAR(255) NOT NULL,
+                descripcion TEXT,
+                precio DECIMAL(10,2) NOT NULL,
+                stock INT DEFAULT 0,
+                idUsuario INT,
+                FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
+            );
+        """)
+
+        # --- Insertar administrador por defecto si no existe ---
         cursor.execute("SELECT COUNT(*) FROM usuario WHERE rol = 'administrador'")
         if cursor.fetchone()[0] == 0:
+            import hashlib
             default_admin_pass_hash = hashlib.sha256("admin123".encode()).hexdigest()
-            cursor.execute(
-                """
+            cursor.execute("""
                 INSERT INTO usuario (nombre_usuario, nombre, apellido, email, password, direccion, rol)
                 VALUES (%s, %s, %s, %s, %s, %s, %s)
-                """,
-                (
-                    "admin",
-                    "Administrador",
-                    "Principal",
-                    "admin@ejemplo.com",
-                    default_admin_pass_hash,
-                    "Sistema",
-                    "administrador",
-                ),
-            )
+            """, (
+                "admin",
+                "Administrador",
+                "Principal",
+                "admin@ejemplo.com",
+                default_admin_pass_hash,
+                "Sistema",
+                "administrador",
+            ))
             print("Administrador por defecto 'admin' creado con contraseña 'admin123'.")
 
         conn.commit()
-        print(
-            f"Base de datos MySQL '{DB_CONFIG['database']}' inicializada correctamente."
-        )
+        print(f"Base de datos '{DB_CONFIG['database']}' inicializada correctamente (tablas usuario y producto listas).")
 
     except Error as e:
         print(f"Error durante la inicialización de MySQL: {e}")
@@ -215,3 +222,4 @@ def initialize_db():
         if conn and conn.is_connected():
             cursor.close()
             conn.close()
+
