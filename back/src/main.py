@@ -3,7 +3,7 @@
 import sys
 from database import initialize_db
 from classes.usuario import Usuario
-
+from classes.producto import Producto
 
 # -----------------------------
 # Menús
@@ -16,7 +16,8 @@ def mostrar_menu_administrador(usuario):
         print("3. Cambiar rol de usuario")
         print("4. Eliminar usuario")
         print("5. Editar mi perfil")
-        print("6. Cerrar sesión")
+        print("6. Gestión de productos")
+        print("7. Cerrar sesión")
         print("-----------------------------")
 
         opcion = input("Seleccione una opción: ")
@@ -26,32 +27,31 @@ def mostrar_menu_administrador(usuario):
             print("\n--- Mis Datos ---")
             for k, v in datos.items():
                 print(f"{k}: {v}")
+
         elif opcion == "2":
             usuario.visualizar_todos_los_usuarios()
+
         elif opcion == "3":
-            try:
-                id_usuario = int(input("Ingrese el ID del usuario a modificar: "))
-                nuevo_rol = input(
-                    "Ingrese el nuevo rol (administrador/estandar): "
-                ).lower()
+            id_usuario = int(input("ID del usuario: "))
+            nuevo_rol = input("Nuevo rol (administrador/estandar): ").lower()
+            usuario.cambiar_rol_usuario(id_usuario, nuevo_rol)
 
-                usuario.cambiar_rol_usuario(id_usuario, nuevo_rol)
-
-            except ValueError:
-                print("Entrada inválida.")
         elif opcion == "4":
-            try:
-                id_usuario = int(input("Ingrese el ID del usuario a eliminar: "))
-                usuario.eliminar_usuario_por_id(id_usuario)
-            except ValueError:
-                print("Entrada inválida.")
+            id_usuario = int(input("ID del usuario a eliminar: "))
+            usuario.eliminar_usuario_por_id(id_usuario)
+
         elif opcion == "5":
             ejecutar_edicion_perfil(usuario)
+
         elif opcion == "6":
+            menu_productos(usuario)
+
+        elif opcion == "7":
             print("Cerrando sesión de administrador...")
             break
+
         else:
-            print("Opción no válida. Intente de nuevo.")
+            print("Opción no válida.")
 
 
 def mostrar_menu_estandar(usuario):
@@ -66,16 +66,18 @@ def mostrar_menu_estandar(usuario):
 
         if opcion == "1":
             datos = usuario.obtener_datos_personales()
-            # print(datos)
             print("\n--- Mis Datos ---")
             for k, v in datos.items():
                 print(f"{k}: {v}")
             input("Presiona ENTER para volver al menú...")
+
         elif opcion == "2":
             ejecutar_edicion_perfil(usuario)
+
         elif opcion == "3":
             print("Cerrando sesión de usuario estándar...")
             break
+
         else:
             print("Opción no válida. Intente de nuevo.")
 
@@ -120,6 +122,52 @@ def ejecutar_edicion_perfil(usuario):
         print("Perfil actualizado con éxito.")
     else:
         print("No se pudo actualizar el perfil.")
+
+
+# -----------------------------
+# Gestión de productos
+# -----------------------------
+def menu_productos(usuario):
+    while True:
+        print("\n--- Gestión de Productos ---")
+        print("1. Crear producto")
+        print("2. Listar productos (JOIN con usuario)")
+        print("3. Editar producto")
+        print("4. Eliminar producto")
+        print("5. Volver al menú anterior")
+
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == "1":
+            nombre = input("Nombre: ")
+            descripcion = input("Descripción: ")
+            precio = float(input("Precio: "))
+            stock = int(input("Stock: "))
+            Producto.crear(nombre, descripcion, precio, stock, usuario.id_usuario)
+
+        elif opcion == "2":
+            Producto.listar_todos()
+            input("ENTER para continuar...")
+
+        elif opcion == "3":
+            id_p = int(input("ID del producto a editar: "))
+            nombre = input("Nuevo nombre (vacío = sin cambio): ") or None
+            descripcion = input("Nueva descripción (vacío = sin cambio): ") or None
+            precio = input("Nuevo precio (vacío = sin cambio): ")
+            precio = float(precio) if precio else None
+            stock = input("Nuevo stock (vacío = sin cambio): ")
+            stock = int(stock) if stock else None
+            Producto.editar(id_p, nombre, descripcion, precio, stock)
+
+        elif opcion == "4":
+            id_p = int(input("ID del producto a eliminar: "))
+            Producto.eliminar(id_p)
+
+        elif opcion == "5":
+            break
+
+        else:
+            print("Opción no válida.")
 
 
 # -----------------------------
