@@ -5,6 +5,7 @@ from database import initialize_db
 from classes.usuario import Usuario
 from classes.producto import Producto
 
+
 # -----------------------------
 # Menús
 # -----------------------------
@@ -87,7 +88,21 @@ def mostrar_menu_estandar(usuario):
 # -----------------------------
 def ejecutar_registro_usuario():
     print("\n--- Registro de Nuevo Usuario ---")
-    nombre_usuario = input("Ingrese nombre de usuario: ")
+    while True:
+        nombre_usuario = input(
+            "Ingrese nombre de usuario (o escriba 'salir' para cancelar): "
+        )
+
+        # 1. Opción para salir del registro
+        if nombre_usuario.lower() == "salir":
+            print("Registro de usuario cancelado.")
+            return
+        if Usuario.existe_nombre_usuario(nombre_usuario):
+            print("¡Error! El nombre de usuario ya existe. Por favor, elija otro.")
+            # Si quieres permitir salir del loop sin registrar, podrías añadir una opción aquí.
+        else:
+            print("Nombre de usuario disponible.")
+            break
     contrasena = input("Ingrese contraseña (mín. 6 caracteres, letras y números): ")
 
     print("\n--- Datos de Perfil (Opcional) ---")

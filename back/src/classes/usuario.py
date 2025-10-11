@@ -7,6 +7,7 @@ from crud_usuarios import (
     obtener_todos_los_usuarios,
     actualizar_usuario,
     actualizar_rol_usuario,
+    existe_nombre_usuario,
 )
 
 # Importamos las clases secundarias al final para evitar errores de referencia circular
@@ -68,6 +69,14 @@ class Usuario:
         else:
             print("Fallo al actualizar los datos.")
             return False
+
+    @staticmethod
+    def existe_nombre_usuario(nombre_usuario: str) -> bool:
+        """
+        Método de la clase que llama a la lógica de CRUD para verificar existencia.
+        """
+        # Llama a la función que REALMENTE hace la consulta a la DB
+        return existe_nombre_usuario(nombre_usuario)
 
     @staticmethod
     def _validar_contrasena(contrasena):

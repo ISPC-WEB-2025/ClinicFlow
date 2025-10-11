@@ -3,6 +3,46 @@ from mysql.connector import Error
 from database import get_db_connection
 
 
+def existe_nombre_usuario(nombre_usuario: str) -> bool:
+    """
+    Verifica en la base de datos si el nombre de usuario ya está en uso.
+    Retorna True si existe, False si no existe.
+    """
+    conn = None
+    existe = False
+
+    try:
+        conn = get_db_connection()
+        if conn is None:
+            # No se pudo conectar a la base de datos, ver si especificamos tipo de error
+            return False
+
+        cursor = conn.cursor()
+
+        # Consulta SQL para buscar un usuario con ese nombre
+        query = "SELECT COUNT(*) FROM usuario WHERE nombre_usuario = %s"
+        cursor.execute(query, (nombre_usuario,))
+
+        # Obtenemos el resultado (un número, 0 o 1+)
+        count = cursor.fetchone()[0]
+
+        if count > 0:
+            existe = True
+
+    except Error as e:
+        print(f"Error al verificar la existencia del nombre de usuario: {e}")
+        # En caso de error de DB, retornaremos False para no detener el flujo
+        # si no es estrictamente necesario (la lógica de registro lo maneje).
+        return False
+
+    finally:
+        if conn and conn.is_connected():
+            cursor.close()
+            conn.close()
+
+    return existe
+
+
 def crear_usuario(
     nombre_usuario, nombre, apellido, email, contrasena_hash, direccion, rol
 ):
@@ -13,6 +53,11 @@ def crear_usuario(
         if conn is None:
             return None
         cursor = conn.cursor()
+
+        nombre = nombre if nombre else None
+        apellido = apellido if apellido else None
+        email = email if email else None  # resolver error insertar cadena ''
+        direccion = direccion if direccion else None
 
         cursor.execute(
             """
