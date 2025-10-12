@@ -148,6 +148,8 @@ def initialize_db():
     Inicializa la base de datos MySQL creando las tablas necesarias:
     - usuario
     - producto
+    - plan
+    - usuario-plan
     También inserta un administrador por defecto si la tabla usuario está vacía.
     """
     if not create_database_if_not_exists():
@@ -196,6 +198,51 @@ def initialize_db():
             );
         """
         )
+        # tabla 'Planes' para los 4 planes de servicio)
+        cursor.execute(
+            """
+            CREATE TABLE IF NOT EXISTS Planes (
+                id_plan INT PRIMARY KEY,
+                nombre_plan VARCHAR(100) NOT NULL UNIQUE,
+                precio DECIMAL(10, 2) NOT NULL,
+                descripcion VARCHAR(255)
+            );
+            """
+        )
+
+        #  Tabla relación Usuario-Plan)
+        cursor.execute(
+            """
+            CREATE TABLE IF NOT EXISTS Suscripciones (
+                id_suscripcion INT AUTO_INCREMENT PRIMARY KEY,
+                id_usuario INT NOT NULL,
+                id_plan INT NOT NULL,
+                fecha_inicio DATE NOT NULL,
+                estado VARCHAR(50) NOT NULL, -- Activo, Cancelado
+                FOREIGN KEY (id_usuario) REFERENCES usuario(idUsuario),
+                FOREIGN KEY (id_plan) REFERENCES Planes(id_plan),
+                UNIQUE KEY uk_usuario_plan_activo (id_usuario, estado, id_plan)
+            );
+            """
+        )
+        # Insertar los 4 planes de servicio (si no existen)
+        planes_datos = [
+            (1, 'Básico', 250.000,'Facturacion Anual'),
+            (2, 'Estándar', 500.000, 'Facturacion Anual.'),
+            (3, 'Premium', 750.000, 'Facturacion Anual.'),
+            (4, 'Personalizado', 49.99, 'A medida.')
+        ]
+                for id_plan, nombre_plan, precio, descripcion in planes_datos:
+            cursor.execute("SELECT id_plan FROM Planes WHERE id_plan = %s", (id_plan,))
+            if cursor.fetchone() is None:
+                cursor.execute(
+                    """
+                    INSERT INTO Planes (id_plan, nombre_plan, precio, descripcion)
+                    VALUES (%s, %s, %s, %s)
+                    """,
+                    (id_plan, nombre_plan, precio, descripcion)
+                )
+        print("Planes de servicio verificados/cargados correctamente.")
 
         # --- Insertar administrador por defecto si no existe ---
         cursor.execute("SELECT COUNT(*) FROM usuario WHERE rol = 'administrador'")
