@@ -18,7 +18,9 @@ def mostrar_menu_administrador(usuario):
         print("4. Cambiar rol de usuario")
         print("5. Eliminar usuario")
         print("6. Editar mi perfil")
-        print("7. Cerrar sesión")
+        print("7. Gestión de Planes")
+        print("8. Cerrar sesión")
+
         print("-----------------------------")
 
         opcion = input("Seleccione una opción: ")
@@ -29,12 +31,15 @@ def mostrar_menu_administrador(usuario):
             for k, v in datos.items():
                 print(f"{k}: {v}")
             input("Presiona ENTER para volver al menú...")
+
         elif opcion == "2":
             usuario.visualizar_todos_los_usuarios()
+
         elif opcion == "3":
             # Llama a la lógica de negocio para mostrar suscripciones
             usuario.mostrar_tabla_suscripciones()
             input("Presiona ENTER para volver al menú...")
+
         elif opcion == "4":
             try:
                 id_usuario = int(input("Ingrese el ID del usuario a modificar: "))
@@ -46,15 +51,21 @@ def mostrar_menu_administrador(usuario):
 
             except ValueError:
                 print("Entrada inválida.")
+
         elif opcion == "5":
             try:
                 id_usuario = int(input("Ingrese el ID del usuario a eliminar: "))
                 usuario.eliminar_usuario_por_id(id_usuario)
             except ValueError:
                 print("Entrada inválida.")
+
         elif opcion == "6":
             ejecutar_edicion_perfil(usuario)
+
         elif opcion == "7":
+            menu_planes()
+
+        elif opcion == "8":
             print("Cerrando sesión de administrador...")
             break
         else:
@@ -175,6 +186,89 @@ def ejecutar_gestion_plan(usuario):
 
     else:
         print("Opción no válida.")
+
+
+# -----------------------------
+# Gestión de Planes (Administrador)
+# -----------------------------
+def menu_planes():
+    """Menú CRUD para gestión de planes."""
+    while True:
+        print("\n--- Gestión de Planes ---")
+        print("1. Crear plan")
+        print("2. Listar planes")
+        print("3. Editar plan")
+        print("4. Eliminar plan")
+        print("5. Volver al menú anterior")
+
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == "1":
+            nombre = input("Nombre del plan: ").strip()
+
+            # VALIDACIÓN BÁSICA: Nombre no vacío
+            if not nombre:
+                print("El nombre del plan es obligatorio.")
+                input("ENTER para continuar...")
+                return  # Sale de la función
+
+            try:
+                precio_input = input("Precio: ").strip()
+
+                # VALIDACIÓN BÁSICA: Precio no vacío y tipo numérico
+                if not precio_input:
+                    print("El precio es obligatorio.")
+                    input("ENTER para continuar...")
+                    return
+
+                precio = float(precio_input)
+
+            except ValueError:
+                print("ERROR: El precio debe ser un número válido.")
+                input("ENTER para continuar...")
+                return  # Sale de la función
+
+            descripcion = input("Descripción: ").strip()
+
+            # Pasa el 'precio' ya convertido y validado
+            Plan.crear(nombre, precio, descripcion)
+            input("ENTER para continuar...")
+
+        elif opcion == "2":
+            Plan.listar_todos()
+            input("ENTER para continuar...")
+
+        elif opcion == "3":
+            try:
+                Plan.listar_todos()
+                id_plan = int(input("ID del plan a editar: "))
+                nombre = input("Nuevo nombre (vacío = sin cambio): ") or None
+                precio = input("Nuevo precio (vacío = sin cambio): ")
+                precio = float(precio) if precio else None
+                descripcion = input("Nueva descripción (vacío = sin cambio): ") or None
+                Plan.editar(id_plan, nombre, precio, descripcion)
+            except ValueError:
+                print("Entrada inválida.")
+            input("ENTER para continuar...")
+
+        elif opcion == "4":
+            try:
+                Plan.listar_todos()
+                id_plan = int(input("ID del plan a eliminar: "))
+                confirmacion = input(
+                    f"¿Seguro que desea eliminar el plan {id_plan}? (s/n): "
+                )
+                if confirmacion.lower() == "s":
+                    Plan.eliminar(id_plan)
+            except ValueError:
+                print("Entrada inválida.")
+            input("ENTER para continuar...")
+
+        elif opcion == "5":
+            break
+
+        else:
+            print("Opción no válida.")
 
 
 # -----------------------------

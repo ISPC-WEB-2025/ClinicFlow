@@ -23,7 +23,7 @@ def crear_plan(nombre_plan, precio, descripcion):
         )
 
         conn.commit()
-        return cursor.lastrowid
+        return nuevo_id
     except Error as e:
         print(f"Error al crear plan: {e}")
         if conn:
