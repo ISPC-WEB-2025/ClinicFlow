@@ -9,6 +9,13 @@ from crud_usuarios import (
     actualizar_rol_usuario,
     existe_nombre_usuario,
 )
+from crud_suscripciones import (
+    actualizar_suscripcion,
+    obtener_plan_activo_por_usuario,
+    crear_suscripcion,
+)
+
+from classes.plan import Plan
 
 # Importamos las clases secundarias al final para evitar errores de referencia circular
 # Se puede usar import dentro de funciones para retrasar la importación
@@ -182,26 +189,26 @@ class Usuario:
                 direccion_u,
                 rol_u,
             )
-    #metodos pan-suscripcion
+
+    # metodos pan-suscripcion
     def obtener_plan_activo(self):
         """Retorna el nombre del plan activo del usuario."""
-        plan_data = crud_suscripciones.obtener_plan_activo_por_usuario(self.idUsuario)
-        return plan_data['nombre_plan'] if plan_data else "Ninguno"
-
+        plan_data = obtener_plan_activo_por_usuario(self.idUsuario)
+        return plan_data["nombre_plan"] if plan_data else "Ninguno"
 
     def comprar_plan(self, id_plan_nuevo):
         """Cancela el plan actual (si existe) e inscribe al usuario en el nuevo plan."""
-        
+
         plan_obj = Plan.obtener_plan_por_id(id_plan_nuevo)
         if not plan_obj:
             print(f"Error: El plan con ID {id_plan_nuevo} no existe.")
             return False
 
         # 1. Cancelar cualquier plan activo existente usando el CRUD de suscripciones
-        crud_suscripciones.actualizar_suscripcion(self.idUsuario, 'Cancelado')
+        actualizar_suscripcion(self.idUsuario, "Cancelado")
 
         # 2. Insertar la nueva suscripción como Activa usando el CRUD de suscripciones
-        if crud_suscripciones.crear_suscripcion(self.idUsuario, id_plan_nuevo):
+        if crear_suscripcion(self.idUsuario, id_plan_nuevo):
             print(f"¡Éxito! Plan '{plan_obj.nombre}' contratado.")
             return True
         else:
@@ -210,19 +217,21 @@ class Usuario:
 
     def cancelar_plan(self):
         """Marca el plan actualmente activo del usuario como 'Cancelado'."""
-        plan_data = crud_suscripciones.obtener_plan_activo_por_usuario(self.idUsuario)
-        
+        plan_data = obtener_plan_activo_por_usuario(self.idUsuario)
+
         if not plan_data:
             print("Advertencia: No tienes un plan activo para cancelar.")
             return True
 
         # Actualizar el estado a 'Cancelado' usando el CRUD de suscripciones
-        if crud_suscripciones.actualizar_suscripcion(self.idUsuario, 'Cancelado'):
-            print(f"Plan '{plan_data['nombre_plan']}' cancelado. El servicio seguirá activo hasta fin de ciclo.")
+        if actualizar_suscripcion(self.idUsuario, "Cancelado"):
+            print(
+                f"Plan '{plan_data['nombre_plan']}' cancelado. El servicio seguirá activo hasta fin de ciclo."
+            )
             return True
         else:
             print("Fallo al cancelar la suscripción.")
-            return False
+            return False
 
 
 # --- Subclases ---

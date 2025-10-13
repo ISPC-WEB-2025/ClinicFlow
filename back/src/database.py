@@ -223,24 +223,26 @@ def initialize_db():
                 FOREIGN KEY (id_plan) REFERENCES Planes(id_plan),
                 UNIQUE KEY uk_usuario_plan_activo (id_usuario, estado, id_plan)
             );
-            """
-        )
+            """
+        )
         # Insertar los 4 planes de servicio (si no existen)
         planes_datos = [
-            (1, 'Básico', 250.000,'Facturacion Anual'),
-            (2, 'Estándar', 500.000, 'Facturacion Anual.'),
-            (3, 'Premium', 750.000, 'Facturacion Anual.'),
-            (4, 'Personalizado', 49.99, 'A medida.')
+            (1, "Básico", 250.000, "Facturacion Anual"),
+            (2, "Estándar", 500.000, "Facturacion Anual."),
+            (3, "Premium", 750.000, "Facturacion Anual."),
+            (4, "Personalizado", 49.99, "A medida."),
         ]
-                for id_plan, nombre_plan, precio, descripcion in planes_datos:
+
+        for id_plan, nombre_plan, precio, descripcion in planes_datos:
             cursor.execute("SELECT id_plan FROM Planes WHERE id_plan = %s", (id_plan,))
+
             if cursor.fetchone() is None:
                 cursor.execute(
                     """
                     INSERT INTO Planes (id_plan, nombre_plan, precio, descripcion)
                     VALUES (%s, %s, %s, %s)
                     """,
-                    (id_plan, nombre_plan, precio, descripcion)
+                    (id_plan, nombre_plan, precio, descripcion),
                 )
         print("Planes de servicio verificados/cargados correctamente.")
 
