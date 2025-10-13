@@ -4,8 +4,9 @@ from crud_planes import (
     crear_plan,
     actualizar_plan,
     eliminar_plan,
-    obtener_todos_los_planes as crud_obtener_todos
+    obtener_todos_los_planes as crud_obtener_todos,
 )
+
 
 class Plan:
 
@@ -15,39 +16,41 @@ class Plan:
         self.precio = precio
         self.descripcion = descripcion
 
-        @staticmethod
-    def crear(nombre, descripcion, precio, stock, id_usuario):
-        id_nuevo = crear_producto(nombre, descripcion, precio, stock, id_usuario)
+    @staticmethod
+    def crear(nombre, descripcion, precio):
+        """Crea un nuevo plan en la base de datos."""
+        id_nuevo = crear_plan(nombre, descripcion, precio)
         if id_nuevo:
-            print("Producto creado correctamente.")
+            print("Plan creado correctamente.")
             return id_nuevo
         else:
-            print("Error al crear el producto.")
+            print("Error al crear el plan.")
             return None
 
     @staticmethod
     def listar_todos():
-        productos = obtener_todos_los_productos()
-        if not productos:
-            print("No hay productos registrados.")
+        """Lista todos los planes disponibles en formato tabla"""
+        planes = crud_obtener_todos()
+        if not planes:
+            print("No hay planes registrados.")
             return
-        print("\n--- LISTADO DE PRODUCTOS ---")
-        for p in productos:
-            id_p, nombre, desc, precio, stock, creador = p
-            print(f"ID: {id_p} | {nombre} | ${precio:.2f} | Stock: {stock} | Creador: {creador}")
+        print("\n--- LISTADO DE PLANES ---")
+        for p in planes:
+            id_p, nombre, precio, descripcion = p
+            print(f"ID: {id_p} | {nombre} | ${precio:.2f} | Descripción: {descripcion}")
         print("----------------------------")
 
     @staticmethod
-    def editar(id_producto, nombre=None, descripcion=None, precio=None, stock=None):
-        if actualizar_producto(id_producto, nombre, descripcion, precio, stock):
-            print("Producto actualizado correctamente.")
+    def editar(id_plan, nombre_plan=None, precio=None, descripcion=None):
+        if actualizar_plan(id_plan, nombre_plan, precio, descripcion):
+            print("Plan actualizado correctamente.")
         else:
-            print("No se pudo actualizar el producto.")
+            print("No se pudo actualizar el plan.")
 
     @staticmethod
-    def eliminar(id_producto):
-        if eliminar_producto(id_producto):
-            print("Producto eliminado correctamente.")
+    def eliminar(id_plan):
+        if eliminar_plan(id_plan):
+            print("Plan eliminado correctamente.")
         else:
             print("No se encontró el producto.")
 
