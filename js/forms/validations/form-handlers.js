@@ -47,13 +47,13 @@ export async function manejarContacto(form) {
     const nombreInput = form.querySelector('[name="nombre"]');
 
     try {
-        // 2. REALIZAR LA CONEXIÓN con la URL definida en el atributo 'action'
+     
         const response = await fetch(form.action, {
-            method: form.method, // Será 'POST'
-            body: formData       // Envía los datos
+            method: form.method, 
+            body: formData      
         });
 
-        // 3. Procesar la respuesta
+        
         const data = await response.json();
 
         if (data.success) {
@@ -63,14 +63,14 @@ export async function manejarContacto(form) {
             );
             const scrollTarget = document.getElementById('page-title') || form
             scrollTarget.scrollIntoView({
-                behavior: 'smooth', // Hace un desplazamiento suave
-                block: 'start'      // Alinea la parte superior del formulario (donde está la alerta) con la parte superior de la ventana
+                behavior: 'smooth', 
+                block: 'start'      
             });
 
-            // Retrasamos el reseteo para que el usuario tenga tiempo de leer la alerta
+            
             setTimeout(() => {
                 resetearFormulario(form);
-            }, 2000); // Espera 2 segundos (ajusta si es necesario)
+            }, 2000); 
 
         } else {
             console.error('Error de Web3Forms:', data.message);
@@ -78,7 +78,6 @@ export async function manejarContacto(form) {
         }
 
     } catch (error) {
-        // 4. Capturar errores de red/CORS
         console.error('Error de red o CORS al contactar a Web3Forms:', error);
         mostrarAlerta('error', 'No se pudo conectar con el servidor. Revisa la consola para más detalles.');
     }
