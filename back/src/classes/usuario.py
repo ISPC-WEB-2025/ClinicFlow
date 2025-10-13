@@ -241,6 +241,36 @@ class Administrador(Usuario):
         else:
             print("No se pudo actualizar el rol.")
 
+    def mostrar_tabla_suscripciones(self):
+        """Muestra todas las suscripciones del sistema (JOIN de 3 tablas)."""
+        from crud_suscripciones import obtener_tabla_suscripciones
+
+        print("\n" + "=" * 80)
+        print("TABLA DE SUSCRIPCIONES - VISTA ADMINISTRADOR")
+        print("=" * 80)
+
+        suscripciones = obtener_tabla_suscripciones()
+
+        if not suscripciones:
+            print("No hay suscripciones registradas en el sistema.")
+            return
+
+        # Encabezado
+        print(f"{'ID':<6} {'Usuario':<18} {'Plan':<18} {'Inicio':<12} {'Estado':<12}")
+        print("-" * 80)
+
+        # Datos
+        for sub in suscripciones:
+            print(
+                f"{sub['idUsuario']:<6} "
+                f"{sub['nombre_usuario']:<18} "
+                f"{sub['nombre_plan']:<18} "
+                f"{str(sub['fecha_inicio']):<12} "
+                f"{sub['estado']:<12}"
+            )
+
+        print("=" * 80)
+
 
 class UsuarioEstandar(Usuario):
     """Clase para representar a un usuario estándar."""
