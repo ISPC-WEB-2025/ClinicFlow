@@ -1,6 +1,11 @@
 from database import get_db_connection
 from mysql.connector import Error
-
+from crud_planes import (
+    crear_plan,
+    actualizar_plan,
+    eliminar_plan,
+    obtener_todos_los_planes as crud_obtener_todos
+)
 
 class Plan:
 
@@ -9,6 +14,42 @@ class Plan:
         self.nombre = nombre
         self.precio = precio
         self.descripcion = descripcion
+
+        @staticmethod
+    def crear(nombre, descripcion, precio, stock, id_usuario):
+        id_nuevo = crear_producto(nombre, descripcion, precio, stock, id_usuario)
+        if id_nuevo:
+            print("Producto creado correctamente.")
+            return id_nuevo
+        else:
+            print("Error al crear el producto.")
+            return None
+
+    @staticmethod
+    def listar_todos():
+        productos = obtener_todos_los_productos()
+        if not productos:
+            print("No hay productos registrados.")
+            return
+        print("\n--- LISTADO DE PRODUCTOS ---")
+        for p in productos:
+            id_p, nombre, desc, precio, stock, creador = p
+            print(f"ID: {id_p} | {nombre} | ${precio:.2f} | Stock: {stock} | Creador: {creador}")
+        print("----------------------------")
+
+    @staticmethod
+    def editar(id_producto, nombre=None, descripcion=None, precio=None, stock=None):
+        if actualizar_producto(id_producto, nombre, descripcion, precio, stock):
+            print("Producto actualizado correctamente.")
+        else:
+            print("No se pudo actualizar el producto.")
+
+    @staticmethod
+    def eliminar(id_producto):
+        if eliminar_producto(id_producto):
+            print("Producto eliminado correctamente.")
+        else:
+            print("No se encontró el producto.")
 
     @staticmethod
     def obtener_todos_los_planes():
