@@ -2,8 +2,9 @@ from mysql.connector import Error
 from database import get_db_connection
 from datetime import datetime
 
+
 def obtener_plan_activo_por_usuario(id_usuario):
-    
+
     conn = None
     try:
         conn = get_db_connection()
@@ -18,7 +19,7 @@ def obtener_plan_activo_por_usuario(id_usuario):
             WHERE S.id_usuario = %s AND S.estado = 'Activo'
         """
         cursor.execute(query, (id_usuario,))
-        return cursor.fetchone() # Retorna {nombre_plan: '...', id_plan: X} o None
+        return cursor.fetchone()  # Retorna {nombre_plan: '...', id_plan: X} o None
 
     except Error as e:
         print(f"Error CRUD al obtener plan activo: {e}")
@@ -28,8 +29,9 @@ def obtener_plan_activo_por_usuario(id_usuario):
             cursor.close()
             conn.close()
 
+
 def actualizar_suscripcion(id_usuario, estado_nuevo):
-    
+
     conn = None
     try:
         conn = get_db_connection()
@@ -56,6 +58,7 @@ def actualizar_suscripcion(id_usuario, estado_nuevo):
             cursor.close()
             conn.close()
 
+
 def crear_suscripcion(id_usuario, id_plan):
     conn = None
     try:
@@ -64,13 +67,13 @@ def crear_suscripcion(id_usuario, id_plan):
             return False
 
         cursor = conn.cursor()
-        fecha_actual = datetime.now().strftime('%Y-%m-%d')
-        
+        fecha_actual = datetime.now().strftime("%Y-%m-%d")
+
         query_insert = """
             INSERT INTO Suscripciones (id_usuario, id_plan, fecha_inicio, estado)
             VALUES (%s, %s, %s, %s)
         """
-        cursor.execute(query_insert, (id_usuario, id_plan, fecha_actual, 'Activo'))
+        cursor.execute(query_insert, (id_usuario, id_plan, fecha_actual, "Activo"))
         conn.commit()
         return True
 
@@ -84,8 +87,9 @@ def crear_suscripcion(id_usuario, id_plan):
             cursor.close()
             conn.close()
 
+
 def obtener_tabla_suscripciones():
-       conn = None
+    conn = None
     try:
         conn = get_db_connection()
         if conn is None:
@@ -113,4 +117,35 @@ def obtener_tabla_suscripciones():
     finally:
         if conn and conn.is_connected():
             cursor.close()
-            conn.close()
+            conn.close()
+
+
+def eliminar_suscripcion(id_suscripcion):
+    """Elimina una suscripción por su ID."""
+    conn = None
+    try:
+        conn = get_db_connection()
+        if conn is None:
+            return False
+
+        cursor = conn.cursor()
+        cursor.execute(
+            "DELETE FROM Suscripciones WHERE id_suscripcion = %s", (id_suscripcion,)
+        )
+        conn.commit()
+        return cursor.rowcount > 0
+
+    except Error as e:
+        print(f"Error CRUD al eliminar suscripción: {e}")
+        if conn:
+            conn.rollback()
+        return False
+    finally:
+        if conn and conn.is_connected():
+            cursor.close()
+            conn.close()
+
+
+def obtener_suscripcion_por_usuario(id_usuario):
+    """Obtiene todas las suscripciones de un usuario específico."""
+    pass
