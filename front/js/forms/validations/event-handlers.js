@@ -6,7 +6,7 @@ const guardarSesion = (usuario, origen) => {
     sessionStorage.setItem('userOrigen', origen);
 };
 
-const redirigir = (url, delay = 2000) => {
+const redirigir = (url, delay = 500) => {
     setTimeout(() => window.location.href = url, delay);
 };
 

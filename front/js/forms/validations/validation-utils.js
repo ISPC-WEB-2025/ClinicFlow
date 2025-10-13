@@ -125,7 +125,7 @@ const programarEliminacionAlerta = (container, tipo) => {
 };
 
 export function mostrarAlerta(tipo, mensaje, callback) {
-    const container = document.getElementById('contact-form');
+    const container = document.querySelector('.needs-validation') || document.querySelector('main');
     if (!container) return;
 
     eliminarAlertasExistentes(container, tipo);
@@ -136,6 +136,6 @@ export function mostrarAlerta(tipo, mensaje, callback) {
     programarEliminacionAlerta(container, tipo);
 
     if (callback) {
-        setTimeout(callback, 2000);
+        setTimeout(callback, 500);
     }
 }
