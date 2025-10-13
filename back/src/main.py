@@ -3,6 +3,7 @@
 import sys
 from database import initialize_db
 from classes.usuario import Usuario
+from classes.plan import Plan
 
 
 # -----------------------------
@@ -13,7 +14,7 @@ def mostrar_menu_administrador(usuario):
         print(f"\n--- Menú de Administrador ({usuario.nombre_usuario}) ---")
         print("1. Ver mis datos personales")
         print("2. Visualizar listado de usuarios")
-        print("3. Visualizar tabla de Suscripciones") 
+        print("3. Visualizar tabla de Suscripciones")
         print("4. Cambiar rol de usuario")
         print("5. Eliminar usuario")
         print("6. Editar mi perfil")
@@ -64,7 +65,7 @@ def mostrar_menu_estandar(usuario):
     while True:
         print(f"\n--- Menú de Usuario Estándar ({usuario.nombre_usuario}) ---")
         print("1. Ver mis datos personales")
-        print("2. Gestionar mi Plan de Servicio") 
+        print("2. Gestionar mi Plan de Servicio")
         print("3. Editar mi perfil")
         print("4. Cerrar sesión")
         print("--------------------------------")
@@ -78,7 +79,7 @@ def mostrar_menu_estandar(usuario):
                 print(f"{k}: {v}")
             input("Presiona ENTER para volver al menú...")
         elif opcion == "2":
-            
+
             ejecutar_gestion_plan(usuario)
         elif opcion == "3":
             ejecutar_edicion_perfil(usuario)
@@ -87,7 +88,6 @@ def mostrar_menu_estandar(usuario):
             break
         else:
             print("Opción no válida. Intente de nuevo.")
-
 
 
 # -----------------------------
@@ -131,6 +131,7 @@ def ejecutar_edicion_perfil(usuario):
     else:
         print("No se pudo actualizar el perfil.")
 
+
 def ejecutar_gestion_plan(usuario):
     """Maneja la lógica de compra/cancelación de planes para el usuario estándar."""
     plan_activo = usuario.obtener_plan_activo()
@@ -150,7 +151,7 @@ def ejecutar_gestion_plan(usuario):
         print("3. Volver al menú")
         opcion = input("Elige una opción (1, 2 o 3): ")
 
-    if opcion == "1": # Contratar/Cambiar
+    if opcion == "1":  # Contratar/Cambiar
         planes = Plan.obtener_todos_los_planes()
         Plan.mostrar_planes_en_consola(planes)
         while True:
@@ -164,16 +165,18 @@ def ejecutar_gestion_plan(usuario):
                     print("ID de plan no válido. Intenta de nuevo.")
             except ValueError:
                 print("Entrada no válida. Por favor, introduce un número.")
-    
-    elif opcion == "2" and plan_activo != "Ninguno": # Cancelar
+
+    elif opcion == "2" and plan_activo != "Ninguno":  # Cancelar
         # Llama al método de negocio para cancelar
         usuario.cancelar_plan()
-    
-    elif opcion == "2" or opcion == "3": # Volver
+
+    elif opcion == "2" or opcion == "3":  # Volver
         return
 
     else:
         print("Opción no válida.")
+
+
 # -----------------------------
 # Función principal
 # -----------------------------
@@ -198,7 +201,7 @@ def main():
             usuario_logueado = Usuario.iniciar_sesion(nombre, contrasena)
 
             if usuario_logueado:
-                if usuario_logueado.rol == 'administrador':
+                if usuario_logueado.rol == "administrador":
                     mostrar_menu_administrador(usuario_logueado)
                 else:
                     mostrar_menu_estandar(usuario_logueado)

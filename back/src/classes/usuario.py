@@ -193,7 +193,7 @@ class Usuario:
     # metodos pan-suscripcion
     def obtener_plan_activo(self):
         """Retorna el nombre del plan activo del usuario."""
-        plan_data = obtener_plan_activo_por_usuario(self.idUsuario)
+        plan_data = obtener_plan_activo_por_usuario(self.id_usuario)
         return plan_data["nombre_plan"] if plan_data else "Ninguno"
 
     def comprar_plan(self, id_plan_nuevo):
@@ -205,10 +205,10 @@ class Usuario:
             return False
 
         # 1. Cancelar cualquier plan activo existente usando el CRUD de suscripciones
-        actualizar_suscripcion(self.idUsuario, "Cancelado")
+        actualizar_suscripcion(self.id_usuario, "Cancelado")
 
         # 2. Insertar la nueva suscripción como Activa usando el CRUD de suscripciones
-        if crear_suscripcion(self.idUsuario, id_plan_nuevo):
+        if crear_suscripcion(self.id_usuario, id_plan_nuevo):
             print(f"¡Éxito! Plan '{plan_obj.nombre}' contratado.")
             return True
         else:
@@ -217,14 +217,14 @@ class Usuario:
 
     def cancelar_plan(self):
         """Marca el plan actualmente activo del usuario como 'Cancelado'."""
-        plan_data = obtener_plan_activo_por_usuario(self.idUsuario)
+        plan_data = obtener_plan_activo_por_usuario(self.id_usuario)
 
         if not plan_data:
             print("Advertencia: No tienes un plan activo para cancelar.")
             return True
 
         # Actualizar el estado a 'Cancelado' usando el CRUD de suscripciones
-        if actualizar_suscripcion(self.idUsuario, "Cancelado"):
+        if actualizar_suscripcion(self.id_usuario, "Cancelado"):
             print(
                 f"Plan '{plan_data['nombre_plan']}' cancelado. El servicio seguirá activo hasta fin de ciclo."
             )

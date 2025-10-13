@@ -4,7 +4,7 @@ from mysql.connector import Error
 
 class Plan:
 
-    def _init_(self, id_plan, nombre, precio, descripcion):
+    def __init__(self, id_plan, nombre, precio, descripcion):
         self.id_plan = id_plan
         self.nombre = nombre
         self.precio = precio
