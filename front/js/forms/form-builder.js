@@ -121,8 +121,7 @@ class FormBuilder {
       login: `
         <div class="form-links">
           <a href="./register.html" class="link-secondary">¿No tienes cuenta? Regístrate</a>
-          <a href="./password-reset.html" class="link-primary">¿Olvidaste tu contraseña?</a>
-        </div>
+          
       `,
       register: `
         <div class="form-links">
