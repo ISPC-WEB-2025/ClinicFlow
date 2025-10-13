@@ -17,14 +17,14 @@ class Plan:
         self.descripcion = descripcion
 
     @staticmethod
-    def crear(nombre, descripcion, precio):
+    def crear(nombre, precio, descripcion):
         """Crea un nuevo plan en la base de datos."""
         # VALIDACIÓN BÁSICA: Regla de negocio
         if precio <= 0:
             print("Error: El precio debe ser mayor que cero.")
             return None
 
-        id_nuevo = crear_plan(nombre, descripcion, precio)
+        id_nuevo = crear_plan(nombre,precio, descripcion)
         if id_nuevo:
             print("Plan creado correctamente.")
             return id_nuevo

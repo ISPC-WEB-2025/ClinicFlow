@@ -218,7 +218,7 @@ def menu_planes():
                 return  # Sale de la función
 
             try:
-                precio_input = input("Precio: ").strip()
+                precio_input = float(input("Precio: ").strip())
 
                 # VALIDACIÓN BÁSICA: Precio no vacío y tipo numérico
                 if not precio_input:
