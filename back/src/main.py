@@ -1,7 +1,7 @@
 # main.py
 
 import sys
-from database import initialize_db
+from database import initialize_db, insert_sample_data
 from classes.usuario import Usuario
 from classes.plan import Plan
 
@@ -346,7 +346,8 @@ def main():
         print("\n--- Menú Principal ---")
         print("1. Registrar nuevo usuario")
         print("2. Iniciar sesión")
-        print("3. Salir")
+        print("3. Cargar datos de prueba (Usuarios y Suscripciones)")
+        print("4. Salir")
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1":
@@ -367,6 +368,23 @@ def main():
                 print("Credenciales incorrectas o usuario no encontrado.")
 
         elif opcion == "3":
+            # 🔑 Lógica de inserción de datos de prueba y mensaje de confirmación
+            insert_sample_data()
+
+            print("\n==============================================")
+            print("✅ DATOS DE PRUEBA Y ADMINISTRADOR CARGADOS:")
+            print("==============================================")
+            print("🔑 Credenciales de ADMINISTRADOR:")
+            print("   Usuario: admin")
+            print("   Contraseña: admin123")
+            print("\n👥 Credenciales de USUARIOS ESTÁNDAR:")
+            print(
+                "   Todos los usuarios (usuario1 a usuario6) tienen la misma contraseña:"
+            )
+            print("   Contraseña: pass123")
+            print("==============================================")
+
+        elif opcion == "4":
             print("Gracias por usar el programa. ¡Adiós!")
             sys.exit()
 

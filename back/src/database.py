@@ -270,11 +270,225 @@ def initialize_db():
 
         conn.commit()
         print(
-            f"Base de datos '{DB_CONFIG['database']}' inicializada correctamente (tablas usuario y producto listas)."
+            f"Base de datos '{DB_CONFIG['database']}' inicializada correctamente (tablas usuario, planes y suscripciones listas)."
         )
 
     except Error as e:
         print(f"Error durante la inicialización de MySQL: {e}")
+        if conn:
+            conn.rollback()
+    finally:
+        if conn and conn.is_connected():
+            cursor.close()
+            conn.close()
+
+
+# --- Función para insertar datos de prueba ---
+
+
+def insert_sample_data():
+    """Inserta 6 usuarios de prueba y 6 suscripciones asociadas."""
+    conn = get_db_connection()
+    if conn is None:
+        return
+
+    try:
+        cursor = conn.cursor()
+        print("\n--- Insertando Datos de Prueba (Usuarios y Suscripciones) ---")
+
+        # 1. Definir los datos de prueba
+        usuarios_datos = [
+            (
+                "usuario1",
+                "Carlos",
+                "Pérez",
+                "carlos@mail.com",
+                "pass123",
+                "Calle Falsa 123",
+                "estandar",
+            ),
+            (
+                "usuario2",
+                "Laura",
+                "Gómez",
+                "laura@mail.com",
+                "pass123",
+                "Av. Siempre Viva 45",
+                "estandar",
+            ),
+            (
+                "usuario3",
+                "Miguel",
+                "Ruiz",
+                "miguel@mail.com",
+                "pass123",
+                "Bv. Libertad 99",
+                "estandar",
+            ),
+            (
+                "usuario4",
+                "Ana",
+                "Díaz",
+                "ana@mail.com",
+                "pass123",
+                "Ruta Sur km5",
+                "estandar",
+            ),
+            (
+                "usuario5",
+                "Javier",
+                "López",
+                "javier@mail.com",
+                "pass123",
+                "Plaza Central 1",
+                "estandar",
+            ),
+            (
+                "usuario6",
+                "Sofía",
+                "Castro",
+                "sofia@mail.com",
+                "pass123",
+                "Pasaje Secreto",
+                "estandar",
+            ),
+            (
+                "usuario7",
+                "Mariana",
+                "Torres",
+                "mariana@mail.com",
+                "pass123",
+                "Calle de la Luna",
+                "estandar",
+            ),
+            (
+                "usuario8",
+                "Pablo",
+                "Torres",
+                "pablo@mail.com",
+                "pass123",
+                "Calle Principal 22",
+                "estandar",
+            ),
+            (
+                "usuario9",
+                "Eliana",
+                "Vargas",
+                "eliana@mail.com",
+                "pass123",
+                "Av. Central 300",
+                "estandar",
+            ),
+            (
+                "usuario10",
+                "Marcos",
+                "Silva",
+                "marcos@mail.com",
+                "pass123",
+                "Alameda Norte",
+                "estandar",
+            ),
+        ]
+
+        import hashlib  # no es necesario encriptar, todas las contraseñas son "pass123"
+
+        pass_hash = hashlib.sha256("pass123".encode()).hexdigest()
+
+        # 2. Insertar usuarios (Solo si NO existen)
+        usuario_ids = {}
+        new_users_count = 0
+        for user_data in usuarios_datos:
+            nombre_usuario, nombre, apellido, email, _, direccion, rol = user_data
+
+            # **VERIFICACIÓN 1: Verificar si el usuario ya existe por nombre_usuario**
+            cursor.execute(
+                "SELECT idUsuario FROM usuario WHERE nombre_usuario = %s",
+                (nombre_usuario,),
+            )
+            user_row = cursor.fetchone()
+
+            if user_row:
+                usuario_ids[nombre_usuario] = user_row[0]
+            else:
+                # Insertar el nuevo usuario
+                cursor.execute(
+                    """
+                    INSERT INTO usuario (nombre_usuario, nombre, apellido, email, password, direccion, rol)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    """,
+                    (
+                        nombre_usuario,
+                        nombre,
+                        apellido,
+                        email,
+                        pass_hash,
+                        direccion,
+                        rol,
+                    ),
+                )
+                usuario_ids[nombre_usuario] = cursor.lastrowid
+                new_users_count += 1
+
+        print(
+            f"{new_users_count} nuevos usuarios insertados. ({len(usuario_ids)} usuarios en total)."
+        )
+
+        # 3. Insertar Suscripciones (Solo si NO existe una suscripción activa para ese usuario)
+        suscripciones_datos = [
+            ("usuario1", 1, "2024-01-15", "Activo"),
+            ("usuario2", 2, "2024-02-20", "Activo"),
+            ("usuario3", 3, "2024-03-01", "Activo"),
+            ("usuario4", 1, "2024-04-10", "Activo"),
+            ("usuario5", 2, "2024-05-05", "Cancelado"),
+            ("usuario6", 4, "2024-06-12", "Activo"),
+            ("usuario7", 3, "2024-07-22", "Activo"),
+            ("usuario8", 1, "2024-08-30", "Cancelado"),
+            ("usuario9", 2, "2024-09-14", "Activo"),
+            ("usuario10", 4, "2024-10-18", "Activo"),
+        ]
+
+        inserted_count = 0
+        for nombre_usuario, id_plan, fecha_inicio, estado in suscripciones_datos:
+            id_usuario = usuario_ids.get(nombre_usuario)
+            if not id_usuario:
+                print(
+                    f"Advertencia: No se encontró el ID para el usuario {nombre_usuario}. Saltando suscripción."
+                )
+                continue
+
+            # VERIFICACIÓN 2: Verificar si el usuario ya tiene UNA suscripción ACTIVA (única)
+            cursor.execute(
+                """
+                SELECT id_suscripcion FROM Suscripciones 
+                WHERE id_usuario = %s AND estado = 'Activo'
+                """,
+                (id_usuario,),
+            )
+            # Si encontramos UNA suscripción activa, NO insertamos el nuevo registro
+            if cursor.fetchone():
+                # Solo imprimimos un mensaje si intentamos insertar una suscripción activa duplicada
+                if estado == "Activo":
+                    print(
+                        f"Skipping: El usuario {nombre_usuario} ya tiene una suscripción activa."
+                    )
+                continue
+
+            # Si no tiene una suscripción activa O si la nueva suscripción es 'Cancelado', la insertamos.
+            cursor.execute(
+                """
+                INSERT INTO Suscripciones (id_usuario, id_plan, fecha_inicio, estado)
+                VALUES (%s, %s, %s, %s)
+                """,
+                (id_usuario, id_plan, fecha_inicio, estado),
+            )
+            inserted_count += 1
+
+            print(f"{inserted_count} nuevas suscripciones insertadas.")
+
+        conn.commit()
+
+    except Error as e:
+        print(f"Error al insertar datos de prueba: {e}")
         if conn:
             conn.rollback()
     finally:
