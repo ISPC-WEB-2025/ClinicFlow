@@ -13,6 +13,7 @@ from crud_suscripciones import (
     actualizar_suscripcion,
     obtener_plan_activo_por_usuario,
     crear_suscripcion,
+    obtener_tabla_suscripciones,
 )
 
 from classes.plan import Plan
@@ -190,6 +191,37 @@ class Usuario:
                 rol_u,
             )
 
+    def _gestionar_compra_plan(self, id_usuario, id_plan_nuevo):
+        """Lógica compartida para comprar/cambiar plan."""
+        plan_obj = Plan.obtener_plan_por_id(id_plan_nuevo)
+        if not plan_obj:
+            print(f"Error: El plan con ID {id_plan_nuevo} no existe.")
+            return False
+
+        actualizar_suscripcion(id_usuario, "Cancelado")
+
+        if crear_suscripcion(id_usuario, id_plan_nuevo):
+            print(f"¡Éxito! Plan '{plan_obj.nombre}' contratado.")
+            return True
+        else:
+            print("Fallo al registrar la nueva suscripción.")
+            return False
+
+    def _gestionar_cancelar_plan(self, id_usuario):
+        """Lógica compartida para cancelar plan."""
+        plan_data = obtener_plan_activo_por_usuario(id_usuario)
+
+        if not plan_data:
+            print("Advertencia: No hay un plan activo para cancelar.")
+            return True
+
+        if actualizar_suscripcion(id_usuario, "Cancelado"):
+            print(f"Plan '{plan_data['nombre_plan']}' cancelado.")
+            return True
+        else:
+            print("Fallo al cancelar la suscripción.")
+            return False
+
 
 # --- Subclases ---
 
@@ -241,9 +273,29 @@ class Administrador(Usuario):
         else:
             print("No se pudo actualizar el rol.")
 
+    # FUNCIONES RELACIONADAS A  SUSCRIPCIONES
+
+    def crear_suscripcion_usuario(self, id_usuario, id_plan):
+        """Crea una suscripción para un usuario."""
+
+        # Verificar si ya tiene un plan activo
+        plan_activo = obtener_plan_activo_por_usuario(id_usuario)
+        if plan_activo:
+            print(
+                f"Error: El usuario ya tiene un plan activo: {plan_activo['nombre_plan']}"
+            )
+            print("Primero debe cancelar o cambiar el plan actual.")
+            return False
+
+        if crear_suscripcion(id_usuario, id_plan):
+            print("Suscripción creada exitosamente.")
+            return True
+        else:
+            print("Error al crear suscripción.")
+            return False
+
     def mostrar_tabla_suscripciones(self):
         """Muestra todas las suscripciones del sistema (JOIN de 3 tablas)."""
-        from crud_suscripciones import obtener_tabla_suscripciones
 
         print("\n" + "=" * 80)
         print("TABLA DE SUSCRIPCIONES - VISTA ADMINISTRADOR")
@@ -271,6 +323,12 @@ class Administrador(Usuario):
 
         print("=" * 80)
 
+    def cambiar_plan_usuario(self, id_usuario, id_plan_nuevo):
+        return self._gestionar_compra_plan(id_usuario, id_plan_nuevo)
+
+    def cancelar_plan_usuario(self, id_usuario):
+        return self._gestionar_cancelar_plan(id_usuario)
+
 
 class UsuarioEstandar(Usuario):
     """Clase para representar a un usuario estándar."""
@@ -282,38 +340,7 @@ class UsuarioEstandar(Usuario):
         return plan_data["nombre_plan"] if plan_data else "Ninguno"
 
     def comprar_plan(self, id_plan_nuevo):
-        """Cancela el plan actual (si existe) e inscribe al usuario en el nuevo plan."""
-
-        plan_obj = Plan.obtener_plan_por_id(id_plan_nuevo)
-        if not plan_obj:
-            print(f"Error: El plan con ID {id_plan_nuevo} no existe.")
-            return False
-
-        # 1. Cancelar cualquier plan activo existente usando el CRUD de suscripciones
-        actualizar_suscripcion(self.id_usuario, "Cancelado")
-
-        # 2. Insertar la nueva suscripción como Activa usando el CRUD de suscripciones
-        if crear_suscripcion(self.id_usuario, id_plan_nuevo):
-            print(f"¡Éxito! Plan '{plan_obj.nombre}' contratado.")
-            return True
-        else:
-            print("Fallo al registrar la nueva suscripción.")
-            return False
+        return self._gestionar_compra_plan(self.id_usuario, id_plan_nuevo)
 
     def cancelar_plan(self):
-        """Marca el plan actualmente activo del usuario como 'Cancelado'."""
-        plan_data = obtener_plan_activo_por_usuario(self.id_usuario)
-
-        if not plan_data:
-            print("Advertencia: No tienes un plan activo para cancelar.")
-            return True
-
-        # Actualizar el estado a 'Cancelado' usando el CRUD de suscripciones
-        if actualizar_suscripcion(self.id_usuario, "Cancelado"):
-            print(
-                f"Plan '{plan_data['nombre_plan']}' cancelado. El servicio seguirá activo hasta fin de ciclo."
-            )
-            return True
-        else:
-            print("Fallo al cancelar la suscripción.")
-            return False
+        return self._gestionar_cancelar_plan(self.id_usuario)

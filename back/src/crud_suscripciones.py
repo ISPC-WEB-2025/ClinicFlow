@@ -118,3 +118,34 @@ def obtener_tabla_suscripciones():
         if conn and conn.is_connected():
             cursor.close()
             conn.close()
+
+
+def eliminar_suscripcion(id_suscripcion):
+    """Elimina una suscripción por su ID."""
+    conn = None
+    try:
+        conn = get_db_connection()
+        if conn is None:
+            return False
+
+        cursor = conn.cursor()
+        cursor.execute(
+            "DELETE FROM Suscripciones WHERE id_suscripcion = %s", (id_suscripcion,)
+        )
+        conn.commit()
+        return cursor.rowcount > 0
+
+    except Error as e:
+        print(f"Error CRUD al eliminar suscripción: {e}")
+        if conn:
+            conn.rollback()
+        return False
+    finally:
+        if conn and conn.is_connected():
+            cursor.close()
+            conn.close()
+
+
+def obtener_suscripcion_por_usuario(id_usuario):
+    """Obtiene todas las suscripciones de un usuario específico."""
+    pass

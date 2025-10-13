@@ -184,20 +184,20 @@ def initialize_db():
         """
         )
 
-        # --- Crear tabla producto ---
-        cursor.execute(
-            """
-            CREATE TABLE IF NOT EXISTS producto (
-                idProducto INT AUTO_INCREMENT PRIMARY KEY,
-                nombre VARCHAR(255) NOT NULL,
-                descripcion TEXT,
-                precio DECIMAL(10,2) NOT NULL,
-                stock INT DEFAULT 0,
-                idUsuario INT,
-                FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
-            );
-        """
-        )
+        # # --- Crear tabla producto ---
+        # cursor.execute(
+        #     """
+        #     CREATE TABLE IF NOT EXISTS producto (
+        #         idProducto INT AUTO_INCREMENT PRIMARY KEY,
+        #         nombre VARCHAR(255) NOT NULL,
+        #         descripcion TEXT,
+        #         precio DECIMAL(10,2) NOT NULL,
+        #         stock INT DEFAULT 0,
+        #         idUsuario INT,
+        #         FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
+        #     );
+        # """
+        # )
         # tabla 'Planes' para los 4 planes de servicio)
         cursor.execute(
             """
@@ -220,8 +220,7 @@ def initialize_db():
                 fecha_inicio DATE NOT NULL,
                 estado VARCHAR(50) NOT NULL, -- Activo, Cancelado
                 FOREIGN KEY (id_usuario) REFERENCES usuario(idUsuario),
-                FOREIGN KEY (id_plan) REFERENCES Planes(id_plan),
-                UNIQUE KEY uk_usuario_plan_activo (id_usuario, estado, id_plan)
+                FOREIGN KEY (id_plan) REFERENCES Planes(id_plan)
             );
             """
         )

@@ -19,7 +19,8 @@ def mostrar_menu_administrador(usuario):
         print("5. Eliminar usuario")
         print("6. Editar mi perfil")
         print("7. Gestión de Planes")
-        print("8. Cerrar sesión")
+        print("8. Gestión de Suscripciones")
+        print("9. Cerrar sesión")
 
         print("-----------------------------")
 
@@ -66,6 +67,9 @@ def mostrar_menu_administrador(usuario):
             menu_planes()
 
         elif opcion == "8":
+            menu_suscripciones(usuario)
+
+        elif opcion == "9":
             print("Cerrando sesión de administrador...")
             break
         else:
@@ -90,10 +94,11 @@ def mostrar_menu_estandar(usuario):
                 print(f"{k}: {v}")
             input("Presiona ENTER para volver al menú...")
         elif opcion == "2":
-
             ejecutar_gestion_plan(usuario)
+
         elif opcion == "3":
             ejecutar_edicion_perfil(usuario)
+
         elif opcion == "4":
             print("Cerrando sesión de usuario estándar...")
             break
@@ -260,6 +265,65 @@ def menu_planes():
                 )
                 if confirmacion.lower() == "s":
                     Plan.eliminar(id_plan)
+            except ValueError:
+                print("Entrada inválida.")
+            input("ENTER para continuar...")
+
+        elif opcion == "5":
+            break
+
+        else:
+            print("Opción no válida.")
+
+
+# -----------------------------
+# Gestión de Suscripciones (Administrador)
+# -----------------------------
+def menu_suscripciones(usuario):
+    """Menú CRUD para gestión de suscripciones."""
+
+    while True:
+        print("\n--- Gestión de Suscripciones ---")
+        print("1. Crear suscripción para un usuario")
+        print("2. Listar todas las suscripciones")
+        print("3. Cambiar plan de un usuario")
+        print("4. Cancelar plan de un usuario")
+        print("5. Volver al menú anterior")
+
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == "1":
+            try:
+                id_usuario = int(input("ID del usuario: "))
+                Plan.listar_todos()
+                id_plan = int(input("ID del plan a asignar: "))
+                usuario.crear_suscripcion_usuario(id_usuario, id_plan)
+            except ValueError:
+                print("Entrada inválida.")
+            input("ENTER para continuar...")
+
+        elif opcion == "2":
+            usuario.mostrar_tabla_suscripciones()
+            input("ENTER para continuar...")
+
+        elif opcion == "3":
+            try:
+                id_usuario = int(input("ID del usuario: "))
+                Plan.listar_todos()
+                nuevo_id_plan = int(input("Nuevo ID de plan: "))
+                usuario.cambiar_plan_usuario(id_usuario, nuevo_id_plan)
+            except ValueError:
+                print("Entrada inválida.")
+            input("ENTER para continuar...")
+
+        elif opcion == "4":
+            try:
+                id_usuario = int(input("ID del usuario a cancelar: "))
+                confirmacion = input(
+                    f"¿Seguro que desea cancelar el plan del usuario {id_usuario}? (s/n): "
+                )
+                if confirmacion.lower() == "s":
+                    usuario.cancelar_plan_usuario(id_usuario)
             except ValueError:
                 print("Entrada inválida.")
             input("ENTER para continuar...")
