@@ -1,0 +1,24 @@
+name: Deploy Static Frontend to GitHub Pages
+
+on:
+  push:
+    branches:
+      - develop  # 👈 runs when you push to 'develop'
+
+permissions:
+  contents: write  # Required to push to gh-pages branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 🚀 Deploy the static files in front/ directly to GitHub Pages
+      - name: Deploy static site
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./front   # 👈 folder with index.html

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/png" href="../img/favicon.png">
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -16,111 +17,92 @@
 			crossorigin="anonymous"
 		/>
 
-		<link rel="stylesheet" href="./css/styles.css" />
-		<link rel="stylesheet" href="./css/planes.css" />
+		<link rel="stylesheet" href="../css/styles.css" />
+		<link rel="stylesheet" href="../css/planes.css" />
 
 		<title>ClinicFlow</title>
 	</head>
 	<body class="bg-light">
-		<!-- HEADER COMIENZO -->
-		<header class="navbar navbar-expand-lg navbar-light fixed-top">
-			<div class="container">
-				<a href="index.html" class="logo">
-					<span class="navbar-brand mb-0">ClinicFlow</span>
-					<i class="fa-solid fa-chevron-right icono-header left"></i>
-					<i class="fa-solid fa-chevron-right icono-header right"></i>
-				</a>
+		<!-- HEADER -->
+		<header
+			class="navbar navbar-expand-lg navbar-light fixed-top"
+			id="header-placeholder"
+		></header>
 
-				<!-- Botón hamburguesa para mobile -->
-				<button
-					class="navbar-toggler"
-					type="button"
-					data-bs-toggle="collapse"
-					data-bs-target="#navbarContent"
-					aria-controls="navbarContent"
-					aria-expanded="false"
-					aria-label="Toggle navigation"
-				>
-					<i class="fas fa-bars"></i>
-				</button>
+		<!-- MAIN INICIO -->
+		<main class="mb-4">
+			<!-- BANNER SECTION -->
+			<section
+				id="banner"
+				class="banner-overlay mb-5"
+				aria-labelledby="page-title"
+			>
+				<img
+					src="../img/banner.png"
+					alt="Banner con iconos médicos y tecnológicos"
+					class="w-100 object-fit-cover"
+					loading="eager"
+				/>
+				<div class="banner-overlay-content">
+					<h1 id="page-title" class="banner-overlay-title">
+						Nuestros Planes
+					</h1>
+				</div>
+			</section>
 
-				<!-- Contenido colapsable del navbar -->
-				<nav class="collapse navbar-collapse" id="navbarContent">
-					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-						<li class="nav-item">
-							<a class="nav-link " href="./index.html"
-								><i class="fa-solid fa-plus"></i>Inicio</a
-							>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="./nosotros.html"
-								><i class="fa-solid fa-plus"></i>Nosotros</a
-							>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="./servicios.html"
-								><i class="fa-solid fa-plus"></i>Servicios</a
-							>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link active" href="./planes.html"
-								><i class="fa-solid fa-plus"></i>Planes</a
-							>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="./contacto.html"
-								><i class="fa-solid fa-plus"></i>Contacto</a
-							>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</header>
-
-		<!-- HEADER FIN -->
-		<main>
-			<div class="container py-5 ">
+			<div class="container ">
 				<h2 class="text-center mb-5">Nuestros Planes</h2>
 
-				<div class="row row-cols-1 row-cols-md-2 custom-cols row-cols-xl-4 g-4">
-
+				<div
+					class="row row-cols-1 row-cols-md-2 custom-cols row-cols-xl-4 g-4"
+				>
+					<!-- Plan Básico -->
 					<div class="col">
 						<div class="card h-100 text-center">
-							<img
-								src="img/plan basico.jpg"
-								class="card-img-top mb-3"
-								alt="Imagen representativa del Plan Básico"
-							/>
-
-							<div class="card-body d-flex flex-column">
-								<h5 class="card-title fw-bold">Plan Básico</h5>
-
-								<div
-									class="d-flex justify-content-center align-items-center mb-2"
-								>
-									<h2 class="fw-bold me-2">
-										$250.000<span class="fs-6 text-muted"
-											>/año</span
-										>
-									</h2>
-									<span class="badge bg-success"
-										>Ahorrás 25%</span
-									>
+							<div class="card-header-container">
+								<div class="image-container">
+									<img
+										src="../img/plan-basico.jpg"
+										class="card-img-top"
+										alt="Imagen representativa del Plan Básico"
+									/>
 								</div>
 
-								<p class="card-text text-muted mb-4">
-									Facturación anual
-								</p>
+								<div class="card-body d-flex flex-column">
+									<h5 class="card-title fw-bold">
+										Plan Básico
+									</h5>
 
-								<button
-									type="button"
-									class="btn btn-primary"
-									data-bs-toggle="modal"
-									data-bs-target="#modal-plan-basico"
-								>
-									Elegir plan
-								</button>
+									<div
+										class="d-flex justify-content-center align-items-center mb-2"
+									>
+										<h2 class="fw-bold me-2">
+											$250.000<span
+												class="fs-6 text-muted"
+												>/año</span
+											>
+										</h2>
+										<span class="badge bg-success"
+											>Ahorrás 25%</span
+										>
+									</div>
 
+									<p class="card-text text-muted mb-4">
+										Facturación anual
+									</p>
+								
+									<button
+										type="button"
+										class="btn btn-primary choose-plan-btn"
+										data-bs-toggle="modal"
+										data-bs-target="#modal-plan-basico"
+									>
+										Elegir plan
+									</button>
+								</div>
+							</div>
+							
+							<div class="card-footer bg-transparent border-0">
 								<p class="card-text text-start mt-2">
 									> Hasta 5 usuarios y 1GB de almacenamiento
 								</p>
@@ -140,45 +122,53 @@
 						</div>
 					</div>
 
+					<!-- Plan Estándar -->
 					<div class="col">
 						<div class="card h-100 text-center">
-							<img
-								src="img/plan estandar.jpg"
-								class="card-img-top mb-3"
-								alt="Imagen representativa del Plan Estándar"
-							/>
-
-							<div class="card-body d-flex flex-column">
-								<h5 class="card-title fw-bold">
-									Plan Estándar
-								</h5>
-
-								<div
-									class="d-flex justify-content-center align-items-center mb-2"
-								>
-									<h2 class="fw-bold me-2">
-										$500.000<span class="fs-6 text-muted"
-											>/año</span
-										>
-									</h2>
-									<span class="badge bg-success"
-										>Ahorrás 25%</span
-									>
+							<div class="card-header-container">
+								<div class="image-container">
+									<img
+										src="../img/plan-estandar.jpg"
+										class="card-img-top"
+										alt="Imagen representativa del Plan Estándar"
+									/>
 								</div>
 
-								<p class="card-text text-muted mb-4">
-									Facturación anual
-								</p>
+								<div class="card-body d-flex flex-column">
+									<h5 class="card-title fw-bold">
+										Plan Estándar
+									</h5>
 
-								<button
-									type="button"
-									class="btn btn-primary"
-									data-bs-toggle="modal"
-									data-bs-target="#modal-plan-estandar"
-								>
-									Elegir plan
-								</button>
+									<div
+										class="d-flex justify-content-center align-items-center mb-2"
+									>
+										<h2 class="fw-bold me-2">
+											$500.000<span
+												class="fs-6 text-muted"
+												>/año</span
+											>
+										</h2>
+										<span class="badge bg-success"
+											>Ahorrás 25%</span
+										>
+									</div>
 
+									<p class="card-text text-muted mb-4">
+										Facturación anual
+									</p>
+								
+									<button
+										type="button"
+										class="btn btn-primary choose-plan-btn"
+										data-bs-toggle="modal"
+										data-bs-target="#modal-plan-estandar"
+									>
+										Elegir plan
+									</button>
+								</div>
+							</div>
+							
+							<div class="card-footer bg-transparent border-0">
 								<p class="card-text text-start mt-2">
 									> Hasta 20 usuarios y 5GB de almacenamiento
 								</p>
@@ -199,43 +189,53 @@
 						</div>
 					</div>
 
+					<!-- Plan Premium -->
 					<div class="col">
 						<div class="card h-100 text-center">
-							<img
-								src="img/plan premium.jpg"
-								class="card-img-top mb-3"
-								alt="Imagen representativa del Plan Premium"
-							/>
-
-							<div class="card-body d-flex flex-column">
-								<h5 class="card-title fw-bold">Plan Premium</h5>
-
-								<div
-									class="d-flex justify-content-center align-items-center mb-2"
-								>
-									<h2 class="fw-bold me-2">
-										$750.000<span class="fs-6 text-muted"
-											>/año</span
-										>
-									</h2>
-									<span class="badge bg-success"
-										>Ahorrás 25%</span
-									>
+							<div class="card-header-container">
+								<div class="image-container">
+									<img
+										src="../img/plan-premium.jpg"
+										class="card-img-top"
+										alt="Imagen representativa del Plan Premium"
+									/>
 								</div>
 
-								<p class="card-text text-muted mb-4">
-									Facturación anual
-								</p>
+								<div class="card-body d-flex flex-column">
+									<h5 class="card-title fw-bold">
+										Plan Premium
+									</h5>
 
-								<button
-									type="button"
-									class="btn btn-primary"
-									data-bs-toggle="modal"
-									data-bs-target="#modal-plan-premium"
-								>
-									Elegir plan
-								</button>
+									<div
+										class="d-flex justify-content-center align-items-center mb-2"
+									>
+										<h2 class="fw-bold me-2">
+											$750.000<span
+												class="fs-6 text-muted"
+												>/año</span
+											>
+										</h2>
+										<span class="badge bg-success"
+											>Ahorrás 25%</span
+										>
+									</div>
 
+									<p class="card-text text-muted mb-4">
+										Facturación anual
+									</p>
+								
+									<button
+										type="button"
+										class="btn btn-primary choose-plan-btn"
+										data-bs-toggle="modal"
+										data-bs-target="#modal-plan-premium"
+									>
+										Elegir plan
+									</button>
+								</div>
+							</div>
+							
+							<div class="card-footer bg-transparent border-0">
 								<p class="card-text text-start mt-2">
 									> Usuarios ilimitados
 								</p>
@@ -256,34 +256,41 @@
 						</div>
 					</div>
 
+					<!-- Plan Personalizado -->
 					<div class="col">
 						<div class="card h-100 text-center">
-							<img
-								src="img/plan personalizado.jpg"
-								class="card-img-top mb-3"
-								alt="Imagen representativa del Plan Personalizado"
-							/>
-
-							<div class="card-body d-flex flex-column">
-								<h5 class="card-title fw-bold">
-									Plan Personalizado
-								</h5>
-
-								<div class="price-section">
-									<p class="card-text text-muted">
-										<del>A medida</del>
-									</p>
+							<div class="card-header-container">
+								<div class="image-container">
+									<img
+										src="../img/plan-personalizado.jpg"
+										class="card-img-top"
+										alt="Imagen representativa del Plan Personalizado"
+									/>
 								</div>
 
-								<button
-									type="button"
-									class="btn btn-primary"
-									data-bs-toggle="modal"
-									data-bs-target="#modal-plan-personalizado"
-								>
-									Elegir plan
-								</button>
+								<div class="card-body d-flex flex-column">
+									<h5 class="card-title fw-bold">
+										Plan Personalizado
+									</h5>
 
+									<div class="price-section">
+										<p class="card-text text-muted">
+											<del>A medida</del>
+										</p>
+									</div>
+								
+									<button
+										type="button"
+										class="btn btn-primary choose-plan-btn"
+										data-bs-toggle="modal"
+										data-bs-target="#modal-plan-personalizado"
+									>
+										Elegir plan
+									</button>
+								</div>
+							</div>
+							
+							<div class="card-footer bg-transparent border-0">
 								<p class="card-text text-start mt-2">
 									> Instalación en servidores propios
 								</p>
@@ -305,6 +312,8 @@
 					</div>
 				</div>
 			</div>
+
+			<!-- MODALES (deben estar en el mismo archivo) -->
 			<div
 				class="modal fade"
 				id="modal-plan-basico"
@@ -473,7 +482,9 @@
 							>
 								Cerrar
 							</button>
-							<a href="#" class="btn btn-primary">Contratar</a>
+							<a href="contacto.html" class="btn btn-primary"
+								>Contratar</a
+							>
 						</div>
 					</div>
 				</div>
@@ -649,7 +660,9 @@
 							>
 								Cerrar
 							</button>
-							<a href="#" class="btn btn-primary">Contratar</a>
+							<a href="contacto.html" class="btn btn-primary"
+								>Contratar</a
+							>
 						</div>
 					</div>
 				</div>
@@ -825,7 +838,9 @@
 							>
 								Cerrar
 							</button>
-							<a href="#" class="btn btn-primary">Contratar</a>
+							<a href="contacto.html" class="btn btn-primary"
+								>Contratar</a
+							>
 						</div>
 					</div>
 				</div>
@@ -1001,7 +1016,7 @@
 							>
 								Cerrar
 							</button>
-							<a href="#" class="btn btn-primary"
+							<a href="contacto.html" class="btn btn-primary"
 								>Solicitar cotización</a
 							>
 						</div>
@@ -1009,14 +1024,16 @@
 				</div>
 			</div>
 		</main>
-		
-		<footer class="footer">
-			
-				<p>Copyright © 2025: ClinicFlow - Servicios Web Profesionales.</p>
-			
-		</footer>
-		
+
+		<!-- FOOTER -->
+		<footer id="footer-placeholder" class="footer"></footer>
+
 		<!--SCRIPTS INICIO-->
+		<script
+			src="https://kit.fontawesome.com/d8c2b7ce4c.js"
+			crossorigin="anonymous"
+		></script>
+		<script src="../js/layout.js"></script>
 		<script
 			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 			integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -1027,9 +1044,11 @@
 			integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
 			crossorigin="anonymous"
 		></script>
+		<script src="../js/forms/form-builder.js"></script>
+		<script src="../js/register/register-simulation.js"></script>
 		<script
-			src="https://kit.fontawesome.com/d8c2b7ce4c.js"
-			crossorigin="anonymous"
+			type="module"
+			src="../js/forms/validations/form-validations.js"
 		></script>
 		<!--SCRIPTS FIN-->
 	</body>

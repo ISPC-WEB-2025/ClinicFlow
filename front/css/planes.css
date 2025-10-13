@@ -13,6 +13,49 @@
 	width: 100%;
 }
 
+.card-header-container{
+	height: 24rem;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Contenedor para las imágenes con altura fija */
+.image-container {
+	height: 12rem;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.card-header-container img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* Clase para el botón que asegura la misma posición */
+.choose-plan-btn {
+	margin-top: auto;
+	margin-bottom: 1rem;
+}
+
+/* Asegurar que el card-body ocupe el espacio disponible */
+.card-header-container .card-body {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Para el plan personalizado que no tiene precio igual */
+.card-header-container .price-section {
+	min-height: 3.5rem; /* Altura similar a la sección de precio de otros planes */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 @media (min-width: 992px) and (max-width: 1300px) {
 	.custom-cols {
 		display: grid;

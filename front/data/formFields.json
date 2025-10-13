@@ -1,0 +1,132 @@
+{
+	"login": [
+		{
+			"id": "email",
+			"type": "email",
+			"placeholder": "Email",
+			"icon": "fa-envelope",
+			"required": true
+		},
+		{
+			"id": "password",
+			"type": "password",
+			"placeholder": "Contraseña",
+			"icon": "fa-lock",
+			"required": true,
+			"minlength": 6,
+			"showToggle": true
+		}
+	],
+	"forgotPassword": [
+		{
+			"id": "email",
+			"type": "email",
+			"placeholder": "Email",
+			"icon": "fa-envelope",
+			"required": true
+		}
+	],
+	"register": [
+		{
+			"id": "nombre-completo",
+			"type": "text",
+			"placeholder": "Nombre completo (Nombre y Apellido)",
+			"icon": "fa-user",
+			"required": true,
+			"minlength": 5,
+			"maxlength": 100,
+			"pattern": "^[A-Za-záéíóúÁÉÍÓÚñÑ]+\\s+[A-Za-záéíóúÁÉÍÓÚñÑ\\s]+$"
+		},
+		{
+			"id": "email",
+			"type": "email",
+			"placeholder": "Email",
+			"icon": "fa-envelope",
+			"required": true
+		},
+		{
+			"id": "dni",
+			"type": "number",
+			"placeholder": "DNI (sin puntos)",
+			"icon": "fa-id-card",
+			"required": true,
+			"min": 1000000,
+			"max": 99999999
+		},
+		{
+			"id": "telefono",
+			"type": "tel",
+			"placeholder": "Teléfono",
+			"icon": "fa-phone",
+			"required": true,
+			"minlength": 8,
+			"maxlength": 20
+		},
+		{
+			"id": "password",
+			"type": "password",
+			"placeholder": "Contraseña",
+			"icon": "fa-lock",
+			"required": true,
+			"minlength": 6,
+			"showToggle": true
+		},
+		{
+			"id": "confirm-password",
+			"type": "password",
+			"placeholder": "Confirmar contraseña",
+			"icon": "fa-lock",
+			"required": true,
+			"minlength": 6,
+			"showToggle": true
+		}
+	],
+	"contact": [
+		{
+			"id": "nombre",
+			"type": "text",
+			"placeholder": "Nombre",
+			"icon": "fa-user",
+			"required": true,
+			"minlength": 2,
+			"maxlength": 50,
+			"pattern": "^[A-Za-záéíóúÁÉÍÓÚñÑ\\s]+$"
+		},
+		{
+			"id": "apellido",
+			"type": "text",
+			"placeholder": "Apellido",
+			"icon": "fa-user",
+			"required": true,
+			"minlength": 2,
+			"maxlength": 50,
+			"pattern": "^[A-Za-záéíóúÁÉÍÓÚñÑ\\s]+$"
+		},
+		{
+			"id": "email",
+			"type": "email",
+			"placeholder": "Email",
+			"icon": "fa-envelope",
+			"required": true
+		},
+		{
+			"id": "telefono",
+			"type": "tel",
+			"placeholder": "Teléfono",
+			"icon": "fa-phone",
+			"required": true,
+			"minlength": 8,
+			"maxlength": 20
+		},
+		{
+			"id": "mensaje",
+			"type": "textarea",
+			"placeholder": "Mensaje",
+			"icon": "fa-message",
+			"required": true,
+			"minlength": 10,
+			"maxlength": 500,
+			"rows": 5
+		}
+	]
+}

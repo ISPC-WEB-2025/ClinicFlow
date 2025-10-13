@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Perfil de usuario de ClinicFlow - Gestiona tu información personal y configuración de cuenta"
+		/>
+
+		<link rel="icon" type="image/png" href="../img/favicon.png">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+		<link rel="dns-prefetch" href="https://kit.fontawesome.com" />
+
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700;900&display=swap"
+			rel="stylesheet"
+		/>
+
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+			crossorigin="anonymous"
+		/>
+
+		<link rel="stylesheet" href="../css/styles.css" />
+		<link rel="stylesheet" href="../css/user-profile.css" />
+
+		<title>Mi Perfil | ClinicFlow</title>
+	</head>
+
+	<body class="d-flex flex-column min-vh-100 bg-light">
+		<!-- HEADER -->
+		<header
+			class="navbar navbar-expand-lg navbar-light fixed-top"
+			id="header-placeholder"
+		></header>
+
+		<!-- MAIN CONTENT -->
+		<main class="flex-grow-1">
+			<!-- BANNER CON OVERLAY -->
+			<section
+				id="banner"
+				class="banner-overlay"
+				aria-labelledby="page-title"
+			>
+				<img
+					src="../img/banner.png"
+					alt="Banner perfil de usuario"
+					class="w-100 object-fit-cover"
+					loading="eager"
+				/>
+				<div class="banner-overlay-content">
+					<h1 id="page-title" class="banner-overlay-title">
+						Mi Perfil
+					</h1>
+				</div>
+			</section>
+
+			<!-- CONTENIDO DEL PERFIL -->
+			<section
+				id="profile-content"
+				class="container-fluid px-4 px-md-5 px-lg-7 py-5"
+			>
+			<h2 class="visually-hidden">Contenido del Perfil de Usuario</h2>
+			
+				<!-- TARJETA DE INFORMACIÓN DEL USUARIO -->
+				<article
+					class="profile-card card border-0 border-bottom border-primary border-5 mb-4"
+				>
+					<!-- Header con Avatar -->
+					<div
+						class="card-header bg-gradient-light border-bottom p-4"
+					>
+						<div class="row align-items-center g-4">
+							<div class="col-auto">
+								<div
+									class="profile-avatar bg-gradient-primary rounded-circle d-flex align-items-center justify-content-center shadow"
+								>
+									<i
+										class="fa-solid fa-user-doctor text-white display-4"
+										aria-hidden="true"
+									></i>
+								</div>
+							</div>
+							<div class="col">
+								<h2 class="h3 fw-bold mb-1" id="userName">
+									<span
+										class="spinner-border spinner-border-sm me-2"
+										role="status"
+										aria-hidden="true"
+									></span>
+									Cargando...
+								</h2>
+								<p
+									class="text-secondary mb-0 fs-5"
+									id="userRole"
+								>
+									Usuario
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- Body con Detalles -->
+					<div class="card-body p-4">
+						<div class="detail-section">
+							<h3 class="divider-title h5 mb-4">
+								Información Personal
+							</h3>
+
+							<div class="row g-3">
+								<!-- Email -->
+								<div class="col-12 col-md-6">
+									<div
+										class="detail-item d-flex align-items-start gap-3 p-3 bg-light border-start border-primary border-4 h-100"
+									>
+										<i
+											class="fa-solid fa-envelope text-primary fs-4 mt-1"
+											aria-hidden="true"
+										></i>
+										<div class="flex-grow-1">
+											<span
+												class="detail-label d-block text-secondary text-uppercase small fw-semibold mb-1"
+												>Correo electrónico</span
+											>
+											<span
+												class="detail-value d-block fs-6"
+												id="userEmail"
+												>correo@ejemplo.com</span
+											>
+										</div>
+									</div>
+								</div>
+
+								<!-- Teléfono -->
+								<div class="col-12 col-md-6">
+									<div
+										class="detail-item d-flex align-items-start gap-3 p-3 bg-light border-start border-primary border-4 h-100"
+									>
+										<i
+											class="fa-solid fa-phone text-primary fs-4 mt-1"
+											aria-hidden="true"
+										></i>
+										<div class="flex-grow-1">
+											<span
+												class="detail-label d-block text-secondary text-uppercase small fw-semibold mb-1"
+												>Teléfono</span
+											>
+											<span
+												class="detail-value d-block fs-6"
+												id="userPhone"
+												>No especificado</span
+											>
+										</div>
+									</div>
+								</div>
+
+								<!-- DNI -->
+								<div class="col-12 col-md-6">
+									<div
+										class="detail-item d-flex align-items-start gap-3 p-3 bg-light border-start border-primary border-4 h-100"
+									>
+										<i
+											class="fa-solid fa-id-card text-primary fs-4 mt-1"
+											aria-hidden="true"
+										></i>
+										<div class="flex-grow-1">
+											<span
+												class="detail-label d-block text-secondary text-uppercase small fw-semibold mb-1"
+												>DNI</span
+											>
+											<span
+												class="detail-value d-block fs-6"
+												id="userDNI"
+												>No especificado</span
+											>
+										</div>
+									</div>
+								</div>
+
+								<!-- Fecha de registro -->
+								<div class="col-12 col-md-6">
+									<div
+										class="detail-item d-flex align-items-start gap-3 p-3 bg-light border-start border-primary border-4 h-100"
+									>
+										<i
+											class="fa-solid fa-calendar text-primary fs-4 mt-1"
+											aria-hidden="true"
+										></i>
+										<div class="flex-grow-1">
+											<span
+												class="detail-label d-block text-secondary text-uppercase small fw-semibold mb-1"
+												>Fecha de registro</span
+											>
+											<span
+												class="detail-value d-block fs-6"
+												id="userRegDate"
+												>01/01/2024</span
+											>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</article>
+			</section>
+		</main>
+
+		<!-- FOOTER -->
+		<footer
+			id="footer-placeholder"
+			class="footer mt-auto"
+		></footer>
+
+		<!-- SCRIPTS -->
+		<script
+			src="https://kit.fontawesome.com/d8c2b7ce4c.js"
+			crossorigin="anonymous"
+			defer
+		></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+
+		<script src="../js/layout.js" defer></script>
+		<script src="../js/register/register-simulation.js" defer></script>
+		<script src="../js/register/json-loader.js" defer></script>
+		<script src="../js/user-profile.js" defer></script>
+	</body>
+</html>
