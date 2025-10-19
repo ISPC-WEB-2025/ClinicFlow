@@ -38,7 +38,7 @@ def mostrar_menu_administrador(usuario):
 
         elif opcion == "3":
             # Llama a la lógica de negocio para mostrar suscripciones
-            usuario.mostrar_tabla_suscripciones()
+            usuario.mostrar_tabla_suscripciones()  # CONSULTA CRUZADA JOIN IR A USUARIO.mostrar_tabla_suscripciones()
             input("Presiona ENTER para volver al menú...")
 
         elif opcion == "4":

@@ -78,7 +78,7 @@ class Usuario:
             print("Fallo al actualizar los datos.")
             return False
 
-    @staticmethod
+    @staticmethod  # estatic method porque no depende de la instancia
     def existe_nombre_usuario(nombre_usuario: str) -> bool:
         """
         Método de la clase que llama a la lógica de CRUD para verificar existencia.
@@ -86,7 +86,7 @@ class Usuario:
         # Llama a la función que REALMENTE hace la consulta a la DB
         return existe_nombre_usuario(nombre_usuario)
 
-    @staticmethod
+    @staticmethod  # estatic method porque no depende de la instancia
     def _validar_contrasena(contrasena):
         if len(contrasena) < 6:
             return False, "La contraseña debe tener al menos 6 caracteres."
@@ -106,7 +106,9 @@ class Usuario:
         direccion=None,
     ):
         """Registra un nuevo usuario con rol 'estandar'."""
-        es_valida, mensaje = Usuario._validar_contrasena(contrasena)
+        es_valida, mensaje = Usuario._validar_contrasena(
+            contrasena
+        )  # es _ porque es privado
         if not es_valida:
             print(f"Error de validación de contraseña: {mensaje}")
             return None
@@ -294,14 +296,16 @@ class Administrador(Usuario):
             print("Error al crear suscripción.")
             return False
 
-    def mostrar_tabla_suscripciones(self):
+    def mostrar_tabla_suscripciones(self):  # consulta cruzada JOIN
         """Muestra todas las suscripciones del sistema (JOIN de 3 tablas)."""
 
         print("\n" + "=" * 80)
         print("TABLA DE SUSCRIPCIONES - VISTA ADMINISTRADOR")
         print("=" * 80)
 
-        suscripciones = obtener_tabla_suscripciones()
+        suscripciones = (
+            obtener_tabla_suscripciones()
+        )  # ir a crud_suscripciones.py (ver consulta JOIN)
 
         if not suscripciones:
             print("No hay suscripciones registradas en el sistema.")

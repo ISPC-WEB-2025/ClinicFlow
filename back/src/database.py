@@ -17,8 +17,8 @@ def load_db_config():
         create_default_config(config_file)
 
     # Leer configuración
-    config = configparser.ConfigParser()
-    config.read(config_file)
+    config = configparser.ConfigParser()  # Crear el objeto ConfigParser
+    config.read(config_file)  # Leer el archivo de configuración
 
     return {
         "host": config.get("DATABASE", "host"),
@@ -79,7 +79,9 @@ def create_default_config(config_file):
     print("=" * 50)
 
 
-DB_CONFIG = load_db_config()
+DB_CONFIG = (
+    load_db_config()
+)  # Conectarse a la base de datos usando la configuración cargada
 
 
 def create_database_if_not_exists():
@@ -120,7 +122,7 @@ def get_db_connection():
     try:
         conn = mysql.connector.connect(**DB_CONFIG)
         if conn.is_connected():
-            return conn
+            return conn  # Retorna la conexión activa
     except Error as e:
         if e.errno == 1049:  # Error: Unknown database
             print(
@@ -287,17 +289,19 @@ def initialize_db():
 
 
 def insert_sample_data():
-    """Inserta 6 usuarios de prueba y 6 suscripciones asociadas."""
+    """Inserta 10 usuarios de prueba y 10 suscripciones asociadas."""
     conn = get_db_connection()
     if conn is None:
         return
 
     try:
-        cursor = conn.cursor()
+        cursor = conn.cursor()  # Conexión y cursor
+        # cursor es utilizado para ejecutar consultas SQL
+
         print("\n--- Insertando Datos de Prueba (Usuarios y Suscripciones) ---")
 
         # 1. Definir los datos de prueba
-        usuarios_datos = [
+        usuarios_datos = [  # esto es una lista de tuplas
             (
                 "usuario1",
                 "Carlos",
@@ -491,6 +495,7 @@ def insert_sample_data():
         print(f"Error al insertar datos de prueba: {e}")
         if conn:
             conn.rollback()
+
     finally:
         if conn and conn.is_connected():
             cursor.close()

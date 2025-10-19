@@ -82,6 +82,7 @@ def crear_suscripcion(id_usuario, id_plan):
         if conn:
             conn.rollback()
         return False
+
     finally:
         if conn and conn.is_connected():
             cursor.close()
@@ -95,7 +96,7 @@ def obtener_tabla_suscripciones():
         if conn is None:
             return []
 
-        cursor = conn.cursor(dictionary=True)
+        cursor = conn.cursor(dictionary=True)  # Usar diccionario para mejor legibilidad
         query = """
             SELECT 
                 U.idUsuario,
@@ -108,12 +109,13 @@ def obtener_tabla_suscripciones():
             JOIN Planes P ON S.id_plan = P.id_plan
             ORDER BY U.idUsuario, S.fecha_inicio DESC
         """
-        cursor.execute(query)
+        cursor.execute(query)  # Ejecutar la consulta
         return cursor.fetchall()
 
     except Error as e:
         print(f"Error CRUD al obtener tabla de suscripciones: {e}")
         return []
+
     finally:
         if conn and conn.is_connected():
             cursor.close()

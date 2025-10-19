@@ -56,7 +56,7 @@ def crear_usuario(
 
         nombre = nombre if nombre else None
         apellido = apellido if apellido else None
-        email = email if email else None  # resolver error insertar cadena ''
+        email = email if email else None  # resolver error insertar cadena '' (vacia)
         direccion = direccion if direccion else None
 
         cursor.execute(
@@ -68,7 +68,7 @@ def crear_usuario(
         )
 
         conn.commit()
-        return cursor.lastrowid
+        return cursor.lastrowid  # Retorna el ID del nuevo usuario
 
     except Error as e:
         if e.errno == 1062:
@@ -204,7 +204,7 @@ def actualizar_usuario(
 
 
 def actualizar_rol_usuario(id_usuario, nuevo_rol):
-    """Actualiza el rol de un usuario específico."""
+    """Actualiza el rol de un usuario específico en la base de datos."""
     # Validar que el admin no se elimine a sí mismo
 
     if nuevo_rol not in ["administrador", "estandar"]:
@@ -223,11 +223,13 @@ def actualizar_rol_usuario(id_usuario, nuevo_rol):
         )
         conn.commit()
         return cursor.rowcount > 0
+
     except Error as e:
-        print(f"Error al actualizar rol del usuario: {e}")
+        print(f"Error al actualizar rol del usuario porque: {e}")
         if conn:
             conn.rollback()
         return False
+
     finally:
         if conn and conn.is_connected():
             cursor.close()
@@ -242,38 +244,45 @@ def eliminar_usuario(id_usuario):
         conn = get_db_connection()
         if conn is None:
             return False
-        
+
         cursor = conn.cursor()
-        
+
         # Primero verificar si el usuario existe
-        cursor.execute("SELECT idUsuario FROM usuario WHERE idUsuario = %s", (id_usuario,))
+        cursor.execute(
+            "SELECT idUsuario FROM usuario WHERE idUsuario = %s", (id_usuario,)
+        )
         if not cursor.fetchone():
             print(f"No existe un usuario con ID {id_usuario}.")
             return False
-        
+
         # Verificar si tiene suscripciones
-        cursor.execute("SELECT COUNT(*) FROM Suscripciones WHERE id_usuario = %s", (id_usuario,))
+        cursor.execute(
+            "SELECT COUNT(*) FROM Suscripciones WHERE id_usuario = %s", (id_usuario,)
+        )
         count = cursor.fetchone()[0]
-        
+
         if count > 0:
             # Eliminar primero las suscripciones
-            cursor.execute("DELETE FROM Suscripciones WHERE id_usuario = %s", (id_usuario,))
+            cursor.execute(
+                "DELETE FROM Suscripciones WHERE id_usuario = %s", (id_usuario,)
+            )
             print(f"Se eliminaron {count} suscripción(es) asociada(s) al usuario.")
-        
+
         # Ahora eliminar el usuario
         cursor.execute("DELETE FROM usuario WHERE idUsuario = %s", (id_usuario,))
         conn.commit()
-        
+
         if cursor.rowcount > 0:
             print(f"Usuario con ID {id_usuario} eliminado exitosamente.")
             return True
         return False
-        
+
     except Error as e:
         print(f"Error al eliminar usuario: {e}")
         if conn:
             conn.rollback()
         return False
+
     finally:
         if conn and conn.is_connected():
             cursor.close()
@@ -287,33 +296,39 @@ def obtener_usuario_con_detalles(id_usuario):
         conn = get_db_connection()
         if conn is None:
             return None
-        
+
         cursor = conn.cursor(dictionary=True)
-        
+
         # Obtener datos del usuario
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT idUsuario, nombre_usuario, nombre, apellido, email, rol
             FROM usuario
             WHERE idUsuario = %s
-        """, (id_usuario,))
+        """,
+            (id_usuario,),
+        )
         usuario = cursor.fetchone()
-        
+
         if not usuario:
             return None
-        
+
         # Obtener suscripciones del usuario
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT COUNT(*) as total_suscripciones,
                    SUM(CASE WHEN estado = 'Activo' THEN 1 ELSE 0 END) as activas
             FROM Suscripciones
             WHERE id_usuario = %s
-        """, (id_usuario,))
-        
+        """,
+            (id_usuario,),
+        )
+
         suscripciones = cursor.fetchone()
-        usuario['suscripciones'] = suscripciones
-        
+        usuario["suscripciones"] = suscripciones
+
         return usuario
-        
+
     except Error as e:
         print(f"Error al obtener detalles del usuario: {e}")
         return None
