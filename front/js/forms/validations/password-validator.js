@@ -1,4 +1,23 @@
+/* Este archivo define funciones puramente dedicadas a la validación visual y lógica de contraseñas.
+No maneja formularios completos, ni eventos globales, ni feedbacks externos: solo se ocupa de los inputs de tipo “password”. */
 
+/* Hace lo siguiente:
+
+Obtiene los inputs relevantes (form-password y form-confirm-password).
+
+Detecta si se trata de un formulario de registro (porque el de login no requiere confirmación).
+
+Si es registro:
+
+Crea dinámicamente el panel de requisitos (crearIndicadorRequisitos()).
+
+Agrega listeners de input para validar en tiempo real:
+
+La seguridad (validarSeguridadPassword).
+
+La coincidencia (validarConfirmacionPassword).
+
+👉 Esto significa que la validación ocurre a medida que el usuario escribe. */
 export function configurarValidacionPassword() {
     const passwordInput = document.getElementById('form-password');
     const confirmInput = document.getElementById('form-confirm-password');
