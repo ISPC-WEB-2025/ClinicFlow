@@ -204,3 +204,8 @@ section {
 		align-items: center;
 	}
 }
+@media (min-width: 1400px){
+	#banner img{
+		min-height: 40rem;
+	}
+}
