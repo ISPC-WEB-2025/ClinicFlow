@@ -151,6 +151,7 @@ section {
 		height: auto;
 		max-height: 20rem;
 		order: 1;
+		min-height: 10rem;
 	}
 
 	#banner .funcionalidades {
